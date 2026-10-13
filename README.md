@@ -9,6 +9,8 @@ Cardan UI is a [Nuxt Layer](https://nuxt.com/docs/getting-started/layers) in a p
 - Run `pnpm i` to install dependencies
 - Run `pnpm run dev` to start the development server on [localhost:3003](http://localhost:3003)
 
+Cardan UI provides accessible, brand-agnostic components. The Cardan brand identity lives in the design tokens of [`app/assets/main.css`](app/assets/main.css), a template that each project copies into its own `main.css`.
+
 ## How to extend from Cardan UI layer in your project
 
 ### Extend from GitHub repository

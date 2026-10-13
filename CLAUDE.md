@@ -52,13 +52,14 @@ Base frontend guidelines (architecture, CSS design system, WCAG 2.2 requirements
 - **Table**: Data table component
 - **Chip**: Tag/label component
 - **Ellipsis**: Text truncation with expand
-- **Callout**: Highlighted information box
+- **Callout**: Highlighted information box (`default` and `solid` variants)
 - **Markdown**: Markdown rendering and editing
   - MarkdownEditor: Rich text editor (uses [md-editor-v3](https://imzbf.github.io/md-editor-v3/))
   - MarkdownPreview: Markdown display (uses [markdown-it](https://markdown-it.github.io/) and [highlight.js](https://highlightjs.org/))
 
 ### Utility Components
 
+- **CardanLogo**: Cardan logo in full, symbol and tile forms, with color variants and sub-brand lockups (e.g. `product="academy"`)
 - **FocusLoop**: Keyboard navigation management to trap focus inside a container
 - **LanguageSelect**: Language switcher to switch between English and Dutch
 - **ThemeSelect**: Theme selection
@@ -94,7 +95,12 @@ function handleClick() {
 
 ## CSS Variables
 
-All global CSS variables for color, spacing, typography, etc. are declared in [main.css](app/assets/main.css).
+All global CSS variables for color, spacing, typography, etc. are declared in [main.css](app/assets/main.css). The layer does not load this file: it is the Cardan template that each consuming project copies into its own `main.css` (a stylesheet shipped by the layer would add a render-blocking request). The playground imports it from [playground.css](.playground/assets/playground.css).
+
+- The `--cardan-*` primitives hold the brand palette; components never use them, only the semantic `--color-*` tokens do.
+- Components use tokens without fallbacks: `var(--token)`, not `var(--token, var(--other))`. When a component needs a new token, add it to `main.css` and to the token list in [MIGRATION.md](MIGRATION.md), with a value that keeps the current look of existing projects.
+- Every text and graphic token pair must meet WCAG 2.2 AA contrast (4.5:1 for text, 3:1 for graphics) in light and dark mode. Never fix a contrast failure by inventing a new color; use a brand token.
+- Text and icons on tinted (`-bg`) surfaces use the `--color-*-on-bg` tokens.
 
 ## Nuxt Layer Integration
 

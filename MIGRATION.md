@@ -1,0 +1,118 @@
+# Migrating to Cardan UI 2.0
+
+Cardan UI 2.0 is an accessible UI component library. This guide is for developers of projects that extend the layer.
+
+The components stay brand-agnostic: they read design tokens from your project's own `main.css`. A project keeps its current look until it adopts the Cardan tokens, but it does need the new tokens listed below.
+
+## 1. Point your project at the new repository
+
+```ts
+defineNuxtConfig({
+  extends: ['github:Cardan-International-BV/cardan-ui'],
+  // or, for local development:
+  // extends: ['../cardan-ui'],
+});
+```
+
+## 2. Install `@nuxt/fonts`
+
+The layer now registers `@nuxt/fonts`. Projects that do not have it yet (CAT-nuxt, CAT-dashboard, chart) need to install it:
+
+```bash
+pnpm add -D @nuxt/fonts
+```
+
+It only downloads fonts that your CSS uses. A project that keeps `system-ui` (or does not set `--font-family`) loads no fonts.
+
+## 3. Add the new design tokens
+
+Components use these tokens without fallbacks. Add them to `:where(:root)` in your project's `main.css`. The values below keep your current look:
+
+```css
+:where(:root) {
+  --font-weight-semibold: 600;
+
+  /* Buttons */
+  --color-on-accent: var(--color-white);
+  --color-accent-hover: color-mix(
+    in srgb,
+    var(--color-accent) 90%,
+    var(--color-white)
+  );
+  --color-secondary: var(--color-grey-bg);
+  --color-secondary-hover: color-mix(
+    in srgb,
+    var(--color-grey-bg) 95%,
+    var(--color-black)
+  );
+  --color-on-secondary: var(--color-text);
+  --shadow-offset: 4px 4px 0 0 var(--color-accent);
+  --shadow-offset-hover: 6px 6px 0 0 var(--color-accent);
+
+  /* Sizes of buttons and form fields */
+  --control-height: 2.25rem;
+  --control-height-lg: 2.5rem;
+  --button-padding-inline: 0.75rem;
+  --button-font-size: var(--font-size-sm);
+  --button-font-size-sm: var(--font-size-xs);
+  --button-font-size-xs: var(--font-size-xxs);
+
+  /* Text and icons on tinted (-bg) surfaces: Chip, colored Select, Callout solid */
+  --color-accent-on-bg: var(--color-accent-text);
+  --color-grey-on-bg: var(--color-grey-text);
+  --color-red-on-bg: var(--color-red-text);
+  --color-orange-on-bg: var(--color-orange-text);
+  --color-yellow-on-bg: var(--color-yellow-text);
+  --color-green-on-bg: var(--color-green-text);
+  --color-blue-on-bg: var(--color-blue-text);
+  --color-purple-on-bg: var(--color-purple-text);
+  --color-pink-on-bg: var(--color-pink-text);
+
+  /* Track of ProgressMeter, ProgressCircle and RangeInput */
+  --color-track: var(--color-grey-bg);
+
+  /* Backdrop behind Dialog and MobileMenu */
+  --color-backdrop: rgb(0 0 0 / 75%);
+}
+```
+
+cardan-lms-nuxt already defines `--font-weight-semibold`; skip that line there. CAT-nuxt already has all of these tokens.
+
+### Tokens that were already missing before 2.0
+
+Some projects did not define every token the components use, also before this release. Copy these from the layer's [`app/assets/main.css`](app/assets/main.css) when you migrate:
+
+| Project         | Missing tokens                                                                                                                                                                                                            |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| CAT-dashboard   | `--line-height`, `--line-height-heading`                                                                                                                                                                                  |
+| cardan-lms-nuxt | `--card-border-color`, `--popover-border-color`, `--shadow-2`, `--shadow-3`, `--color-blue*`, `--color-orange*`, `--color-pink-bg/-text/-graphic`, `--color-purple-bg/-text/-graphic`, `--color-yellow-bg/-text/-graphic` |
+| chart           | Nearly all color, font, radius, duration and shadow tokens: it defines 10 of them                                                                                                                                         |
+
+## 4. Changes you will see despite the tokens
+
+These changes are not driven by tokens, so they apply to every project:
+
+- **Placeholders** in Input, Select and Textarea use `--color-grey-text` instead of `--color-grey-graphic`, for 4.5:1 contrast.
+- **MultiSelect**: the highlighted (hovered or keyboard) option uses the accent color with `--color-on-accent` text; a highlighted selected option is green. Tags use `--color-accent-text`.
+- **Progress and range tracks** are one neutral color (`--color-track`) instead of a tint per color, and their fills use the `-graphic` colors.
+- **Colored Select** arrows use the `-on-bg` color instead of the `-graphic` color.
+- **MobileMenu** shares `--color-backdrop` with Dialog, so its backdrop goes from 50% to 75% with the value above.
+- **Motion**: Toast slides and fades instead of bouncing; Accordion, ProgressMeter and ProgressCircle animate with `--duration-md` and `--cubic-bezier`; Tabs now animate their color change (a typo disabled this).
+- **Disabled link buttons** get `role="link"` and `aria-disabled="true"`.
+- **Inputs, Select, Textarea and DatePicker** use `--font-family-input` and fall back to `system-ui` when it is not set, as before.
+
+## 5. Adopting the Cardan brand identity
+
+When a project moves to the new identity, copy the tokens from the layer's [`app/assets/main.css`](app/assets/main.css) into its own `main.css`, replacing the values from step 3. That template contains:
+
+- the brand palette as `--cardan-*` primitives, mapped to the semantic `--color-*` tokens for light and dark mode
+- Hanken Grotesk (`--font-family`), the type scale and line heights
+- 40px buttons and fields (`--control-height`), 44px for `lg`, with 16px button text
+- Body text on tinted surfaces, a neutral track, the Cardan backdrop and 12px card radius
+
+Then use the new components and options where they fit:
+
+- `<CardanLogo />` for the logo: full logo, symbol or tile, with automatic color-negative version in dark mode, and sub-brand lockups like `<CardanLogo product="academy" />`
+- `<Callout variant="solid" />` for callouts on a tinted surface
+
+The playground at [localhost:3003](http://localhost:3003) shows the Cardan template in light and dark mode.
