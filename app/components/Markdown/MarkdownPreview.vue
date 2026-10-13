@@ -65,10 +65,7 @@ const preview = computed(() => md.render(content));
 
 <template>
   <div
-    :class="[
-      'cardan-markdown-preview krafters-markdown-preview',
-      ellipsisLines && 'ellipsis',
-    ]"
+    :class="['cardan-markdown-preview', ellipsisLines && 'ellipsis']"
     :style="computedStyle"
     v-html="preview"
   />
@@ -83,7 +80,6 @@ const preview = computed(() => md.render(content));
   }
 }
 
-/* .krafters-markdown-preview is deprecated: still on the element as a styling hook for consumers, use .cardan-markdown-preview */
 .cardan-markdown-preview {
   &.ellipsis {
     overflow: hidden;

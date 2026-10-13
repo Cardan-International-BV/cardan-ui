@@ -48,12 +48,10 @@ const { id = undefined, errorText = undefined } = defineProps<{
   }
 }
 
-:where(.show-invalid) .input-variant--krafters:has(:invalid) .input:not(:focus),
+:where(.show-invalid) .input-variant--3d:has(:invalid) .input:not(:focus),
+:where(.show-invalid) .select-variant--3d:has(:invalid) .select:not(:focus),
 :where(.show-invalid)
-  .select-variant--krafters:has(:invalid)
-  .select:not(:focus),
-:where(.show-invalid)
-  .textarea-variant--krafters:has(:invalid)
+  .textarea-variant--3d:has(:invalid)
   .textarea:not(:focus) {
   box-shadow: 0 1.5px 0 0 var(--color-red);
 }

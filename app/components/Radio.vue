@@ -21,8 +21,7 @@ const {
   tabindex?: string;
   lang?: string;
   id?: string;
-  /** The 'krafters' variant is deprecated: it was designed for the Krafters website and will be removed in a future major version. */
-  variant?: 'default' | 'outline' | 'krafters';
+  variant?: 'default' | 'outline' | '3d';
 }>();
 </script>
 
@@ -159,7 +158,7 @@ const {
   }
 }
 
-.radio-variant--krafters {
+.radio-variant--3d {
   input[type='radio'] {
     width: 1.5rem;
     height: 1.5rem;

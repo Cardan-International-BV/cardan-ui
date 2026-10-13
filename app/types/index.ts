@@ -138,8 +138,7 @@ declare global {
   type CardanLogoVariant =
     'auto' | 'color' | 'negative' | 'white' | 'black' | 'purple';
   type TabsVariant = 'default' | 'minimal';
-  /** 'krafters' is deprecated: it was designed for the Krafters website and will be removed in a future major version. */
-  type InputVariant = 'default' | 'minimal' | 'krafters';
+  type InputVariant = 'default' | 'minimal' | '3d';
 
   type InputSize = 'sm' | 'md' | 'lg';
   type TabsSize = 'xs' | 'sm' | 'md';

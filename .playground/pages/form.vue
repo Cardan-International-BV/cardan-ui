@@ -126,12 +126,12 @@ const inputVariants = [
     label: 'default',
   },
   {
-    value: 'krafters',
-    label: 'krafters (deprecated)',
+    value: '3d',
+    label: '3d',
   },
   {
     value: 'minimal',
-    label: 'Minimal',
+    label: 'minimal',
   },
 ];
 

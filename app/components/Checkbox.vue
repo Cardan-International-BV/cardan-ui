@@ -19,8 +19,7 @@ const {
   hideLabel?: boolean;
   tabindex?: string;
   id?: string;
-  /** The 'krafters' variant is deprecated: it was designed for the Krafters website and will be removed in a future major version. */
-  variant?: 'default' | 'krafters';
+  variant?: 'default' | '3d';
 }>();
 </script>
 
@@ -134,7 +133,7 @@ const {
   }
 }
 
-.checkbox-variant--krafters {
+.checkbox-variant--3d {
   input[type='checkbox'] {
     width: 1.5rem;
     height: 1.5rem;

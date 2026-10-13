@@ -43,7 +43,6 @@ const {
   tabindex?: string;
   color?: BaseColor;
   id?: string;
-  /** The 'krafters' variant is deprecated: it was designed for the Krafters website and will be removed in a future major version. */
   variant?: InputVariant;
 }>();
 
@@ -318,7 +317,7 @@ const computedAriaDescribedby = computed(() =>
   }
 }
 
-.select-variant--krafters {
+.select-variant--3d {
   label {
     color: var(--color-grey-text);
     font-weight: var(--font-weight-semibold);

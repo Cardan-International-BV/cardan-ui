@@ -51,7 +51,6 @@ const {
   instruction?: string;
   errorMessage?: string;
   tabindex?: string;
-  /** The 'krafters' variant is deprecated: it was designed for the Krafters website and will be removed in a future major version. */
   variant?: InputVariant;
 }>();
 
@@ -346,7 +345,7 @@ const emit = defineEmits<{
   }
 }
 
-.input-variant--krafters {
+.input-variant--3d {
   label {
     color: var(--color-grey-text);
     font-weight: var(--font-weight-semibold);
