@@ -118,3 +118,45 @@ Then use the new components and options where they fit:
 - `<Callout variant="solid" />` for callouts on a tinted surface
 
 The playground at [localhost:3003](http://localhost:3003) shows the Cardan template in light and dark mode.
+
+## 6. Projects that use Cardan Auth UI
+
+Cardan Auth UI (sign-in and the MFA flow) now lives in the `auth/` directory of this repository. Extend it next to Cardan UI, as a peer:
+
+```ts
+defineNuxtConfig({
+  extends: [
+    'github:cardan-a11y/cardan-ui/auth',
+    'github:cardan-a11y/cardan-ui',
+  ],
+  // or, for local development:
+  // extends: ['../cardan-ui/auth', '../cardan-ui'],
+
+  modules: ['nuxt-auth-sanctum'],
+});
+```
+
+The layer now uses its `--auth-*` tokens without fallbacks, so define all of them in your `main.css`. These values keep the sizes the layer used before; the Cardan template in `app/assets/main.css` raises the error text to `--font-size-sm` (14px):
+
+```css
+:where(:root) {
+  --auth-color-divider: var(--color-grey-light);
+  --auth-font-size-heading: var(--font-size-xxl);
+  --auth-font-size-intro: var(--font-size-lg);
+  --auth-font-size-step-heading: var(--font-size-lg);
+  --auth-font-size-label: var(--font-size-md);
+  --auth-font-size-small: var(--font-size-sm);
+  --auth-font-size-error: var(--font-size-xs);
+  --auth-font-size-otp-input: var(--font-size-xxxl);
+  --auth-font-size-recovery-code-input: var(--font-size-lg);
+  --auth-font-size-recovery-code-list: var(--font-size-sm);
+  --auth-font-size-button: var(--font-size-md);
+  --auth-font-size-dialog-button: var(--font-size-sm);
+}
+```
+
+cardan-lms-nuxt already defines the font size roles; it only needs `--auth-color-divider`.
+
+Remove any MFA composables or components your app still has from before the layer, such as CAT-nuxt's own `useMfa`. An app composable with the same name replaces the layer's auto-import, and the layer keeps its MFA state under the same `useState` keys (`mfaStep`, `qrCode`, `recoveryCodes`, `mfaError`, …), so the two would break each other.
+
+The role tokens are now resolved where your `main.css` defines them: redefining `--font-size-*` on part of a page no longer changes them. Set the `--auth-*` tokens on a container instead to change the sizes on one page.

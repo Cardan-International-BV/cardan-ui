@@ -1,0 +1,14 @@
+{
+  "name": "@cardan/auth-ui",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "./nuxt.config.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cardan-a11y/cardan-ui.git",
+    "directory": "auth"
+  },
+  "peerDependencies": {
+    "nuxt-auth-sanctum": "^3.1.3"
+  }
+}

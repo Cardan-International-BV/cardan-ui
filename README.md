@@ -9,6 +9,10 @@ Cardan UI is a [Nuxt Layer](https://nuxt.com/docs/getting-started/layers) in a p
 - Run `pnpm i` to install dependencies
 - Run `pnpm run dev` to start the development server on [localhost:3003](http://localhost:3003)
 
+## Cardan Auth UI
+
+The [`auth/`](auth/) directory holds Cardan Auth UI: a separate Nuxt layer with the sign-in and MFA forms for Nuxt SPAs backed by Laravel Fortify. Projects that need it extend it next to Cardan UI (`github:cardan-a11y/cardan-ui/auth`); see [auth/README.md](auth/README.md).
+
 Cardan UI provides accessible, brand-agnostic components. The Cardan brand identity lives in the design tokens of [`app/assets/main.css`](app/assets/main.css), a template that each project copies into its own `main.css`.
 
 ## How to extend from Cardan UI layer in your project

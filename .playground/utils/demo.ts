@@ -26,6 +26,11 @@ export const navList: MenuItem[] = [
     label: 'Logo',
   },
   {
+    id: 'auth',
+    to: '/auth',
+    label: 'Auth UI',
+  },
+  {
     id: 'text',
     to: '/text',
     label: 'Text & Icons',

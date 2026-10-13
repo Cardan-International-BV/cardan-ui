@@ -1,7 +1,8 @@
 import { defaultIcons } from './utils/defaultIcons';
 
 export default defineNuxtConfig({
-  extends: ['..'],
+  // Cardan UI and the Cardan Auth UI layer, which is demoed on the Auth UI pages
+  extends: ['..', '../auth'],
 
   $production: {
     image: {
@@ -23,7 +24,29 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@nuxt/image', '@nuxt/scripts'],
+  modules: ['@nuxt/image', '@nuxt/scripts', 'nuxt-auth-sanctum'],
+
+  // The Auth UI pages talk to the mock Fortify endpoints in server/routes.
+  // Set NUXT_PUBLIC_SANCTUM_BASE_URL to the playground's own URL when it is
+  // deployed elsewhere.
+  sanctum: {
+    baseUrl: 'http://localhost:3003',
+    client: {
+      initialRequest: false,
+    },
+    redirect: {
+      onAuthOnly: '/',
+      onGuestOnly: '/',
+      onLogout: '/',
+    },
+  },
+
+  // Auth UI is made for single-page apps, so its pages render on the client only
+  routeRules: {
+    '/auth': { ssr: false },
+    '/auth/**': { ssr: false },
+    '/two-factor-authentication': { ssr: false },
+  },
 
   css: ['~/assets/playground.css'],
 

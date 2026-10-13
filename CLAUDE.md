@@ -67,6 +67,16 @@ Base frontend guidelines (architecture, CSS design system, WCAG 2.2 requirements
 - **UserMenu**: User account menu
 - **VideoPlayer**: Video playback component to play videos from YouTube or Vimeo (uses [YouTube](https://developers.google.com/youtube/iframe_api_reference) and [Vimeo](https://developer.vimeo.com/player/sdk/embed) APIs)
 
+## Cardan Auth UI layer
+
+The [auth/](auth/) directory is a separate, opt-in Nuxt layer (`@cardan/auth-ui`) with the sign-in and MFA forms for Nuxt SPAs backed by Laravel Fortify. Projects extend it next to Cardan UI, as a peer: `github:cardan-a11y/cardan-ui/auth`. It is not part of the base layer because it adds a page (`/two-factor-authentication`) and needs `nuxt-auth-sanctum`, which most projects do not use. Its documentation is in [auth/README.md](auth/README.md).
+
+- **Components**: `LoginForm`, `AuthError`, `PasswordConfirmationDialog` and the MFA flow (`MfaChallenge`, `MfaSetup`, `MfaDialog`, `MfaQr`, `MfaCode`, recovery codes, …)
+- **Composables**: `useAuth`, `useMfa`, `useMfaDialog`, `usePasswordConfirmation` (wrapping `nuxt-auth-sanctum`)
+- Only the forms live here; page layout stays with each app, and restylable parts are slots
+- The layer uses the Cardan UI components and tokens plus its own `--auth-*` tokens; new tokens follow the same rules as the base (defined in `main.css`, listed in MIGRATION.md, no fallbacks)
+- The demo is the Auth UI section of the playground (`/auth`), backed by mock Fortify endpoints in `.playground/server/routes`; its pages render client-side only, like the SPAs that use the layer
+
 ## Utilities Available
 
 - **datetime**: Date and time formatting
