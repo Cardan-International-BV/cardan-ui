@@ -243,53 +243,53 @@ const computedAriaDescribedby = computed(() =>
 
 .select-color--blue {
   .select {
-    color: var(--color-blue-text);
+    color: var(--color-blue-on-bg);
     accent-color: var(--color-blue-text);
     border-color: var(--color-blue-graphic);
     background-color: var(--color-blue-bg);
   }
 
   .select-arrow {
-    color: var(--color-blue-graphic);
+    color: var(--color-blue-on-bg);
   }
 }
 
 .select-color--green {
   .select {
-    color: var(--color-green-text);
+    color: var(--color-green-on-bg);
     accent-color: var(--color-green-text);
     border-color: var(--color-green-graphic);
     background-color: var(--color-green-bg);
   }
 
   .select-arrow {
-    color: var(--color-green-graphic);
+    color: var(--color-green-on-bg);
   }
 }
 
 .select-color--orange {
   .select {
-    color: var(--color-orange-text);
+    color: var(--color-orange-on-bg);
     accent-color: var(--color-orange-text);
     border-color: var(--color-orange-graphic);
     background-color: var(--color-orange-bg);
   }
 
   .select-arrow {
-    color: var(--color-orange-graphic);
+    color: var(--color-orange-on-bg);
   }
 }
 
 .select-color--red {
   .select {
-    color: var(--color-red-text);
+    color: var(--color-red-on-bg);
     accent-color: var(--color-red-text);
     border-color: var(--color-red-graphic);
     background-color: var(--color-red-bg);
   }
 
   .select-arrow {
-    color: var(--color-red-graphic);
+    color: var(--color-red-on-bg);
   }
 }
 

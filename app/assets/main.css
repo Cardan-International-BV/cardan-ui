@@ -48,7 +48,11 @@
 
   --color-accent: var(--cardan-purple-on-dark);
   --color-accent-hover: var(--cardan-purple);
-  --color-accent-bg: var(--cardan-dark-block);
+  --color-accent-bg: color-mix(
+    in srgb,
+    var(--cardan-purple-on-dark) 15%,
+    var(--cardan-dark-bg)
+  );
   --color-accent-text: var(--cardan-purple-text-on-dark);
   --color-accent-graphic: var(--cardan-purple-text-on-dark);
   --color-on-accent: var(--cardan-white);
@@ -63,48 +67,75 @@
   --color-grey-graphic: var(--cardan-body-60);
   --color-grey-light: var(--cardan-dark-border);
   --color-grey-bg: var(--cardan-dark-block);
+  --color-track: var(--cardan-body-grey);
   --color-bg: var(--cardan-dark-bg);
   --color-card-bg: var(--cardan-dark-card);
   --color-white: var(--cardan-black);
 
-  /* Not in the brand book: dark error colors are kept from the previous theme */
+  /* Dark surfaces the brand book does not define are 25% of the color over the
+     dark background. Purple uses 15%, so purple text on it keeps 4.5:1 */
+
+  /* Not in the brand book: dark error text and graphics are kept from the previous theme */
   --color-red: hsl(0 100% 60%);
-  --color-red-bg: hsl(0 33% 19%);
+  --color-red-bg: color-mix(
+    in srgb,
+    var(--cardan-error) 25%,
+    var(--cardan-dark-bg)
+  );
   --color-red-text: hsl(0 69% 67%);
   --color-red-graphic: hsl(0 63% 65%);
 
   /* Ochre: data and status only */
   --color-orange: var(--cardan-ochre-on-dark);
-  --color-orange-bg: hsl(30 67% 18%);
+  --color-orange-bg: color-mix(
+    in srgb,
+    var(--cardan-ochre-on-dark) 25%,
+    var(--cardan-dark-bg)
+  );
   --color-orange-text: var(--cardan-ochre-on-dark);
   --color-orange-graphic: var(--cardan-ochre-on-dark);
 
   /* Not a brand color: kept for categorical use */
   --color-yellow: hsl(60 80% 50%);
-  --color-yellow-bg: hsl(50 43% 20%);
+  --color-yellow-bg: color-mix(
+    in srgb,
+    hsl(50 100% 46%) 25%,
+    var(--cardan-dark-bg)
+  );
   --color-yellow-text: hsl(50 70% 50%);
   --color-yellow-graphic: hsl(60 60% 40%);
 
   --color-green: var(--cardan-green-on-dark);
-  /* Not in the brand book: dark success surface is kept from the previous theme */
-  --color-green-bg: hsl(150 50% 15%);
+  --color-green-bg: color-mix(
+    in srgb,
+    var(--cardan-green-on-dark) 25%,
+    var(--cardan-dark-bg)
+  );
   --color-green-text: var(--cardan-green-text-on-dark);
   --color-green-graphic: var(--cardan-green-on-dark);
 
   /* Not a brand color: kept for categorical use */
   --color-blue: hsl(220 53% 58%);
-  --color-blue-bg: hsl(240 60% 30%);
+  --color-blue-bg: color-mix(
+    in srgb,
+    var(--color-blue-graphic) 25%,
+    var(--cardan-dark-bg)
+  );
   --color-blue-text: hsl(220 100% 75%);
   --color-blue-graphic: hsl(220 100% 60%);
 
   --color-purple: var(--cardan-purple-on-dark);
-  --color-purple-bg: var(--cardan-dark-block);
+  --color-purple-bg: var(--color-accent-bg);
   --color-purple-text: var(--cardan-purple-text-on-dark);
   --color-purple-graphic: var(--cardan-purple-text-on-dark);
 
   /* Not a brand color: kept for categorical use */
   --color-pink: hsl(320 100% 75%);
-  --color-pink-bg: hsl(320 100% 15%);
+  --color-pink-bg: color-mix(
+    in srgb,
+    var(--color-pink-graphic) 25%,
+    var(--cardan-dark-bg)
+  );
   --color-pink-text: hsl(320 100% 75%);
   --color-pink-graphic: hsl(320 100% 75%);
 
@@ -148,6 +179,7 @@
   --color-grey-graphic: var(--cardan-always-grey);
   --color-grey-light: var(--cardan-beige-mid);
   --color-grey-bg: var(--cardan-beige-sand);
+  --color-track: var(--cardan-beige-sand);
   --color-bg: var(--cardan-beige);
   --color-card-bg: var(--cardan-white);
   --color-white: var(--cardan-white);
@@ -158,15 +190,15 @@
   --color-red-text: var(--cardan-error-text);
   --color-red-graphic: var(--cardan-error);
 
-  /* Ochre: data and status only. The brand has no light ochre surface, mid beige keeps ochre text at 4.75:1 */
+  /* Ochre: data and status only. Ochre 40% is the surface, always with Body text (see the -on-bg tokens) */
   --color-orange: var(--cardan-ochre);
-  --color-orange-bg: var(--cardan-beige-mid);
+  --color-orange-bg: var(--cardan-ochre-40);
   --color-orange-text: var(--cardan-ochre-text);
   --color-orange-graphic: var(--cardan-ochre);
 
   /* Not a brand color: kept for categorical use */
   --color-yellow: hsl(50 100% 46%);
-  --color-yellow-bg: hsl(50 75% 85%);
+  --color-yellow-bg: hsl(50 80% 80%);
   --color-yellow-text: hsl(50 100% 24%);
   --color-yellow-graphic: hsl(45 80% 40%);
 
@@ -205,6 +237,22 @@
 }
 
 :where(:root) {
+  /* Text and icons on tinted (-bg) surfaces: always Body in the Cardan brand */
+  --color-accent-on-bg: var(--color-text);
+  /* Muted, 5.8:1 in light and 9.5:1 in dark mode */
+  --color-grey-on-bg: color-mix(
+    in srgb,
+    var(--color-text) 75%,
+    var(--color-grey-bg)
+  );
+  --color-red-on-bg: var(--color-text);
+  --color-orange-on-bg: var(--color-text);
+  --color-yellow-on-bg: var(--color-text);
+  --color-green-on-bg: var(--color-text);
+  --color-blue-on-bg: var(--color-text);
+  --color-purple-on-bg: var(--color-text);
+  --color-pink-on-bg: var(--color-text);
+
   /* Font family design tokens */
   --font-family: 'Hanken Grotesk', Arial, system-ui, sans-serif;
   --font-family-input: var(--font-family);
@@ -254,6 +302,9 @@
   --button-font-size: var(--font-size-md);
   --button-font-size-sm: var(--font-size-sm);
   --button-font-size-xs: var(--font-size-xs);
+
+  /* Card design tokens */
+  --card-radius: var(--radius-lg);
 
   /* Border radius design tokens */
   --radius-xs: 2px;

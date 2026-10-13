@@ -105,22 +105,22 @@ const percentage = computed(() => ((value / (max - min)) * 100)?.toFixed(0));
 }
 
 .progress-meter-color--accent {
-  --progress-stroke-color: var(--color-accent);
-  --progress-stroke-bg: var(--color-accent-bg);
+  --progress-stroke-color: var(--color-accent-graphic);
+  --progress-stroke-bg: var(--color-track);
 }
 
 .progress-meter-color--green {
-  --progress-stroke-color: var(--color-green);
-  --progress-stroke-bg: var(--color-green-bg);
+  --progress-stroke-color: var(--color-green-graphic);
+  --progress-stroke-bg: var(--color-track);
 }
 
 .progress-meter-color--orange {
-  --progress-stroke-color: var(--color-orange);
-  --progress-stroke-bg: var(--color-orange-bg);
+  --progress-stroke-color: var(--color-orange-graphic);
+  --progress-stroke-bg: var(--color-track);
 }
 
 .progress-meter-color--red {
-  --progress-stroke-color: var(--color-red);
-  --progress-stroke-bg: var(--color-red-bg);
+  --progress-stroke-color: var(--color-red-graphic);
+  --progress-stroke-bg: var(--color-track);
 }
 </style>

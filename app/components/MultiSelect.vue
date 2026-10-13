@@ -277,7 +277,7 @@ function preventEscape(event: KeyboardEvent) {
   --ms-tag-font-weight: var(--font-weight-medium);
   --ms-tag-bg: var(--color-accent-bg);
   --ms-tag-bg-disabled: var(--color-grey-bg);
-  --ms-tag-color: var(--color-accent);
+  --ms-tag-color: var(--color-accent-text);
   --ms-tag-color-disabled: var(--color-grey-graphic);
   --ms-tag-radius: var(--radius-sm);
   /* --ms-tag-py: 0.125rem; */

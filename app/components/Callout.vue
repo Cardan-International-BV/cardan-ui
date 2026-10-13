@@ -7,6 +7,7 @@ const {
   content = undefined,
   ariaLabel = undefined,
   radius = undefined,
+  variant = 'default',
 } = defineProps<{
   color?: 'accent' | 'blue' | 'green' | 'red' | 'orange';
   fontSize?: FontSize;
@@ -15,6 +16,7 @@ const {
   content?: string;
   ariaLabel?: string;
   radius?: BorderRadius;
+  variant?: CalloutVariant;
 }>();
 
 const computedStyle = computed(() => ({
@@ -47,7 +49,11 @@ const computedIconLabel = computed(() => {
 <template>
   <section
     :aria-label="ariaLabel"
-    :class="['callout-wrapper', `callout-color--${color}`]"
+    :class="[
+      'callout-wrapper',
+      `callout-color--${color}`,
+      `callout-variant--${variant}`,
+    ]"
     :style="computedStyle"
   >
     <div class="callout-content">
@@ -137,6 +143,57 @@ const computedIconLabel = computed(() => {
 
   .iconify {
     color: var(--color-blue-graphic);
+  }
+}
+
+/* Solid variant: tinted surface, text and icon in the on-bg color */
+.callout-variant--solid {
+  border-color: transparent;
+
+  &.callout-color--accent {
+    color: var(--color-accent-on-bg);
+    background-color: var(--color-accent-bg);
+
+    .iconify {
+      color: var(--color-accent-on-bg);
+    }
+  }
+
+  &.callout-color--red {
+    color: var(--color-red-on-bg);
+    background-color: var(--color-red-bg);
+
+    .iconify {
+      color: var(--color-red-on-bg);
+    }
+  }
+
+  &.callout-color--orange {
+    color: var(--color-orange-on-bg);
+    background-color: var(--color-orange-bg);
+
+    .iconify {
+      color: var(--color-orange-on-bg);
+    }
+  }
+
+  &.callout-color--green {
+    color: var(--color-green-on-bg);
+    background-color: var(--color-green-bg);
+
+    .iconify {
+      color: var(--color-green-on-bg);
+    }
+  }
+
+  /* Info callouts use the neutral surface */
+  &.callout-color--blue {
+    color: var(--color-text);
+    background-color: var(--color-grey-bg);
+
+    .iconify {
+      color: var(--color-text);
+    }
   }
 }
 </style>
