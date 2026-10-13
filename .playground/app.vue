@@ -10,6 +10,13 @@ watch(
 );
 
 useHead({ titleTemplate: '%s | Cardan UI' });
+
+// The Auth UI subpages, including the layer's own sign-in challenge page
+const isAuthSubpage = computed(
+  () =>
+    route.path.startsWith('/auth/') ||
+    route.path === '/two-factor-authentication',
+);
 </script>
 
 <template>
@@ -26,6 +33,15 @@ useHead({ titleTemplate: '%s | Cardan UI' });
       </aside>
 
       <main id="main" tabindex="-1">
+        <Button
+          v-if="isAuthSubpage"
+          variant="link"
+          to="/auth"
+          icon="material-symbols:arrow-left-alt-rounded"
+          label="Back to Auth UI"
+          class="auth-back-link"
+        />
+
         <NuxtPage />
       </main>
 
@@ -96,6 +112,10 @@ h3 {
   @media (min-width: 1024px) {
     display: block;
   }
+}
+
+.auth-back-link {
+  margin-block-end: 1.5rem;
 }
 
 .demo-page {
