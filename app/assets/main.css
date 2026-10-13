@@ -306,6 +306,9 @@
   /* Card design tokens */
   --card-radius: var(--radius-lg);
 
+  /* Backdrop behind Dialog and MobileMenu */
+  --color-backdrop: rgb(20 20 19 / 60%);
+
   /* Border radius design tokens */
   --radius-xs: 2px;
   --radius-sm: 4px;

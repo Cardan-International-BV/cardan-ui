@@ -87,7 +87,7 @@ const percentage = computed(() => ((value / (max - min)) * 100)?.toFixed(0));
       position: absolute;
       inset: 0;
       width: var(--width);
-      transition: width var(--duration-lg) ease-in-out;
+      transition: width var(--duration-md) var(--cubic-bezier);
     }
   }
 }

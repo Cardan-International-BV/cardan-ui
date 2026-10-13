@@ -112,7 +112,7 @@ const percentage = computed(() => ((value / max) * 100)?.toFixed());
         transform-origin: var(--half-size) var(--half-size);
         transition:
           stroke var(--duration-sm) ease-in-out,
-          stroke-dasharray var(--duration-lg) ease-out;
+          stroke-dasharray var(--duration-md) var(--cubic-bezier);
       }
     }
   }

@@ -208,30 +208,31 @@ const emit = defineEmits<{
   background-color: transparent;
 }
 
-/* Transitions */
+/* Transitions: slide and fade */
 .toast-move {
-  transition: all var(--duration-md) ease-in-out;
+  transition: all var(--duration-md) var(--cubic-bezier);
 }
 
 .toast-leave-active,
 .toast-enter-active {
   animation-fill-mode: both;
-  animation-duration: var(--duration-xl);
+  animation-duration: var(--duration-md);
+  animation-timing-function: var(--cubic-bezier);
 }
 
 .toast-enter-active {
-  animation-name: bounceInBottom;
+  animation-name: toastInBottom;
 
   @media (min-width: 768px) {
-    animation-name: bounceInRight;
+    animation-name: toastInRight;
   }
 }
 
 .toast-leave-active {
-  animation-name: bounceOutBottom;
+  animation-name: toastOutBottom;
 
   @media (min-width: 768px) {
-    animation-name: bounceOutRight;
+    animation-name: toastOutRight;
   }
 }
 
@@ -241,77 +242,31 @@ const emit = defineEmits<{
   }
 }
 
-@keyframes bounceInBottom {
-  from,
-  60%,
-  75%,
-  90%,
-  to {
-    animation-timing-function: var(--cubic-bezier);
-  }
+@keyframes toastInBottom {
   from {
-    transform: translateY(1000px);
-  }
-  60% {
-    transform: translateY(-16px);
-  }
-  75% {
-    transform: translateY(8px);
-  }
-  90% {
-    transform: translateY(-4px);
-  }
-  to {
-    transform: none;
+    opacity: 0;
+    transform: translateY(100%);
   }
 }
 
-@keyframes bounceInRight {
-  from,
-  60%,
-  75%,
-  90%,
-  to {
-    animation-timing-function: var(--cubic-bezier);
-  }
+@keyframes toastInRight {
   from {
-    transform: translateX(1000px);
-  }
-  60% {
-    transform: translateX(-16px);
-  }
-  75% {
-    transform: translateX(8px);
-  }
-  90% {
-    transform: translateX(-4px);
-  }
-  to {
-    transform: none;
+    opacity: 0;
+    transform: translateX(100%);
   }
 }
 
-@keyframes bounceOutBottom {
-  from {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-16px);
-  }
+@keyframes toastOutBottom {
   to {
-    transform: translateY(1000px);
+    opacity: 0;
+    transform: translateY(100%);
   }
 }
 
-@keyframes bounceOutRight {
-  from {
-    transform: translateX(0);
-  }
-  40% {
-    transform: translateX(-16px);
-  }
+@keyframes toastOutRight {
   to {
-    transform: translateX(1000px);
+    opacity: 0;
+    transform: translateX(100%);
   }
 }
 </style>
