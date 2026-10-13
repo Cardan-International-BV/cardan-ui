@@ -397,7 +397,7 @@ function preventEscape(event: KeyboardEvent) {
     white-space: nowrap;
     display: inline-flex;
     border-radius: var(--radius-sm);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     background-color: var(--color-accent-bg);
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-medium);
