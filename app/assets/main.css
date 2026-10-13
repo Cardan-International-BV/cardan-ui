@@ -145,7 +145,7 @@
 
   --shadow-color: 282deg 0% 2%;
 
-  --color-dialog-bg: var(--color-white);
+  --color-dialog-bg: var(--color-card-bg);
   --color-input-bg: var(--color-card-bg);
   --card-border-color: var(--cardan-dark-border);
   --popover-border-color: var(--cardan-dark-border);
@@ -308,6 +308,20 @@
 
   /* Backdrop behind Dialog and MobileMenu */
   --color-backdrop: rgb(20 20 19 / 60%);
+
+  /* Cardan Auth UI design tokens: the text roles of the sign-in and MFA forms */
+  --auth-color-divider: var(--color-grey-light);
+  --auth-font-size-heading: var(--font-size-xxl);
+  --auth-font-size-intro: var(--font-size-lg);
+  --auth-font-size-step-heading: var(--font-size-lg);
+  --auth-font-size-label: var(--font-size-md);
+  --auth-font-size-small: var(--font-size-sm);
+  --auth-font-size-error: var(--font-size-sm);
+  --auth-font-size-otp-input: var(--font-size-xxxl);
+  --auth-font-size-recovery-code-input: var(--font-size-lg);
+  --auth-font-size-recovery-code-list: var(--font-size-sm);
+  --auth-font-size-button: var(--font-size-md);
+  --auth-font-size-dialog-button: var(--font-size-sm);
 
   /* Border radius design tokens */
   --radius-xs: 2px;

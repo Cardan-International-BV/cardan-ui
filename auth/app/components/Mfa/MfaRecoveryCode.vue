@@ -1,0 +1,56 @@
+<script setup lang="ts">
+const { mfaCredentials, mfaError, recoveryCodeInputRef } = useMfa();
+</script>
+
+<template>
+  <div class="mfa-recovery-code-confirmation">
+    <Input
+      ref="recoveryCodeInputRef"
+      v-model="mfaCredentials.recovery_code"
+      required
+      autofocus
+      autocomplete="off"
+      name="recovery_code"
+      :label="$t('mfa.recovery-code')"
+      class="mfa-recovery-code-input"
+      data-1p-ignore
+    />
+
+    <AuthError :data="mfaError" />
+  </div>
+</template>
+
+<style>
+.mfa-recovery-code-confirmation {
+  .auth-error {
+    margin-block-start: 0rem;
+  }
+}
+
+.mfa-recovery-code-input {
+  display: grid;
+  margin-inline: auto;
+
+  label {
+    text-align: center;
+    margin-inline: auto;
+    font-size: var(--auth-font-size-label) !important;
+    margin-block-end: 0.5rem !important;
+  }
+
+  input[type='text'] {
+    height: auto;
+    padding-block: 0.5rem;
+    font-size: var(--auth-font-size-recovery-code-input);
+    background-color: var(--color-card-bg);
+  }
+
+  .error-wrapper {
+    margin-block: 0.25rem;
+
+    .error {
+      font-size: var(--auth-font-size-small);
+    }
+  }
+}
+</style>

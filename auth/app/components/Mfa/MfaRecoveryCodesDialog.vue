@@ -1,0 +1,70 @@
+<script setup lang="ts">
+const { mfaRecoveryCodesDialogRef } = useMfaDialog();
+const {
+  mfaError,
+  recoveryCodes,
+  generateRecoveryCodes,
+  loadingGenerateRecoveryCodes,
+} = useMfa();
+</script>
+
+<template>
+  <Dialog
+    ref="mfaRecoveryCodesDialogRef"
+    :label="$t('mfa.recovery-code', 2)"
+    class="mfa-recovery-codes-dialog"
+    position="center"
+    :click-outside="false"
+    @close="mfaError = null"
+  >
+    <AuthError v-if="mfaError" :data="mfaError" />
+
+    <MfaRecoveryCodeList v-else-if="recoveryCodes.length" />
+
+    <hr class="mfa-recovery-codes-divider" />
+
+    <template #buttons>
+      <Button
+        variant="primary"
+        size="lg"
+        :label="$t('mfa.recovery-codes-generate')"
+        icon="material-symbols:refresh-rounded"
+        :loading="loadingGenerateRecoveryCodes"
+        @click="generateRecoveryCodes()"
+      />
+    </template>
+  </Dialog>
+</template>
+
+<style>
+.mfa-recovery-codes-dialog {
+  width: 100%;
+  max-width: 490px;
+
+  .mfa-recovery-codes-divider {
+    block-size: 1px;
+    background-color: var(--auth-color-divider);
+    margin-block-start: 1.5rem;
+  }
+
+  .dialog-buttons {
+    margin-block-start: 1.5rem;
+    justify-content: space-between;
+
+    .button {
+      --font-size: var(--auth-font-size-dialog-button);
+      .button-text {
+        padding-block: 0.25rem;
+      }
+
+      @media (min-width: 375px) {
+        max-width: max-content;
+      }
+    }
+  }
+
+  p {
+    margin-block-start: 0;
+  }
+}
+</style>
