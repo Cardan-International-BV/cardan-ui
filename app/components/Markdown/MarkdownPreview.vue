@@ -8,16 +8,7 @@ import {
   targetBlankExtension,
 } from './extensions';
 
-import hljs from 'highlight.js/lib/core';
-import css from 'highlight.js/lib/languages/css';
-import javascript from 'highlight.js/lib/languages/javascript';
-import typescript from 'highlight.js/lib/languages/typescript';
-import 'highlight.js/lib/common';
-import 'highlight.js/styles/stackoverflow-dark.css';
-
-hljs.registerLanguage('css', css);
-hljs.registerLanguage('javascript', javascript);
-hljs.registerLanguage('typescript', typescript);
+import { hljs } from './highlight';
 
 const {
   content,
