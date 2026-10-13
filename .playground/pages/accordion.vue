@@ -146,7 +146,7 @@ const isAccordionOpen = ref(false);
   }
 
   .details-summary {
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-semibold);
   }
 }
 </style>

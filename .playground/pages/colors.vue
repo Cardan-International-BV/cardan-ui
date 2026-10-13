@@ -10,9 +10,11 @@ useHead({ title: 'Colors' });
       <h2>Primary</h2>
       <div class="color-swatches-grid">
         <ColorSwatch color="accent" />
+        <ColorSwatch color="accent-hover" />
         <ColorSwatch color="accent-bg" />
         <ColorSwatch color="accent-text" />
         <ColorSwatch color="accent-graphic" />
+        <ColorSwatch color="on-accent" />
       </div>
 
       <h2>Neutral</h2>
@@ -20,6 +22,7 @@ useHead({ title: 'Colors' });
         <ColorSwatch color="white" />
         <ColorSwatch color="bg" />
         <ColorSwatch color="grey-bg" />
+        <ColorSwatch color="grey-light" />
         <ColorSwatch color="grey-graphic" />
         <ColorSwatch color="grey-text" />
         <ColorSwatch color="text" />

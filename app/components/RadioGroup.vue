@@ -25,7 +25,7 @@ const {
   required?: boolean;
   disabled?: boolean;
   inline?: boolean;
-  variant?: 'default' | 'krafters' | 'outline';
+  variant?: 'default' | '3d' | 'outline';
 }>();
 </script>
 
@@ -99,7 +99,7 @@ const {
   }
 
   legend {
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-semibold);
     font-size: var(--font-size-md);
 
     .tooltip-content {

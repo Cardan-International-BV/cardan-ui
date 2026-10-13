@@ -4,30 +4,18 @@ export default defineNuxtConfig({
   extends: ['..'],
 
   $production: {
-    app: {
-      baseURL: '/krafters-ui/',
-    },
-
     image: {
       domains: ['i.ytimg.com'],
     },
   },
 
-  fonts: {
-    defaults: {
-      weights: [400, 600],
-      styles: ['normal', 'italic'],
-    },
-  },
-
   i18n: {
-    baseUrl: 'https://kraftersnl.github.io/krafters-ui/',
     defaultLocale: 'en',
   },
 
   app: {
     head: {
-      title: 'Krafters UI',
+      title: 'Cardan UI',
       link: [{ rel: 'icon', href: 'favicon.svg', type: 'image/svg+xml' }],
       htmlAttrs: {
         lang: 'en',
@@ -35,7 +23,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@nuxt/fonts', '@nuxt/image', '@nuxt/scripts'],
+  modules: ['@nuxt/image', '@nuxt/scripts'],
 
   css: ['~/assets/playground.css'],
 

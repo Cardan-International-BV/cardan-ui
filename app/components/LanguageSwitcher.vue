@@ -48,7 +48,7 @@ const { locale, setLocale } = useI18n();
     text-decoration: none;
 
     &.active {
-      font-weight: var(--font-weight-bold);
+      font-weight: var(--font-weight-semibold);
     }
 
     &:hover {

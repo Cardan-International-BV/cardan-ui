@@ -7,11 +7,20 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxt/eslint',
+    '@nuxt/fonts',
     '@nuxt/icon',
     '@nuxtjs/color-mode',
     '@nuxtjs/i18n',
     '@vueuse/nuxt',
   ],
+
+  // Fonts are only downloaded when a project's CSS uses them, e.g. via --font-family in main.css
+  fonts: {
+    defaults: {
+      weights: [400, 500, 600, 700],
+      styles: ['normal', 'italic'],
+    },
+  },
 
   typescript: {
     includeWorkspace: true,

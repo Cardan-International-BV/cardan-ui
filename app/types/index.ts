@@ -133,8 +133,12 @@ declare global {
     | 'topbar';
 
   type ChipVariant = 'flat' | 'outline' | 'soft';
+  type CalloutVariant = 'default' | 'solid';
+  type CardanLogoForm = 'full' | 'symbol' | 'tile';
+  type CardanLogoVariant =
+    'auto' | 'color' | 'negative' | 'white' | 'black' | 'purple';
   type TabsVariant = 'default' | 'minimal';
-  type InputVariant = 'default' | 'minimal' | 'krafters';
+  type InputVariant = 'default' | 'minimal' | '3d';
 
   type InputSize = 'sm' | 'md' | 'lg';
   type TabsSize = 'xs' | 'sm' | 'md';

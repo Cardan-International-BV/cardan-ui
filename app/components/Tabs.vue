@@ -171,7 +171,7 @@ defineExpose({
     border-block-end: 1px solid var(--color-grey-bg);
     transition-property:
       color, background-color, box-shadow, outline-color, outline-offset;
-    transition-duration: var(--duration-s);
+    transition-duration: var(--duration-sm);
     transition-timing-function: ease-in-out;
 
     /* disable focus outline on tab */

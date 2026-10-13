@@ -33,7 +33,7 @@ const popoverActions = [
       A common pattern on the web is to show content on top of other content,
       drawing the user's attention to specific important information or actions
       that need to be taken. This pattern can technically be described as a
-      non-modal dialog or popover. Krafters UI uses the
+      non-modal dialog or popover. Cardan UI uses the
       <Button
         to="https://developer.mozilla.org/en-US/docs/Web/API/Popover_API"
         label="Popover API"
@@ -54,7 +54,7 @@ const popoverActions = [
 
     <p class="fs-md">
       A Tooltip is a popup that displays information related to an element when
-      the element receives keyboard focus or the mouse hovers over it. Krafters
+      the element receives keyboard focus or the mouse hovers over it. Cardan
       UI uses
       <Button
         to="https://inclusive-components.design/tooltips-toggletips"
@@ -83,7 +83,7 @@ const popoverActions = [
           <h2>Tooltip</h2>
 
           <p>
-            Krafters UI offers a <code>{{ `<Tooltip />`}}</code> component for
+            Cardan UI offers a <code>{{ `<Tooltip />`}}</code> component for
             toggletips with static content.
           </p>
         </div>
@@ -187,7 +187,7 @@ const popoverActions = [
         <div class="text-content">
           <h2>Popover</h2>
           <p class="c-grey-text">
-            Krafters UI offers a <code>{{ `<Popover />` }}</code> component for
+            Cardan UI offers a <code>{{ `<Popover />` }}</code> component for
             interactive toggletips that can contain links or buttons.
           </p>
         </div>

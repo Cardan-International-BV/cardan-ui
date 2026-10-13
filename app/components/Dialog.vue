@@ -193,7 +193,7 @@ html:has(.dialog[open]) {
   outline: 1px solid transparent;
 
   &::backdrop {
-    background-color: rgb(0 0 0 / 75%);
+    background-color: var(--color-backdrop);
   }
 
   h1 {

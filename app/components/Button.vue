@@ -74,6 +74,8 @@ const emit = defineEmits<{
     v-if="to || href"
     ref="button"
     :to="disabled ? undefined : to || href"
+    :role="disabled ? 'link' : undefined"
+    :aria-disabled="disabled || undefined"
     :target="target"
     :external="external"
     :download="download"
@@ -200,7 +202,7 @@ const emit = defineEmits<{
 }
 
 .button-size--xs {
-  font-size: var(--font-size, var(--font-size-xxs));
+  font-size: var(--font-size, var(--button-font-size-xs));
   min-height: 1.5rem;
   padding-inline: 0.5rem;
 
@@ -220,7 +222,7 @@ const emit = defineEmits<{
 }
 
 .button-size--sm {
-  font-size: var(--font-size, var(--font-size-xs));
+  font-size: var(--font-size, var(--button-font-size-sm));
   min-height: 2rem;
   padding-inline: 0.65rem;
 
@@ -234,9 +236,9 @@ const emit = defineEmits<{
 }
 
 .button-size--md {
-  font-size: var(--font-size, var(--font-size-sm));
-  min-height: 2.25rem;
-  padding-inline: 0.75rem;
+  font-size: var(--font-size, var(--button-font-size));
+  min-height: var(--control-height);
+  padding-inline: var(--button-padding-inline);
 
   .button-text {
     padding-inline: 0.2rem;
@@ -248,8 +250,8 @@ const emit = defineEmits<{
 }
 
 .button-size--lg {
-  font-size: var(--font-size, var(--font-size-sm));
-  min-height: 2.5rem;
+  font-size: var(--font-size, var(--button-font-size));
+  min-height: var(--control-height-lg);
   padding-inline: 0.85rem;
 
   .button-text {
@@ -262,7 +264,7 @@ const emit = defineEmits<{
 }
 
 .button-size--xl {
-  font-size: var(--font-size, var(--font-size-sm));
+  font-size: var(--font-size, var(--button-font-size));
   min-height: 3rem;
   padding-inline: 1.25rem;
 
@@ -290,15 +292,11 @@ const emit = defineEmits<{
 }
 
 .button-variant--primary {
-  color: var(--color-white);
+  color: var(--color-on-accent);
   background-color: var(--color-accent);
 
   &:not(:disabled, .disabled):hover {
-    background-color: color-mix(
-      in srgb,
-      var(--color-accent) 90%,
-      var(--color-white)
-    );
+    background-color: var(--color-accent-hover);
   }
 }
 
@@ -330,7 +328,7 @@ const emit = defineEmits<{
   color: var(--color-white);
   background-color: var(--color-black);
   transition-property: background-color, box-shadow;
-  box-shadow: 4px 4px 0 0 var(--color-accent);
+  box-shadow: var(--shadow-offset);
 
   .icon svg {
     width: 1.25em;
@@ -338,7 +336,7 @@ const emit = defineEmits<{
   }
 
   &:not(:focus-visible, :disabled, .disabled):hover {
-    box-shadow: 6px 6px 0px 0 var(--color-accent);
+    box-shadow: var(--shadow-offset-hover);
     background-color: color-mix(
       in srgb,
       var(--color-black) 90%,
@@ -373,7 +371,7 @@ const emit = defineEmits<{
 .button-variant--cta {
   --radius: var(--radius-xl);
   --focus-color: var(--color-accent-text);
-  color: white;
+  color: var(--color-on-accent);
   background-color: var(--color-accent);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
@@ -384,20 +382,16 @@ const emit = defineEmits<{
   }
 
   &:not(:disabled, .disabled):hover {
-    background-color: color-mix(in srgb, var(--color-accent) 85%, black);
+    background-color: var(--color-accent-hover);
   }
 }
 
 .button-variant--secondary {
-  color: var(--color-text);
-  background-color: var(--color-grey-bg);
+  color: var(--color-on-secondary);
+  background-color: var(--color-secondary);
 
   &:not(:disabled, .disabled):hover {
-    background-color: color-mix(
-      in srgb,
-      var(--color-grey-bg) 95%,
-      var(--color-black)
-    );
+    background-color: var(--color-secondary-hover);
   }
 }
 
@@ -458,7 +452,7 @@ const emit = defineEmits<{
     border-color: var(--color-accent-bg);
     border-block-end-color: transparent;
     color: var(--color-accent-text);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-semibold);
   }
 }
 
@@ -568,7 +562,7 @@ const emit = defineEmits<{
   }
 
   &.router-link-active {
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-semibold);
     background-color: var(--color-accent-bg);
     color: var(--color-accent-text);
 

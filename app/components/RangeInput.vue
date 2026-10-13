@@ -143,15 +143,16 @@ const ticksList = computed(
 }
 
 .range-input-wrapper {
-  --thumb-color: var(--color-accent);
+  --thumb-color: var(--color-accent-graphic);
   --thumb-width: 1.5rem;
   --thumb-height: 1.5rem;
   --thumb-border-size: 2px;
   --thumb-border-color: var(--color-card-bg);
   --thumb-radius: var(--radius-full);
 
-  --track-bg-color: var(--color-accent-bg);
-  --track-progress-color: var(--color-accent);
+  --track-bg-color: var(--color-track);
+  --track-progress-color: var(--color-accent-graphic);
+  --output-bg-color: var(--color-accent-bg);
   --track-radius: var(--radius-full);
   --track-height: 1rem;
   --track-width: 100%;
@@ -304,8 +305,8 @@ input[type='range']:focus-visible {
     }
 
     &.active {
-      font-weight: var(--font-weight-bold);
-      color: var(--color-accent);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-accent-text);
 
       &::before {
         background-color: var(--thumb-color);
@@ -331,10 +332,10 @@ input[type='range']:focus-visible {
     text-align: center;
     transform: translateX(-50%);
     font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-semibold);
     border-radius: var(--radius-sm);
-    color: var(--color-accent);
-    background-color: var(--track-bg-color);
+    color: var(--color-accent-text);
+    background-color: var(--output-bg-color);
 
     &::before {
       content: '';
@@ -342,7 +343,7 @@ input[type='range']:focus-visible {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      border-bottom: 5px solid var(--track-bg-color);
+      border-bottom: 5px solid var(--output-bg-color);
       border-top: 5px solid transparent;
       border-left: 5px solid transparent;
       border-right: 5px solid transparent;

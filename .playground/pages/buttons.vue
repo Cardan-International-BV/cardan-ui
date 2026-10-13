@@ -97,9 +97,9 @@ useHead({ title: 'Buttons & Links' });
         <Button variant="ghost" icon="material-symbols:arrow-left-alt-rounded" label="Back" />
         <Button
           variant="link"
-          to="https://krafters.nl"
+          to="https://www.cardan.com"
           target="_blank"
-          label="Krafters.nl"
+          label="Cardan.com"
         />
       </div>
 
@@ -157,7 +157,7 @@ useHead({ title: 'Buttons & Links' });
           size="lg"
           disabled
           label="Disabled link"
-          to="https://www.krafters.nl"
+          to="https://www.cardan.com"
           icon-pos="end"
           icon="material-symbols:open-in-new-rounded"
         />

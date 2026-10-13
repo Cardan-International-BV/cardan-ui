@@ -20,7 +20,7 @@ const { links = [{ href: '#main' }] } = defineProps<{
   inset-block-start: 0;
   margin-inline: auto;
   width: max-content;
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-semibold);
   font-size: var(--font-size-xs);
   background-color: var(--color-white);
   color: var(--color-text);

@@ -31,7 +31,7 @@
 
   .title {
     font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-semibold);
     color: var(--color-text);
     margin-block-end: 0.25rem;
   }

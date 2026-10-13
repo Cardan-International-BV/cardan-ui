@@ -246,14 +246,14 @@ const emit = defineEmits<{
   }
 
   .input {
-    font-family: system-ui, sans-serif;
+    font-family: var(--font-family-input, system-ui, sans-serif);
     font-size: 16px;
     width: 100%;
     border: 1px solid var(--color-grey-graphic);
     border-radius: var(--radius-md);
 
     &::placeholder {
-      color: var(--color-grey-graphic);
+      color: var(--color-grey-text);
     }
 
     &:focus {
@@ -301,14 +301,14 @@ const emit = defineEmits<{
 
 .input-size--md {
   .input {
-    height: 2.25rem;
+    height: var(--control-height);
     padding-inline: 0.5em;
   }
 }
 
 .input-size--lg {
   .input {
-    height: 2.5rem;
+    height: var(--control-height-lg);
     padding-inline: 0.65em;
   }
 }
@@ -345,10 +345,10 @@ const emit = defineEmits<{
   }
 }
 
-.input-variant--krafters {
+.input-variant--3d {
   label {
     color: var(--color-grey-text);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-semibold);
   }
 
   &:focus-within {

@@ -117,7 +117,8 @@ const computedAriaLabels = computed(() => {
 <template>
   <div
     :class="[
-      'form-field-wrapper krafters-datepicker-container',
+      'form-field-wrapper',
+      'cardan-datepicker-container',
       `datepicker-size--${size}`,
     ]"
   >
@@ -155,7 +156,7 @@ const computedAriaLabels = computed(() => {
       aria-live="polite"
       :aria-describedby="id && required ? `error-${id}` : ''"
       :aria-labels="computedAriaLabels"
-      class="krafters-datepicker"
+      class="cardan-datepicker"
       @open="handleOpen"
       @closed="handleClose"
     >
@@ -206,7 +207,7 @@ const computedAriaLabels = computed(() => {
   }
 }
 
-.krafters-datepicker-container {
+.cardan-datepicker-container {
   display: grid;
   transition-property: opacity;
   transition-duration: var(--duration-sm);
@@ -232,7 +233,7 @@ const computedAriaLabels = computed(() => {
   --dp-hover-icon-color: var(--dp-icon-color);
   --dp-primary-color: var(--color-accent);
   --dp-primary-disabled-color: var(--color-accent-bg);
-  --dp-primary-text-color: var(--color-white);
+  --dp-primary-text-color: var(--color-on-accent);
   --dp-secondary-color: var(--color-grey-bg);
   --dp-border-color: var(--color-grey-graphic);
   --dp-menu-border-color: var(--color-grey-bg);
@@ -251,7 +252,7 @@ const computedAriaLabels = computed(() => {
 }
 
 :root {
-  --dp-font-family: system-ui, sans-serif;
+  --dp-font-family: var(--font-family-input, system-ui, sans-serif);
   --dp-border-radius: var(--radius-md);
   --dp-input-padding: 0;
 }
@@ -307,7 +308,7 @@ const computedAriaLabels = computed(() => {
     }
   }
 
-  .krafters-datepicker-container:has(:invalid) {
+  .cardan-datepicker-container:has(:invalid) {
     .error-wrapper .error {
       display: flex;
     }
@@ -321,10 +322,10 @@ const computedAriaLabels = computed(() => {
 }
 .datepicker-size--md .dp__input,
 .datepicker-size--md .dp--input {
-  min-height: 2.25rem;
+  min-height: var(--control-height);
 }
 .datepicker-size--lg .dp__input,
 .datepicker-size--lg .dp--input {
-  min-height: 2.5rem;
+  min-height: var(--control-height-lg);
 }
 </style>

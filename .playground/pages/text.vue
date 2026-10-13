@@ -12,6 +12,11 @@ const chipIconSize = ref<FontSize>('sm');
 
 const calloutFontSize = ref<FontSize>('xs');
 const calloutIconSize = ref<FontSize>('md');
+const calloutVariant = ref<CalloutVariant>('solid');
+const calloutVariantOptions = [
+  { value: 'default', label: 'default' },
+  { value: 'solid', label: 'solid' },
+];
 
 const sizeOptions: { value: FontSize; label: string }[] = [
   {
@@ -381,10 +386,18 @@ function makeToast() {
                   size="sm"
                 />
 
+                <Select
+                  v-model="calloutVariant"
+                  :options="calloutVariantOptions"
+                  label="variant"
+                  size="sm"
+                />
+
                 <code
                   >{{`<Callout
                     :font-size="${calloutFontSize}"
                     :icon-size="${calloutIconSize}"
+                    variant="${calloutVariant}"
                   />`}}</code
                 >
               </div>
@@ -396,6 +409,7 @@ function makeToast() {
           <Callout
             :font-size="calloutFontSize"
             :icon-size="calloutIconSize"
+            :variant="calloutVariant"
             color="red"
             role="alert"
           >
@@ -405,6 +419,7 @@ function makeToast() {
           <Callout
             :font-size="calloutFontSize"
             :icon-size="calloutIconSize"
+            :variant="calloutVariant"
             color="orange"
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -413,6 +428,7 @@ function makeToast() {
           <Callout
             :font-size="calloutFontSize"
             :icon-size="calloutIconSize"
+            :variant="calloutVariant"
             color="green"
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -421,6 +437,7 @@ function makeToast() {
           <Callout
             :font-size="calloutFontSize"
             :icon-size="calloutIconSize"
+            :variant="calloutVariant"
             color="blue"
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -429,6 +446,7 @@ function makeToast() {
           <Callout
             :font-size="calloutFontSize"
             :icon-size="calloutIconSize"
+            :variant="calloutVariant"
             color="accent"
             icon="material-symbols:lightbulb-outline-rounded"
           >

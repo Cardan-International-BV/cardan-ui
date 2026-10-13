@@ -23,7 +23,7 @@ const {
   titleKey?: string;
   hideLegend?: boolean;
   disabled?: boolean;
-  variant?: 'default' | 'krafters';
+  variant?: 'default' | '3d';
 }>();
 </script>
 
@@ -80,7 +80,7 @@ const {
 
 .checkboxes-wrapper {
   legend {
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-semibold);
     font-size: var(--font-size-md);
     margin-block-end: 1rem;
   }

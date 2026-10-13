@@ -7,6 +7,7 @@ import {
   italicExtension,
   targetBlankExtension,
 } from './extensions';
+import { hljs, codeThemeUrl } from './highlight';
 import 'md-editor-v3/lib/style.css';
 
 const {
@@ -41,13 +42,11 @@ config({
     md.use(mark);
   },
   editorExtensions: {
+    // Bundled instead of loaded from a CDN, so no third-party requests or CSP exceptions
     highlight: {
+      instance: hljs,
       css: {
-        'stackoverflow-dark': {
-          light:
-            'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/stackoverflow-dark.min.css',
-          dark: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/stackoverflow-dark.min.css',
-        },
+        'stackoverflow-dark': { light: codeThemeUrl, dark: codeThemeUrl },
       },
     },
   },
@@ -113,6 +112,8 @@ const emit = defineEmits<{
         :aria-describedby="`${instruction ? `instruction-${id}` : ''}`"
         no-mermaid
         no-katex
+        no-echarts
+        no-prettier
         @blur="emit('blur', $event)"
       />
 
@@ -192,8 +193,7 @@ const emit = defineEmits<{
   }
 }
 
-.md-editor,
-.md-editor-preview.krafters-theme {
+.md-editor {
   --md-color: var(--color-text) !important;
   --md-bk-color-outstand: var(--color-grey-bg) !important;
   --md-border-color: var(--color-grey-graphic) !important;

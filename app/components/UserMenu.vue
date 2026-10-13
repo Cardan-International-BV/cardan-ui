@@ -134,7 +134,7 @@ defineExpose({
 
   .user-name {
     font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-semibold);
     line-height: var(--line-height-heading);
   }
 

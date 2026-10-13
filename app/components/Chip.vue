@@ -68,11 +68,6 @@ const formattedLabel = computed(() =>
   font-weight: var(--font-weight-medium);
   font-variant-numeric: tabular-nums;
 
-  .krafters-tooltip-content {
-    font-weight: var(--font-weight-regular);
-    font-size: var(--chip-font-size, var(--font-size-xs));
-  }
-
   .iconify {
     font-size: var(--chip-icon-size, larger);
   }
@@ -123,47 +118,47 @@ const formattedLabel = computed(() =>
 }
 
 .chip-variant--flat.chip-color--accent {
-  color: var(--color-accent-text);
+  color: var(--color-accent-on-bg);
   background-color: var(--color-accent-bg);
 }
 
 .chip-variant--flat.chip-color--grey {
-  color: var(--color-grey-text);
+  color: var(--color-grey-on-bg);
   background-color: var(--color-grey-bg);
 }
 
 .chip-variant--flat.chip-color--red {
-  color: var(--color-red-text);
+  color: var(--color-red-on-bg);
   background-color: var(--color-red-bg);
 }
 
 .chip-variant--flat.chip-color--orange {
-  color: var(--color-orange-text);
+  color: var(--color-orange-on-bg);
   background-color: var(--color-orange-bg);
 }
 
 .chip-variant--flat.chip-color--yellow {
-  color: var(--color-yellow-text);
+  color: var(--color-yellow-on-bg);
   background-color: var(--color-yellow-bg);
 }
 
 .chip-variant--flat.chip-color--green {
-  color: var(--color-green-text);
+  color: var(--color-green-on-bg);
   background-color: var(--color-green-bg);
 }
 
 .chip-variant--flat.chip-color--blue {
-  color: var(--color-blue-text);
+  color: var(--color-blue-on-bg);
   background-color: var(--color-blue-bg);
 }
 
 .chip-variant--flat.chip-color--purple {
-  color: var(--color-purple-text);
+  color: var(--color-purple-on-bg);
   background-color: var(--color-purple-bg);
 }
 
 .chip-variant--flat.chip-color--pink {
-  color: var(--color-pink-text);
+  color: var(--color-pink-on-bg);
   background-color: var(--color-pink-bg);
 }
 
@@ -180,7 +175,7 @@ const formattedLabel = computed(() =>
 }
 
 .chip-variant--soft.chip-color--grey {
-  color: var(--color-grey-text);
+  color: var(--color-grey-on-bg);
   border-color: var(--color-grey-bg);
 }
 
@@ -233,7 +228,7 @@ const formattedLabel = computed(() =>
 }
 
 .chip-variant--outline.chip-color--grey {
-  color: var(--color-grey-text);
+  color: var(--color-grey-on-bg);
   border-color: var(--color-grey-bg);
 }
 

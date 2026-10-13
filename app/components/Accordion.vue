@@ -102,7 +102,7 @@ defineExpose({ toggleAccordion });
 .accordion-panel-wrapper {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows var(--duration-lg) ease-in-out;
+  transition: grid-template-rows var(--duration-md) var(--cubic-bezier);
 }
 
 .accordion-panel {

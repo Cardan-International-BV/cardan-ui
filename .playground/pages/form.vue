@@ -126,12 +126,12 @@ const inputVariants = [
     label: 'default',
   },
   {
-    value: 'krafters',
-    label: 'krafters',
+    value: '3d',
+    label: '3d',
   },
   {
     value: 'minimal',
-    label: 'Minimal',
+    label: 'minimal',
   },
 ];
 
@@ -368,7 +368,7 @@ function handleSubmit(formData: FormData) {
             </div>
 
             <p>
-              Krafters UI uses
+              Cardan UI uses
               <Button
                 to="https://vueform.com/reference/multiselect-element"
                 label="@vueform/multiselect"
@@ -403,7 +403,7 @@ function handleSubmit(formData: FormData) {
             </div>
 
             <p>
-              Krafters UI uses
+              Cardan UI uses
               <Button
                 to="https://vue3datepicker.com"
                 label="@vuepic/vue-datepicker"

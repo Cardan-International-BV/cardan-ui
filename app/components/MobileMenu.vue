@@ -216,7 +216,7 @@ body:has(.mobile-dialog[open]) {
   background-color: var(--color-dialog-bg);
 
   &::backdrop {
-    background-color: rgb(0 0 0 / 50%);
+    background-color: var(--color-backdrop);
   }
 
   .close-button {

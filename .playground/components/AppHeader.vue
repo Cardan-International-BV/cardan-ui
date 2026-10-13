@@ -19,7 +19,9 @@ watch(
         <MenuList :list="navList" button-variant="sidebar" label="Menu" />
       </MobileMenu>
 
-      <NuxtLink to="/" class="home-link">Krafters UI</NuxtLink>
+      <NuxtLink to="/" class="home-link">
+        <CardanLogo product="ui" label="Cardan UI" />
+      </NuxtLink>
 
       <div class="flex-wrapper" style="max-width: max-content">
         <!-- <ClientOnly>
@@ -75,11 +77,7 @@ watch(
   }
 
   .home-link {
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
+    display: grid;
   }
 }
 
@@ -94,7 +92,7 @@ watch(
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 1.5rem;
 
   .logo {
     font-size: var(--font-size-s);

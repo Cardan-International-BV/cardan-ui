@@ -195,8 +195,8 @@ const emit = defineEmits<{
 
   .input-size--md {
     + .button[type='reset'] {
-      bottom: 0.375rem;
-      right: 0.375rem;
+      bottom: calc((var(--control-height) - 1.5rem) / 2);
+      right: calc((var(--control-height) - 1.5rem) / 2);
     }
 
     input[type='search'] {
@@ -206,8 +206,8 @@ const emit = defineEmits<{
 
   .input-size--lg {
     + .button[type='reset'] {
-      bottom: 0.25rem;
-      right: 0.325rem;
+      bottom: calc((var(--control-height-lg) - 2rem) / 2);
+      right: calc((var(--control-height-lg) - 2rem) / 2);
     }
 
     input[type='search'] {

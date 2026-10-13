@@ -86,7 +86,7 @@ function preventEscape(event: KeyboardEvent) {
   <div
     :class="[
       'form-field-wrapper',
-      'krafters-multiselect',
+      'cardan-multiselect',
       `multi-select-size--${size}`,
       showInvalid && 'show-invalid',
       showOptionIcons && 'show-option-icons',
@@ -276,7 +276,7 @@ function preventEscape(event: KeyboardEvent) {
   --ms-tag-font-weight: var(--font-weight-medium);
   --ms-tag-bg: var(--color-accent-bg);
   --ms-tag-bg-disabled: var(--color-grey-bg);
-  --ms-tag-color: var(--color-accent);
+  --ms-tag-color: var(--color-accent-text);
   --ms-tag-color-disabled: var(--color-grey-graphic);
   --ms-tag-radius: var(--radius-sm);
   /* --ms-tag-py: 0.125rem; */
@@ -305,22 +305,23 @@ function preventEscape(event: KeyboardEvent) {
   --ms-group-label-bg-disabled: var(--color-grey-bg);
   --ms-group-label-color-disabled: var(--color-grey-graphic);
   --ms-group-label-bg-selected: var(--color-accent);
-  --ms-group-label-color-selected: var(--color-white);
+  --ms-group-label-color-selected: var(--color-on-accent);
   --ms-group-label-bg-selected-pointed: var(--color-accent);
-  --ms-group-label-color-selected-pointed: var(--color-white);
+  --ms-group-label-color-selected-pointed: var(--color-on-accent);
   /* --ms-group-label-bg-selected-disabled: #75cfb1; */
   /* --ms-group-label-color-selected-disabled: #d1fae5; */
 
   --ms-option-font-size: var(--font-size-sm);
   /* --ms-option-line-height: 1.375; */
-  --ms-option-bg-pointed: var(--color-grey-light);
-  --ms-option-color-pointed: var(--color-text);
+  /* The pointed (hovered or keyboard-highlighted) option needs a 3:1 contrast change */
+  --ms-option-bg-pointed: var(--color-accent);
+  --ms-option-color-pointed: var(--color-on-accent);
   --ms-option-bg-selected: var(--color-green-bg);
   --ms-option-color-selected: var(--color-green-text);
   --ms-option-bg-disabled: var(--color-grey-bg);
   --ms-option-color-disabled: var(--color-grey-graphic);
-  --ms-option-bg-selected-pointed: var(--color-green-bg);
-  --ms-option-color-selected-pointed: var(--color-green-text);
+  --ms-option-bg-selected-pointed: var(--color-green);
+  --ms-option-color-selected-pointed: var(--color-white);
   --ms-option-bg-selected-disabled: var(--color-grey-bg);
   --ms-option-color-selected-disabled: var(--color-grey-graphic);
   /* --ms-option-py: 0.5rem; */
@@ -353,7 +354,7 @@ function preventEscape(event: KeyboardEvent) {
   }
 }
 
-.krafters-multiselect {
+.cardan-multiselect {
   flex-basis: var(--col-width, 240px);
   flex-shrink: 0;
 
@@ -394,7 +395,7 @@ function preventEscape(event: KeyboardEvent) {
     white-space: nowrap;
     display: inline-flex;
     border-radius: var(--radius-sm);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     background-color: var(--color-accent-bg);
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-medium);
@@ -463,8 +464,8 @@ function preventEscape(event: KeyboardEvent) {
     &.is-selected {
       &::after {
         content: '';
-        color: var(--ms-option-bg-selected-pointed);
-        background-color: var(--ms-option-color-selected-pointed);
+        color: var(--ms-option-bg-selected);
+        background-color: var(--ms-option-color-selected);
         mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 20 20"><path fill="currentColor" fill-rule="evenodd" d="M16.707 5.293a1 1 0 0 1 0 1.414l-8 8a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 12.586l7.293-7.293a1 1 0 0 1 1.414 0" clip-rule="evenodd"/></svg>');
       }
 
@@ -475,13 +476,15 @@ function preventEscape(event: KeyboardEvent) {
 
       &.is-pointed::after {
         content: '';
+        color: var(--ms-option-bg-selected-pointed);
+        background-color: var(--ms-option-color-selected-pointed);
         mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 20 20"><path fill="currentColor" fill-rule="evenodd" d="M4.293 4.293a1 1 0 0 1 1.414 0L10 8.586l4.293-4.293a1 1 0 1 1 1.414 1.414L11.414 10l4.293 4.293a1 1 0 0 1-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L8.586 10L4.293 5.707a1 1 0 0 1 0-1.414" clip-rule="evenodd"/></svg>');
       }
     }
   }
 }
 
-.show-invalid .krafters-multiselect:has(:invalid) {
+.show-invalid .cardan-multiselect:has(:invalid) {
   .error-wrapper .error {
     display: flex;
   }
@@ -495,10 +498,10 @@ function preventEscape(event: KeyboardEvent) {
 }
 
 .multi-select-size--md .multiselect-wrapper {
-  --height: calc(2.25rem - 2px);
+  --height: calc(var(--control-height) - 2px);
 }
 
 .multi-select-size--lg .multiselect-wrapper {
-  --height: calc(2.5rem - 2px);
+  --height: calc(var(--control-height-lg) - 2px);
 }
 </style>

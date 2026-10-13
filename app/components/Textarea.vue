@@ -189,14 +189,14 @@ const emit = defineEmits<{
   }
 
   .textarea {
-    font-family: system-ui, sans-serif;
+    font-family: var(--font-family-input, system-ui, sans-serif);
     font-size: 16px;
     width: 100%;
     border: 1px solid var(--color-grey-graphic);
     border-radius: var(--radius-md);
 
     &::placeholder {
-      color: var(--color-grey-graphic);
+      color: var(--color-grey-text);
     }
 
     &:focus {
@@ -255,10 +255,10 @@ const emit = defineEmits<{
   }
 }
 
-.textarea-variant--krafters {
+.textarea-variant--3d {
   label {
     color: var(--color-grey-text);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-semibold);
   }
 
   &:focus-within {

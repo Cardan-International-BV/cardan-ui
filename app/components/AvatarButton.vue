@@ -49,7 +49,7 @@ defineExpose({
   width: 2.5rem;
   height: 2.5rem;
   border: none;
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-semibold);
   background-color: var(--color-grey-bg);
   border-radius: var(--radius-full);
   transition:

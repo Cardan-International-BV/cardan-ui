@@ -21,7 +21,7 @@ import { defineNuxtModule, createResolver } from 'nuxt/kit';
  * fails to load when the layer is extended.
  */
 export default defineNuxtModule({
-  meta: { name: '@krafters/ui:global-types' },
+  meta: { name: '@cardan/ui:global-types' },
   setup(_options, nuxt) {
     const { resolve } = createResolver(import.meta.url);
     const typesPath = resolve('../app/types/index.ts');

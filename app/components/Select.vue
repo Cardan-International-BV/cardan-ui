@@ -181,7 +181,7 @@ const computedAriaDescribedby = computed(() =>
   }
 
   .select {
-    font-family: system-ui, sans-serif;
+    font-family: var(--font-family-input, system-ui, sans-serif);
     font-size: 16px;
     width: 100%;
     border: 1px solid var(--color-grey-graphic);
@@ -189,7 +189,7 @@ const computedAriaDescribedby = computed(() =>
     color: var(--color-text);
 
     &::placeholder {
-      color: var(--color-grey-graphic);
+      color: var(--color-grey-text);
     }
 
     &:focus-visible {
@@ -231,64 +231,64 @@ const computedAriaDescribedby = computed(() =>
 }
 
 .select-size--md .select {
-  height: 2.25rem;
+  height: var(--control-height);
   padding-inline: 0.5em;
 }
 
 .select-size--lg .select {
-  height: 2.5rem;
+  height: var(--control-height-lg);
   padding-inline: 0.65em;
 }
 
 .select-color--blue {
   .select {
-    color: var(--color-blue-text);
+    color: var(--color-blue-on-bg);
     accent-color: var(--color-blue-text);
     border-color: var(--color-blue-graphic);
     background-color: var(--color-blue-bg);
   }
 
   .select-arrow {
-    color: var(--color-blue-graphic);
+    color: var(--color-blue-on-bg);
   }
 }
 
 .select-color--green {
   .select {
-    color: var(--color-green-text);
+    color: var(--color-green-on-bg);
     accent-color: var(--color-green-text);
     border-color: var(--color-green-graphic);
     background-color: var(--color-green-bg);
   }
 
   .select-arrow {
-    color: var(--color-green-graphic);
+    color: var(--color-green-on-bg);
   }
 }
 
 .select-color--orange {
   .select {
-    color: var(--color-orange-text);
+    color: var(--color-orange-on-bg);
     accent-color: var(--color-orange-text);
     border-color: var(--color-orange-graphic);
     background-color: var(--color-orange-bg);
   }
 
   .select-arrow {
-    color: var(--color-orange-graphic);
+    color: var(--color-orange-on-bg);
   }
 }
 
 .select-color--red {
   .select {
-    color: var(--color-red-text);
+    color: var(--color-red-on-bg);
     accent-color: var(--color-red-text);
     border-color: var(--color-red-graphic);
     background-color: var(--color-red-bg);
   }
 
   .select-arrow {
-    color: var(--color-red-graphic);
+    color: var(--color-red-on-bg);
   }
 }
 
@@ -317,10 +317,10 @@ const computedAriaDescribedby = computed(() =>
   }
 }
 
-.select-variant--krafters {
+.select-variant--3d {
   label {
     color: var(--color-grey-text);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-semibold);
   }
   &:focus-within {
     label {

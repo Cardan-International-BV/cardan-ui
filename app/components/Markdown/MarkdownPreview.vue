@@ -8,16 +8,7 @@ import {
   targetBlankExtension,
 } from './extensions';
 
-import hljs from 'highlight.js/lib/core';
-import css from 'highlight.js/lib/languages/css';
-import javascript from 'highlight.js/lib/languages/javascript';
-import typescript from 'highlight.js/lib/languages/typescript';
-import 'highlight.js/lib/common';
-import 'highlight.js/styles/stackoverflow-dark.css';
-
-hljs.registerLanguage('css', css);
-hljs.registerLanguage('javascript', javascript);
-hljs.registerLanguage('typescript', typescript);
+import { hljs } from './highlight';
 
 const {
   content,
@@ -65,7 +56,7 @@ const preview = computed(() => md.render(content));
 
 <template>
   <div
-    :class="['krafters-markdown-preview', ellipsisLines && 'ellipsis']"
+    :class="['cardan-markdown-preview', ellipsisLines && 'ellipsis']"
     :style="computedStyle"
     v-html="preview"
   />
@@ -73,14 +64,14 @@ const preview = computed(() => md.render(content));
 
 <style>
 .dark-mode {
-  .krafters-markdown-preview {
+  .cardan-markdown-preview {
     pre code {
       border-color: var(--color-grey-bg);
     }
   }
 }
 
-.krafters-markdown-preview {
+.cardan-markdown-preview {
   &.ellipsis {
     overflow: hidden;
     display: -webkit-box;

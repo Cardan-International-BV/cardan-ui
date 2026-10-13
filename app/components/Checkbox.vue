@@ -19,7 +19,7 @@ const {
   hideLabel?: boolean;
   tabindex?: string;
   id?: string;
-  variant?: 'default' | 'krafters';
+  variant?: 'default' | '3d';
 }>();
 </script>
 
@@ -133,7 +133,7 @@ const {
   }
 }
 
-.checkbox-variant--krafters {
+.checkbox-variant--3d {
   input[type='checkbox'] {
     width: 1.5rem;
     height: 1.5rem;

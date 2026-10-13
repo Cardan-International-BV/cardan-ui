@@ -21,6 +21,11 @@ export const navList: MenuItem[] = [
     label: 'Colors',
   },
   {
+    id: 'logo',
+    to: '/logo',
+    label: 'Logo',
+  },
+  {
     id: 'text',
     to: '/text',
     label: 'Text & Icons',
