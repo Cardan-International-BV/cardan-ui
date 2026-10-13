@@ -42,7 +42,7 @@ Base frontend guidelines (architecture, CSS design system, WCAG 2.2 requirements
 - **CopyButton**: Copy-to-clipboard functionality
 - **Dialog**: Modal dialog component
 - **Popover**: Floating content overlay
-- **Tooltip**: Contextual help text (uses [vue-tippy](https://github.com/KABBOUCHI/vue-tippy))
+- **Tooltip**: Contextual help text (uses the native Popover API and CSS anchor positioning)
 - **ProgressCircle**: Circular progress indicator
 - **ProgressMeter**: Linear progress bar
 - **Skeleton**: Loading state placeholder
@@ -116,11 +116,11 @@ defineNuxtConfig({
 
 ### 2. Extend from GitHub repository (Development / Production)
 
-[GitHub repository](https://github.com/Cardan-International-BV/cardan-ui)
+[GitHub repository](https://github.com/cardan-a11y/cardan-ui)
 
 ```ts
 defineNuxtConfig({
-  extends: ['github:Cardan-International-BV/cardan-ui'],
+  extends: ['github:cardan-a11y/cardan-ui'],
 });
 ```
 
@@ -197,7 +197,6 @@ The playground is available at `http://localhost:3003` and serves as interactive
 
 #### UI & Interaction
 
-- **[vue-tippy](https://github.com/KABBOUCHI/vue-tippy)**: Core functionality for Tooltip and Popover components
 - **[@vueform/multiselect](https://vueform.com/multiselect/)**: Multi-select dropdown component
 - **[Vue DatePicker](https://vue3datepicker.com/)**: Date picker component used in DatePicker
 - **[compressorjs](https://github.com/fengyuanchen/compressorjs)**: Image compression utility for FileInput component

@@ -8,7 +8,7 @@ The components stay brand-agnostic: they read design tokens from your project's 
 
 ```ts
 defineNuxtConfig({
-  extends: ['github:Cardan-International-BV/cardan-ui'],
+  extends: ['github:cardan-a11y/cardan-ui'],
   // or, for local development:
   // extends: ['../cardan-ui'],
 });
@@ -100,6 +100,7 @@ These changes are not driven by tokens, so they apply to every project:
 - **Motion**: Toast slides and fades instead of bouncing; Accordion, ProgressMeter and ProgressCircle animate with `--duration-md` and `--cubic-bezier`; Tabs now animate their color change (a typo disabled this).
 - **Disabled link buttons** get `role="link"` and `aria-disabled="true"`.
 - **Inputs, Select, Textarea and DatePicker** use `--font-family-input` and fall back to `system-ui` when it is not set, as before.
+- **Class names**: style `.cardan-multiselect`, `.cardan-datepicker(-container)` and `.cardan-markdown-preview`; the `krafters-*` classes are no longer rendered. CAT-nuxt (`FindingForm`, `CrawlerTestDialog`, `ActivityMapper`, `ProjectDetails`) and cardan-lms-nuxt (`main.css`) use them.
 - **MarkdownEditor** no longer loads anything from unpkg or cdnjs: highlight.js and its code theme are bundled, and prettier and ECharts are disabled (neither was in the toolbar). You can remove the unpkg and cdnjs exceptions for md-editor-v3 from your Content Security Policy.
 
 ## 5. Adopting the Cardan brand identity

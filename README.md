@@ -2,7 +2,7 @@
 
 Accessible Vue component library for [Nuxt](https://nuxt.com) in TypeScript.
 
-Cardan UI is a [Nuxt Layer](https://nuxt.com/docs/getting-started/layers) in a public repository. You can extend from the [GitHub repository](https://github.com/Cardan-International-BV/cardan-ui).
+Cardan UI is a [Nuxt Layer](https://nuxt.com/docs/getting-started/layers) in a public repository. You can extend from the [GitHub repository](https://github.com/cardan-a11y/cardan-ui).
 
 ## Development
 
@@ -19,6 +19,6 @@ Configuration below extends from main branch of repository:
 
 ```ts
 defineNuxtConfig({
-  extends: ['github:Cardan-International-BV/cardan-ui'],
+  extends: ['github:cardan-a11y/cardan-ui'],
 });
 ```
