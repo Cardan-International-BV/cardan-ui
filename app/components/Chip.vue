@@ -10,6 +10,7 @@ const {
   size = 'md',
   fontSize = undefined,
   iconSize = undefined,
+  textTransform = undefined,
 } = defineProps<{
   label?: string | number;
   icon?: string;
@@ -19,6 +20,8 @@ const {
   color?: BaseColor;
   size?: ChipSize;
   radius?: BorderRadius;
+  textTransform?: TextTransform;
+  /** @deprecated Capitalizes only the first letter of the label. Removed in 3.0.0. */
   capitalize?: boolean;
 }>();
 
@@ -40,8 +43,8 @@ const formattedLabel = computed(() =>
       `chip-variant--${variant}`,
       `chip-color--${color}`,
       `chip-size--${size}`,
-      `${capitalize ? 'chip--capitalize' : ''}
-    `,
+      textTransform && `chip-text-transform--${textTransform}`,
+      capitalize && 'chip--capitalize',
     ]"
     :style="computedStyle"
   >
@@ -74,6 +77,20 @@ const formattedLabel = computed(() =>
 }
 
 .chip--capitalize .chip-text::first-letter {
+  text-transform: capitalize;
+}
+
+/* Uppercase text needs extra letter spacing to stay legible */
+.chip-text-transform--uppercase {
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.chip-text-transform--lowercase {
+  text-transform: lowercase;
+}
+
+.chip-text-transform--capitalize {
   text-transform: capitalize;
 }
 
@@ -269,5 +286,44 @@ const formattedLabel = computed(() =>
 .chip-variant--outline.chip-color--pink {
   color: var(--color-pink-text);
   border-color: var(--color-pink-graphic);
+}
+
+/* Solid Chip: light text on a filled background, at least 4.5:1 in both modes */
+
+.chip-variant--solid {
+  color: var(--color-on-accent);
+  background-color: var(--color-grey-solid);
+}
+
+.chip-variant--solid.chip-color--accent {
+  background-color: var(--color-accent-solid);
+}
+
+.chip-variant--solid.chip-color--red {
+  background-color: var(--color-red-solid);
+}
+
+.chip-variant--solid.chip-color--orange {
+  background-color: var(--color-orange-solid);
+}
+
+.chip-variant--solid.chip-color--yellow {
+  background-color: var(--color-yellow-solid);
+}
+
+.chip-variant--solid.chip-color--green {
+  background-color: var(--color-green-solid);
+}
+
+.chip-variant--solid.chip-color--blue {
+  background-color: var(--color-blue-solid);
+}
+
+.chip-variant--solid.chip-color--purple {
+  background-color: var(--color-purple-solid);
+}
+
+.chip-variant--solid.chip-color--pink {
+  background-color: var(--color-pink-solid);
 }
 </style>

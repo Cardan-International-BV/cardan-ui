@@ -162,3 +162,11 @@ cardan-lms-nuxt already defines the font size roles; it only needs `--auth-color
 Remove any MFA composables or components your app still has from before the layer, such as CAT-nuxt's own `useMfa`. An app composable with the same name replaces the layer's auto-import, and the layer keeps its MFA state under the same `useState` keys (`mfaStep`, `qrCode`, `recoveryCodes`, `mfaError`, …), so the two would break each other.
 
 The role tokens are now resolved where your `main.css` defines them: redefining `--font-size-*` on part of a page no longer changes them. Set the `--auth-*` tokens on a container instead to change the sizes on one page.
+
+## 7. Upgrading to 2.1
+
+2.1 adds two options to Chip. Nothing changes for projects that don't use them.
+
+- **`variant="solid"`**: light text (`--color-on-accent`) on a filled background, for every color. It needs a `--color-<color>-solid` token per color, which each reach 4.5:1 with white text. Copy them from the template in [`app/assets/main.css`](app/assets/main.css): `--color-red-solid` and `--color-green-solid` per mode, the others in `:where(:root)`.
+- **`textTransform`**: `uppercase`, `lowercase` or `capitalize`, the CSS `text-transform` keywords. `uppercase` also adds `letter-spacing: 0.025em` to keep the label legible. The new global `TextTransform` type can be used by other components too.
+- **`capitalize` is deprecated** and will be removed in 3.0. It only capitalized the first letter of the label, which is not what `text-transform="capitalize"` does (that capitalizes every word). CAT-nuxt's `FindingChips.vue` uses it on a criterion number, where it has no visible effect: remove it there.

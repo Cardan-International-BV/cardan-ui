@@ -7,6 +7,20 @@ useHead({ title: 'Changelog' });
     <h1>Changelog</h1>
     <p class="mbe-2">Release notes for new features and bug fixes.</p>
 
+    <ChangelogEntry v="2.1.0" date="2026-10-14">
+      <ul>
+        <li>
+          Feature: add <code>solid</code> variant to Chip component, with a
+          <code>--color-&lt;color&gt;-solid</code> design token per color
+        </li>
+        <li>Feature: add <code>textTransform</code> prop to Chip component</li>
+        <li>
+          Deprecate the <code>capitalize</code> prop of Chip component, use
+          <code>textTransform</code> instead
+        </li>
+      </ul>
+    </ChangelogEntry>
+
     <ChangelogEntry v="2.0.0" date="2026-10-13">
       <p>
         Projects need to add new design tokens, see <code>MIGRATION.md</code> in

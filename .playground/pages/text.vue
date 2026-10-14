@@ -9,6 +9,23 @@ const text = ref(
 const chipSize = ref<ChipSize>('md');
 const chipFontSize = ref<FontSize>('xs');
 const chipIconSize = ref<FontSize>('sm');
+const chipColors: BaseColor[] = [
+  'default',
+  'grey',
+  'accent',
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'blue',
+  'purple',
+  'pink',
+];
+const textTransforms: TextTransform[] = [
+  'uppercase',
+  'lowercase',
+  'capitalize',
+];
 
 const calloutFontSize = ref<FontSize>('xs');
 const calloutIconSize = ref<FontSize>('md');
@@ -358,6 +375,34 @@ function makeToast() {
           variant="soft"
           label="Pink"
           color="pink"
+        />
+      </div>
+
+      <div class="chips-grid">
+        <Chip
+          v-for="color in chipColors"
+          :key="color"
+          :size="chipSize"
+          :font-size="chipFontSize"
+          :icon-size="chipIconSize"
+          icon="material-symbols:check-rounded"
+          variant="solid"
+          :label="color"
+          :color="color"
+          text-transform="capitalize"
+        />
+      </div>
+
+      <div class="chips-grid">
+        <Chip
+          v-for="textTransform in textTransforms"
+          :key="textTransform"
+          :size="chipSize"
+          :font-size="chipFontSize"
+          :icon-size="chipIconSize"
+          :label="`text-transform ${textTransform}`"
+          color="accent"
+          :text-transform="textTransform"
         />
       </div>
     </Card>
