@@ -60,7 +60,7 @@ export function useMfa() {
    */
   function settingsRequest<T>(
     url: string,
-    options?: Parameters<typeof client>[1],
+    options?: Parameters<typeof client<T>>[1],
   ): Promise<T> {
     return withPasswordConfirmation(() => client<T>(url, options));
   }

@@ -102,6 +102,8 @@ These changes are not driven by tokens, so they apply to every project:
 - **Inputs, Select, Textarea and DatePicker** use `--font-family-input` and fall back to `system-ui` when it is not set, as before.
 - **Class names**: style `.cardan-multiselect`, `.cardan-datepicker(-container)` and `.cardan-markdown-preview`; the `krafters-*` classes are no longer rendered. CAT-nuxt (`FindingForm`, `CrawlerTestDialog`, `ActivityMapper`, `ProjectDetails`) and cardan-lms-nuxt (`main.css`) use them.
 - **MarkdownEditor** no longer loads anything from unpkg or cdnjs: highlight.js and its code theme are bundled, and prettier and ECharts are disabled (neither was in the toolbar). You can remove the unpkg and cdnjs exceptions for md-editor-v3 from your Content Security Policy.
+- **`useCookiesDialog`** stores the consent cookie with Nuxt's `useCookie` instead of `js-cookie`. Existing consent cookies stay valid. Projects can remove `js-cookie` unless their own code imports it: cardan-nuxt's `CookiesDialog.vue` does, so keep it there or switch that component to `useCookie` too.
+- **DatePicker**'s visible label is now linked to its input. Before, the input had no id, so the label pointed to nothing.
 
 ## 5. Adopting the Cardan brand identity
 

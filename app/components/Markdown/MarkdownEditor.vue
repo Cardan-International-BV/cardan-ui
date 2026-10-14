@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { MdEditor, config } from 'md-editor-v3';
+import type { MarkdownIt } from 'markdown-it';
 import { attrs } from '@mdit/plugin-attrs';
 import { mark } from '@mdit/plugin-mark';
 import {
@@ -34,7 +35,11 @@ const {
 }>();
 
 config({
-  markdownItConfig(md) {
+  markdownItConfig(mdit) {
+    // md-editor-v3 types its instance with markdown-it 14, the plugins expect the
+    // types of markdown-it 15; both run on the same API
+    const md = mdit as unknown as MarkdownIt;
+
     md.use(swatchExtension);
     md.use(targetBlankExtension);
     md.use(italicExtension);

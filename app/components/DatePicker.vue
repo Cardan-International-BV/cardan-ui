@@ -55,6 +55,8 @@ const {
 
 const computedInputAttrs = computed(() => {
   return {
+    // The label points to this id
+    id: `dp-input-${id}`,
     required: required,
     name: name,
     autocomplete: autocomplete,

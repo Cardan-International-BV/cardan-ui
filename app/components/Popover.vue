@@ -25,7 +25,7 @@ const {
   icon?: string;
   iconPos?: 'start' | 'end';
   buttonVariant?: ButtonVariant;
-  size?: 'sm' | 'md' | 'lg';
+  size?: ButtonSize;
   placement?: 'bottom' | 'top' | 'left' | 'right';
   span?: 'bottom' | 'top' | 'left' | 'right';
   maxWidth?: number | 'none';
@@ -378,6 +378,35 @@ const emit = defineEmits<{
   }
 }
 
+.popover-trigger-size--xxs {
+  --radius: var(--radius-sm) !important;
+  position: relative;
+  height: 1.25rem;
+  min-width: 1.25rem;
+  font-size: var(--font-size, var(--font-size-xxs));
+  padding-inline: 0.125rem;
+
+  /* Enlarge the click target to at least 24×24px (WCAG 2.5.8) */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    margin: auto;
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .popover-label {
+    padding-inline: 0.1rem;
+  }
+
+  .iconify {
+    font-size: var(--icon-size, var(--font-size-sm));
+  }
+}
+
 .popover-trigger-size--xs {
   --radius: var(--radius-sm) !important;
   height: 1.5rem;
@@ -436,6 +465,21 @@ const emit = defineEmits<{
 
   .iconify {
     font-size: var(--icon-size, var(--font-size-lg));
+  }
+}
+
+.popover-trigger-size--xl {
+  height: 3rem;
+  min-width: 3rem;
+  font-size: var(--font-size, var(--font-size-md));
+  padding-inline: 0.75rem;
+
+  .popover-label {
+    padding-inline: 0.25rem;
+  }
+
+  .iconify {
+    font-size: var(--icon-size, var(--font-size-xl));
   }
 }
 </style>

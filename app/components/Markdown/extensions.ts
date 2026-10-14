@@ -1,4 +1,4 @@
-import type MarkdownIt from 'markdown-it';
+import type { MarkdownIt } from 'markdown-it';
 
 export function swatchExtension(md: MarkdownIt) {
   const defaultRender =
@@ -31,13 +31,13 @@ export function targetBlankExtension(md: MarkdownIt) {
     };
 
   md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
-    const aIndex = tokens[idx]?.attrIndex('target');
+    const token = tokens[idx];
 
-    if (aIndex < 0) {
-      tokens[idx]?.attrPush(['target', '_blank']);
-      tokens[idx]?.attrPush(['title', 'opent in nieuw venster']);
+    if (token?.attrIndex('target') === -1) {
+      token.attrPush(['target', '_blank']);
+      token.attrPush(['title', 'opent in nieuw venster']);
     } else {
-      tokens[idx].attrs![aIndex][1] = '_blank';
+      token?.attrSet('target', '_blank');
     }
 
     return defaultRender(tokens, idx, options, env, self);

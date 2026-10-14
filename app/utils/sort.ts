@@ -1,13 +1,10 @@
 export function sort(arr: any, prop: string, order = 'asc') {
-  const key = prop.split('.');
-  const len = key.length;
+  const keys = prop.split('.');
 
   arr?.sort(function (a: any, b: any) {
-    let i = 0;
-    while (i < len) {
-      a = a[key[i]];
-      b = b[key[i]];
-      i++;
+    for (const key of keys) {
+      a = a[key];
+      b = b[key];
     }
     if (a < b) {
       return order === 'asc' ? -1 : 1;

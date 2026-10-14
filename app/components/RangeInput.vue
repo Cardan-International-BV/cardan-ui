@@ -35,10 +35,13 @@ const ratio = computed(() => (Number(model.value) - min) / range.value);
 
 const ticksLength = computed(() => range.value / step + 1);
 
-const ticksList = computed(
-  () =>
-    ticks ??
-    Array.from({ length: ticksLength.value }, (_, i) => i * step + min),
+// Every tick as { value, label }, whether it was passed as a number or an object
+const ticksList = computed(() =>
+  (
+    ticks ?? Array.from({ length: ticksLength.value }, (_, i) => i * step + min)
+  ).map((tick) =>
+    typeof tick === 'number' ? { value: tick, label: String(tick) } : tick,
+  ),
 );
 </script>
 
@@ -85,13 +88,10 @@ const ticksList = computed(
       <div v-if="showTicks" class="range-input-ticks" aria-hidden="true">
         <span
           v-for="tick in ticksList"
-          :key="tick.value || tick"
-          :class="[
-            'tick',
-            (model === tick.value || model === tick) && 'active',
-          ]"
+          :key="tick.value"
+          :class="['tick', model === tick.value && 'active']"
         >
-          {{ tick.label || tick }}
+          {{ tick.label }}
         </span>
       </div>
 

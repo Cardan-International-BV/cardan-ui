@@ -1,4 +1,8 @@
-import Cookies from 'js-cookie';
+type CookieConsent = {
+  necessary: boolean;
+  analytics: boolean;
+  marketing: boolean;
+};
 
 export function useCookiesDialog() {
   const cookiesDialogRef = useState<DialogComponent | null>(
@@ -6,15 +10,16 @@ export function useCookiesDialog() {
     () => null,
   );
 
-  const cookieConsent = useState<{
-    necessary: boolean;
-    analytics: boolean;
-    marketing: boolean;
-  }>('cookieConsent', () => ({
+  const cookieConsent = useState<CookieConsent>('cookieConsent', () => ({
     necessary: false,
     analytics: false,
     marketing: false,
   }));
+
+  // The choice is remembered for a year
+  const consentCookie = useCookie<CookieConsent | null>('cookieConsent', {
+    maxAge: 60 * 60 * 24 * 365,
+  });
 
   const hasConsent = computed(
     () => cookieConsent.value?.analytics && cookieConsent.value?.marketing,
@@ -41,16 +46,21 @@ export function useCookiesDialog() {
     },
   });
 
-  function gtag() {
+  // GTM only reads gtag commands from an Arguments object, not from an array
+  function gtag(
+    ..._args: [
+      command: 'consent',
+      type: 'default' | 'update',
+      params: Record<string, 'granted' | 'denied'>,
+    ]
+  ) {
     // eslint-disable-next-line prefer-rest-params
-    gtm.proxy.dataLayer.push(arguments);
+    gtm.proxy.dataLayer.push(arguments as unknown as unknown[]);
   }
 
   onMounted(() => {
-    const consent = Cookies.get('cookieConsent');
-
-    if (consent) {
-      cookieConsent.value = JSON.parse(consent);
+    if (consentCookie.value) {
+      cookieConsent.value = { ...consentCookie.value };
     }
 
     if (
@@ -80,15 +90,11 @@ export function useCookiesDialog() {
       personalization_storage: 'granted',
     });
 
-    Cookies.set(
-      'cookieConsent',
-      JSON.stringify({
-        necessary: true,
-        analytics: true,
-        marketing: true,
-      }),
-      { expires: 365 },
-    );
+    consentCookie.value = {
+      necessary: true,
+      analytics: true,
+      marketing: true,
+    };
     cookieConsent.value.necessary = true;
     cookieConsent.value.analytics = true;
     cookieConsent.value.marketing = true;
@@ -108,15 +114,11 @@ export function useCookiesDialog() {
       personalization_storage: 'denied',
     });
 
-    Cookies.set(
-      'cookieConsent',
-      JSON.stringify({
-        necessary: true,
-        analytics: false,
-        marketing: false,
-      }),
-      { expires: 365 },
-    );
+    consentCookie.value = {
+      necessary: true,
+      analytics: false,
+      marketing: false,
+    };
 
     cookieConsent.value.necessary = true;
     cookieConsent.value.analytics = false;

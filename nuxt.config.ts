@@ -1,6 +1,22 @@
 export default defineNuxtConfig({
   $development: {
     modules: ['@nuxtjs/html-validator'],
+
+    // A config key rather than inline module options, so projects can override these rules
+    htmlValidator: {
+      usePrettier: true,
+      options: {
+        rules: {
+          'no-redundant-role': 'off',
+          'no-implicit-input-type': 'off',
+          'heading-level': 'off',
+          'unique-landmark': 'off',
+          'prefer-native-element': 'off',
+          'no-missing-references': 'off',
+          'long-title': 'off',
+        },
+      },
+    },
   },
 
   pages: true,
@@ -44,21 +60,6 @@ export default defineNuxtConfig({
     head: {
       htmlAttrs: {
         lang: 'nl',
-      },
-    },
-  },
-
-  htmlValidator: {
-    usePrettier: true,
-    options: {
-      rules: {
-        'no-redundant-role': 'off',
-        'no-implicit-input-type': 'off',
-        'heading-level': 'off',
-        'unique-landmark': 'off',
-        'prefer-native-element': 'off',
-        'no-missing-references': 'off',
-        'long-title': 'off',
       },
     },
   },

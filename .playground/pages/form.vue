@@ -23,6 +23,11 @@ const checked = ref(false);
 const multiselectMode = ref<'single' | 'multiple' | 'tags'>('multiple');
 const inputSize = ref<InputSize>('md');
 
+// Checkboxes and radios have no minimal variant
+const choiceVariant = computed(() =>
+  inputVariant.value === 'minimal' ? 'default' : inputVariant.value,
+);
+
 const selectOptions = [
   {
     id: 'option-1',
@@ -37,7 +42,7 @@ const selectOptions = [
     name: 'The longest text option 3',
   },
   {
-    id: 'option-3',
+    id: 'option-4',
     name: 'Disabled option',
     disabled: true,
   },
@@ -250,7 +255,6 @@ function handleSubmit(formData: FormData) {
 
         <Checkbox
           v-model="checked"
-          :value="checked"
           :disabled="disabled"
           name="single-checkbox"
           label="Checkbox"
@@ -263,7 +267,7 @@ function handleSubmit(formData: FormData) {
               :inline="false"
               :required="required"
               :options="checkboxOptions"
-              :variant="inputVariant"
+              :variant="choiceVariant"
               :disabled="disabled"
               label="Checkbox group"
               name="checkbox-group[]"
@@ -276,7 +280,7 @@ function handleSubmit(formData: FormData) {
               :inline="false"
               :required="required"
               :options="radioOptions"
-              :variant="inputVariant"
+              :variant="choiceVariant"
               :disabled="disabled"
               label="Radio buttons group"
               name="radio-group"
@@ -316,7 +320,7 @@ function handleSubmit(formData: FormData) {
             <li>
               <Switch
                 v-model="disabled"
-                label="Disable form inputs"
+                label="Disable form inputs (default variant)"
                 class="demo-switch"
                 variant="outline"
                 disabled

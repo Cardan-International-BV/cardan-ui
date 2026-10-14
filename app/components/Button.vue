@@ -216,6 +216,18 @@ const emit = defineEmits<{
   min-height: 1.25rem;
   padding-inline: 0.25rem;
 
+  /* Enlarge the click target to at least 24×24px (WCAG 2.5.8) */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    margin: auto;
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
   .iconify {
     font-size: var(--icon-size, larger);
   }

@@ -14,6 +14,7 @@ const {
   disabledKey = 'disabled',
   size = 'md',
   autofocus,
+  required,
   showOptionIcons = true,
   placeholder = undefined,
   tabindex = undefined,
@@ -43,9 +44,17 @@ const {
 
 const multiSelectRef = useTemplateRef('multiselect');
 
-function formatMultipleLabels(values) {
+// The error message is only rendered for required fields
+const computedAriaDescribedby = computed(
+  () =>
+    [instruction && `instruction-${id}`, required && id && `error-${id}`]
+      .filter(Boolean)
+      .join(' ') || undefined,
+);
+
+function formatMultipleLabels(values: Record<string, string>[]) {
   if (values.length === 1) {
-    return values[0][labelKey];
+    return values[0]?.[labelKey];
   }
   return `${values.length} ${itemsSelectedLabel || $t('multiselect.items-selected')}`;
 }
@@ -117,10 +126,7 @@ function preventEscape(event: KeyboardEvent) {
       :label="labelKey"
       :value-prop="valueKey"
       :disabled-prop="disabledKey"
-      :aria-describedby="`
-        ${instruction ? `instruction-${id}` : ''}
-        ${id ? `error-${id}` : ''}
-      `"
+      :aria-describedby="computedAriaDescribedby"
       :aria="{
         'aria-placeholder': null,
         'aria-multiselectable': null,
