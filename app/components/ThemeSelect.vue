@@ -121,7 +121,7 @@ const colorMode = useColorMode();
       padding-inline: 0.5rem;
       min-width: 75px;
       justify-content: center;
-      border: 1px solid var(--color-accent-bg);
+      border: 1px solid var(--color-grey-light);
       border-radius: var(--radius-md);
       color: var(--color-grey-text);
 
@@ -140,9 +140,9 @@ const colorMode = useColorMode();
 
     &:checked {
       + label {
-        color: var(--color-white);
+        color: var(--color-accent-text);
         border-color: var(--color-accent);
-        background-color: var(--color-accent);
+        background-color: var(--color-accent-bg);
       }
     }
   }

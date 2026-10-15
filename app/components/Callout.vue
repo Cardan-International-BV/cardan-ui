@@ -77,7 +77,7 @@ const computedIconLabel = computed(() => {
   padding-inline: 0.75rem;
   padding-block: 0.5rem;
   border: 1px solid transparent;
-  border-radius: var(--callout-radius, var(--radius-sm));
+  border-radius: var(--callout-radius, var(--radius-md));
   font-size: var(--font-size);
 
   .callout-content {
