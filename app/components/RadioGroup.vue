@@ -45,6 +45,8 @@ const {
           {{ tooltip }}
         </Tooltip>
         <span v-else>{{ label }}</span>
+
+        <RequiredChip v-if="required" />
       </legend>
 
       <ul role="list" :class="['radio-list', inline && 'inline']">
@@ -99,6 +101,9 @@ const {
   }
 
   legend {
+    display: inline-flex;
+    gap: 0.35rem;
+    align-items: center;
     font-weight: var(--font-weight-semibold);
     font-size: var(--font-size-md);
 

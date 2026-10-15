@@ -1,13 +1,16 @@
 declare global {
   /**
    * Shape of a Laravel validation / error response, as rendered by
-   * `AuthError.vue`.
+   * `AuthError.vue`. `extractAuthError()` folds a JSON:API error envelope
+   * into it.
    */
   type AuthErrorData = {
     message?: string;
     errors?: {
       [key: string]: string[];
     };
+    /** The language the API wrote the messages in (`Content-Language`). */
+    language?: string;
   };
 
   /**
@@ -36,6 +39,12 @@ declare global {
   /** Fortify answers `two_factor: true` when a second factor is still needed. */
   type LoginResponse = {
     two_factor?: boolean;
+  };
+
+  /** The password length bounds an API enforces, see `usePasswordPolicy()`. */
+  type PasswordPolicyData = {
+    min_length: number;
+    max_length: number;
   };
 
   /** Where `LoginForm` renders its error relative to the submit button. */

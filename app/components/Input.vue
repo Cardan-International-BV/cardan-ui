@@ -1,6 +1,7 @@
 <script setup lang="ts">
+const model = defineModel<string | number>();
+
 const {
-  modelValue = undefined,
   label = undefined,
   required = undefined,
   errorMessage = undefined,
@@ -24,7 +25,6 @@ const {
   size = 'md',
   id = useId(),
 } = defineProps<{
-  modelValue?: string | number;
   label?: string;
   id?: string;
   name?: string;
@@ -57,7 +57,7 @@ const {
 const computedErrorMessage = computed(() => {
   if (errorMessage) {
     return errorMessage;
-  } else if (required && !modelValue) {
+  } else if (required && !model.value) {
     return $t('form.missing-value', { item: label });
   } else if (type === 'email') {
     return $t('form.invalid-email');
@@ -105,7 +105,7 @@ function handleInput(event: Event) {
       return;
     }
   }
-  emit('update:model-value', target.value);
+  model.value = target.value;
 }
 
 const inputRef = useTemplateRef<HTMLInputElement>('input');
@@ -120,7 +120,6 @@ defineExpose({
 });
 
 const emit = defineEmits<{
-  'update:model-value': [value: string | number];
   focus: [value: Event];
   blur: [value: Event];
 }>();
@@ -141,13 +140,7 @@ const emit = defineEmits<{
     >
       <span>{{ label }}</span>
 
-      <Chip
-        v-if="required"
-        :size="chipSize"
-        radius="sm"
-        color="grey"
-        :label="$t('form.required')"
-      />
+      <RequiredChip v-if="required" :size="chipSize" />
     </label>
 
     <div class="input-wrapper">
@@ -155,7 +148,7 @@ const emit = defineEmits<{
         :id="id"
         ref="input"
         class="input"
-        :value="modelValue"
+        :value="model"
         :name="name"
         :title="title"
         :list="list"
@@ -229,15 +222,15 @@ const emit = defineEmits<{
     gap: 0.35rem;
     min-height: 1.25rem;
     align-items: center;
-    font-size: var(--font-size-xs);
-    margin-block-end: 0.125rem;
-    color: var(--color-grey-text);
+    font-size: var(--font-size-sm);
+    margin-block-end: 0.25rem;
+    color: var(--color-text);
   }
 
   .instruction {
     margin-block-start: 0.25rem;
     margin-block-end: 0;
-    font-size: var(--font-size-xxs);
+    font-size: var(--font-size-xs);
     color: var(--color-grey-text);
   }
 
@@ -273,7 +266,6 @@ const emit = defineEmits<{
 
     &[readonly] {
       background-color: var(--color-grey-bg);
-      border-color: transparent;
       caret-color: transparent;
     }
 
@@ -301,14 +293,14 @@ const emit = defineEmits<{
 
 .input-size--md {
   .input {
-    height: var(--control-height);
+    height: 2.5rem;
     padding-inline: 0.5em;
   }
 }
 
 .input-size--lg {
   .input {
-    height: var(--control-height-lg);
+    height: 2.75rem;
     padding-inline: 0.65em;
   }
 }

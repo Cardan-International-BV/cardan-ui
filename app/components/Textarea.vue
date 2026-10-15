@@ -109,7 +109,7 @@ const emit = defineEmits<{
     >
       <span>{{ label }}</span>
 
-      <Chip v-if="required" size="xs" :label="$t('form.required')" />
+      <RequiredChip v-if="required" />
     </label>
 
     <slot name="label" />
@@ -172,15 +172,15 @@ const emit = defineEmits<{
     gap: 0.35rem;
     min-height: 1.25rem;
     align-items: center;
-    font-size: var(--font-size-xs);
-    margin-block-end: 0.125rem;
-    color: var(--color-grey-text);
+    font-size: var(--font-size-sm);
+    margin-block-end: 0.25rem;
+    color: var(--color-text);
   }
 
   .instruction {
     margin-block-start: 0.25rem;
     margin-block-end: 0;
-    font-size: var(--font-size-xxs);
+    font-size: var(--font-size-xs);
     color: var(--color-grey-text);
   }
 
@@ -214,7 +214,6 @@ const emit = defineEmits<{
 
     &[readonly] {
       background-color: var(--color-grey-bg);
-      border-color: transparent;
       caret-color: transparent;
     }
 

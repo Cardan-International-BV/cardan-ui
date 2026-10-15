@@ -110,16 +110,19 @@ const emit = defineEmits<{
     <template #buttons>
       <Button
         v-if="mfaStep === 1"
-        variant="primary"
+        variant="black"
         size="lg"
+        icon="material-symbols:lock-outline"
         :label="$t('mfa.enable')"
         @click="handleEnableMfa()"
       />
 
       <Button
         v-if="mfaStep === 2"
-        variant="primary"
+        variant="black"
         size="lg"
+        icon="material-symbols:arrow-right-alt"
+        icon-pos="end"
         :label="$t('general.continue')"
         @click="mfaStep = 3"
       />
@@ -128,9 +131,9 @@ const emit = defineEmits<{
         v-if="mfaStep === 3"
         type="submit"
         form="mfa-code-confirmation-form"
-        variant="green"
+        variant="black"
         size="lg"
-        icon="material-symbols:check-rounded"
+        icon="material-symbols:check"
         :disabled="mfaCredentials.code.length !== 6"
         :loading="loadingConfirmationCode"
         :label="$t('general.confirm')"
@@ -138,8 +141,9 @@ const emit = defineEmits<{
 
       <Button
         v-if="mfaStep === 4 || mfaStep === 6"
-        variant="primary"
+        variant="black"
         size="lg"
+        icon="material-symbols:check"
         :label="$t('general.done')"
         @click="closeMfaDialog()"
       />
@@ -148,6 +152,7 @@ const emit = defineEmits<{
         v-if="mfaStep === 5"
         variant="danger"
         size="lg"
+        icon="material-symbols:lock-open-outline"
         :label="$t('mfa.disable')"
         :loading="loadingDisableMfa"
         @click="handleDisableMfa()"
@@ -163,7 +168,7 @@ const emit = defineEmits<{
 
   .mfa-dialog-divider {
     block-size: 1px;
-    background-color: var(--auth-color-divider);
+    background-color: var(--color-grey-light);
     margin-block-start: 1.5rem;
   }
 
@@ -185,7 +190,7 @@ const emit = defineEmits<{
     margin-block-start: 1.5rem;
 
     .button {
-      --font-size: var(--auth-font-size-dialog-button);
+      --font-size: var(--font-size-sm);
     }
   }
 

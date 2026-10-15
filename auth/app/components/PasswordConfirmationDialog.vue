@@ -4,6 +4,7 @@
  * Fortify's `password.confirm`. Mount it once, high in the app (the layout);
  * `usePasswordConfirmation()` opens it and waits for the answer.
  */
+
 const { username = undefined } = defineProps<{
   /**
    * The signed-in user's login name, for password managers. Defaults to the
@@ -99,8 +100,9 @@ function handleClose() {
       <Button
         type="submit"
         :form="formId"
-        variant="primary"
+        variant="black"
         size="lg"
+        icon="material-symbols:check"
         :label="$t('general.confirm')"
         :loading="loadingPasswordConfirmation"
         :disabled="!password"
@@ -125,7 +127,7 @@ function handleClose() {
 
   .password-confirmation-divider {
     block-size: 1px;
-    background-color: var(--auth-color-divider);
+    background-color: var(--color-grey-light);
     margin-block-start: 1.5rem;
   }
 
@@ -133,7 +135,7 @@ function handleClose() {
     margin-block-start: 1.5rem;
 
     .button {
-      --font-size: var(--auth-font-size-dialog-button);
+      --font-size: var(--font-size-sm);
     }
   }
 }

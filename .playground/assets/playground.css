@@ -5,16 +5,6 @@
  */
 @import '../../app/assets/main.css';
 
-/* Show popovers, dialogs and menus without shadows, as the Cardan brand prescribes */
-:where(:root) {
-  --shadow: none;
-  --shadow-1: none;
-  --shadow-2: none;
-  --shadow-3: none;
-  --shadow-offset: none;
-  --shadow-offset-hover: none;
-}
-
 :where(.light-mode) {
   --popover-border-color: var(--card-border-color);
 }
@@ -200,4 +190,9 @@ s {
   code {
     color: var(--color-grey-text);
   }
+}
+
+/* Centre the Auth UI pages in the viewport below the header, like an app does */
+.auth-page-content {
+  min-height: calc(100svh - 10rem);
 }

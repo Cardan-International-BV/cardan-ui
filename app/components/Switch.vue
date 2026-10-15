@@ -67,6 +67,14 @@ const computedAriaDescribedby = computed(() =>
 </template>
 
 <style>
+.switch-button-wrapper {
+  .instruction {
+    /* margin-block-end: 0; */
+    font-size: var(--font-size-sm);
+    color: var(--color-grey-text);
+  }
+}
+
 .switch-button {
   display: flex;
   align-items: center;
@@ -96,7 +104,7 @@ const computedAriaDescribedby = computed(() =>
     }
 
     .switch {
-      background-color: var(--color-cta, var(--color-accent));
+      background-color: var(--color-accent);
     }
   }
 
@@ -122,7 +130,7 @@ const computedAriaDescribedby = computed(() =>
   }
 
   .switch-label {
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-md);
     font-weight: var(--font-weight-medium);
     transition-property: color, font-weight;
     transition-duration: var(--duration-sm);

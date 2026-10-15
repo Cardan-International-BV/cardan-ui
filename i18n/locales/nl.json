@@ -23,7 +23,6 @@
     "yes": "Ja",
     "no": "Nee"
   },
-
   "cookies": {
     "accept": "Accepteren",
     "deny": "Weigeren",
@@ -32,14 +31,12 @@
     "has-consent": "Cookies zijn geaccepteerd",
     "no-consent": "Cookies zijn niet geaccepteerd"
   },
-
   "date": {
     "just-now": "zojuist",
     "seconds-ago": "{n} seconde geleden | {n} seconden geleden",
     "minutes-ago": "{n} minuut geleden | {n} minuten geleden",
     "hours-ago": "{n} uur geleden | {n} uur geleden"
   },
-
   "datepicker": {
     "input": "Datumveld",
     "selectText": "Selecteren",
@@ -58,11 +55,9 @@
     "nextYear": "Volgend jaar",
     "prevYear": "Vorig jaar"
   },
-
   "empty": {
     "no-description": "Geen beschrijving."
   },
-
   "error": {
     "403": "Geen toegang",
     "404": "Niet gevonden",
@@ -71,7 +66,6 @@
     "unauthorized": "Je hebt geen rechten om deze pagina te openen.",
     "youtube": "YouTube player is niet geladen"
   },
-
   "form": {
     "invalid-email": "Geen geldig e-mailadres",
     "invalid-phone": "Telefoonnummer is ongeldig",
@@ -80,7 +74,6 @@
     "missing-value": "{item} ontbreekt",
     "required": "vereist"
   },
-
   "files": {
     "browse": "Selecteer bestand",
     "example": "Voorbeeld van {file}",
@@ -92,14 +85,12 @@
     "too-big": "Bestand is te groot",
     "button-text": "Klik om te uploaden of sleep een bestand"
   },
-
   "filters": {
     "apply": "Filters toepassen",
     "heading": "Filter | Filters",
     "reset": "Reset filters",
     "reset-all": "Reset alle filters"
   },
-
   "general": {
     "about": "Over",
     "actions": "Acties",
@@ -232,62 +223,18 @@
     "website": "Website",
     "year": "{n} jaar | {n} jaar"
   },
-
   "language": {
     "en": "Engels",
     "nl": "Nederlands",
     "toggle": "Taal wisselen"
   },
-
   "meter": {
     "value-of-max": "{value} van {max}"
   },
-
   "multiselect": {
     "items-selected": "{count} items geselecteerd",
     "pages-selected": "{count} pagina's geselecteerd"
   },
-
-  "password": {
-    "back-to-login": "Terug naar",
-    "back-to-login-cta": "inloggen",
-    "confirm": "Herhaal wachtwoord",
-    "current": "Huidig wachtwoord",
-    "edit": "Wachtwoord wijzigen",
-    "email-sent": "We hebben een resetlink naar je gemaild.",
-    "forgot": "Wachtwoord vergeten?",
-    "forgot-cta": "Herstel hier",
-    "forgot-instructions": "Vul je e-mailadres in om een reset-link te krijgen.",
-    "heading": "Wachtwoord",
-    "new": "Nieuw wachtwoord",
-    "request-reset": "Nieuw wachtwoord aanvragen",
-    "reset": "Wachtwoord wijzigen",
-    "reset-description": "Weet je zeker dat je jouw wachtwoord wilt wijzigen? Vul dan een nieuw sterk wachtwoord in.",
-    "reset-form-instructions": "Klik op de link in de email met instructies om je wachtwoord te wijzigen.",
-    "save": "Wachtwoord opslaan",
-    "show": "Toon wachtwoord",
-    "update": "Wachtwoord wijzigen",
-    "updated": "Je wachtwoord is gewijzigd. Je wordt automatisch ingelogd.",
-    "requirements": {
-      "description": "Wachtwoord moet voldoen aan de volgende criteria:",
-      "length": "Moet minimaal {n} tekens bevatten",
-      "length-valid": "Wachtwoord voldoet aan vereiste voor lengte",
-      "length-invalid": "Wachtwoord voldoet niet aan vereiste voor lengte",
-      "numbers": "Moet minimaal 1 getal bevatten",
-      "numbers-valid": "Wachtwoord voldoet aan vereiste voor getal",
-      "numbers-invalid": "Wachtwoord voldoet niet aan vereiste voor getal",
-      "symbols": "Moet minimaal 1 speciaal teken bevatten",
-      "symbols-valid": "Wachtwoord voldoet aan vereiste voor speciaal teken",
-      "symbols-invalid": "Wachtwoord voldoet niet aan vereiste voor speciaal teken",
-      "uppercase": "Moet minimaal 1 hoofdletter bevatten",
-      "uppercase-valid": "Wachtwoord voldoet aan vereiste voor hoofdletter",
-      "uppercase-invalid": "Wachtwoord voldoet niet aan vereiste voor hoofdletter",
-      "lowercase": "Moet minimaal 1 kleine letter bevatten",
-      "lowercase-invalid": "Wachtwoord voldoet niet aan vereiste voor kleine letter",
-      "lowercase-valid": "Wachtwoord voldoet aan vereiste voor kleine letter"
-    }
-  },
-
   "pagination": {
     "page-x-of-total": "pagina {page} van {total}",
     "current-page": "pagina",
@@ -299,16 +246,13 @@
     "per-page": "items per pagina",
     "prev-page": "Vorige pagina"
   },
-
   "pricing": {
     "per-month": "Per maand",
     "price-on-request": "Prijs op aanvraag"
   },
-
   "select": {
     "no-options": "Geen opties"
   },
-
   "theme": {
     "dark": "Donker",
     "heading": "Thema",
@@ -321,7 +265,6 @@
       "system": "Systeemthema"
     }
   },
-
   "video": {
     "play": "Video afspelen"
   }

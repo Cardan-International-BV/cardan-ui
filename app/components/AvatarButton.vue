@@ -50,7 +50,7 @@ defineExpose({
   height: 2.5rem;
   border: none;
   font-weight: var(--font-weight-semibold);
-  background-color: var(--color-grey-bg);
+  background-color: var(--color-grey-light);
   border-radius: var(--radius-full);
   transition:
     color var(--duration-sm),
@@ -61,7 +61,7 @@ defineExpose({
     color: var(--color-text);
     background-color: color-mix(
       in srgb,
-      var(--color-grey-bg) 95%,
+      var(--color-grey-light) 95%,
       var(--color-black)
     );
   }

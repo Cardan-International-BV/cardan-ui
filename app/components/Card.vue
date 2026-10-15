@@ -42,7 +42,7 @@ const computedStyle = computed(() => ({
   box-shadow: var(--card-shadow, none);
   background-color: var(--card-background, var(--color-card-bg));
   border: var(--card-border-width, 1px) solid var(--card-border-color);
-  border-radius: var(--card-radius, var(--radius-md));
+  border-radius: var(--card-radius, var(--radius-lg));
   padding-block: var(--card-padding-block);
   padding-inline: var(--card-padding-inline);
 

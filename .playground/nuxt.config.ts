@@ -34,9 +34,11 @@ export default defineNuxtConfig({
     client: {
       initialRequest: false,
     },
+    // Back to the Auth UI demo after signing in or skipping the MFA setup
     redirect: {
+      onLogin: '/auth',
       onAuthOnly: '/',
-      onGuestOnly: '/',
+      onGuestOnly: '/auth',
       onLogout: '/',
     },
   },
@@ -45,7 +47,11 @@ export default defineNuxtConfig({
   routeRules: {
     '/auth': { ssr: false },
     '/auth/**': { ssr: false },
+    '/login': { ssr: false },
+    '/forgot-password': { ssr: false },
+    '/reset-password': { ssr: false },
     '/two-factor-authentication': { ssr: false },
+    '/mfa-setup': { ssr: false },
   },
 
   css: ['~/assets/playground.css'],

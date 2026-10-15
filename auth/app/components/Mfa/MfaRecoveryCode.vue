@@ -34,14 +34,14 @@ const { mfaCredentials, mfaError, recoveryCodeInputRef } = useMfa();
   label {
     text-align: center;
     margin-inline: auto;
-    font-size: var(--auth-font-size-label) !important;
+    font-size: var(--font-size-md) !important;
     margin-block-end: 0.5rem !important;
   }
 
   input[type='text'] {
     height: auto;
     padding-block: 0.5rem;
-    font-size: var(--auth-font-size-recovery-code-input);
+    font-size: var(--font-size-lg);
     background-color: var(--color-card-bg);
   }
 
@@ -49,7 +49,7 @@ const { mfaCredentials, mfaError, recoveryCodeInputRef } = useMfa();
     margin-block: 0.25rem;
 
     .error {
-      font-size: var(--auth-font-size-small);
+      font-size: var(--font-size-sm);
     }
   }
 }

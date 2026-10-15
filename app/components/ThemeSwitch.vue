@@ -72,7 +72,7 @@ const emit = defineEmits<{
   .iconify {
     z-index: 1;
     color: var(--color-shape);
-    font-size: var(--font-size, var(--font-size-md));
+    font-size: var(--font-size, var(--font-size-lg));
 
     &[class*='material-symbols:light-mode-outline-rounded'] {
       color: var(--color-white);

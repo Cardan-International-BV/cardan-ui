@@ -1,3 +1,5 @@
+import type { RouteLocationNormalized } from 'vue-router';
+
 /**
  * The app's authentication surface: nuxt-auth-sanctum's client and identity,
  * plus the login primitives the MFA flow needs.
@@ -52,15 +54,28 @@ export function useAuth() {
    * Where to go once a login has fully succeeded, mirroring the rules
    * nuxt-auth-sanctum's own `login()` applies — the requested route when
    * `redirect.keepRequestedRoute` is on, otherwise `redirect.onLogin`.
+   * The requested route only counts when it is a path within this app, so a
+   * `?redirect=` to another site falls back to `redirect.onLogin`.
    * Returns `false` when the app has opted out of redirecting.
+   *
+   * Pass the route being navigated to when calling it from route middleware,
+   * where `useRoute()` still holds the previous route.
    */
-  function loginRedirectTarget(): string | false {
-    const route = useRoute();
+  function loginRedirectTarget(
+    route: RouteLocationNormalized = useRoute(),
+  ): string | false {
 
     if (config.redirect.keepRequestedRoute) {
       const requested = route.query.redirect;
 
-      if (typeof requested === 'string' && requested) return requested;
+      if (
+        typeof requested === 'string' &&
+        requested.startsWith('/') &&
+        !requested.startsWith('//') &&
+        !requested.startsWith('/\\')
+      ) {
+        return requested;
+      }
     }
 
     return config.redirect.onLogin ?? '/';

@@ -195,7 +195,7 @@ defineExpose({
 
     &:hover:not(:disabled, [aria-selected='true']) {
       color: var(--color-text);
-      border-color: var(--color-grey-text);
+      border-color: var(--color-grey-graphic);
 
       .iconify {
         color: var(--color-text);

@@ -189,7 +189,7 @@ const emit = defineEmits<{
   .iconify {
     font-size: var(--icon-size, larger);
     flex-shrink: 0;
-    transition-duration: var(--duration-sm);
+    transition-duration: var(--duration-xs);
   }
 }
 
@@ -202,7 +202,7 @@ const emit = defineEmits<{
 }
 
 .button-size--xs {
-  font-size: var(--font-size, var(--button-font-size-xs));
+  font-size: var(--font-size, var(--font-size-xs));
   min-height: 1.5rem;
   padding-inline: 0.5rem;
 
@@ -212,7 +212,7 @@ const emit = defineEmits<{
 }
 
 .button-size--xxs {
-  font-size: var(--font-size, var(--font-size-xxs));
+  font-size: var(--font-size, var(--font-size-xs));
   min-height: 1.25rem;
   padding-inline: 0.25rem;
 
@@ -234,7 +234,7 @@ const emit = defineEmits<{
 }
 
 .button-size--sm {
-  font-size: var(--font-size, var(--button-font-size-sm));
+  font-size: var(--font-size, var(--font-size-sm));
   min-height: 2rem;
   padding-inline: 0.65rem;
 
@@ -248,9 +248,9 @@ const emit = defineEmits<{
 }
 
 .button-size--md {
-  font-size: var(--font-size, var(--button-font-size));
-  min-height: var(--control-height);
-  padding-inline: var(--button-padding-inline);
+  font-size: var(--font-size, var(--font-size-sm));
+  min-height: 2.5rem;
+  padding-inline: 0.75rem;
 
   .button-text {
     padding-inline: 0.2rem;
@@ -262,9 +262,9 @@ const emit = defineEmits<{
 }
 
 .button-size--lg {
-  font-size: var(--font-size, var(--button-font-size));
-  min-height: var(--control-height-lg);
-  padding-inline: 0.85rem;
+  font-size: var(--font-size, var(--font-size-md));
+  min-height: 2.75rem;
+  padding-inline: 1rem;
 
   .button-text {
     padding-inline: 0.2rem;
@@ -276,7 +276,7 @@ const emit = defineEmits<{
 }
 
 .button-size--xl {
-  font-size: var(--font-size, var(--button-font-size));
+  font-size: var(--font-size, var(--font-size-lg));
   min-height: 3rem;
   padding-inline: 1.25rem;
 
@@ -336,9 +336,18 @@ const emit = defineEmits<{
 }
 
 .button-variant--black {
+  color: var(--color-white);
+  background-color: var(--color-text);
+
+  &:not(:disabled, .disabled):hover {
+    background-color: var(--color-grey-text);
+  }
+}
+
+.button-variant--3d {
   --radius: var(--radius-xl);
   color: var(--color-white);
-  background-color: var(--color-black);
+  background-color: var(--color-text);
   transition-property: background-color, box-shadow;
   box-shadow: var(--shadow-offset);
 
@@ -349,11 +358,7 @@ const emit = defineEmits<{
 
   &:not(:focus-visible, :disabled, .disabled):hover {
     box-shadow: var(--shadow-offset-hover);
-    background-color: color-mix(
-      in srgb,
-      var(--color-black) 90%,
-      var(--color-white)
-    );
+    background-color: var(--color-black);
   }
   &:focus-visible {
     box-shadow: -4px -4px 0px 0 transparent;
@@ -399,11 +404,11 @@ const emit = defineEmits<{
 }
 
 .button-variant--secondary {
-  color: var(--color-on-secondary);
-  background-color: var(--color-secondary);
+  color: var(--color-text);
+  background-color: var(--color-grey-bg);
 
   &:not(:disabled, .disabled):hover {
-    background-color: var(--color-secondary-hover);
+    background-color: var(--color-grey-light);
   }
 }
 
@@ -471,7 +476,7 @@ const emit = defineEmits<{
 .button-variant--outline {
   color: var(--color-text);
   background-color: var(--color-input-bg);
-  border-color: var(--color-grey-light);
+  border-color: var(--color-grey-bg);
 
   &:not(:disabled, .disabled):hover {
     background-color: var(--color-grey-bg);
@@ -602,7 +607,7 @@ const emit = defineEmits<{
     color: var(--color-accent-text);
 
     .iconify {
-      color: var(--color-accent-graphic);
+      /* color: var(--color-accent-graphic); */
     }
   }
 

@@ -3,18 +3,13 @@ export const navList: MenuItem[] = [
     id: 'home',
     to: '/',
     label: 'Getting Started',
+  },
+  {
+    id: 'changelog',
+    to: '/changelog',
+    label: 'Changelog',
     divider: true,
   },
-  // {
-  //   id: 'changelog',
-  //   to: '/changelog',
-  //   label: 'Changelog',
-  // },
-  // {
-  //   id: 'accessibility',
-  //   to: '/accessibility',
-  //   label: 'Accessibility',
-  // },
   {
     id: 'colors',
     to: '/colors',
@@ -24,11 +19,6 @@ export const navList: MenuItem[] = [
     id: 'logo',
     to: '/logo',
     label: 'Logo',
-  },
-  {
-    id: 'auth',
-    to: '/auth',
-    label: 'Auth UI',
   },
   {
     id: 'text',
@@ -90,14 +80,15 @@ export const navList: MenuItem[] = [
     to: '/skeleton',
     label: 'Skeleton screens',
   },
-  // {
-  //   id: 'image',
-  //   to: '/image',
-  //   label: 'Lazy Image',
-  // },
   {
     id: 'video',
     to: '/video',
     label: 'Video Player',
+    divider: true,
+  },
+  {
+    id: 'auth',
+    to: '/auth',
+    label: 'Auth UI',
   },
 ];

@@ -248,6 +248,7 @@ function handleSubmit(formData: FormData) {
           :required="required"
           name="textarea"
           label="Textarea"
+          instruction="Example of an instruction text, programmatically connected to the input with aria-describedby."
           :variant="inputVariant"
           :disabled="disabled"
           :readonly="readonly"

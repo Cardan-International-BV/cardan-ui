@@ -5,8 +5,7 @@
  * step. `MfaDialog` keeps covering the same flow for account settings.
  *
  * Step headings are `h2` by default, so render it below the page's own `h1`,
- * or make them the page's `h1` with `headingLevel`. The buttons are a slot, so
- * an app can bring its own button component.
+ * or make them the page's `h1` with `headingLevel`.
  */
 const {
   skippable = true,
@@ -156,74 +155,58 @@ onMounted(() => {
     />
 
     <div class="mfa-setup-actions">
-      <slot
-        name="actions"
-        :step="mfaStep"
-        :skippable="skippable"
-        :can-confirm="canConfirm"
-        :loading-enable="loadingEnable"
-        :loading-confirm="loadingConfirmationCode"
-        :form-id="formId"
-        :enable="enable"
-        :next="next"
-        :back="back"
-        :skip="skip"
-        :finish="finish"
-      >
-        <Button
-          v-if="skippable && (mfaStep === 1 || mfaStep === 2)"
-          variant="link"
-          size="lg"
-          :label="$t('mfa.skip')"
-          @click="skip"
-        />
+      <Button
+        v-if="skippable && (mfaStep === 1 || mfaStep === 2)"
+        variant="ghost"
+        :label="$t('mfa.skip')"
+        @click="skip"
+      />
 
-        <Button
-          v-if="mfaStep === 3"
-          variant="ghost"
-          size="lg"
-          icon="material-symbols:arrow-back-rounded"
-          :label="$t('general.back')"
-          @click="back"
-        />
+      <Button
+        v-if="mfaStep === 3"
+        variant="ghost"
+        icon="material-symbols:arrow-left-alt"
+        :label="$t('general.back')"
+        @click="back"
+      />
 
-        <Button
-          v-if="mfaStep === 1"
-          variant="primary"
-          size="lg"
-          :label="$t('mfa.enable')"
-          :loading="loadingEnable"
-          @click="enable"
-        />
+      <Button
+        v-if="mfaStep === 1"
+        variant="black"
+        icon="material-symbols:lock-outline"
+        :label="$t('mfa.enable')"
+        :loading="loadingEnable"
+        @click="enable"
+      />
 
-        <Button
-          v-else-if="mfaStep === 2"
-          variant="primary"
-          size="lg"
-          :label="$t('general.continue')"
-          @click="next"
-        />
+      <Button
+        v-else-if="mfaStep === 2"
+        variant="black"
+        icon="material-symbols:arrow-right-alt"
+        icon-pos="end"
+        :label="$t('general.continue')"
+        @click="next"
+      />
 
-        <Button
-          v-else-if="mfaStep === 3"
-          type="submit"
-          :form="formId"
-          variant="green"
-          size="lg"
-          icon="material-symbols:check-rounded"
-          :label="$t('general.confirm')"
-          :disabled="!canConfirm"
-          :loading="loadingConfirmationCode"
-        />
+      <Button
+        v-else-if="mfaStep === 3"
+        type="submit"
+        :form="formId"
+        variant="black"
+        icon="material-symbols:check"
+        :label="$t('general.confirm')"
+        :disabled="!canConfirm"
+        :loading="loadingConfirmationCode"
+      />
 
-        <Button
-          v-else-if="mfaStep === 4"
-          variant="primary"
-          size="lg"
-          :label="$t('mfa.setup-finish')"
-          @click="finish"
-        />
-      </slot>
+      <Button
+        v-else-if="mfaStep === 4"
+        variant="black"
+        icon="material-symbols:arrow-right-alt"
+        icon-pos="end"
+        :label="$t('mfa.setup-finish')"
+        @click="finish"
+      />
     </div>
   </div>
 </template>
@@ -231,19 +214,18 @@ onMounted(() => {
 <style>
 .mfa-setup {
   width: 100%;
-  max-width: 28rem;
   margin-inline: auto;
 
   /* The setup's own text; AuthError keeps its error colour and size */
   p:not(.auth-error p) {
     color: var(--color-grey-text);
-    font-size: var(--auth-font-size-label);
+    font-size: var(--font-size-md);
   }
 
   h2 {
     hyphens: none;
     margin-block: 0 1.5rem;
-    font-size: var(--auth-font-size-step-heading);
+    font-size: var(--font-size-lg);
   }
 
   /* As the page title, the step heading keeps the app's own h1 size. */
@@ -278,7 +260,7 @@ onMounted(() => {
     justify-content: center;
     margin-block-start: 1.5rem;
     padding-block-start: 1.5rem;
-    border-block-start: 1px solid var(--auth-color-divider);
+    border-block-start: 1px solid var(--color-grey-light);
 
     > :only-child {
       margin-inline: auto;
@@ -289,7 +271,7 @@ onMounted(() => {
     }
 
     .button {
-      --font-size: var(--auth-font-size-dialog-button);
+      --font-size: var(--font-size-sm);
     }
   }
 }

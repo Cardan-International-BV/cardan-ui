@@ -173,7 +173,7 @@ function removeFile() {
         {{ label || $t('files.browse') }}
       </span>
 
-      <Chip v-if="required" size="xs" :label="$t('form.required')" />
+      <RequiredChip v-if="required" />
     </label>
 
     <div class="file-input">
@@ -268,9 +268,9 @@ function removeFile() {
     gap: 0.35rem;
     min-height: 1.25rem;
     align-items: center;
-    font-size: var(--font-size-xs);
-    margin-block-end: 0.125rem;
-    color: var(--color-grey-text);
+    font-size: var(--font-size-sm);
+    margin-block-end: 0.25rem;
+    color: var(--color-text);
   }
 }
 
@@ -289,7 +289,7 @@ function removeFile() {
   padding: 0;
   border: 1.5px dashed var(--color-grey-graphic);
   border-radius: var(--radius-lg);
-  background-color: var(--color-bg);
+  background-color: var(--color-input-bg);
   outline: 1px solid transparent;
   padding-block: 2rem;
 
@@ -308,10 +308,10 @@ function removeFile() {
     width: 3.5rem;
     height: 3.5rem;
     margin-inline: auto;
-    border: 1px solid var(--color-grey-light);
+    border: 1px solid var(--color-grey-bg);
     border-radius: var(--radius-md);
-    color: var(--color-grey-text);
-    background-color: var(--color-card-bg);
+    color: var(--color-grey-graphic);
+    background-color: var(--color-bg);
 
     .iconify {
       display: block;
@@ -389,10 +389,10 @@ function removeFile() {
       cursor: pointer;
 
       + .file-input-button {
-        border-color: var(--color-text);
+        border-color: var(--color-grey-text);
 
         .file-input-icon-wrapper {
-          color: var(--color-text);
+          color: var(--color-grey-text);
         }
 
         .button-text {
@@ -402,7 +402,7 @@ function removeFile() {
 
       &:focus-visible + .file-input-button {
         .iconify {
-          color: var(--focus-accent-graphic);
+          color: var(--color-accent-graphic);
         }
       }
     }
