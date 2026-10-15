@@ -3,7 +3,7 @@ const {
   form = 'full',
   variant = 'auto',
   product = undefined,
-  height = '1.125rem',
+  height = '1rem',
   label = undefined,
   round = false,
   decorative = false,
@@ -14,7 +14,7 @@ const {
   variant?: CardanLogoVariant;
   /** Sub-brand lockup after the full logo, e.g. 'academy' or 'auditor' */
   product?: string;
-  /** Maximum height of the logo (default and minimum 18px); a larger logo shrinks to fit its container, but never below 18px */
+  /** Height of the logo (default 16px); it shrinks to fit a narrower container */
   height?: string;
   /** Accessible name, defaults to "Cardan" plus the product */
   label?: string;
@@ -56,6 +56,12 @@ function measureProduct() {
 onMounted(() => {
   measureProduct();
   document.fonts?.ready.then(measureProduct);
+  // A font that starts loading later, e.g. once the logo renders, changes the width again
+  document.fonts?.addEventListener('loadingdone', measureProduct);
+});
+
+onBeforeUnmount(() => {
+  document.fonts?.removeEventListener('loadingdone', measureProduct);
 });
 
 watch(productText, () => nextTick(measureProduct));
@@ -177,18 +183,17 @@ const computedStyle = computed(() => ({
   --logo-wordmark: #28242d;
   --logo-product: #8e40b5;
   --logo-tile: #8e40b5;
-  --logo-size: max(18px, var(--logo-height));
 
   display: inline-block;
   vertical-align: middle;
   max-width: 100%;
   line-height: 0;
 
-  /* Scales down to fit its container, but never below 18px high */
+  /* Shrinks to fit a narrower container: an SVG with a percentage max-width
+     has no minimum width, also as a flex or grid item */
   svg {
     display: block;
-    width: calc(var(--logo-size) * var(--logo-ratio));
-    min-width: calc(18px * var(--logo-ratio));
+    width: calc(var(--logo-height) * var(--logo-ratio));
     max-width: 100%;
     height: auto;
     /* Descenders in the product name (g, j, p, q, y) hang below the logo, like text */
