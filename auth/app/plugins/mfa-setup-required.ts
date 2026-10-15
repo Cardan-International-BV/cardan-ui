@@ -11,8 +11,12 @@
 const MFA_SETUP_CODES = ['mfa_setup_required', 'backoffice_mfa_required'];
 
 export default defineNuxtPlugin((nuxtApp) => {
+  // The refresh below goes through the same client, so an identity endpoint
+  // that answers one of these codes would re-enter this hook.
+  let redirecting = false;
+
   nuxtApp.hook('sanctum:error:response', async ({ response }) => {
-    if (response?.status !== 403) return;
+    if (redirecting || response?.status !== 403) return;
 
     // A JSON:API envelope (`errors[0].code`) or a plain body (`code`).
     const data = response._data as
@@ -25,12 +29,23 @@ export default defineNuxtPlugin((nuxtApp) => {
     const route = nuxtApp.$router.currentRoute.value;
     if (route.path === '/mfa-setup') return;
 
-    await nuxtApp.runWithContext(async () => {
-      await useAuth().refreshIdentity();
-      await navigateTo({
-        path: '/mfa-setup',
-        query: { redirect: route.fullPath },
+    redirecting = true;
+
+    try {
+      await nuxtApp.runWithContext(async () => {
+        try {
+          await useAuth().refreshIdentity();
+        } catch {
+          // A failed refresh must not keep the user from the setup page.
+        }
+
+        await navigateTo({
+          path: '/mfa-setup',
+          query: { redirect: route.fullPath },
+        });
       });
-    });
+    } finally {
+      redirecting = false;
+    }
   });
 });
