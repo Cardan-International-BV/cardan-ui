@@ -84,6 +84,7 @@
   );
   --color-red-text: hsl(0 69% 67%);
   --color-red-graphic: hsl(0 63% 65%);
+  --color-red-solid: #8f1c1c;
 
   /* Ochre: data and status only */
   --color-orange: var(--cardan-ochre-on-dark);
@@ -113,6 +114,7 @@
   );
   --color-green-text: var(--cardan-green-text-on-dark);
   --color-green-graphic: var(--cardan-green-on-dark);
+  --color-green-solid: #004723;
 
   /* Not a brand color: kept for categorical use */
   --color-blue: hsl(220 53% 58%);
@@ -189,6 +191,7 @@
   --color-red-bg: var(--cardan-error-surface);
   --color-red-text: var(--cardan-error-text);
   --color-red-graphic: var(--cardan-error);
+  --color-red-solid: var(--cardan-error-text);
 
   /* Ochre: data and status only. Ochre 40% is the surface, always with Body text (see the -on-bg tokens) */
   --color-orange: var(--cardan-ochre);
@@ -206,6 +209,7 @@
   --color-green-bg: var(--cardan-green-light);
   --color-green-text: var(--cardan-green-text);
   --color-green-graphic: var(--cardan-green);
+  --color-green-solid: var(--cardan-green-text);
 
   /* Not a brand color: kept for categorical use */
   --color-blue: hsl(220 100% 50%);
@@ -252,6 +256,16 @@
   --color-blue-on-bg: var(--color-text);
   --color-purple-on-bg: var(--color-text);
   --color-pink-on-bg: var(--color-text);
+
+  /* Filled backgrounds for --color-on-accent text, at least 4.5:1 in both
+     modes (Chip variant="solid"). Red and green are set per mode above */
+  --color-accent-solid: var(--cardan-purple);
+  --color-grey-solid: var(--cardan-body-grey);
+  --color-orange-solid: var(--cardan-ochre-text);
+  --color-yellow-solid: hsl(50 100% 24%);
+  --color-blue-solid: hsl(220 100% 30%);
+  --color-purple-solid: var(--cardan-purple);
+  --color-pink-solid: hsl(320 70% 40%);
 
   /* Font family design tokens */
   --font-family: 'Hanken Grotesk', Arial, system-ui, sans-serif;

@@ -132,8 +132,11 @@ declare global {
     | 'sidebar'
     | 'topbar';
 
-  type ChipVariant = 'flat' | 'outline' | 'soft';
-  type CalloutVariant = 'default' | 'solid';
+  type ChipVariant = 'flat' | 'outline' | 'soft' | 'solid';
+
+  /** The CSS text-transform keywords */
+  type TextTransform = 'uppercase' | 'lowercase' | 'capitalize';
+  type CalloutVariant = 'solid' | 'outline';
   type CardanLogoForm = 'full' | 'symbol' | 'tile';
   type CardanLogoVariant =
     'auto' | 'color' | 'negative' | 'white' | 'black' | 'purple';

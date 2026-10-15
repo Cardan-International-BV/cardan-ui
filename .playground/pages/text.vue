@@ -9,13 +9,30 @@ const text = ref(
 const chipSize = ref<ChipSize>('md');
 const chipFontSize = ref<FontSize>('xs');
 const chipIconSize = ref<FontSize>('sm');
+const chipColors: BaseColor[] = [
+  'default',
+  'grey',
+  'accent',
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'blue',
+  'purple',
+  'pink',
+];
+const textTransforms: TextTransform[] = [
+  'uppercase',
+  'lowercase',
+  'capitalize',
+];
 
 const calloutFontSize = ref<FontSize>('xs');
 const calloutIconSize = ref<FontSize>('md');
 const calloutVariant = ref<CalloutVariant>('solid');
 const calloutVariantOptions = [
-  { value: 'default', label: 'default' },
   { value: 'solid', label: 'solid' },
+  { value: 'outline', label: 'outline' },
 ];
 
 const sizeOptions: { value: FontSize; label: string }[] = [
@@ -360,6 +377,34 @@ function makeToast() {
           color="pink"
         />
       </div>
+
+      <div class="chips-grid">
+        <Chip
+          v-for="color in chipColors"
+          :key="color"
+          :size="chipSize"
+          :font-size="chipFontSize"
+          :icon-size="chipIconSize"
+          icon="material-symbols:check-rounded"
+          variant="solid"
+          :label="color"
+          :color="color"
+          text-transform="capitalize"
+        />
+      </div>
+
+      <div class="chips-grid">
+        <Chip
+          v-for="textTransform in textTransforms"
+          :key="textTransform"
+          :size="chipSize"
+          :font-size="chipFontSize"
+          :icon-size="chipIconSize"
+          :label="`text-transform ${textTransform}`"
+          color="accent"
+          :text-transform="textTransform"
+        />
+      </div>
     </Card>
 
     <div class="card-cols">
@@ -410,6 +455,15 @@ function makeToast() {
             :font-size="calloutFontSize"
             :icon-size="calloutIconSize"
             :variant="calloutVariant"
+            color="green"
+          >
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          </Callout>
+
+          <Callout
+            :font-size="calloutFontSize"
+            :icon-size="calloutIconSize"
+            :variant="calloutVariant"
             color="red"
             role="alert"
           >
@@ -421,15 +475,6 @@ function makeToast() {
             :icon-size="calloutIconSize"
             :variant="calloutVariant"
             color="orange"
-          >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          </Callout>
-
-          <Callout
-            :font-size="calloutFontSize"
-            :icon-size="calloutIconSize"
-            :variant="calloutVariant"
-            color="green"
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </Callout>
