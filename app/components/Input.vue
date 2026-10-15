@@ -265,7 +265,7 @@ const emit = defineEmits<{
     background-color: var(--color-input-bg);
 
     &[readonly] {
-      background-color: var(--color-grey-light);
+      background-color: var(--color-grey-bg);
       caret-color: transparent;
     }
 

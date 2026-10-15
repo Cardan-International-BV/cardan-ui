@@ -461,7 +461,7 @@ const emit = defineEmits<{
   padding-block: 0.5rem 0.65rem;
 
   &:not(:disabled, .disabled, .router-link-active):hover {
-    background-color: var(--color-grey-light);
+    background-color: var(--color-grey-bg);
   }
 
   &.router-link-exact-active {
@@ -476,10 +476,10 @@ const emit = defineEmits<{
 .button-variant--outline {
   color: var(--color-text);
   background-color: var(--color-input-bg);
-  border-color: var(--color-grey-light);
+  border-color: var(--color-grey-bg);
 
   &:not(:disabled, .disabled):hover {
-    background-color: var(--color-grey-light);
+    background-color: var(--color-grey-bg);
   }
 
   &.router-link-active {
@@ -571,7 +571,7 @@ const emit = defineEmits<{
   }
 
   &:not(:disabled, .disabled, .router-link-active):hover {
-    background-color: var(--color-grey-light);
+    background-color: var(--color-grey-bg);
 
     .iconify {
       color: var(--color-grey-text);

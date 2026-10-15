@@ -64,8 +64,8 @@
   --color-text: var(--cardan-dark-text);
   --color-grey-text: var(--cardan-dark-text-secondary);
   --color-grey-graphic: var(--cardan-body-60);
-  --color-grey-light: var(--cardan-dark-block);
-  --color-grey-bg: var(--cardan-dark-border);
+  --color-grey-light: var(--cardan-dark-border);
+  --color-grey-bg: var(--cardan-dark-block);
   --color-track: var(--cardan-body-grey);
   --color-bg: var(--cardan-dark-bg);
   --color-card-bg: var(--cardan-dark-card);
@@ -175,12 +175,12 @@
   --color-text: var(--cardan-body);
   --color-grey-text: var(--cardan-body-grey);
   --color-grey-graphic: var(--cardan-always-grey);
-  --color-grey-light: var(--cardan-beige-mid);
-  --color-grey-bg: var(--cardan-beige);
-  --color-track: var(--cardan-beige-sand);
+  --color-grey-light: var(--cardan-beige-sand);
+  --color-grey-bg: var(--cardan-beige-mid);
   --color-bg: var(--cardan-beige);
   --color-card-bg: var(--cardan-white);
   --color-white: var(--cardan-white);
+  --color-track: var(--cardan-beige-sand);
 
   /* Error: forms and system messages only */
   --color-red: var(--cardan-error);
