@@ -27,9 +27,9 @@ const {
 const computedLabel = computed(() => {
   if (label) return label;
   if (showProduct.value) {
-    return `Cardan ${product!.charAt(0).toUpperCase()}${product!.slice(1)}`;
+    return `Logo Cardan ${product!.charAt(0).toUpperCase()}${product!.slice(1)}`;
   }
-  return 'Cardan';
+  return 'Logo Cardan';
 });
 
 // SVG user units: the logo is 40 units high and 241.6 units wide

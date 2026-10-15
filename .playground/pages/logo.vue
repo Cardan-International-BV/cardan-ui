@@ -13,8 +13,9 @@ const darkVariants: CardanLogoVariant[] = ['negative', 'white'];
       The <code>{{ `<CardanLogo />` }}</code> component renders the Cardan logo:
       two interlocking links (green and purple) with the wordmark to the right.
       Its colors are fixed brand artwork and never follow the theme tokens. The
-      logo has an accessible name ("Cardan", or "Cardan Academy" for a lockup);
-      add <code>decorative</code> when a visible name is right next to it.
+      logo has an accessible name ("Logo Cardan", or "Logo Cardan Academy" for a
+      lockup); add <code>decorative</code> when a visible name is right next to
+      it.
     </p>
 
     <Card>
