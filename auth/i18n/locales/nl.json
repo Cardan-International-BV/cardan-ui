@@ -53,7 +53,8 @@
   "auth": {
     "login-title": "Welkom terug",
     "login-description": "Log in om verder te gaan.",
-    "confirm-logout": "Weet je zeker dat je wilt uitloggen?"
+    "confirm-logout": "Weet je zeker dat je wilt uitloggen?",
+    "error-generic": "Er ging iets mis. Controleer je verbinding en probeer het opnieuw."
   },
   "password": {
     "back-to-login": "Terug naar",
@@ -83,7 +84,7 @@
       "length-invalid": "Wachtwoord voldoet niet aan vereiste voor lengte",
       "breached": "Mag niet voorkomen in een bekend datalek",
       "common": "Mag geen veelgebruikt wachtwoord zijn",
-      "context": "Mag je naam, e-mailadres of de platformnaam niet bevatten",
+      "context": "Mag niet je naam, e-mailadres of de platformnaam bevatten",
       "checked-on-save": "wordt gecontroleerd bij opslaan"
     }
   }

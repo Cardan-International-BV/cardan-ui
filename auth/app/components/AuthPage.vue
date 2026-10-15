@@ -50,32 +50,26 @@ const { title = undefined, description = undefined } = defineProps<{
 
 .auth-page-content {
   display: grid;
+  /* At least 18rem where it fits, the full width below that, at most 28rem */
+  grid-template-columns: minmax(min(18rem, 100%), 28rem);
   place-content: center;
   padding: 2rem;
   border-radius: var(--radius-xl);
   background-color: var(--color-secondary);
 
   .auth-page-copy {
-    min-width: 18rem;
-    max-width: 28rem;
-  }
-
-  > .form {
-    @media (min-width: 480px) {
-      min-width: 340px;
+    /* The rule above the footer */
+    > hr {
+      block-size: 1px;
+      border: 0;
+      background-color: var(--color-card-bg);
+      margin-block: 2rem 1rem;
     }
   }
 
   /* Its own title, or the h1 of the challenge or setup flow inside it */
   h1 {
     font-size: var(--font-size-xl);
-  }
-
-  > hr {
-    block-size: 1px;
-    border: 0;
-    background-color: var(--color-card-bg);
-    margin-block: 2rem 1rem;
   }
 }
 

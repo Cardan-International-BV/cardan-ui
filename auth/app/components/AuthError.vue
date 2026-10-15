@@ -14,6 +14,9 @@ defineProps<{
       </ul>
 
       <p v-else-if="data?.message">{{ data.message }}</p>
+
+      <!-- Nothing usable came back; in the page's own language. -->
+      <p v-else :lang="$i18n.locale">{{ $t('auth.error-generic') }}</p>
     </div>
   </div>
 </template>

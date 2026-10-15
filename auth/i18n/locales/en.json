@@ -53,7 +53,8 @@
   "auth": {
     "login-title": "Welcome back",
     "login-description": "Sign in to continue.",
-    "confirm-logout": "Are you sure you want to sign out?"
+    "confirm-logout": "Are you sure you want to sign out?",
+    "error-generic": "Something went wrong. Check your connection and try again."
   },
   "password": {
     "back-to-login": "Back to",
