@@ -75,14 +75,18 @@
      dark background. Purple uses 15%, so purple text on it keeps 4.5:1 */
 
   /* Not in the brand book: dark error text and graphics are kept from the previous theme */
-  --color-red: hsl(0 100% 60%);
+  --color-red: var(--cardan-error);
   --color-red-bg: color-mix(
     in srgb,
     var(--cardan-error) 25%,
     var(--cardan-dark-bg)
   );
-  --color-red-text: hsl(0 69% 67%);
-  --color-red-graphic: hsl(0 63% 65%);
+  --color-red-text: color-mix(
+    in srgb,
+    var(--cardan-error) 65%,
+    var(--cardan-white)
+  );
+  --color-red-graphic: var(--cardan-error-text);
 
   /* Ochre: data and status only */
   --color-orange: var(--cardan-ochre-on-dark);
@@ -107,7 +111,7 @@
   --color-green: var(--cardan-green-on-dark);
   --color-green-bg: color-mix(
     in srgb,
-    var(--cardan-green-on-dark) 25%,
+    var(--cardan-green-on-dark) 20%,
     var(--cardan-dark-bg)
   );
   --color-green-text: var(--cardan-green-text-on-dark);
