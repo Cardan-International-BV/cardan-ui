@@ -14,7 +14,7 @@ const {
   variant?: CardanLogoVariant;
   /** Sub-brand lockup after the full logo, e.g. 'academy' or 'auditor' */
   product?: string;
-  /** Height of the logo (default 16px); it shrinks to fit a narrower container */
+  /** Height of the logo (default 16px) */
   height?: string;
   /** Accessible name, defaults to "Cardan" plus the product */
   label?: string;
@@ -186,15 +186,11 @@ const computedStyle = computed(() => ({
 
   display: inline-block;
   vertical-align: middle;
-  max-width: 100%;
   line-height: 0;
 
-  /* Shrinks to fit a narrower container: an SVG with a percentage max-width
-     has no minimum width, also as a flex or grid item */
   svg {
     display: block;
     width: calc(var(--logo-height) * var(--logo-ratio));
-    max-width: 100%;
     height: auto;
     /* Descenders in the product name (g, j, p, q, y) hang below the logo, like text */
     overflow: visible;
