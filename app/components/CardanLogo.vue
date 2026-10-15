@@ -3,7 +3,7 @@ const {
   form = 'full',
   variant = 'auto',
   product = undefined,
-  height = '1.25rem',
+  height = '1.125rem',
   label = undefined,
   round = false,
   decorative = false,
@@ -14,7 +14,7 @@ const {
   variant?: CardanLogoVariant;
   /** Sub-brand lockup after the full logo, e.g. 'academy' or 'auditor' */
   product?: string;
-  /** Maximum height of the logo (default 20px); it shrinks to fit its container, but never below 18px */
+  /** Maximum height of the logo (default and minimum 18px); a larger logo shrinks to fit its container, but never below 18px */
   height?: string;
   /** Accessible name, defaults to "Cardan" plus the product */
   label?: string;
@@ -191,6 +191,8 @@ const computedStyle = computed(() => ({
     min-width: calc(18px * var(--logo-ratio));
     max-width: 100%;
     height: auto;
+    /* Descenders in the product name (g, j, p, q, y) hang below the logo, like text */
+    overflow: visible;
   }
 
   .logo-product {
