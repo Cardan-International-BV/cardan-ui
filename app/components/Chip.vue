@@ -21,8 +21,6 @@ const {
   size?: ChipSize;
   radius?: BorderRadius;
   textTransform?: TextTransform;
-  /** @deprecated Capitalizes only the first letter of the label. Removed in 3.0.0. */
-  capitalize?: boolean;
 }>();
 
 const computedStyle = computed(() => ({
@@ -44,7 +42,6 @@ const formattedLabel = computed(() =>
       `chip-color--${color}`,
       `chip-size--${size}`,
       textTransform && `chip-text-transform--${textTransform}`,
-      capitalize && 'chip--capitalize',
     ]"
     :style="computedStyle"
   >
@@ -76,10 +73,6 @@ const formattedLabel = computed(() =>
   }
 }
 
-.chip--capitalize .chip-text::first-letter {
-  text-transform: capitalize;
-}
-
 /* Uppercase text needs extra letter spacing to stay legible */
 .chip-text-transform--uppercase {
   text-transform: uppercase;
@@ -90,7 +83,7 @@ const formattedLabel = computed(() =>
   text-transform: lowercase;
 }
 
-.chip-text-transform--capitalize {
+.chip-text-transform--capitalize .chip-text::first-letter {
   text-transform: capitalize;
 }
 
