@@ -15,8 +15,8 @@ useHead({ title: 'Changelog' });
         </li>
         <li>Feature: add <code>textTransform</code> prop to Chip component</li>
         <li>
-          Deprecate the <code>capitalize</code> prop of Chip component, use
-          <code>textTransform</code> instead
+          Remove the <code>capitalize</code> prop of Chip component, use
+          <code>textTransform="capitalize"</code> instead
         </li>
         <li>
           Make <code>solid</code> the default variant of Callout component and

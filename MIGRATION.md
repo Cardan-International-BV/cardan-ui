@@ -165,12 +165,12 @@ The role tokens are now resolved where your `main.css` defines them: redefining 
 
 ## 7. Upgrading to 2.1
 
-2.1 adds two options to Chip, and changes the default look of Callout.
+2.1 adds two options to Chip, removes its `capitalize` prop, and changes the default look of Callout.
 
 - **Callout is `solid` by default**: a tinted surface with the `--color-<color>-on-bg` text. The old default look is now `variant="outline"`, and `variant="default"` no longer exists. To keep the white surface with a tinted border, add `variant="outline"` to your callouts, and replace `variant="default"` with `variant="outline"`. Callouts with `variant="solid"` can drop the prop.
+- **Chip's `capitalize` prop is removed**: use `text-transform="capitalize"` instead, which also capitalizes only the first letter of the label. CAT-nuxt's `FindingChips.vue` uses `capitalize` on a criterion number, where it has no visible effect: remove it there.
 
-The Chip options change nothing for projects that don't use them:
+The new Chip options change nothing for projects that don't use them:
 
 - **`variant="solid"`**: light text (`--color-on-accent`) on a filled background, for every color. It needs a `--color-<color>-solid` token per color, which each reach 4.5:1 with white text. Copy them from the template in [`app/assets/main.css`](app/assets/main.css): `--color-red-solid` and `--color-green-solid` per mode, the others in `:where(:root)`.
-- **`textTransform`**: `uppercase`, `lowercase` or `capitalize`, the CSS `text-transform` keywords. `uppercase` also adds `letter-spacing: 0.025em` to keep the label legible. The new global `TextTransform` type can be used by other components too.
-- **`capitalize` is deprecated** and will be removed in 3.0. It only capitalized the first letter of the label, which is not what `text-transform="capitalize"` does (that capitalizes every word). CAT-nuxt's `FindingChips.vue` uses it on a criterion number, where it has no visible effect: remove it there.
+- **`textTransform`**: `uppercase`, `lowercase` or `capitalize`. `uppercase` also adds `letter-spacing: 0.025em` to keep the label legible. `capitalize` capitalizes only the first letter of the label, not every word like the CSS `text-transform` keyword. The new global `TextTransform` type can be used by other components too.
