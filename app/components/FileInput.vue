@@ -289,7 +289,7 @@ function removeFile() {
   padding: 0;
   border: 1.5px dashed var(--color-grey-graphic);
   border-radius: var(--radius-lg);
-  background-color: var(--color-bg);
+  background-color: var(--color-grey-bg);
   outline: 1px solid transparent;
   padding-block: 2rem;
 

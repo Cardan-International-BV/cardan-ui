@@ -202,7 +202,6 @@ const emit = defineEmits<{
   max-inline-size: var(--max-width, none);
   border: 1px solid var(--popover-border-color);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-3);
   background-color: var(--color-card-bg);
   transition-property: display, overlay, opacity, translate;
   transition-duration: 0s;

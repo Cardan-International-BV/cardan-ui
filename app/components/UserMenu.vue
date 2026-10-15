@@ -115,7 +115,6 @@ defineExpose({
 
   .user-menu-content {
     border-radius: 0 0 var(--radius-md) var(--radius-md);
-    box-shadow: var(--shadow-2);
     border: 1px solid var(--card-border-color);
     border-block-start: none;
     background-color: var(--color-dialog-bg);

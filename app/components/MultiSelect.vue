@@ -440,10 +440,6 @@ function preventEscape(event: KeyboardEvent) {
   }
 }
 
-.multiselect-dropdown {
-  box-shadow: var(--shadow);
-}
-
 .show-option-icons {
   .multiselect-option {
     display: flex;

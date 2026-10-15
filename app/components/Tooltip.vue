@@ -124,7 +124,6 @@ function onTriggerBlur() {
   max-inline-size: var(--max-width, none);
   border: 1px solid var(--popover-border-color);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-3);
   color: var(--color-text);
   background-color: var(--color-card-bg);
   transition-property: display, overlay, opacity, translate;

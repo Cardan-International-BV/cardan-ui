@@ -214,18 +214,11 @@ const computedAriaLabels = computed(() => {
   transition-property: opacity;
   transition-duration: var(--duration-sm);
 
-  &:has(.dp__disabled, .dp--disabled) {
+  &:has(.dp--disabled) {
     opacity: 35%;
   }
 }
 
-.dp__menu,
-.dp--menu {
-  box-shadow: var(--shadow);
-}
-
-.dp__theme_light,
-.dp__theme_dark,
 .dp--theme-light,
 .dp--theme-dark {
   --dp-background-color: var(--color-card-bg);
@@ -238,10 +231,10 @@ const computedAriaLabels = computed(() => {
   --dp-primary-text-color: var(--color-on-accent);
   --dp-secondary-color: var(--color-grey-bg);
   --dp-border-color: var(--color-grey-graphic);
-  --dp-menu-border-color: var(--color-grey-bg);
+  --dp-menu-border-color: var(--color-grey-light);
   --dp-border-color-hover: var(--dp-border-color);
   --dp-border-color-focus: var(--focus-color);
-  --dp-disabled-color: var(--color-grey-bg);
+  --dp-disabled-color: var(--color-grey-light);
   --dp-scroll-bar-background: var(--color-grey-bg);
   --dp-scroll-bar-color: var(--color-grey-graphic);
   --dp-success-color: var(--color-green);
@@ -259,7 +252,6 @@ const computedAriaLabels = computed(() => {
   --dp-input-padding: 0;
 }
 
-.dp__button,
 .dp--button {
   color: var(--color-text);
 
@@ -273,7 +265,6 @@ const computedAriaLabels = computed(() => {
   }
 }
 
-.dp__input,
 .dp--input {
   &::placeholder {
     opacity: 1;
@@ -281,11 +272,9 @@ const computedAriaLabels = computed(() => {
   }
 }
 
-.dp__input_focus,
 .dp--input-focus {
   outline: 1px solid var(--dp-border-color-focus);
 }
-.dp__input_icon,
 .dp--input-icon {
   display: flex;
   margin-inline-start: 0.5rem;
@@ -296,13 +285,11 @@ const computedAriaLabels = computed(() => {
   }
 }
 
-.dp__input_icons,
 .dp--input-icons {
   padding: 6px;
 }
 
 .show-invalid {
-  .dp__input,
   .dp--input {
     &:invalid {
       border-color: var(--color-red-graphic);
@@ -318,15 +305,12 @@ const computedAriaLabels = computed(() => {
 }
 
 /* Sizes */
-.datepicker-size--sm .dp__input,
 .datepicker-size--sm .dp--input {
   min-height: 2rem;
 }
-.datepicker-size--md .dp__input,
 .datepicker-size--md .dp--input {
   min-height: 2.5rem;
 }
-.datepicker-size--lg .dp__input,
 .datepicker-size--lg .dp--input {
   min-height: 2.75rem;
 }
