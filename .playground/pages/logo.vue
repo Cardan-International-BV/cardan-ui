@@ -95,9 +95,9 @@ const darkVariants: CardanLogoVariant[] = ['negative', 'white'];
           Keep clear space around the logo of at least the width of one link.
         </li>
         <li>
-          The logo is 20px high by default; set the <code>height</code> prop for
-          a larger logo. It shrinks to fit narrow containers, but never below
-          the minimum of 18px.
+          The logo is 16px high by default; set the <code>height</code> prop for
+          a larger logo. It shrinks to fit a narrower container, such as a
+          header on a 320px screen.
         </li>
         <li>
           Never stretch, recolor or rotate the logo, never put the color logo on
