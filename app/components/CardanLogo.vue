@@ -191,6 +191,8 @@ const computedStyle = computed(() => ({
   svg {
     display: block;
     width: calc(var(--logo-height) * var(--logo-ratio));
+    /* Never shrinks, also not through a max-width: 100% from a CSS reset */
+    max-width: none;
     height: auto;
     /* Descenders in the product name (g, j, p, q, y) hang below the logo, like text */
     overflow: visible;
