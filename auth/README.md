@@ -2,9 +2,9 @@
 
 Accessible authentication UX for [Nuxt](https://nuxt.com) SPAs backed by [Laravel Fortify](https://laravel.com/docs/fortify), in TypeScript.
 
-Cardan Auth UI is a [Nuxt Layer](https://nuxt.com/docs/getting-started/layers) in a public repository. It ships sign-in and the whole MFA flow — login, the second factor at sign-in, enable, scan, confirm, recovery codes, disable — so each app wires up a form and two dialogs instead of rebuilding them.
+Cardan Auth UI is a [Nuxt Layer](https://nuxt.com/docs/getting-started/layers) in a public repository. It ships the sign-in pages and the whole MFA flow — login, forgot and reset password, the second factor at sign-in, setting up MFA, account settings for MFA and the password, signing out — in the Cardan design, so an app extends the layer instead of rebuilding them.
 
-Only the _forms_ live here. Page layout — headings, tabs, logos, forgot-password links — stays with each app, and every part an app is likely to restyle is a slot. Cardan Auditor and Cardan Academy share this layer while looking nothing alike.
+The pages render inside your app's default layout; an app overrides one by creating a page at the same path. Copy is in the layer's messages, so an app changes a sentence by overriding its key, and the buttons follow one variant setting in your app config.
 
 ## Dependencies
 
@@ -17,56 +17,17 @@ This layer does **not** stand on its own. Extend it alongside its two dependenci
 
 ### Design tokens
 
-Every rule in this layer styles with Cardan UI token _names_ — the colors, font sizes and radii Cardan UI documents:
+Every rule in this layer styles with Cardan UI tokens, the colors, font sizes and radii Cardan UI documents. It has no tokens of its own:
 
-`--color-text` · `--color-grey-text` · `--color-grey-light` · `--color-card-bg` · `--color-white` · `--color-red-text` · `--color-red-bg` · `--color-green-graphic` · `--font-size-xs|sm|md|lg|xxl` · `--font-weight-bold` · `--radius-sm|md`
+`--color-text` · `--color-grey-text` · `--color-grey-light` · `--color-card-bg` · `--color-white` · `--color-red-text` · `--color-red-bg` · `--color-green-graphic` · `--font-size-sm|md|lg|xxl|xxxl` · `--font-weight-bold` · `--radius-sm|md`
 
-On top of those, the layer reads its own `--auth-*` tokens: the divider color and the font size roles below.
+Cardan UI's `app/assets/main.css` is a template rather than an auto-loaded stylesheet: each app keeps its own palette and scale under those names, as it already does for Cardan UI components. If your app renders Cardan UI correctly, this layer inherits the same theming, dark mode included, with no extra CSS.
 
-Cardan UI defines default values for all of these in its `app/assets/main.css` (the `--auth-*` tokens under "Cardan Auth UI design tokens"), but that file is a template rather than an auto-loaded stylesheet — each app keeps its own palette under those names, exactly as it already does for Cardan UI components. The layer uses every token without a fallback, so your app's `main.css` must define them all. If your app renders Cardan UI correctly and defines the `--auth-*` tokens, this layer inherits the same theming, dark mode included, with no extra CSS.
-
-### Divider color
-
-The dividers in `LoginForm` and the MFA dialogs are drawn as a 1px background-colored line, so they don't depend on how your app resets `<hr>`. Their color is `--auth-color-divider`; the template sets it to `--color-grey-light`:
-
-```css
-:where(:root) {
-  --auth-color-divider: var(--color-grey-light);
-}
-```
-
-### Font sizes
-
-Apps don't agree on what a font size token _name_ means: one app's `--font-size-sm` is `0.875rem`, another's is `1.125rem`. So the layer never asks for a size by name directly. Each piece of text reads a role token, which the template maps to the Cardan UI scale:
-
-| Token                                  | Template value     | Used for                                                          |
-| -------------------------------------- | ------------------ | ----------------------------------------------------------------- |
-| `--auth-font-size-heading`             | `--font-size-xxl`  | Sign-in challenge title                                           |
-| `--auth-font-size-intro`               | `--font-size-lg`   | Sign-in challenge intro text                                      |
-| `--auth-font-size-step-heading`        | `--font-size-lg`   | Step heading of `MfaSetup`                                        |
-| `--auth-font-size-label`               | `--font-size-md`   | Code input labels, QR code and recovery codes headings            |
-| `--auth-font-size-small`               | `--font-size-sm`   | Helper and validation text, QR code description, footer links     |
-| `--auth-font-size-error`               | `--font-size-sm`   | `.auth-error`                                                     |
-| `--auth-font-size-otp-input`           | `--font-size-xxl`  | One-time code input digits                                        |
-| `--auth-font-size-recovery-code-input` | `--font-size-lg`   | Recovery code input on the sign-in challenge                      |
-| `--auth-font-size-recovery-code-list`  | `--font-size-sm`   | List of recovery codes                                            |
-| `--auth-font-size-button`              | `--font-size-md`   | Submit buttons on the login form and sign-in challenge            |
-| `--auth-font-size-dialog-button`       | `--font-size-sm`   | Action buttons in the MFA dialogs, the copy recovery codes button |
-
-If your app uses the Cardan UI scale, copy the template values. If your scale is shifted, map the roles to your own sizes:
-
-```css
-:where(:root) {
-  --auth-font-size-heading: var(--font-size-xl);
-  --auth-font-size-small: var(--font-size-xs);
-}
-```
-
-The role tokens are resolved where you define them: redefining `--font-size-*` for part of a page does not change them. To change the sizes on one page only, set the role tokens on its container, such as `.login-page`.
+The dividers in `LoginForm` and the MFA dialogs are drawn as a 1px `--color-grey-light` line, so they don't depend on how your app resets `<hr>`.
 
 The recovery code list shows two columns when two codes fit side by side and one column otherwise, so a code never breaks across lines at any font size.
 
-The two button tokens reach a Cardan UI `Button` through its `--font-size` property. So `--auth-font-size-button` also applies to a `Button` you pass into the `submit` slot of `LoginForm`; give that `Button` its own `font-size` prop to opt out. A button component of your own doesn't read `--font-size`, so map the token to whatever property it does read.
+The submit buttons on the login form and sign-in challenge are `--font-size-md`, the buttons in the MFA dialogs `--font-size-sm`.
 
 ### Overriding styles
 
@@ -113,7 +74,7 @@ export default defineNuxtConfig({
 
 ### Backend
 
-The layer calls the stock Fortify endpoints, relative to your configured `sanctum.baseUrl`:
+The layer calls these endpoints, relative to your configured `sanctum.baseUrl`: Fortify's own for sign-in and MFA, and the Cardan API's `/api/v1` paths for passwords. The Cardan Academy API is the reference; another Cardan API serves the same paths.
 
 | Endpoint                                        | Method            | Used for                                      |
 | ----------------------------------------------- | ----------------- | --------------------------------------------- |
@@ -123,16 +84,38 @@ The layer calls the stock Fortify endpoints, relative to your configured `sanctu
 | `/api/user/two-factor-recovery-codes`           | `GET` / `POST`    | Read / regenerate recovery codes              |
 | `/api/two-factor-challenge`                     | `POST`            | Second factor at sign-in                      |
 | your `sanctum.endpoints.login`                  | `POST`            | Sign in (path taken from your Sanctum config) |
+| `/api/v1/auth/forgot-password`                  | `POST`            | Request a reset link (`email`)                |
+| `/api/v1/auth/reset-password`                   | `POST`            | Set a new password from the reset link        |
+| `/api/v1/profile/password`                      | `PATCH`           | Change the password while signed in           |
+| `/api/v1/password-policy`                       | `GET`             | `{ data: { min_length, max_length } }`        |
 
-Enable Fortify's `two-factor-authentication` feature with `confirm: true`, and expose whether MFA is on for the current user in your `/api/user` payload.
+Enable Fortify's `two-factor-authentication` feature with `confirm: true`. Leave Fortify's `resetPasswords` feature off: its routes tell a known address from an unknown one. The password endpoints take Fortify's fields (`token`, `email`, `password`, `password_confirmation`, `current_password`) and answer a known and an unknown address identically. Errors may come in Laravel's shape (`{ message, errors: { field: [...] } }`) or as a JSON:API envelope (`{ errors: [{ detail, source: { parameter } }] }`); `extractAuthError()` reads both. Point the reset email at your app's `/reset-password` page with `?token=…&email=…`.
+
+The user payload tells the layer whether MFA is on: `mfa_enabled`, plus `mfa_required` (a role or organization requires it) and `mfa_exempt` (never remind this account). Without `mfa_enabled` the setup reminder stays off.
 
 ## Usage
 
+### Pages
+
+The layer registers these pages. They render in your app's default layout, in the `AuthPage` frame (the Cardan symbol, a centred title and description, the form and a footer link):
+
+| Page                         |                                                                            |
+| ---------------------------- | -------------------------------------------------------------------------- |
+| `/login`                     | `LoginForm`, then on to the `?redirect=`, past `/mfa-setup` for a reminder |
+| `/forgot-password`           | Requests a reset link                                                      |
+| `/reset-password`            | The page the reset email links to; signs the user in afterwards            |
+| `/two-factor-authentication` | The second factor at sign-in                                               |
+| `/mfa-setup`                 | Sets up MFA after sign-in, skippable unless the account requires MFA       |
+
+Give the frame a height from your layout so the form sits in the middle of the viewport, e.g. `.auth-page-content { min-height: calc(100svh - 72px - 80px); }`. To replace a page, create one at the same path in your app; render `<AuthPage>` in it to keep the frame.
+
+Change the copy by overriding message keys in your app's locale files, e.g. `auth.login-description` or `auth.confirm-logout`.
+
 ### Signing in
 
-Drop `<LoginForm />` into your own login page. It posts to the login endpoint from your Sanctum config, refreshes the identity, and redirects following the same `redirect.keepRequestedRoute` / `redirect.onLogin` rules nuxt-auth-sanctum applies itself — and when Fortify answers `two_factor: true` it sends the user to the challenge page instead, carrying the `?redirect=` along.
+The `/login` page renders `<LoginForm />`; use it on its own in a login page of your app. It posts to the login endpoint from your Sanctum config, refreshes the identity, and redirects following the same `redirect.keepRequestedRoute` / `redirect.onLogin` rules nuxt-auth-sanctum applies itself — and when Fortify answers `two_factor: true` it sends the user to the challenge page instead, carrying the `?redirect=` along.
 
-The defaults render the Cardan Auditor form: email, password with a reveal button, error region, rule, then a green submit button.
+The defaults render email, password with a reveal button, error region, rule, then the submit button.
 
 ```vue
 <script setup lang="ts">
@@ -153,7 +136,7 @@ const { userEmail } = useUserProfileDetails();
 
 #### Making it look like your app
 
-Everything variable is a slot or a small prop. The Cardan Academy form has no reveal button, no rule, its own `BaseButton`, the error below the button, and holds the spinner through the page transition — all of it from the outside:
+Everything variable is a small prop. The Cardan Academy form has no reveal button, no rule, the error below the button, and holds the spinner through the page transition:
 
 ```vue
 <LoginForm
@@ -162,21 +145,12 @@ Everything variable is a slot or a small prop. The Cardan Academy form has no re
   remember
   error-position="below-submit"
   :loading-delay="lgTransition"
->
-  <template #submit="{ submitting }">
-    <BaseButton
-      type="submit"
-      :label="$t('general.sign-in')"
-      icon="material-symbols:arrow-right-alt"
-      icon-pos="end"
-      :loading="submitting"
-      variant="black"
-      font-size="xs"
-      :height="40"
-    />
-  </template>
-</LoginForm>
+/>
 ```
+
+#### Button variants
+
+The buttons of every form and dialog in this layer have the Cardan look: `black` for the main actions (sign in, enable, continue, confirm, done), `ghost` for skip, back and cancel, and `danger` for disabling MFA.
 
 | Prop                 | Default                        |                                                                       |
 | -------------------- | ------------------------------ | --------------------------------------------------------------------- |
@@ -190,12 +164,11 @@ Everything variable is a slot or a small prop. The Cardan Academy form has no re
 | `twoFactorPath`      | `'/two-factor-authentication'` | Where to go when a second factor is needed                            |
 | `loadingDelay`       | `0`                            | Hold the submit button loading this many ms after the request settles |
 
-| Slot     | Scope            |                                                              |
-| -------- | ---------------- | ------------------------------------------------------------ |
-| `submit` | `{ submitting }` | The submit button                                            |
-| `error`  | `{ error }`      | The error region                                             |
-| `fields` |                  | Extra fields after the password, e.g. a remember-me checkbox |
-| `footer` |                  | Anything at the end of the form                              |
+| Slot     | Scope       |                                                              |
+| -------- | ----------- | ------------------------------------------------------------ |
+| `error`  | `{ error }` | The error region                                             |
+| `fields` |             | Extra fields after the password, e.g. a remember-me checkbox |
+| `footer` |             | Anything at the end of the form                              |
 
 | Model / Event   |                                                                                   |
 | --------------- | --------------------------------------------------------------------------------- |
@@ -208,7 +181,7 @@ Everything variable is a slot or a small prop. The Cardan Academy form has no re
 
 The layer registers the page **`/two-factor-authentication`** for you, and `LoginForm` sends the user there on its own — nothing to wire up. It reads the `?redirect=` and continues there once the second factor is accepted, offers a recovery code as an alternative to the app code, and renders inside your app's default layout.
 
-To place the challenge somewhere else — a different route, a bespoke layout — create your own page (a page in your app wins over the layer's), render `<MfaChallenge />` in it, and point `LoginForm`'s `twoFactorPath` at it.
+To give the challenge your own frame, create `pages/two-factor-authentication.vue` in your app (a page in your app wins over the layer's) and render `<MfaChallenge />` in it. Pass `:card="false"` when your frame already surrounds the form. Copy the page meta `sanctum: { guestOnly: true }` from the layer's page: the user is not signed in until the code is accepted. To use another route, also point `LoginForm`'s `twoFactorPath` at it.
 
 ### Enabling, disabling and recovery codes
 
@@ -287,7 +260,25 @@ Whether MFA is currently on stays your app's call — the flag lives in your `/a
 | `@done`    | MFA is on and the user confirmed they stored the recovery codes       |
 | `@refresh` | MFA has actually been turned on — re-sync your app's copy of the user |
 
-The buttons are the `actions` slot, so an app can bring its own button component. Its scope carries everything the default buttons use: `step` (1–4), `skippable`, `canConfirm`, `loadingEnable`, `loadingConfirm`, `formId` (put `type="submit"` and `:form="formId"` on the confirm button of step 3), and the handlers `enable`, `next`, `back`, `skip` and `finish`.
+The buttons follow the [button variants](#button-variants) of your app config.
+
+### Passwords
+
+`/forgot-password` and `/reset-password` use `PasswordForgotForm` and `PasswordResetForm`. The forgot form starts from the address typed on the login page (`useLoginEmail()`). After a reset the user is signed in: straight on, or through the sign-in challenge when the account has MFA.
+
+`PasswordUpdateForm` changes the password while signed in, for an account settings page, and shows a toast when it is saved. Both password forms list the requirements with `PasswordRequirements` and check the length while the user types, read from `/api/v1/password-policy` (14 characters until it answers).
+
+### Account settings for MFA
+
+`<MfaSettings />` shows whether MFA is on and offers to enable it, show the recovery codes, or disable it, with the two dialogs mounted for you. For an account that requires MFA, disabling becomes "set up MFA again": the dialog skips its "MFA is off" step and sends the user to `/mfa-setup`.
+
+### Setup reminder
+
+When the user payload has `mfa_enabled: false`, a sign-in on `/login` detours past `/mfa-setup` before continuing (once per sign-in, kept in sessionStorage). With `mfa_required` the page offers no skip, and the layer's middleware sends the user back there on every navigation. When the API answers `403` with the code `mfa_setup_required` or `backoffice_mfa_required` mid-session, the layer re-reads the user and goes to `/mfa-setup` too.
+
+### Signing out
+
+Mount `<LogoutDialog />` once, in your layout, and open it with `useLogoutDialog().logoutDialogRef.value?.openDialog()`. It asks before signing out.
 
 ### Password confirmation
 
@@ -322,13 +313,13 @@ Fortify has no "swap" for the second factor, and its undocumented `force` re-ena
 
 The app's authentication surface, wrapping nuxt-auth-sanctum so app code has one place to reach for:
 
-|                                                                         |                                                                                                                                                |
-| ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| `client`                                                                | The Sanctum fetch client — this is what most call sites want                                                                                   |
-| `user`, `isAuthenticated`, `init`, `login`, `logout`, `refreshIdentity` | Passed through from `useSanctumAuth()`                                                                                                         |
-| `loginWithoutRedirect(credentials)`                                     | Posts the credentials and returns the raw response, without fetching the identity or redirecting — both wrong while a second factor is pending |
-| `loginRedirectTarget()`                                                 | Where to go after a successful login, following your Sanctum `redirect` config. `false` when the app opted out                                 |
-| `userName`, `userInitials`                                              | Read off the payload's `name`, for avatars                                                                                                     |
+|                                                                         |                                                                                                                                                                              |
+| ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `client`                                                                | The Sanctum fetch client — this is what most call sites want                                                                                                                 |
+| `user`, `isAuthenticated`, `init`, `login`, `logout`, `refreshIdentity` | Passed through from `useSanctumAuth()`                                                                                                                                       |
+| `loginWithoutRedirect(credentials)`                                     | Posts the credentials and returns the raw response, without fetching the identity or redirecting — both wrong while a second factor is pending                               |
+| `loginRedirectTarget()`                                                 | Where to go after a successful login, following your Sanctum `redirect` config. A `?redirect=` only counts when it is a path within your app. `false` when the app opted out |
+| `userName`, `userInitials`                                              | Read off the payload's `name`, for avatars                                                                                                                                   |
 
 `user` is typed as `{ data: AuthUser } | null`, and **`AuthUser` is an empty interface for your app to fill** by declaration merging. Put this anywhere in your app's types:
 
@@ -339,6 +330,15 @@ declare global {
 ```
 
 Every `useAuth().user` in your app is then typed against your own payload, with no generics at the call sites. Anything specific to your backend — a `mfaEnabled` flag, roles, locale, an avatar URL — belongs in your app's own composable next to that type, not here.
+
+### Other composables
+
+|                         |                                                                                    |
+| ----------------------- | ---------------------------------------------------------------------------------- |
+| `useLoginEmail()`       | The address typed on the login page, shared with the forgot-password page          |
+| `usePasswordPolicy()`   | `minLength` and `maxLength` of new passwords                                       |
+| `useLogoutDialog()`     | `logoutDialogRef` to open `LogoutDialog`, and `handleLogout()`                     |
+| `useMfaSetupReminder()` | `mfaEnabled`, `mfaRequired`, `needsMfaSetup` and the reminder used by `/mfa-setup` |
 
 ### `useMfaDialog()`
 
@@ -362,7 +362,13 @@ Reach for it to build your own flow. For the standard one, `useMfaDialog()` plus
 
 | Component                                                             |                                                              |
 | --------------------------------------------------------------------- | ------------------------------------------------------------ |
+| `AuthPage`                                                            | The frame of the sign-in pages                               |
 | `LoginForm`                                                           | Email + password sign-in, aware of a pending second factor   |
+| `PasswordForgotForm`, `PasswordResetForm`                             | Request a reset link, set a new password from it             |
+| `PasswordUpdateForm`                                                  | Change the password while signed in                          |
+| `PasswordRequirements`                                                | The password rules, with the length checked while typing     |
+| `MfaSettings`                                                         | MFA status and actions for an account settings page          |
+| `LogoutDialog`                                                        | Asks before signing out                                      |
 | `MfaDialog`                                                           | The enable/disable flow, all six steps. Emits `refresh`      |
 | `MfaSetup`                                                            | The enable flow inline on a page, with an optional skip      |
 | `MfaRecoveryCodesDialog`                                              | Shows and regenerates recovery codes                         |
@@ -379,13 +385,15 @@ Reach for it to build your own flow. For the standard one, `useMfaDialog()` plus
 
 ## Translations
 
-English and Dutch ship in `i18n/locales`, under the `mfa` and `password-confirmation` namespaces. `@nuxtjs/i18n` deep-merges the messages of every layer, so these arrive alongside your app's own namespaces without any configuration. Override a single string by declaring the same key in your app's locale file — the app's message wins.
+English and Dutch ship in `i18n/locales`, under the `auth`, `mfa`, `password` and `password-confirmation` namespaces. `@nuxtjs/i18n` deep-merges the messages of every layer, so these arrive alongside your app's own namespaces without any configuration. Override a single string by declaring the same key in your app's locale file — the app's message wins.
 
 The `mfa` namespace also holds the strings an app needs around these components — `mfa.setup-title` and `mfa.setup-description` for a setup page (`mfa.setup-required-description` when the user cannot skip it), `mfa.status-on`, `mfa.status-off` and `mfa.change-app-description` for an account settings page, `mfa.organization-required*` for an organization setting that requires MFA of every member — so every MFA string lives in one place.
 
-The layer also uses `general.back`, `general.continue`, `general.confirm`, `general.done`, `general.sign-in`, `general.email`, `password.heading` and `password.show` from Cardan UI. The login _page_ strings — headings, descriptions, forgot-password copy — stay with your app, since only the form lives here.
+The `password` namespace holds every password string: the field labels, the forgot, reset and update forms, and `password.requirements.*` for the policy `GET /api/v1/password-policy` describes — a minimum length checked while typing, and the breach, common-password and personal-information checks the API runs on save.
 
-`AuthError` shows Fortify's validation messages as the backend sends them, in the page language. Send `Accept-Language` from your app's locale and translate Laravel's messages in the backend, so screen readers announce them in the right voice (WCAG 3.1.2).
+The layer also uses `general.back`, `general.continue`, `general.confirm`, `general.done`, `general.sign-in` and `general.email` from Cardan UI.
+
+`AuthError` shows the API's validation messages as the backend sends them. Send `Accept-Language` from your app's locale and translate Laravel's messages in the backend; when the API answers with a `Content-Language` header, `AuthError` marks the messages with that `lang`, so screen readers announce them in the right voice (WCAG 3.1.2).
 
 ## Accessibility
 

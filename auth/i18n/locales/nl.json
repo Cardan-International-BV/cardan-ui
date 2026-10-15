@@ -49,5 +49,42 @@
   "password-confirmation": {
     "title": "Bevestig je wachtwoord",
     "description": "Vul voor je veiligheid je wachtwoord in voordat je je instellingen voor multi-factor authenticatie wijzigt."
+  },
+  "auth": {
+    "login-title": "Welkom terug",
+    "login-description": "Log in om verder te gaan.",
+    "confirm-logout": "Weet je zeker dat je wilt uitloggen?"
+  },
+  "password": {
+    "back-to-login": "Terug naar",
+    "back-to-login-cta": "inloggen",
+    "confirm": "Herhaal wachtwoord",
+    "current": "Huidig wachtwoord",
+    "edit": "Wachtwoord wijzigen",
+    "email-sent": "We hebben een resetlink naar je gemaild.",
+    "forgot": "Wachtwoord vergeten?",
+    "forgot-cta": "Herstel hier",
+    "forgot-instructions": "Vul je e-mailadres in om een reset-link te krijgen.",
+    "heading": "Wachtwoord",
+    "new": "Nieuw wachtwoord",
+    "request-reset": "Nieuw wachtwoord aanvragen",
+    "reset": "Wachtwoord wijzigen",
+    "reset-description": "Weet je zeker dat je jouw wachtwoord wilt wijzigen? Vul dan een nieuw sterk wachtwoord in.",
+    "reset-form-instructions": "Klik op de link in de email met instructies om je wachtwoord te wijzigen.",
+    "save": "Wachtwoord opslaan",
+    "saved": "Je nieuwe wachtwoord is opgeslagen.",
+    "show": "Toon wachtwoord",
+    "update": "Wachtwoord wijzigen",
+    "updated": "Je wachtwoord is gewijzigd. Je wordt automatisch ingelogd.",
+    "requirements": {
+      "description": "Wachtwoord moet voldoen aan de volgende criteria:",
+      "length": "Moet minimaal {n} tekens bevatten",
+      "length-valid": "Wachtwoord voldoet aan vereiste voor lengte",
+      "length-invalid": "Wachtwoord voldoet niet aan vereiste voor lengte",
+      "breached": "Mag niet voorkomen in een bekend datalek",
+      "common": "Mag geen veelgebruikt wachtwoord zijn",
+      "context": "Mag je naam, e-mailadres of de platformnaam niet bevatten",
+      "checked-on-save": "wordt gecontroleerd bij opslaan"
+    }
   }
 }

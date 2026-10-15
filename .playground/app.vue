@@ -11,12 +11,16 @@ watch(
 
 useHead({ titleTemplate: '%s | Cardan UI' });
 
-// The Auth UI subpages, including the layer's own sign-in challenge page
-const isAuthSubpage = computed(
-  () =>
-    route.path.startsWith('/auth/') ||
-    route.path === '/two-factor-authentication',
-);
+// The Auth UI layer's own pages, demoed full page
+const authPages = [
+  '/login',
+  '/forgot-password',
+  '/reset-password',
+  '/two-factor-authentication',
+  '/mfa-setup',
+];
+
+const isAuthSubpage = computed(() => authPages.includes(route.path));
 </script>
 
 <template>

@@ -504,10 +504,10 @@ function preventEscape(event: KeyboardEvent) {
 }
 
 .multi-select-size--md .multiselect-wrapper {
-  --height: calc(var(--control-height) - 2px);
+  --height: calc(2.5rem - 2px);
 }
 
 .multi-select-size--lg .multiselect-wrapper {
-  --height: calc(var(--control-height-lg) - 2px);
+  --height: calc(2.75rem - 2px);
 }
 </style>

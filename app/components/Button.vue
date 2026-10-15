@@ -249,7 +249,7 @@ const emit = defineEmits<{
 
 .button-size--md {
   font-size: var(--font-size, var(--font-size-sm));
-  min-height: var(--control-height);
+  min-height: 2.5rem;
   padding-inline: 0.75rem;
 
   .button-text {
@@ -263,7 +263,7 @@ const emit = defineEmits<{
 
 .button-size--lg {
   font-size: var(--font-size, var(--font-size-md));
-  min-height: var(--control-height-lg);
+  min-height: 2.75rem;
   padding-inline: 1rem;
 
   .button-text {
@@ -417,7 +417,7 @@ const emit = defineEmits<{
   background-color: transparent;
 
   &:not(:disabled, .disabled):hover {
-    background-color: var(--color-grey-light);
+    background-color: var(--color-grey-bg);
   }
 
   &.router-link-active {

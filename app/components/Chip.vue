@@ -285,6 +285,11 @@ const formattedLabel = computed(() =>
 
 .chip-variant--solid {
   color: var(--color-white);
+  background-color: var(--color-text);
+}
+
+.chip-variant--solid.chip-color--grey {
+  color: var(--color-white);
   background-color: var(--color-grey-text);
 }
 

@@ -52,7 +52,7 @@ const { recoveryCodes } = useMfa();
 
   .mfa-recovery-codes-heading {
     margin-block: 0 0.75rem;
-    font-size: var(--auth-font-size-label);
+    font-size: var(--font-size-md);
   }
 
   ul {
@@ -66,12 +66,12 @@ const { recoveryCodes } = useMfa();
     column-gap: 1.5rem;
     white-space: nowrap;
     font-family: monospace;
-    font-size: var(--auth-font-size-recovery-code-list);
+    font-size: var(--font-size-sm);
     color: var(--color-grey-text);
   }
 
   .copy-button {
-    --font-size: var(--auth-font-size-dialog-button);
+    --font-size: var(--font-size-sm);
     margin-block-start: 1rem;
   }
 

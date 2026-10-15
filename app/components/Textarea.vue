@@ -213,8 +213,7 @@ const emit = defineEmits<{
     padding-inline-end: 1.5rem;
 
     &[readonly] {
-      background-color: var(--color-grey-bg);
-      border-color: transparent;
+      background-color: var(--color-grey-light);
       caret-color: transparent;
     }
 

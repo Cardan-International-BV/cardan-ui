@@ -57,7 +57,7 @@
   --color-accent-graphic: var(--cardan-purple-text-on-dark);
   --color-on-accent: var(--cardan-white);
 
-  --color-secondary: var(--cardan-dark-border);
+  --color-secondary: var(--cardan-dark-block);
   --color-secondary-hover: var(--cardan-body-grey);
 
   --color-black: white;
@@ -190,7 +190,11 @@
 
   /* Ochre: data and status only. Ochre 40% mixed with white is the surface, for 4.5:1 with Ochre text */
   --color-orange: var(--cardan-ochre);
-  --color-orange-bg: color-mix(in srgb, var(--cardan-ochre-40) 40%, var(--cardan-white));
+  --color-orange-bg: color-mix(
+    in srgb,
+    var(--cardan-ochre-40) 40%,
+    var(--cardan-white)
+  );
   --color-orange-text: var(--cardan-ochre-text);
   --color-orange-graphic: var(--cardan-ochre);
 
@@ -272,29 +276,8 @@
   --size-xxs: 0.5rem; /* 8px */
   --size-xxxs: 0.25rem; /* 4px */
 
-  /* Control height design tokens, for the md (default) and lg sizes of Button, Input, Select, MultiSelect and DatePicker */
-  --control-height: 2.5rem; /* 40px */
-  --control-height-lg: 2.75rem; /* 44px */
-
-  /* Card design tokens */
-  --card-radius: var(--radius-lg);
-
   /* Backdrop behind Dialog and MobileMenu */
   --color-backdrop: rgb(20 20 19 / 60%);
-
-  /* Cardan Auth UI design tokens: the text roles of the sign-in and MFA forms */
-  --auth-color-divider: var(--color-grey-light);
-  --auth-font-size-heading: var(--font-size-xxl);
-  --auth-font-size-intro: var(--font-size-lg);
-  --auth-font-size-step-heading: var(--font-size-lg);
-  --auth-font-size-label: var(--font-size-md);
-  --auth-font-size-small: var(--font-size-sm);
-  --auth-font-size-error: var(--font-size-sm);
-  --auth-font-size-otp-input: var(--font-size-xxxl);
-  --auth-font-size-recovery-code-input: var(--font-size-lg);
-  --auth-font-size-recovery-code-list: var(--font-size-sm);
-  --auth-font-size-button: var(--font-size-md);
-  --auth-font-size-dialog-button: var(--font-size-sm);
 
   /* Border radius design tokens */
   --radius-xs: 2px;

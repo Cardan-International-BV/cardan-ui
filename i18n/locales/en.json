@@ -23,7 +23,6 @@
     "yes": "Yes",
     "no": "No"
   },
-
   "cookies": {
     "accept": "Accept",
     "deny": "Deny",
@@ -32,14 +31,12 @@
     "has-consent": "Cookies are accepted",
     "no-consent": "Cookies are not accepted"
   },
-
   "date": {
     "just-now": "just now",
     "seconds-ago": "{n} second ago | {n} seconds ago",
     "minutes-ago": "{n} minute ago | {n} minutes ago",
     "hours-ago": "{n} hour ago | {n} hours ago"
   },
-
   "datepicker": {
     "input": "Datepicker input",
     "selectText": "Select",
@@ -58,11 +55,9 @@
     "nextYear": "Next year",
     "prevYear": "Previous year"
   },
-
   "empty": {
     "no-description": "No description."
   },
-
   "error": {
     "403": "Unauthorized",
     "404": "Not found",
@@ -71,7 +66,6 @@
     "unauthorized": "You are unauthorized to view this page.",
     "youtube": "YouTube player failed to load"
   },
-
   "form": {
     "invalid-email": "Email address is invalid",
     "invalid-phone": "Phone number is invalid",
@@ -80,7 +74,6 @@
     "missing-value": "{item} is missing",
     "required": "required"
   },
-
   "files": {
     "browse": "Browse files",
     "example": "Example of {file}",
@@ -92,14 +85,12 @@
     "too-big": "File size is too big",
     "button-text": "Click to upload or drop a file"
   },
-
   "filters": {
     "apply": "Apply filters",
     "heading": "Filter | Filters",
     "reset": "Reset filters",
     "reset-all": "Reset all filters"
   },
-
   "general": {
     "about": "About",
     "actions": "Actions",
@@ -234,62 +225,18 @@
     "year": "{n} year | {n} years",
     "yes": "yes"
   },
-
   "language": {
     "en": "English",
     "nl": "Dutch",
     "toggle": "Toggle language"
   },
-
   "meter": {
     "value-of-max": "{value} of {max}"
   },
-
   "multiselect": {
     "items-selected": "items selected",
     "pages-selected": "pages selected"
   },
-
-  "password": {
-    "back-to-login": "Back to",
-    "back-to-login-cta": "login",
-    "confirm": "Repeat password",
-    "current": "Current password",
-    "edit": "Update password",
-    "email-sent": "We have emailed your password reset link.",
-    "forgot": "Forgot password?",
-    "forgot-cta": "Reset here",
-    "forgot-instructions": "Enter your email to reset your password.",
-    "heading": "Password",
-    "new": "New password",
-    "request-reset": "Request password reset",
-    "reset": "Update password",
-    "reset-description": "Are you sure you want to update your password? Enter a new strong password.",
-    "reset-form-instructions": "Click the link in the password reset email.",
-    "save": "Save password",
-    "show": "Show password",
-    "update": "Update password",
-    "updated": "Your password has been updated. You will be signed in automatically.",
-    "requirements": {
-      "description": "Password must meet the following criteria:",
-      "length": "Must be at least {n} characters long",
-      "length-valid": "Password meets length requirement",
-      "length-invalid": "Password does not meet length requirement",
-      "numbers": "Must contain at least 1 number",
-      "numbers-valid": "Password meets number requirement",
-      "numbers-invalid": "Password does not meet number requirement",
-      "symbols": "Must contain at least 1 special character",
-      "symbols-valid": "Password meets special character requirement",
-      "symbols-invalid": "Password does not meet special character requirement",
-      "uppercase": "Must contain at least 1 uppercase letter",
-      "uppercase-valid": "Password meets uppercase letter requirement",
-      "uppercase-invalid": "Password does not meet uppercase letter requirement",
-      "lowercase": "Must contain at least 1 lowercase letter",
-      "lowercase-invalid": "Password does not meet lowercase letter requirement",
-      "lowercase-valid": "Password meets lowercase letter requirement"
-    }
-  },
-
   "pagination": {
     "page-x-of-total": "page {page} of {total}",
     "current-page": "page",
@@ -301,16 +248,13 @@
     "per-page": "items per page",
     "prev-page": "Previous page"
   },
-
   "pricing": {
     "per-month": "Per month",
     "price-on-request": "Price on request"
   },
-
   "select": {
     "no-options": "No options"
   },
-
   "theme": {
     "dark": "Dark",
     "heading": "Theme",
@@ -323,7 +267,6 @@
       "system": "System theme"
     }
   },
-
   "video": {
     "play": "Play video"
   }

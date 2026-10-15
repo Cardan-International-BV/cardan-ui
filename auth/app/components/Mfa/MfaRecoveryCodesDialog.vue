@@ -25,7 +25,7 @@ const {
 
     <template #buttons>
       <Button
-        variant="primary"
+        variant="black"
         size="lg"
         :label="$t('mfa.recovery-codes-generate')"
         icon="material-symbols:refresh-rounded"
@@ -43,7 +43,7 @@ const {
 
   .mfa-recovery-codes-divider {
     block-size: 1px;
-    background-color: var(--auth-color-divider);
+    background-color: var(--color-grey-light);
     margin-block-start: 1.5rem;
   }
 
@@ -52,7 +52,7 @@ const {
     justify-content: space-between;
 
     .button {
-      --font-size: var(--auth-font-size-dialog-button);
+      --font-size: var(--font-size-sm);
       .button-text {
         padding-block: 0.25rem;
       }

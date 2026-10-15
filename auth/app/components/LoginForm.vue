@@ -3,10 +3,8 @@
  * Email + password sign-in, wired to nuxt-auth-sanctum and aware of a pending
  * second factor.
  *
- * The defaults render the Cardan Auditor login form. Everything an app is
- * likely to style differently — the submit button above all — is a slot, so
- * the surrounding page (heading, tabs, forgot-password link) stays with the
- * app and only the form lives here.
+ * Only the form lives here: the surrounding page (heading, tabs,
+ * forgot-password link) stays with the app.
  */
 const {
   showPasswordToggle = true,
@@ -169,17 +167,14 @@ defineExpose({ submitting, error });
 
     <hr v-if="divider" />
 
-    <slot name="submit" :submitting="submitting">
-      <Button
-        type="submit"
-        icon-pos="end"
-        icon="material-symbols:arrow-forward-rounded"
-        :loading="submitting"
-        variant="green"
-        size="xl"
-        :label="$t('general.sign-in')"
-      />
-    </slot>
+    <Button
+      type="submit"
+      icon-pos="end"
+      icon="material-symbols:arrow-right-alt"
+      :loading="submitting"
+      variant="black"
+      :label="$t('general.sign-in')"
+    />
 
     <template v-if="errorPosition === 'below-submit'">
       <slot name="error" :error="error">
@@ -195,11 +190,12 @@ defineExpose({ submitting, error });
 .login-form {
   > hr {
     block-size: 1px;
-    background-color: var(--auth-color-divider);
+    background-color: var(--color-grey-light);
   }
 
   .auth-error {
     margin-block-start: 0rem;
+    min-width: 100%;
     max-width: none;
   }
 
@@ -219,7 +215,7 @@ defineExpose({ submitting, error });
 
   .button {
     &[type='submit'] {
-      --font-size: var(--auth-font-size-button);
+      --font-size: var(--font-size-md);
       margin-block-start: 0.25rem;
       flex-basis: 100%;
     }

@@ -50,7 +50,7 @@ const groupedKey = computed(
 
   .mfa-setup-key-heading {
     margin-block: 0;
-    font-size: var(--auth-font-size-label);
+    font-size: var(--font-size-md);
   }
 
   .mfa-setup-key-row {
@@ -67,19 +67,19 @@ const groupedKey = computed(
     max-inline-size: 22ch;
     margin-block: 0;
     font-family: monospace;
-    font-size: var(--auth-font-size-recovery-code-list);
+    font-size: var(--font-size-sm);
     line-height: 1.6;
     letter-spacing: 0.04em;
     color: var(--color-text);
   }
 
   .copy-button {
-    --font-size: var(--auth-font-size-dialog-button);
+    --font-size: var(--font-size-sm);
   }
 
   .mfa-setup-key-description {
     margin-block: 0;
-    font-size: var(--auth-font-size-small);
+    font-size: var(--font-size-sm);
   }
 }
 </style>

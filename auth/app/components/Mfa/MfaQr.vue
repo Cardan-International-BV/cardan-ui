@@ -6,6 +6,7 @@
  * app leads, with two fallbacks behind toggles: the setup key, for an app
  * that does not open from the link, and the QR code, for another device.
  */
+
 const { headingLevel = 2 } = defineProps<{
   /** Level of the "Authenticator app" heading, one below the step heading */
   headingLevel?: 2 | 3 | 4;
@@ -25,7 +26,7 @@ onMounted(() => getQrCode());
         <Button
           :href="qrCodeUrl || undefined"
           external
-          variant="green"
+          variant="black"
           size="xl"
           font-size="xs"
           icon-size="md"
@@ -98,7 +99,7 @@ onMounted(() => getQrCode());
     gap: 0.75rem;
     padding-block: 0.75rem;
     font-weight: var(--font-weight-medium);
-    font-size: var(--auth-font-size-small);
+    font-size: var(--font-size-sm);
     cursor: pointer;
     list-style: none;
 
@@ -150,7 +151,7 @@ onMounted(() => getQrCode());
 
       p {
         margin-block: 0;
-        font-size: var(--auth-font-size-small);
+        font-size: var(--font-size-sm);
       }
     }
 
@@ -192,12 +193,12 @@ onMounted(() => getQrCode());
     }
 
     .qr-code-heading {
-      font-size: var(--auth-font-size-label);
+      font-size: var(--font-size-md);
       margin-block-end: 0.5rem;
     }
 
     p {
-      font-size: var(--auth-font-size-small);
+      font-size: var(--font-size-sm);
       margin-block: 0;
       text-wrap: balance;
     }

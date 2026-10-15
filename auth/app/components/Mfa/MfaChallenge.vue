@@ -1,4 +1,24 @@
 <script setup lang="ts">
+/**
+ * Second-factor step of the sign-in flow: a six-digit code or a recovery code.
+ * Shown by the layer's `/two-factor-authentication` page; an app that wants
+ * its own frame overrides that page and renders this component inside it.
+ */
+const {
+  card = true,
+  headingLevel = 1,
+  autofocus = true,
+} = defineProps<{
+  /** Wrap the form in a Card. Leave off when the page frames it already. */
+  card?: boolean;
+  /** Level of the heading. 2 places it below a page's own `h1`. */
+  headingLevel?: 1 | 2;
+  /** Focus the code input on mount. Leave off when it shares a page. */
+  autofocus?: boolean;
+}>();
+
+const Card = resolveComponent('Card');
+
 const {
   loadingSolveMfaChallenge,
   codeInputRef,
@@ -38,7 +58,9 @@ async function toggleUseRecoveryCode() {
 <template>
   <div class="mfa-challenge-wrapper">
     <div class="mfa-header">
-      <h1>{{ $t('mfa.heading') }}</h1>
+      <component :is="`h${headingLevel}`" class="mfa-heading">
+        {{ $t('mfa.heading') }}
+      </component>
 
       <p v-if="useRecoveryCode">
         {{ $t('mfa.recovery-code-instructions') }}
@@ -47,14 +69,20 @@ async function toggleUseRecoveryCode() {
       <p v-else>{{ $t('mfa.challenge-instructions') }}</p>
     </div>
 
-    <Card background-color="white" class="mfa-card">
+    <component
+      :is="card ? Card : 'div'"
+      v-bind="card ? { backgroundColor: 'white' } : {}"
+      class="mfa-card"
+    >
       <Form
         class="mfa-form"
         :autofocus-fn="
-          () =>
-            useRecoveryCode
-              ? recoveryCodeInputRef?.focusElement()
-              : codeInputRef?.focusElement()
+          autofocus
+            ? () =>
+                useRecoveryCode
+                  ? recoveryCodeInputRef?.focusElement()
+                  : codeInputRef?.focusElement()
+            : undefined
         "
         @submit="solveMfaChallenge"
       >
@@ -65,10 +93,9 @@ async function toggleUseRecoveryCode() {
         <Button
           type="submit"
           :label="$t('general.sign-in')"
-          size="xl"
-          variant="green"
+          variant="black"
           icon-pos="end"
-          icon="material-symbols:arrow-forward-rounded"
+          icon="material-symbols:arrow-right-alt"
           :loading="loadingSolveMfaChallenge"
           :disabled="!canSubmit"
         />
@@ -93,52 +120,53 @@ async function toggleUseRecoveryCode() {
           />
         </p>
       </Form>
-    </Card>
+    </component>
   </div>
 </template>
 
 <style>
 .mfa-challenge-wrapper {
-  max-width: 410px;
-  margin-block-start: 15vh;
   margin-inline: auto;
   text-align: center;
 
   .mfa-header {
-    h1 {
-      font-size: var(--auth-font-size-heading);
-      font-weight: var(--font-weight-bold);
+    /* Sizes come from the page around it: the app's own h1 and body text */
+    .mfa-heading {
       margin-block-end: 0rem;
     }
 
     p {
-      max-width: none;
+      /* max-width: 40ch; */
+      margin-inline: auto;
       margin-block-end: 2.5rem;
-      font-size: var(--auth-font-size-intro);
       color: var(--color-grey-text);
     }
   }
 
+  .mfa-code-input,
+  .mfa-recovery-code-input {
+    width: 100%;
+  }
+
   .mfa-card {
-    max-width: 360px;
+    max-width: 20rem;
     margin-inline: auto;
   }
 
   button[type='submit'] {
-    --font-size: var(--auth-font-size-button);
-    max-width: 280px;
+    --font-size: var(--font-size-md);
     margin-inline: auto;
   }
 
   .auth-error {
     p,
     ul {
-      font-size: var(--auth-font-size-small);
+      font-size: var(--font-size-sm);
     }
   }
 
   .mfa-footer {
-    font-size: var(--auth-font-size-small);
+    font-size: var(--font-size-sm);
 
     > span {
       color: var(--color-grey-text);

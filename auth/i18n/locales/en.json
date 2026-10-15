@@ -49,5 +49,42 @@
   "password-confirmation": {
     "title": "Confirm your password",
     "description": "For your security, enter your password before you change your multi-factor authentication settings."
+  },
+  "auth": {
+    "login-title": "Welcome back",
+    "login-description": "Sign in to continue.",
+    "confirm-logout": "Are you sure you want to sign out?"
+  },
+  "password": {
+    "back-to-login": "Back to",
+    "back-to-login-cta": "login",
+    "confirm": "Repeat password",
+    "current": "Current password",
+    "edit": "Update password",
+    "email-sent": "We have emailed your password reset link.",
+    "forgot": "Forgot password?",
+    "forgot-cta": "Reset here",
+    "forgot-instructions": "Enter your email to reset your password.",
+    "heading": "Password",
+    "new": "New password",
+    "request-reset": "Request password reset",
+    "reset": "Update password",
+    "reset-description": "Are you sure you want to update your password? Enter a new strong password.",
+    "reset-form-instructions": "Click the link in the password reset email.",
+    "save": "Save password",
+    "saved": "Your new password has been saved.",
+    "show": "Show password",
+    "update": "Update password",
+    "updated": "Your password has been updated. You will be signed in automatically.",
+    "requirements": {
+      "description": "Password must meet the following criteria:",
+      "length": "Must be at least {n} characters long",
+      "length-valid": "Password meets length requirement",
+      "length-invalid": "Password does not meet length requirement",
+      "breached": "Must not appear in a known data breach",
+      "common": "Must not be a commonly used password",
+      "context": "Must not contain your name, email or the platform name",
+      "checked-on-save": "checked when you save"
+    }
   }
 }

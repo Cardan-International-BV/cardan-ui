@@ -231,12 +231,12 @@ const computedAriaDescribedby = computed(() =>
 }
 
 .select-size--md .select {
-  height: var(--control-height);
+  height: 2.5rem;
   padding-inline: 0.5em;
 }
 
 .select-size--lg .select {
-  height: var(--control-height-lg);
+  height: 2.75rem;
   padding-inline: 0.65em;
 }
 

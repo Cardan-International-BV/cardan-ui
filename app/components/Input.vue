@@ -265,8 +265,7 @@ const emit = defineEmits<{
     background-color: var(--color-input-bg);
 
     &[readonly] {
-      background-color: var(--color-grey-bg);
-      border-color: transparent;
+      background-color: var(--color-grey-light);
       caret-color: transparent;
     }
 
@@ -294,14 +293,14 @@ const emit = defineEmits<{
 
 .input-size--md {
   .input {
-    height: var(--control-height);
+    height: 2.5rem;
     padding-inline: 0.5em;
   }
 }
 
 .input-size--lg {
   .input {
-    height: var(--control-height-lg);
+    height: 2.75rem;
     padding-inline: 0.65em;
   }
 }

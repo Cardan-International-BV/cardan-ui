@@ -6,7 +6,7 @@ defineProps<{
 
 <template>
   <div role="alert">
-    <div v-if="data" class="auth-error">
+    <div v-if="data" class="auth-error" :lang="data.language">
       <ul v-if="data?.errors" role="list">
         <template v-for="(array, key) in data.errors" :key="key">
           <li v-for="message in array" :key="message">{{ message }}</li>
@@ -32,16 +32,18 @@ defineProps<{
   overflow-wrap: anywhere;
   max-width: fit-content;
   margin-block-start: 1.5rem;
-  padding-inline: 1.25rem;
-  padding-block: 1rem;
+  padding-inline: 1rem;
+  padding-block: 0.75rem;
   border-radius: var(--radius-md);
   color: var(--color-red-text);
-  border: 1px solid var(--color-red-bg);
-  background-color: var(--color-white);
+  border: 1px solid var(--color-orange-bg);
+  background-color: var(--color-card-bg);
+  text-align: start;
 
   p,
   ul {
-    font-size: var(--auth-font-size-error);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
     margin-block: 0;
   }
 }

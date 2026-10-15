@@ -109,9 +109,8 @@ const emit = defineEmits<{
   padding-inline: 1rem 0.5rem;
   margin-block-end: 0.5rem;
   border-radius: var(--radius-sm);
-  border: 1px solid var(--color-grey-bg);
-  background-color: var(--color-bg);
-  box-shadow: var(--shadow);
+  border: 1px solid var(--color-grey-light);
+  background-color: var(--color-card-bg);
   overflow: hidden;
   max-width: 100%;
 

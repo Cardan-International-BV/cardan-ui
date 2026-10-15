@@ -324,10 +324,10 @@ const computedAriaLabels = computed(() => {
 }
 .datepicker-size--md .dp__input,
 .datepicker-size--md .dp--input {
-  min-height: var(--control-height);
+  min-height: 2.5rem;
 }
 .datepicker-size--lg .dp__input,
 .datepicker-size--lg .dp--input {
-  min-height: var(--control-height-lg);
+  min-height: 2.75rem;
 }
 </style>

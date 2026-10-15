@@ -199,3 +199,8 @@ s {
     color: var(--color-grey-text);
   }
 }
+
+/* Centre the Auth UI pages in the viewport below the header, like an app does */
+.auth-page-content {
+  min-height: calc(100svh - 10rem);
+}

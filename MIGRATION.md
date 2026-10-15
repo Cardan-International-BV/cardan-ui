@@ -2,7 +2,7 @@
 
 Cardan UI 2.0 is an accessible UI component library. This guide is for developers of projects that extend the layer.
 
-The components stay brand-agnostic: they read design tokens from your project's own `main.css`. A project keeps its current look until it adopts the Cardan tokens, but it does need the new tokens listed below.
+The components stay brand-agnostic: they read design tokens from your project's own `main.css`. A project keeps most of its current look until it adopts the Cardan tokens, but it does need the new tokens listed below, which bring the Cardan look to buttons, tracks and the backdrop.
 
 ## 1. Point your project at the new repository
 
@@ -26,37 +26,48 @@ It only downloads fonts that your CSS uses. A project that keeps `system-ui` (or
 
 ## 3. Add the new design tokens
 
-Components use these tokens without fallbacks. Add them to `:where(:root)` in your project's `main.css`. The values below keep your current look:
+Components use these tokens without fallbacks. Add them to your project's `main.css`. The values are the ones from the Cardan template in [`app/assets/main.css`](app/assets/main.css), so buttons, tracks and the backdrop take on the Cardan look. Only `--color-accent-hover` follows your own accent: it darkens `--color-accent`. The `--cardan-*` primitives they use are included; skip the ones your project already has:
 
 ```css
 :where(:root) {
+  --cardan-body: #28242d;
+  --cardan-body-grey: #3d3644;
+  --cardan-white: #ffffff;
+  --cardan-beige-sand: #e8e1d9;
+  --cardan-dark-block: #1e1e1f;
+
   --font-weight-semibold: 600;
 
   /* Buttons */
-  --color-on-accent: var(--color-white);
-  --color-accent-hover: color-mix(
-    in srgb,
-    var(--color-accent) 90%,
-    var(--color-white)
-  );
-  --color-secondary: var(--color-grey-bg);
-  --color-secondary-hover: color-mix(
-    in srgb,
-    var(--color-grey-bg) 95%,
-    var(--color-black)
-  );
+  --color-on-accent: var(--cardan-white);
+  --color-accent-hover: color-mix(in srgb, var(--color-accent) 85%, black);
   --shadow-offset: 4px 4px 0 0 var(--color-accent);
   --shadow-offset-hover: 6px 6px 0 0 var(--color-accent);
 
-  /* Sizes of buttons and form fields */
-  --control-height: 2.25rem;
-  --control-height-lg: 2.5rem;
+  /* Backdrop behind Dialog and MobileMenu */
+  --color-backdrop: rgb(20 20 19 / 60%);
+}
+
+:where(.light-mode) {
+  /* Buttons */
+  --color-secondary: var(--cardan-beige-sand);
+  --color-secondary-hover: color-mix(
+    in srgb,
+    var(--cardan-beige-sand) 90%,
+    var(--cardan-body)
+  );
 
   /* Track of ProgressMeter, ProgressCircle and RangeInput */
-  --color-track: var(--color-grey-bg);
+  --color-track: var(--cardan-beige-sand);
+}
 
-  /* Backdrop behind Dialog and MobileMenu */
-  --color-backdrop: rgb(0 0 0 / 75%);
+:where(.dark-mode) {
+  /* Buttons */
+  --color-secondary: var(--cardan-dark-block);
+  --color-secondary-hover: var(--cardan-body-grey);
+
+  /* Track of ProgressMeter, ProgressCircle and RangeInput */
+  --color-track: var(--cardan-body-grey);
 }
 ```
 
@@ -75,11 +86,11 @@ Some projects did not define every token the components use, also before this re
 
 These changes are not driven by tokens, so they apply to every project:
 
+- **Sizes**: md Button, Input, Select, MultiSelect and DatePicker are 40px high (was 36px), lg is 44px (was 40px).
 - **Placeholders** in Input, Select and Textarea use `--color-grey-text` instead of `--color-grey-graphic`, for 4.5:1 contrast.
 - **MultiSelect**: the highlighted (hovered or keyboard) option uses the accent color with `--color-on-accent` text; a highlighted selected option is green. Tags use `--color-accent-text`.
 - **Progress and range tracks** are one neutral color (`--color-track`) instead of a tint per color, and their fills use the `-graphic` colors.
 - **Colored Select** arrows use the `-text` color instead of the `-graphic` color.
-- **MobileMenu** shares `--color-backdrop` with Dialog, so its backdrop goes from 50% to 75% with the value above.
 - **Motion**: Toast slides and fades instead of bouncing; Accordion, ProgressMeter and ProgressCircle animate with `--duration-md` and `--cubic-bezier`; Tabs now animate their color change (a typo disabled this).
 - **Disabled link buttons** get `role="link"` and `aria-disabled="true"`.
 - **Inputs, Select, Textarea and DatePicker** use `--font-family-input` and fall back to `system-ui` when it is not set, as before.
@@ -90,12 +101,12 @@ These changes are not driven by tokens, so they apply to every project:
 
 ## 5. Adopting the Cardan brand identity
 
-When a project moves to the new identity, copy the tokens from the layer's [`app/assets/main.css`](app/assets/main.css) into its own `main.css`, replacing the values from step 3. That template contains:
+When a project moves to the new identity, copy the tokens from the layer's [`app/assets/main.css`](app/assets/main.css) into its own `main.css`. That template contains:
 
 - the brand palette as `--cardan-*` primitives, mapped to the semantic `--color-*` tokens for light and dark mode
 - Hanken Grotesk (`--font-family`), the type scale and line heights
-- 40px buttons and fields (`--control-height`), 44px for `lg`, with 16px button text
-- Body text on tinted surfaces, a neutral track, the Cardan backdrop and 12px card radius
+- 16px button text
+- Body text on tinted surfaces, a neutral track and 12px card radius
 
 Then use the new components and options where they fit:
 
@@ -121,30 +132,9 @@ defineNuxtConfig({
 });
 ```
 
-The layer now uses its `--auth-*` tokens without fallbacks, so define all of them in your `main.css`. These values keep the sizes the layer used before; the Cardan template in `app/assets/main.css` raises the error text to `--font-size-sm` (14px):
-
-```css
-:where(:root) {
-  --auth-color-divider: var(--color-grey-light);
-  --auth-font-size-heading: var(--font-size-xxl);
-  --auth-font-size-intro: var(--font-size-lg);
-  --auth-font-size-step-heading: var(--font-size-lg);
-  --auth-font-size-label: var(--font-size-md);
-  --auth-font-size-small: var(--font-size-sm);
-  --auth-font-size-error: var(--font-size-xs);
-  --auth-font-size-otp-input: var(--font-size-xxxl);
-  --auth-font-size-recovery-code-input: var(--font-size-lg);
-  --auth-font-size-recovery-code-list: var(--font-size-sm);
-  --auth-font-size-button: var(--font-size-md);
-  --auth-font-size-dialog-button: var(--font-size-sm);
-}
-```
-
-cardan-lms-nuxt already defines the font size roles; it only needs `--auth-color-divider`.
+The layer styles with the Cardan UI tokens only, so it needs no tokens of its own.
 
 Remove any MFA composables or components your app still has from before the layer, such as CAT-nuxt's own `useMfa`. An app composable with the same name replaces the layer's auto-import, and the layer keeps its MFA state under the same `useState` keys (`mfaStep`, `qrCode`, `recoveryCodes`, `mfaError`, …), so the two would break each other.
-
-The role tokens are now resolved where your `main.css` defines them: redefining `--font-size-*` on part of a page no longer changes them. Set the `--auth-*` tokens on a container instead to change the sizes on one page.
 
 ## 7. Upgrading to 2.1
 
@@ -176,10 +166,14 @@ Then update the sizes in your own components and `font-size` / `icon-size` props
 - `xxxl` (40px) → `xxl` (32px) or `xxxl` (48px)
 - `lg` (20px) stays `lg` and becomes 18px
 
-Cardan UI's own components moved from the 11px `xxs` to `xs`, so their small text (field instructions and hints, errors, chips, small buttons, popovers) is 12px. This applies even if you keep the old scale. Components that use `lg` (menu items, dialog and toast icons, pricing cards, `icon-size="lg"`) become 18px once your `main.css` has the new scale. `--auth-font-size-otp-input` now uses `--font-size-xxl` (32px) instead of 40px.
+Cardan UI's own components moved from the 11px `xxs` to `xs`, so their small text (field instructions and hints, errors, chips, small buttons, popovers) is 12px. This applies even if you keep the old scale. Components that use `lg` (menu items, dialog and toast icons, pricing cards, `icon-size="lg"`) become 18px once your `main.css` has the new scale. The one-time code digits of Cardan Auth UI use `--font-size-xxxl` (48px) instead of 40px.
 
 ### Component changes
 
+- **Cardan Auth UI pages**: the layer now ships `/login`, `/forgot-password`, `/reset-password`, `/two-factor-authentication` and `/mfa-setup`, plus `PasswordUpdateForm`, `MfaSettings` and `LogoutDialog`. Delete your own versions, or keep a page by leaving it at the same path. The password forms call the Cardan API's paths (`POST /api/v1/auth/forgot-password`, `POST /api/v1/auth/reset-password`, `PATCH /api/v1/profile/password`, `GET /api/v1/password-policy`), so your API has to answer them, hardened as described in the Backend section of [`auth/README.md`](auth/README.md). Give `.auth-page-content` a `min-height` from your layout.
+- **Cardan Auth UI buttons**: `LoginForm`'s `submit` slot and `MfaSetup`'s `actions` slot are removed. The auth buttons use the `black` variant for main actions and `ghost` for skip, back and cancel. `MfaChallenge` has a `card` prop to leave out its Card, and `loginRedirectTarget()` only follows a `?redirect=` to a path within the app.
+- **Password messages moved to Cardan Auth UI**: the `password` namespace now ships with the auth layer instead of Cardan UI. Projects without the auth layer that use `password.*` keys must declare them in their own locale files. The requirement messages for numbers, symbols, uppercase and lowercase letters are removed, since the password policy no longer asks for them; `password.requirements.*` now covers the length, breach, common-password and personal-information checks.
+- **Cardan Auth UI tokens removed**: the auth layer uses the font size scale and `--color-grey-light` directly. Delete the `--auth-color-divider` and `--auth-font-size-*` tokens from your `main.css`.
 - **Text on tinted surfaces**: Chip, Callout and colored Select use the `--color-<color>-text` tokens on their tinted (`-bg`) surfaces. 2.1 removes the `--color-<color>-on-bg` tokens and `--color-on-secondary` (the secondary Button now uses `--color-text`), so delete them from your `main.css`. In light mode, `--color-orange-bg` is now a paler ochre, `color-mix(in srgb, var(--cardan-ochre-40) 40%, var(--cardan-white))`, to reach 4.5:1 with `--color-orange-text`.
 - **`variant="3d"`** is the old `black` look of Button: a rounded black button with an accent-colored offset shadow. Replace `variant="black"` with `variant="3d"` where you want to keep that look.
 - **`variant="black"`** is now a plain button with light text on the text color and the default radius, as cardan-lms-nuxt's former `BaseButton` had.
