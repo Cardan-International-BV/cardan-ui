@@ -27,8 +27,8 @@ const textTransforms: TextTransform[] = [
   'capitalize',
 ];
 
-const calloutFontSize = ref<FontSize>('xs');
-const calloutIconSize = ref<FontSize>('md');
+const calloutFontSize = ref<FontSize>('sm');
+const calloutIconSize = ref<FontSize>('lg');
 const calloutVariant = ref<CalloutVariant>('solid');
 const calloutVariantOptions = [
   { value: 'solid', label: 'solid' },
@@ -401,7 +401,6 @@ function makeToast() {
           :font-size="chipFontSize"
           :icon-size="chipIconSize"
           :label="`text-transform ${textTransform}`"
-          color="accent"
           :text-transform="textTransform"
         />
       </div>
@@ -513,14 +512,14 @@ function makeToast() {
             />
           </div>
 
+          <Toast
+            label="Success message in a toast notification"
+            color="green"
+          />
           <Toast label="Error message in a toast notification" color="red" />
           <Toast
             label="Warning message in a toast notification"
             color="orange"
-          />
-          <Toast
-            label="Success message in a toast notification"
-            color="green"
           />
           <Toast
             label="Information message in a toast notification"

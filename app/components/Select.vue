@@ -81,7 +81,7 @@ const computedAriaDescribedby = computed(() =>
     >
       <span>{{ label }}</span>
 
-      <Chip v-if="required" size="xs" :label="$t('form.required')" />
+      <RequiredChip v-if="required" />
     </label>
 
     <div class="select-wrapper">
@@ -164,15 +164,15 @@ const computedAriaDescribedby = computed(() =>
     gap: 0.35rem;
     min-height: 1.25rem;
     align-items: center;
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-sm);
     margin-block-end: 0.125rem;
-    color: var(--color-grey-text);
+    color: var(--color-text);
   }
 
   .instruction {
     margin-block-start: 0.25rem;
     margin-block-end: 0;
-    font-size: var(--font-size-xxs);
+    font-size: var(--font-size-xs);
     color: var(--color-grey-text);
   }
 
@@ -242,53 +242,53 @@ const computedAriaDescribedby = computed(() =>
 
 .select-color--blue {
   .select {
-    color: var(--color-blue-on-bg);
+    color: var(--color-blue-text);
     accent-color: var(--color-blue-text);
     border-color: var(--color-blue-graphic);
     background-color: var(--color-blue-bg);
   }
 
   .select-arrow {
-    color: var(--color-blue-on-bg);
+    color: var(--color-blue-text);
   }
 }
 
 .select-color--green {
   .select {
-    color: var(--color-green-on-bg);
+    color: var(--color-green-text);
     accent-color: var(--color-green-text);
     border-color: var(--color-green-graphic);
     background-color: var(--color-green-bg);
   }
 
   .select-arrow {
-    color: var(--color-green-on-bg);
+    color: var(--color-green-text);
   }
 }
 
 .select-color--orange {
   .select {
-    color: var(--color-orange-on-bg);
+    color: var(--color-orange-text);
     accent-color: var(--color-orange-text);
     border-color: var(--color-orange-graphic);
     background-color: var(--color-orange-bg);
   }
 
   .select-arrow {
-    color: var(--color-orange-on-bg);
+    color: var(--color-orange-text);
   }
 }
 
 .select-color--red {
   .select {
-    color: var(--color-red-on-bg);
+    color: var(--color-red-text);
     accent-color: var(--color-red-text);
     border-color: var(--color-red-graphic);
     background-color: var(--color-red-bg);
   }
 
   .select-arrow {
-    color: var(--color-red-on-bg);
+    color: var(--color-red-text);
   }
 }
 

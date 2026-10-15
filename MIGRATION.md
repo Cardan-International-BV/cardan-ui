@@ -45,28 +45,12 @@ Components use these tokens without fallbacks. Add them to `:where(:root)` in yo
     var(--color-grey-bg) 95%,
     var(--color-black)
   );
-  --color-on-secondary: var(--color-text);
   --shadow-offset: 4px 4px 0 0 var(--color-accent);
   --shadow-offset-hover: 6px 6px 0 0 var(--color-accent);
 
   /* Sizes of buttons and form fields */
   --control-height: 2.25rem;
   --control-height-lg: 2.5rem;
-  --button-padding-inline: 0.75rem;
-  --button-font-size: var(--font-size-sm);
-  --button-font-size-sm: var(--font-size-xs);
-  --button-font-size-xs: var(--font-size-xxs);
-
-  /* Text and icons on tinted (-bg) surfaces: Chip, colored Select, Callout solid */
-  --color-accent-on-bg: var(--color-accent-text);
-  --color-grey-on-bg: var(--color-grey-text);
-  --color-red-on-bg: var(--color-red-text);
-  --color-orange-on-bg: var(--color-orange-text);
-  --color-yellow-on-bg: var(--color-yellow-text);
-  --color-green-on-bg: var(--color-green-text);
-  --color-blue-on-bg: var(--color-blue-text);
-  --color-purple-on-bg: var(--color-purple-text);
-  --color-pink-on-bg: var(--color-pink-text);
 
   /* Track of ProgressMeter, ProgressCircle and RangeInput */
   --color-track: var(--color-grey-bg);
@@ -76,17 +60,16 @@ Components use these tokens without fallbacks. Add them to `:where(:root)` in yo
 }
 ```
 
-cardan-lms-nuxt already defines `--font-weight-semibold`; skip that line there. CAT-nuxt already has all of these tokens.
+cardan-lms-nuxt and CAT-nuxt already have all of these tokens. cardan-nuxt, tehv-nuxt, CAT-dashboard and chart need all of them.
 
 ### Tokens that were already missing before 2.0
 
 Some projects did not define every token the components use, also before this release. Copy these from the layer's [`app/assets/main.css`](app/assets/main.css) when you migrate:
 
-| Project         | Missing tokens                                                                                                                                                                                                            |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| CAT-dashboard   | `--line-height`, `--line-height-heading`                                                                                                                                                                                  |
-| cardan-lms-nuxt | `--card-border-color`, `--popover-border-color`, `--shadow-2`, `--shadow-3`, `--color-blue*`, `--color-orange*`, `--color-pink-bg/-text/-graphic`, `--color-purple-bg/-text/-graphic`, `--color-yellow-bg/-text/-graphic` |
-| chart           | Nearly all color, font, radius, duration and shadow tokens: it defines 10 of them                                                                                                                                         |
+| Project       | Missing tokens                                                                    |
+| ------------- | --------------------------------------------------------------------------------- |
+| CAT-dashboard | `--line-height`, `--line-height-heading`                                          |
+| chart         | Nearly all color, font, radius, duration and shadow tokens: it defines 10 of them |
 
 ## 4. Changes you will see despite the tokens
 
@@ -95,7 +78,7 @@ These changes are not driven by tokens, so they apply to every project:
 - **Placeholders** in Input, Select and Textarea use `--color-grey-text` instead of `--color-grey-graphic`, for 4.5:1 contrast.
 - **MultiSelect**: the highlighted (hovered or keyboard) option uses the accent color with `--color-on-accent` text; a highlighted selected option is green. Tags use `--color-accent-text`.
 - **Progress and range tracks** are one neutral color (`--color-track`) instead of a tint per color, and their fills use the `-graphic` colors.
-- **Colored Select** arrows use the `-on-bg` color instead of the `-graphic` color.
+- **Colored Select** arrows use the `-text` color instead of the `-graphic` color.
 - **MobileMenu** shares `--color-backdrop` with Dialog, so its backdrop goes from 50% to 75% with the value above.
 - **Motion**: Toast slides and fades instead of bouncing; Accordion, ProgressMeter and ProgressCircle animate with `--duration-md` and `--cubic-bezier`; Tabs now animate their color change (a typo disabled this).
 - **Disabled link buttons** get `role="link"` and `aria-disabled="true"`.
@@ -165,12 +148,45 @@ The role tokens are now resolved where your `main.css` defines them: redefining 
 
 ## 7. Upgrading to 2.1
 
-2.1 adds two options to Chip, removes its `capitalize` prop, and changes the default look of Callout.
+2.1 changes the font size scale, renames Button's `black` variant to `3d`, adds a new, basic `black` variant, adds two options to Chip, removes its `capitalize` prop, and changes the default look of Callout.
 
-- **Callout is `solid` by default**: a tinted surface with the `--color-<color>-on-bg` text. The old default look is now `variant="outline"`, and `variant="default"` no longer exists. To keep the white surface with a tinted border, add `variant="outline"` to your callouts, and replace `variant="default"` with `variant="outline"`. Callouts with `variant="solid"` can drop the prop.
+### New font size scale
+
+Replace the `--font-size-*` tokens in your `main.css` with the new scale from the template in [`app/assets/main.css`](app/assets/main.css):
+
+| Token                | 2.0       | 2.1      |
+| -------------------- | --------- | -------- |
+| `--font-size-xxxxxl` | 4rem      | removed  |
+| `--font-size-xxxxl`  | 3rem      | 4rem     |
+| `--font-size-xxxl`   | 2.5rem    | 3rem     |
+| `--font-size-xxl`    | 2rem      | 2rem     |
+| `--font-size-xl`     | 1.5rem    | 1.5rem   |
+| `--font-size-lg`     | 1.25rem   | 1.125rem |
+| `--font-size-md`     | 1rem      | 1rem     |
+| `--font-size-sm`     | 0.875rem  | 0.875rem |
+| `--font-size-xs`     | 0.75rem   | 0.75rem  |
+| `--font-size-xxs`    | 0.6875rem | 0.625rem |
+| `--font-size-xxxs`   | 0.625rem  | removed  |
+
+Then update the sizes in your own components and `font-size` / `icon-size` props. TypeScript flags only the removed names (`xxxs`, `xxxxxl`); `xxs`, `lg`, `xxxl` and `xxxxl` still exist but have a different size, so search for those too:
+
+- `xxxs` → `xxs` (same size)
+- `xxxxl` → `xxxl` and `xxxxxl` → `xxxxl` (same size)
+- `xxs` (11px) → `xs` (12px), the nearest size
+- `xxxl` (40px) → `xxl` (32px) or `xxxl` (48px)
+- `lg` (20px) stays `lg` and becomes 18px
+
+Cardan UI's own components moved from the 11px `xxs` to `xs`, so their small text (field instructions and hints, errors, chips, small buttons, popovers) is 12px. This applies even if you keep the old scale. Components that use `lg` (menu items, dialog and toast icons, pricing cards, `icon-size="lg"`) become 18px once your `main.css` has the new scale. `--auth-font-size-otp-input` now uses `--font-size-xxl` (32px) instead of 40px.
+
+### Component changes
+
+- **Text on tinted surfaces**: Chip, Callout and colored Select use the `--color-<color>-text` tokens on their tinted (`-bg`) surfaces. 2.1 removes the `--color-<color>-on-bg` tokens and `--color-on-secondary` (the secondary Button now uses `--color-text`), so delete them from your `main.css`. In light mode, `--color-orange-bg` is now a paler ochre, `color-mix(in srgb, var(--cardan-ochre-40) 40%, var(--cardan-white))`, to reach 4.5:1 with `--color-orange-text`.
+- **`variant="3d"`** is the old `black` look of Button: a rounded black button with an accent-colored offset shadow. Replace `variant="black"` with `variant="3d"` where you want to keep that look.
+- **`variant="black"`** is now a plain button with light text on the text color and the default radius, as cardan-lms-nuxt's former `BaseButton` had.
+- **Callout is `solid` by default**: a tinted surface with the `--color-<color>-text` text. The old default look is now `variant="outline"`, and `variant="default"` no longer exists. To keep the white surface with a tinted border, add `variant="outline"` to your callouts, and replace `variant="default"` with `variant="outline"`. Callouts with `variant="solid"` can drop the prop.
 - **Chip's `capitalize` prop is removed**: use `text-transform="capitalize"` instead, which also capitalizes only the first letter of the label. CAT-nuxt's `FindingChips.vue` uses `capitalize` on a criterion number, where it has no visible effect: remove it there.
 
 The new Chip options change nothing for projects that don't use them:
 
-- **`variant="solid"`**: light text (`--color-on-accent`) on a filled background, for every color. It needs a `--color-<color>-solid` token per color, which each reach 4.5:1 with white text. Copy them from the template in [`app/assets/main.css`](app/assets/main.css): `--color-red-solid` and `--color-green-solid` per mode, the others in `:where(:root)`.
+- **`variant="solid"`**: a filled background in the `--color-<color>-text` color with `--color-white` text, at least 4.5:1 for every color. In dark mode this gives a light background with dark text.
 - **`textTransform`**: `uppercase`, `lowercase` or `capitalize`. `uppercase` also adds `letter-spacing: 0.025em` to keep the label legible. `capitalize` capitalizes only the first letter of the label, not every word like the CSS `text-transform` keyword. The new global `TextTransform` type can be used by other components too.

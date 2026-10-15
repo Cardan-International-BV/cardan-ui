@@ -11,8 +11,6 @@
   --shadow-1: none;
   --shadow-2: none;
   --shadow-3: none;
-  --shadow-offset: none;
-  --shadow-offset-hover: none;
 }
 
 :where(.light-mode) {

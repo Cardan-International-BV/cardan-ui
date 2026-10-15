@@ -162,7 +162,7 @@ const roleOptions = [
             :max="max"
             :role="role"
             size="xs"
-            font-size="xxxs"
+            font-size="xxs"
           />
         </div>
       </Card>

@@ -13,7 +13,7 @@ defineProps<{
     icon-color="grey-graphic"
     icon-size="lg"
     :max-width="300"
-    font-size="xxs"
+    font-size="xs"
   >
     <slot />
   </Tooltip>

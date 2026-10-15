@@ -383,7 +383,7 @@ const emit = defineEmits<{
   position: relative;
   height: 1.25rem;
   min-width: 1.25rem;
-  font-size: var(--font-size, var(--font-size-xxs));
+  font-size: var(--font-size, var(--font-size-xs));
   padding-inline: 0.125rem;
 
   /* Enlarge the click target to at least 24×24px (WCAG 2.5.8) */

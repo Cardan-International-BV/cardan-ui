@@ -89,14 +89,14 @@ const formattedLabel = computed(() =>
 
 /* Chip sizes */
 .chip-size--xs {
-  font-size: var(--chip-font-size, var(--font-size-xxxs));
-
+  /* border-radius: var(--chip-radius, var(--radius-sm)); */
+  font-size: var(--chip-font-size, var(--font-size-xxs));
   padding-block: 0.03125rem;
   gap: 0.125rem;
 }
 
 .chip-size--sm {
-  font-size: var(--chip-font-size, var(--font-size-xxs));
+  font-size: var(--chip-font-size, var(--font-size-xs));
 
   padding-block: 0.0625rem;
 }
@@ -124,58 +124,58 @@ const formattedLabel = computed(() =>
 /* Flat Chip */
 .chip-variant--flat {
   color: var(--color-text);
-  background-color: var(--color-grey-bg);
+  background-color: var(--color-grey-light);
 }
 
 .chip-variant--flat.chip-color--accent {
-  color: var(--color-accent-on-bg);
+  color: var(--color-accent-text);
   background-color: var(--color-accent-bg);
 }
 
 .chip-variant--flat.chip-color--grey {
-  color: var(--color-grey-on-bg);
+  color: var(--color-grey-text);
   background-color: var(--color-grey-bg);
 }
 
 .chip-variant--flat.chip-color--red {
-  color: var(--color-red-on-bg);
+  color: var(--color-red-text);
   background-color: var(--color-red-bg);
 }
 
 .chip-variant--flat.chip-color--orange {
-  color: var(--color-orange-on-bg);
+  color: var(--color-orange-text);
   background-color: var(--color-orange-bg);
 }
 
 .chip-variant--flat.chip-color--yellow {
-  color: var(--color-yellow-on-bg);
+  color: var(--color-yellow-text);
   background-color: var(--color-yellow-bg);
 }
 
 .chip-variant--flat.chip-color--green {
-  color: var(--color-green-on-bg);
+  color: var(--color-green-text);
   background-color: var(--color-green-bg);
 }
 
 .chip-variant--flat.chip-color--blue {
-  color: var(--color-blue-on-bg);
+  color: var(--color-blue-text);
   background-color: var(--color-blue-bg);
 }
 
 .chip-variant--flat.chip-color--purple {
-  color: var(--color-purple-on-bg);
+  color: var(--color-purple-text);
   background-color: var(--color-purple-bg);
 }
 
 .chip-variant--flat.chip-color--pink {
-  color: var(--color-pink-on-bg);
+  color: var(--color-pink-text);
   background-color: var(--color-pink-bg);
 }
 
 /* Soft Chip */
 .chip-variant--soft {
   color: var(--color-text);
-  border-color: var(--color-grey-bg);
+  border-color: var(--color-grey-light);
   background-color: var(--color-white);
 }
 
@@ -185,7 +185,7 @@ const formattedLabel = computed(() =>
 }
 
 .chip-variant--soft.chip-color--grey {
-  color: var(--color-grey-on-bg);
+  color: var(--color-grey-text);
   border-color: var(--color-grey-bg);
 }
 
@@ -238,8 +238,8 @@ const formattedLabel = computed(() =>
 }
 
 .chip-variant--outline.chip-color--grey {
-  color: var(--color-grey-on-bg);
-  border-color: var(--color-grey-bg);
+  color: var(--color-grey-text);
+  border-color: var(--color-grey-light);
 }
 
 .chip-variant--outline.chip-color--red {
@@ -281,42 +281,42 @@ const formattedLabel = computed(() =>
   border-color: var(--color-pink-graphic);
 }
 
-/* Solid Chip: light text on a filled background, at least 4.5:1 in both modes */
+/* Solid Chip: the text color as background, at least 4.5:1 in both modes */
 
 .chip-variant--solid {
-  color: var(--color-on-accent);
-  background-color: var(--color-grey-solid);
+  color: var(--color-white);
+  background-color: var(--color-grey-text);
 }
 
 .chip-variant--solid.chip-color--accent {
-  background-color: var(--color-accent-solid);
+  background-color: var(--color-accent-text);
 }
 
 .chip-variant--solid.chip-color--red {
-  background-color: var(--color-red-solid);
+  background-color: var(--color-red-text);
 }
 
 .chip-variant--solid.chip-color--orange {
-  background-color: var(--color-orange-solid);
+  background-color: var(--color-orange-text);
 }
 
 .chip-variant--solid.chip-color--yellow {
-  background-color: var(--color-yellow-solid);
+  background-color: var(--color-yellow-text);
 }
 
 .chip-variant--solid.chip-color--green {
-  background-color: var(--color-green-solid);
+  background-color: var(--color-green-text);
 }
 
 .chip-variant--solid.chip-color--blue {
-  background-color: var(--color-blue-solid);
+  background-color: var(--color-blue-text);
 }
 
 .chip-variant--solid.chip-color--purple {
-  background-color: var(--color-purple-solid);
+  background-color: var(--color-purple-text);
 }
 
 .chip-variant--solid.chip-color--pink {
-  background-color: var(--color-pink-solid);
+  background-color: var(--color-pink-text);
 }
 </style>

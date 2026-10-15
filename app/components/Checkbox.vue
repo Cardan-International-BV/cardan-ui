@@ -50,7 +50,7 @@ const {
 
       <span v-if="label">{{ label }}</span>
 
-      <Chip v-if="required" size="xs" :label="$t('form.required')" />
+      <RequiredChip v-if="required" />
     </label>
 
     <slot name="default" />

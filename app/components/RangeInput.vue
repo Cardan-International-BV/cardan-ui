@@ -66,7 +66,7 @@ const ticksList = computed(() =>
     >
       <span>{{ label }}</span>
 
-      <Chip v-if="required" size="sm" :label="$t('form.required')" />
+      <RequiredChip v-if="required" />
     </label>
 
     <input
@@ -129,15 +129,15 @@ const ticksList = computed(() =>
     gap: 0.35rem;
     min-height: 1.25rem;
     align-items: center;
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-sm);
     margin-block-end: 0.125rem;
-    color: var(--color-grey-text);
+    color: var(--color-text);
   }
 
   .instruction {
     margin-block-start: 0.25rem;
     margin-block-end: 0;
-    font-size: var(--font-size-xxs);
+    font-size: var(--font-size-xs);
     color: var(--color-grey-text);
   }
 }
@@ -280,7 +280,7 @@ input[type='range']:focus-visible {
 /* slider ticks */
 .range-input-ticks {
   width: 100%;
-  font-size: var(--font-size-xxxs);
+  font-size: var(--font-size-xxs);
   color: var(--color-grey-text);
   display: flex;
   justify-content: space-between;

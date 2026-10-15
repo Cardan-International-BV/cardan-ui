@@ -59,14 +59,13 @@
 
   --color-secondary: var(--cardan-dark-border);
   --color-secondary-hover: var(--cardan-body-grey);
-  --color-on-secondary: var(--color-text);
 
   --color-black: white;
   --color-text: var(--cardan-dark-text);
   --color-grey-text: var(--cardan-dark-text-secondary);
   --color-grey-graphic: var(--cardan-body-60);
-  --color-grey-light: var(--cardan-dark-border);
-  --color-grey-bg: var(--cardan-dark-block);
+  --color-grey-light: var(--cardan-dark-block);
+  --color-grey-bg: var(--cardan-dark-border);
   --color-track: var(--cardan-body-grey);
   --color-bg: var(--cardan-dark-bg);
   --color-card-bg: var(--cardan-dark-card);
@@ -84,7 +83,6 @@
   );
   --color-red-text: hsl(0 69% 67%);
   --color-red-graphic: hsl(0 63% 65%);
-  --color-red-solid: #8f1c1c;
 
   /* Ochre: data and status only */
   --color-orange: var(--cardan-ochre-on-dark);
@@ -114,7 +112,6 @@
   );
   --color-green-text: var(--cardan-green-text-on-dark);
   --color-green-graphic: var(--cardan-green-on-dark);
-  --color-green-solid: #004723;
 
   /* Not a brand color: kept for categorical use */
   --color-blue: hsl(220 53% 58%);
@@ -173,14 +170,13 @@
     var(--cardan-beige-sand) 90%,
     var(--cardan-body)
   );
-  --color-on-secondary: var(--color-text);
 
   --color-black: black;
   --color-text: var(--cardan-body);
   --color-grey-text: var(--cardan-body-grey);
   --color-grey-graphic: var(--cardan-always-grey);
   --color-grey-light: var(--cardan-beige-mid);
-  --color-grey-bg: var(--cardan-beige-sand);
+  --color-grey-bg: var(--cardan-beige);
   --color-track: var(--cardan-beige-sand);
   --color-bg: var(--cardan-beige);
   --color-card-bg: var(--cardan-white);
@@ -191,11 +187,10 @@
   --color-red-bg: var(--cardan-error-surface);
   --color-red-text: var(--cardan-error-text);
   --color-red-graphic: var(--cardan-error);
-  --color-red-solid: var(--cardan-error-text);
 
-  /* Ochre: data and status only. Ochre 40% is the surface, always with Body text (see the -on-bg tokens) */
+  /* Ochre: data and status only. Ochre 40% mixed with white is the surface, for 4.5:1 with Ochre text */
   --color-orange: var(--cardan-ochre);
-  --color-orange-bg: var(--cardan-ochre-40);
+  --color-orange-bg: color-mix(in srgb, var(--cardan-ochre-40) 40%, var(--cardan-white));
   --color-orange-text: var(--cardan-ochre-text);
   --color-orange-graphic: var(--cardan-ochre);
 
@@ -209,7 +204,6 @@
   --color-green-bg: var(--cardan-green-light);
   --color-green-text: var(--cardan-green-text);
   --color-green-graphic: var(--cardan-green);
-  --color-green-solid: var(--cardan-green-text);
 
   /* Not a brand color: kept for categorical use */
   --color-blue: hsl(220 100% 50%);
@@ -241,35 +235,8 @@
 }
 
 :where(:root) {
-  /* Text and icons on tinted (-bg) surfaces: always Body in the Cardan brand */
-  --color-accent-on-bg: var(--color-text);
-  /* Muted, 5.8:1 in light and 9.5:1 in dark mode */
-  --color-grey-on-bg: color-mix(
-    in srgb,
-    var(--color-text) 75%,
-    var(--color-grey-bg)
-  );
-  --color-red-on-bg: var(--color-text);
-  --color-orange-on-bg: var(--color-text);
-  --color-yellow-on-bg: var(--color-text);
-  --color-green-on-bg: var(--color-text);
-  --color-blue-on-bg: var(--color-text);
-  --color-purple-on-bg: var(--color-text);
-  --color-pink-on-bg: var(--color-text);
-
-  /* Filled backgrounds for --color-on-accent text, at least 4.5:1 in both
-     modes (Chip variant="solid"). Red and green are set per mode above */
-  --color-accent-solid: var(--cardan-purple);
-  --color-grey-solid: var(--cardan-body-grey);
-  --color-orange-solid: var(--cardan-ochre-text);
-  --color-yellow-solid: hsl(50 100% 24%);
-  --color-blue-solid: hsl(220 100% 30%);
-  --color-purple-solid: var(--cardan-purple);
-  --color-pink-solid: hsl(320 70% 40%);
-
   /* Font family design tokens */
   --font-family: 'Hanken Grotesk', Arial, system-ui, sans-serif;
-  --font-family-input: var(--font-family);
 
   /* Font weight design tokens */
   --font-weight-regular: 400;
@@ -283,17 +250,15 @@
   --line-height-ui: 1.25;
 
   /* Font size design tokens */
-  --font-size-xxxxxl: 4rem;
-  --font-size-xxxxl: 3rem;
-  --font-size-xxxl: 2.5rem;
-  --font-size-xxl: 2rem;
-  --font-size-xl: 1.5rem;
-  --font-size-lg: 1.25rem;
-  --font-size-md: 1rem;
-  --font-size-sm: 0.875rem;
-  --font-size-xs: 0.75rem;
-  --font-size-xxs: 0.6875rem;
-  --font-size-xxxs: 0.625rem;
+  --font-size-xxxxl: 4rem; /* 64px */
+  --font-size-xxxl: 3rem; /* 48px */
+  --font-size-xxl: 2rem; /* 32px */
+  --font-size-xl: 1.5rem; /* 24px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-md: 1rem; /* 16px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-xxs: 0.625rem; /* 10px */
 
   /* Size design tokens - only used by Skeleton and Spacer components */
   --size-xxxxl: 12rem; /* 192px */
@@ -310,12 +275,6 @@
   /* Control height design tokens, for the md (default) and lg sizes of Button, Input, Select, MultiSelect and DatePicker */
   --control-height: 2.5rem; /* 40px */
   --control-height-lg: 2.75rem; /* 44px */
-
-  /* Button design tokens, font sizes for xs to xl */
-  --button-padding-inline: 0.8rem; /* 16px including the label padding */
-  --button-font-size: var(--font-size-md);
-  --button-font-size-sm: var(--font-size-sm);
-  --button-font-size-xs: var(--font-size-xs);
 
   /* Card design tokens */
   --card-radius: var(--radius-lg);
@@ -576,7 +535,7 @@
 :where(code) {
   color: var(--color-text);
   font-weight: var(--font-weight-regular);
-  background-color: var(--color-grey-bg);
+  background-color: var(--color-grey-light);
   padding-inline: 0.25em;
   border-radius: var(--radius-sm);
   overflow-wrap: anywhere;

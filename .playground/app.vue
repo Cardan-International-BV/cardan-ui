@@ -118,6 +118,10 @@ h3 {
   margin-block-end: 1.5rem;
 }
 
+.demo-description {
+  margin-block-end: 4rem;
+}
+
 .demo-page {
   padding-block-end: 5rem;
 

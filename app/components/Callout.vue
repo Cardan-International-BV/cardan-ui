@@ -97,28 +97,28 @@ const computedIconLabel = computed(() => {
 }
 
 .callout-color--accent {
-  color: var(--color-accent-on-bg);
+  color: var(--color-accent-text);
   background-color: var(--color-accent-bg);
 }
 
 .callout-color--red {
-  color: var(--color-red-on-bg);
+  color: var(--color-red-text);
   background-color: var(--color-red-bg);
 }
 
 .callout-color--orange {
-  color: var(--color-orange-on-bg);
+  color: var(--color-orange-text);
   background-color: var(--color-orange-bg);
 }
 
 .callout-color--green {
-  color: var(--color-green-on-bg);
+  color: var(--color-green-text);
   background-color: var(--color-green-bg);
 }
 
 /* Info callouts use the neutral surface */
 .callout-color--blue {
-  color: var(--color-text);
+  color: var(--color-grey-text);
   background-color: var(--color-grey-bg);
 }
 
@@ -163,11 +163,11 @@ const computedIconLabel = computed(() => {
   }
 
   &.callout-color--blue {
-    border-color: var(--color-blue-bg);
-    color: var(--color-blue-text);
+    border-color: var(--color-grey-light);
+    color: var(--color-grey-text);
 
     .iconify {
-      color: var(--color-blue-graphic);
+      color: var(--color-grey-text);
     }
   }
 }

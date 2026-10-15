@@ -100,7 +100,6 @@ declare global {
     | 'xxxxl';
 
   type FontSize =
-    | 'xxxs'
     | 'xxs'
     | 'xs'
     | 'sm'
@@ -109,8 +108,7 @@ declare global {
     | 'xl'
     | 'xxl'
     | 'xxxl'
-    | 'xxxxl'
-    | 'xxxxxl';
+    | 'xxxxl';
 
   type ButtonSize = 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   type ButtonVariant =
@@ -124,6 +122,7 @@ declare global {
     | 'tab'
     | 'cta'
     | 'black'
+    | '3d'
     | 'white'
     | 'danger'
     | 'link'

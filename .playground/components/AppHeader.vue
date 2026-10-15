@@ -44,7 +44,7 @@ watch(
 
 .app-header {
   position: relative;
-  border-block-end: 1px solid var(--color-grey-bg);
+  border-block-end: 1px solid var(--color-grey-light);
   background-color: var(--color-white);
 
   @media (min-width: 360px) and (min-height: 360px) {

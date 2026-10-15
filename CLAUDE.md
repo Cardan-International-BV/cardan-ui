@@ -22,6 +22,7 @@ Base frontend guidelines (architecture, CSS design system, WCAG 2.2 requirements
 - **RangeInput**: Slider/range input component
 - **Search**: Search input with suggestions
 - **Form**: Form wrapper with validation support
+- **RequiredChip**: "Required" chip next to the label of required form fields
 
 ### Layout & Navigation
 
@@ -110,7 +111,7 @@ All global CSS variables for color, spacing, typography, etc. are declared in [m
 - The `--cardan-*` primitives hold the brand palette; components never use them, only the semantic `--color-*` tokens do.
 - Components use tokens without fallbacks: `var(--token)`, not `var(--token, var(--other))`. When a component needs a new token, add it to `main.css` and to the token list in [MIGRATION.md](MIGRATION.md), with a value that keeps the current look of existing projects.
 - Every text and graphic token pair must meet WCAG 2.2 AA contrast (4.5:1 for text, 3:1 for graphics) in light and dark mode. Never fix a contrast failure by inventing a new color; use a brand token.
-- Text and icons on tinted (`-bg`) surfaces use the `--color-*-on-bg` tokens.
+- Text and icons on tinted (`-bg`) surfaces use the matching `--color-*-text` token; every `-text` token must reach 4.5:1 on its `-bg` surface.
 
 ## Nuxt Layer Integration
 

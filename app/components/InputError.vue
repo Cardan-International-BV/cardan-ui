@@ -26,7 +26,7 @@ const { id = undefined, errorText = undefined } = defineProps<{
     align-items: center;
     gap: 0.25rem;
     color: var(--color-red-text);
-    font-size: var(--font-size-xxs);
+    font-size: var(--font-size-xs);
     padding-block-start: 0.25rem;
   }
 

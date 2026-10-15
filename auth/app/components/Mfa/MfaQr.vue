@@ -211,8 +211,7 @@ onMounted(() => getQrCode());
 
     display: grid;
     border-radius: var(--radius-md);
-    border: 1rem solid var(--qr-light);
-    background-color: var(--qr-light);
+    border: 1rem solid var(--color-grey-bg);
     min-height: 192px;
     max-height: 192px;
     min-width: 192px;

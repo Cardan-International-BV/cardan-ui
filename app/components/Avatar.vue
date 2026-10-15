@@ -44,7 +44,7 @@ const computedStyle = computed(() => ({
   display: grid;
   place-items: center;
   font-weight: var(--font-weight-medium);
-  background-color: var(--color-grey-bg);
+  background-color: var(--color-grey-light);
   color: var(--color-grey-text);
   flex-shrink: 0;
   transition:

@@ -44,6 +44,8 @@ useHead({ title: 'Buttons & Links' });
         <Button variant="outline" label="Outline" />
         <Button variant="danger" label="Danger" />
         <Button variant="green" label="Green" />
+        <Button variant="black" label="Black" />
+        <Button variant="3d" label="3D" />
         <Button variant="ghost" label="Ghost" />
         <Button variant="link" label="Link" />
       </div>

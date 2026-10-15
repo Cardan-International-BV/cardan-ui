@@ -19,7 +19,7 @@ This layer does **not** stand on its own. Extend it alongside its two dependenci
 
 Every rule in this layer styles with Cardan UI token _names_ — the colors, font sizes and radii Cardan UI documents:
 
-`--color-text` · `--color-grey-text` · `--color-grey-light` · `--color-card-bg` · `--color-white` · `--color-red-text` · `--color-red-bg` · `--color-green-graphic` · `--font-size-xs|sm|md|lg|xxl|xxxl` · `--font-weight-bold` · `--radius-sm|md`
+`--color-text` · `--color-grey-text` · `--color-grey-light` · `--color-card-bg` · `--color-white` · `--color-red-text` · `--color-red-bg` · `--color-green-graphic` · `--font-size-xs|sm|md|lg|xxl` · `--font-weight-bold` · `--radius-sm|md`
 
 On top of those, the layer reads its own `--auth-*` tokens: the divider color and the font size roles below.
 
@@ -47,7 +47,7 @@ Apps don't agree on what a font size token _name_ means: one app's `--font-size-
 | `--auth-font-size-label`               | `--font-size-md`   | Code input labels, QR code and recovery codes headings            |
 | `--auth-font-size-small`               | `--font-size-sm`   | Helper and validation text, QR code description, footer links     |
 | `--auth-font-size-error`               | `--font-size-sm`   | `.auth-error`                                                     |
-| `--auth-font-size-otp-input`           | `--font-size-xxxl` | One-time code input digits                                        |
+| `--auth-font-size-otp-input`           | `--font-size-xxl`  | One-time code input digits                                        |
 | `--auth-font-size-recovery-code-input` | `--font-size-lg`   | Recovery code input on the sign-in challenge                      |
 | `--auth-font-size-recovery-code-list`  | `--font-size-sm`   | List of recovery codes                                            |
 | `--auth-font-size-button`              | `--font-size-md`   | Submit buttons on the login form and sign-in challenge            |

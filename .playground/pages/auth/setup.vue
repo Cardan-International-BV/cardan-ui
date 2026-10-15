@@ -6,7 +6,7 @@ useHead({ title: 'MFA setup' });
   <div class="demo-page">
     <h1>{{ $t('mfa.setup-title') }}</h1>
 
-    <p>{{ $t('mfa.setup-description') }}</p>
+    <p class="demo-description">{{ $t('mfa.setup-description') }}</p>
 
     <MfaSetup @skip="navigateTo('/auth')" @done="navigateTo('/auth')" />
   </div>

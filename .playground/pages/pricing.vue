@@ -98,113 +98,115 @@ useHead({ title: 'Pricing' });
     </ul>
 
     <DevOnly>
-      <h2 class="visuallyhidden">Pricing Table</h2>
+      <Card style="margin-block-start: 4rem">
+        <h2 class="visuallyhidden">Pricing Table</h2>
 
-      <PricingTable>
-        <thead>
-          <tr>
-            <th scope="col">
-              <span class="visuallyhidden">Functionaliteit</span>
-            </th>
+        <PricingTable>
+          <thead>
+            <tr>
+              <th scope="col">
+                <span class="visuallyhidden">Functionaliteit</span>
+              </th>
 
-            <th scope="col">
-              <div class="title">Monitor</div>
+              <th scope="col">
+                <div class="title">Monitor</div>
 
-              <div class="description">
-                Vanaf €500 per maand,<br />jaarlijks gefactureerd
-              </div>
-              <Button label="Start met Monitor" variant="outline" />
-            </th>
+                <div class="description">
+                  Vanaf €500 per maand,<br />jaarlijks gefactureerd
+                </div>
+                <Button label="Start met Monitor" variant="outline" />
+              </th>
 
-            <th scope="col">
-              <div class="title">
-                Govern
-                <Chip label="Aanbevolen" color="accent" />
-              </div>
+              <th scope="col">
+                <div class="title">
+                  Govern
+                  <Chip label="Aanbevolen" color="accent" />
+                </div>
 
-              <div class="description">
-                Vanaf €1.500 per maand,<br />jaarlijks gefactureerd
-              </div>
-              <Button label="Ga verder met Govern" variant="primary" />
-            </th>
+                <div class="description">
+                  Vanaf €1.500 per maand,<br />jaarlijks gefactureerd
+                </div>
+                <Button label="Ga verder met Govern" variant="primary" />
+              </th>
 
-            <th scope="col">
-              <div class="title">Partner</div>
+              <th scope="col">
+                <div class="title">Partner</div>
 
-              <div class="description">
-                Vanaf €4.000 per maand,<br />jaarlijks gefactureerd
-              </div>
-              <Button label="Ga voor Partner" variant="outline" />
-            </th>
-          </tr>
-        </thead>
+                <div class="description">
+                  Vanaf €4.000 per maand,<br />jaarlijks gefactureerd
+                </div>
+                <Button label="Ga voor Partner" variant="outline" />
+              </th>
+            </tr>
+          </thead>
 
-        <tbody>
-          <tr>
-            <th colspan="4" scope="rowgroup">Monitoring & Dashboarding</th>
-          </tr>
-          <tr>
-            <th scope="row">Continue WCAG monitoring</th>
-            <td><Icon name="solar:check-circle-line-duotone" /></td>
-            <td><Icon name="solar:check-circle-line-duotone" /></td>
-            <td><Icon name="solar:check-circle-line-duotone" /></td>
-          </tr>
-          <tr>
-            <th scope="row">Accessibility dashboard</th>
-            <td><Icon name="solar:check-circle-line-duotone" /></td>
-            <td><Icon name="solar:check-circle-line-duotone" /></td>
-            <td><Icon name="solar:check-circle-line-duotone" /></td>
-          </tr>
-          <tr>
-            <th scope="row">Inzicht in toegankelijkheidsstatus</th>
-            <td><Icon name="solar:check-circle-line-duotone" /></td>
-            <td><Icon name="solar:check-circle-line-duotone" /></td>
-            <td><Icon name="solar:check-circle-line-duotone" /></td>
-          </tr>
-          <tr>
-            <th scope="row">Overzicht toegankelijkheidsproblemen</th>
-            <td><Icon name="solar:check-circle-line-duotone" /></td>
-            <td><Icon name="solar:check-circle-line-duotone" /></td>
-            <td><Icon name="solar:check-circle-line-duotone" /></td>
-          </tr>
-          <tr>
-            <th scope="row">Release monitoring (na updates)</th>
-            <td><Icon name="solar:close-circle-line-duotone" /></td>
-            <td><Icon name="solar:check-circle-line-duotone" /></td>
-            <td><Icon name="solar:check-circle-line-duotone" /></td>
-          </tr>
-        </tbody>
+          <tbody>
+            <tr>
+              <th colspan="4" scope="rowgroup">Monitoring & Dashboarding</th>
+            </tr>
+            <tr>
+              <th scope="row">Continue WCAG monitoring</th>
+              <td><Icon name="solar:check-circle-line-duotone" /></td>
+              <td><Icon name="solar:check-circle-line-duotone" /></td>
+              <td><Icon name="solar:check-circle-line-duotone" /></td>
+            </tr>
+            <tr>
+              <th scope="row">Accessibility dashboard</th>
+              <td><Icon name="solar:check-circle-line-duotone" /></td>
+              <td><Icon name="solar:check-circle-line-duotone" /></td>
+              <td><Icon name="solar:check-circle-line-duotone" /></td>
+            </tr>
+            <tr>
+              <th scope="row">Inzicht in toegankelijkheidsstatus</th>
+              <td><Icon name="solar:check-circle-line-duotone" /></td>
+              <td><Icon name="solar:check-circle-line-duotone" /></td>
+              <td><Icon name="solar:check-circle-line-duotone" /></td>
+            </tr>
+            <tr>
+              <th scope="row">Overzicht toegankelijkheidsproblemen</th>
+              <td><Icon name="solar:check-circle-line-duotone" /></td>
+              <td><Icon name="solar:check-circle-line-duotone" /></td>
+              <td><Icon name="solar:check-circle-line-duotone" /></td>
+            </tr>
+            <tr>
+              <th scope="row">Release monitoring (na updates)</th>
+              <td><Icon name="solar:close-circle-line-duotone" /></td>
+              <td><Icon name="solar:check-circle-line-duotone" /></td>
+              <td><Icon name="solar:check-circle-line-duotone" /></td>
+            </tr>
+          </tbody>
 
-        <tbody>
-          <tr>
-            <th colspan="4" scope="rowgroup">Strategie & roadmap</th>
-          </tr>
-          <tr>
-            <th scope="row">Prioritering van problemen</th>
-            <td>Basis</td>
-            <td>Geprioriteerd + roadmap</td>
-            <td>Volledig strategisch gestuurd</td>
-          </tr>
-          <tr>
-            <th scope="row">Concrete verbeter-roadmap</th>
-            <td><Icon name="solar:close-circle-line-duotone" /></td>
-            <td><Icon name="solar:check-circle-line-duotone" /></td>
-            <td><Icon name="solar:check-circle-line-duotone" /></td>
-          </tr>
-          <tr>
-            <th scope="row">Strategische toegankelijkheidsplanning</th>
-            <td><Icon name="solar:close-circle-line-duotone" /></td>
-            <td><Icon name="solar:check-circle-line-duotone" /></td>
-            <td><Icon name="solar:check-circle-line-duotone" /></td>
-          </tr>
-          <tr>
-            <th scope="row">Executive rapportages (management niveau)</th>
-            <td><Icon name="solar:close-circle-line-duotone" /></td>
-            <td><Icon name="solar:close-circle-line-duotone" /></td>
-            <td><Icon name="solar:check-circle-line-duotone" /></td>
-          </tr>
-        </tbody>
-      </PricingTable>
+          <tbody>
+            <tr>
+              <th colspan="4" scope="rowgroup">Strategie & roadmap</th>
+            </tr>
+            <tr>
+              <th scope="row">Prioritering van problemen</th>
+              <td>Basis</td>
+              <td>Geprioriteerd + roadmap</td>
+              <td>Volledig strategisch gestuurd</td>
+            </tr>
+            <tr>
+              <th scope="row">Concrete verbeter-roadmap</th>
+              <td><Icon name="solar:close-circle-line-duotone" /></td>
+              <td><Icon name="solar:check-circle-line-duotone" /></td>
+              <td><Icon name="solar:check-circle-line-duotone" /></td>
+            </tr>
+            <tr>
+              <th scope="row">Strategische toegankelijkheidsplanning</th>
+              <td><Icon name="solar:close-circle-line-duotone" /></td>
+              <td><Icon name="solar:check-circle-line-duotone" /></td>
+              <td><Icon name="solar:check-circle-line-duotone" /></td>
+            </tr>
+            <tr>
+              <th scope="row">Executive rapportages (management niveau)</th>
+              <td><Icon name="solar:close-circle-line-duotone" /></td>
+              <td><Icon name="solar:close-circle-line-duotone" /></td>
+              <td><Icon name="solar:check-circle-line-duotone" /></td>
+            </tr>
+          </tbody>
+        </PricingTable>
+      </Card>
     </DevOnly>
   </div>
 </template>
@@ -213,10 +215,6 @@ useHead({ title: 'Pricing' });
 .pricing-page {
   h2 {
     margin-block-end: 2.5rem;
-  }
-
-  .pricing-table-wrapper {
-    margin-block-start: 8rem;
   }
 }
 
