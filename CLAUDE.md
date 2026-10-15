@@ -52,7 +52,7 @@ Base frontend guidelines (architecture, CSS design system, WCAG 2.2 requirements
 - **Table**: Data table component
 - **Chip**: Tag/label component
 - **Ellipsis**: Text truncation with expand
-- **Callout**: Highlighted information box (`default` and `solid` variants)
+- **Callout**: Highlighted information box (`solid` (default) and `outline` variants)
 - **Markdown**: Markdown rendering and editing
   - MarkdownEditor: Rich text editor (uses [md-editor-v3](https://imzbf.github.io/md-editor-v3/))
   - MarkdownPreview: Markdown display (uses [markdown-it](https://markdown-it.github.io/) and [highlight.js](https://highlightjs.org/))

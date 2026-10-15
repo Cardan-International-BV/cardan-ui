@@ -18,6 +18,10 @@ useHead({ title: 'Changelog' });
           Deprecate the <code>capitalize</code> prop of Chip component, use
           <code>textTransform</code> instead
         </li>
+        <li>
+          Make <code>solid</code> the default variant of Callout component and
+          rename the <code>default</code> variant to <code>outline</code>
+        </li>
       </ul>
     </ChangelogEntry>
 

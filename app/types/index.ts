@@ -136,7 +136,7 @@ declare global {
 
   /** The CSS text-transform keywords */
   type TextTransform = 'uppercase' | 'lowercase' | 'capitalize';
-  type CalloutVariant = 'default' | 'solid';
+  type CalloutVariant = 'solid' | 'outline';
   type CardanLogoForm = 'full' | 'symbol' | 'tile';
   type CardanLogoVariant =
     'auto' | 'color' | 'negative' | 'white' | 'black' | 'purple';

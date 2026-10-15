@@ -31,8 +31,8 @@ const calloutFontSize = ref<FontSize>('xs');
 const calloutIconSize = ref<FontSize>('md');
 const calloutVariant = ref<CalloutVariant>('solid');
 const calloutVariantOptions = [
-  { value: 'default', label: 'default' },
   { value: 'solid', label: 'solid' },
+  { value: 'outline', label: 'outline' },
 ];
 
 const sizeOptions: { value: FontSize; label: string }[] = [
@@ -455,6 +455,15 @@ function makeToast() {
             :font-size="calloutFontSize"
             :icon-size="calloutIconSize"
             :variant="calloutVariant"
+            color="green"
+          >
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          </Callout>
+
+          <Callout
+            :font-size="calloutFontSize"
+            :icon-size="calloutIconSize"
+            :variant="calloutVariant"
             color="red"
             role="alert"
           >
@@ -466,15 +475,6 @@ function makeToast() {
             :icon-size="calloutIconSize"
             :variant="calloutVariant"
             color="orange"
-          >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          </Callout>
-
-          <Callout
-            :font-size="calloutFontSize"
-            :icon-size="calloutIconSize"
-            :variant="calloutVariant"
-            color="green"
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </Callout>

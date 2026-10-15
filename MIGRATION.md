@@ -117,7 +117,7 @@ When a project moves to the new identity, copy the tokens from the layer's [`app
 Then use the new components and options where they fit:
 
 - `<CardanLogo />` for the logo: full logo, symbol or tile, with automatic color-negative version in dark mode, and sub-brand lockups like `<CardanLogo product="academy" />`
-- `<Callout variant="solid" />` for callouts on a tinted surface
+- `<Callout />` now has a tinted surface by default; `<Callout variant="outline" />` keeps the white surface with a tinted border
 
 The playground at [localhost:3003](http://localhost:3003) shows the Cardan template in light and dark mode.
 
@@ -165,7 +165,11 @@ The role tokens are now resolved where your `main.css` defines them: redefining 
 
 ## 7. Upgrading to 2.1
 
-2.1 adds two options to Chip. Nothing changes for projects that don't use them.
+2.1 adds two options to Chip, and changes the default look of Callout.
+
+- **Callout is `solid` by default**: a tinted surface with the `--color-<color>-on-bg` text. The old default look is now `variant="outline"`, and `variant="default"` no longer exists. To keep the white surface with a tinted border, add `variant="outline"` to your callouts, and replace `variant="default"` with `variant="outline"`. Callouts with `variant="solid"` can drop the prop.
+
+The Chip options change nothing for projects that don't use them:
 
 - **`variant="solid"`**: light text (`--color-on-accent`) on a filled background, for every color. It needs a `--color-<color>-solid` token per color, which each reach 4.5:1 with white text. Copy them from the template in [`app/assets/main.css`](app/assets/main.css): `--color-red-solid` and `--color-green-solid` per mode, the others in `:where(:root)`.
 - **`textTransform`**: `uppercase`, `lowercase` or `capitalize`, the CSS `text-transform` keywords. `uppercase` also adds `letter-spacing: 0.025em` to keep the label legible. The new global `TextTransform` type can be used by other components too.
