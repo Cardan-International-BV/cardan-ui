@@ -399,6 +399,7 @@ The layer also uses `general.back`, `general.continue`, `general.confirm`, `gene
 
 Built to WCAG 2.2 AA, like everything at Cardan:
 
+- Following a link between the sign-in pages (back to login, forgot password) puts focus at the top of the new page, in the `AuthPage` frame, so keyboard and screen reader users start reading from the top. On a fresh load, `LoginForm` focuses the email field instead.
 - Each step moves focus deliberately — into the code input when the confirm step opens, and onto the other input when the user switches between an app code and a recovery code.
 - The confirm button stays disabled until six digits are entered; the input declares `inputmode="numeric"`, `pattern`, `autocomplete="one-time-code"` and its own error message.
 - Errors render in a `role="alert"` region.

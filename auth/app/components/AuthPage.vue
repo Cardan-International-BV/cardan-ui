@@ -13,10 +13,21 @@ const { title = undefined, description = undefined } = defineProps<{
   title?: string;
   description?: string;
 }>();
+
+const pageRef = useTemplateRef<HTMLDivElement>('page');
+
+/**
+ * Reached through a link in the app (back to login, reset here), the page
+ * starts focus at its top instead of at the email field or the body. On a
+ * fresh load there is no previous entry, so the form's autofocus applies.
+ */
+onMounted(() => {
+  if (window.history.state?.back) pageRef.value?.focus();
+});
 </script>
 
 <template>
-  <div class="auth-page">
+  <div ref="page" class="auth-page" tabindex="-1">
     <div class="auth-page-content">
       <div class="auth-page-copy">
         <span class="auth-page-logo">
@@ -46,6 +57,7 @@ const { title = undefined, description = undefined } = defineProps<{
 <style>
 .auth-page {
   margin-inline: auto;
+  outline: 1px solid transparent;
 }
 
 .auth-page-content {
