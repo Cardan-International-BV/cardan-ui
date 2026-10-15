@@ -188,6 +188,9 @@ defineExpose({ submitting, error });
 
 <style>
 .login-form {
+  max-width: 21rem;
+  margin-inline: auto;
+
   > hr {
     block-size: 1px;
     background-color: var(--color-grey-light);

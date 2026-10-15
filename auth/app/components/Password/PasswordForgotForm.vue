@@ -54,21 +54,28 @@ async function requestResetLink() {
 
     <AuthError :data="error" />
 
-    <div aria-live="polite">
-      <p v-if="sent" class="password-forgot-sent">
+    <div aria-live="polite" class="message-wrapper">
+      <Callout v-if="sent" color="blue" class="password-forgot-sent">
         {{ $t('password.email-sent') }}
-      </p>
+      </Callout>
     </div>
   </Form>
 </template>
 
 <style>
 .password-forgot-form {
+  max-width: 21rem;
+  margin-inline: auto;
+
   .password-forgot-sent {
     margin-block: 0;
     font-weight: var(--font-weight-medium);
     font-size: var(--font-size-sm);
     color: var(--color-grey-text);
+  }
+
+  .message-wrapper {
+    display: grid;
   }
 }
 </style>
