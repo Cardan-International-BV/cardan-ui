@@ -269,7 +269,7 @@ function removeFile() {
     min-height: 1.25rem;
     align-items: center;
     font-size: var(--font-size-sm);
-    margin-block-end: 0.125rem;
+    margin-block-end: 0.25rem;
     color: var(--color-text);
   }
 }
