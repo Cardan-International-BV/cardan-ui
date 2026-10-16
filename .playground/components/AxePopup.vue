@@ -7,13 +7,3 @@ import { VueAxePopup } from 'vue-axe';
     <VueAxePopup />
   </ClientOnly>
 </template>
-
-<style>
-.va-pt-1 {
-  padding-block-start: 0.6rem !important;
-}
-
-.va-popup-btn {
-  box-shadow: var(--shadow-1) !important;
-}
-</style>

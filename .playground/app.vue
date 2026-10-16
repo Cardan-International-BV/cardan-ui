@@ -85,11 +85,11 @@ main {
 }
 
 h2 {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-lg);
 }
 
 h3 {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-md);
 }
 
 .app-focus-wrapper {
@@ -128,6 +128,10 @@ h3 {
 
 .demo-page {
   padding-block-end: 5rem;
+
+  h1 {
+    font-size: var(--font-size-xxl);
+  }
 
   .section-topbar {
     flex-wrap: nowrap;

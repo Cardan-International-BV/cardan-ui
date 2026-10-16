@@ -346,10 +346,13 @@ const emit = defineEmits<{
 
 .button-variant--3d {
   --radius: var(--radius-xl);
+  --button-shadow-offset: 4px 4px 0 0 var(--color-accent);
+  --button-shadow-offset-hover: 6px 6px 0 0 var(--color-accent);
+
   color: var(--color-white);
   background-color: var(--color-text);
   transition-property: background-color, box-shadow;
-  box-shadow: var(--shadow-offset);
+  box-shadow: var(--button-shadow-offset);
 
   .icon svg {
     width: 1.25em;
@@ -357,7 +360,7 @@ const emit = defineEmits<{
   }
 
   &:not(:focus-visible, :disabled, .disabled):hover {
-    box-shadow: var(--shadow-offset-hover);
+    box-shadow: var(--button-shadow-offset-hover);
     background-color: var(--color-black);
   }
   &:focus-visible {
@@ -599,24 +602,17 @@ const emit = defineEmits<{
   transition-duration: 0s;
 
   .iconify {
-    color: var(--color-grey-graphic);
+    color: inherit;
   }
 
   &:not(:disabled, .disabled):hover {
     text-decoration: underline;
-    color: var(--color-accent-text);
-
-    .iconify {
-      /* color: var(--color-accent-graphic); */
-    }
+    color: var(--color-accent-text-hover);
   }
 
   &.router-link-exact-active {
     text-decoration: underline;
-
-    .iconify {
-      color: var(--color-grey-text);
-    }
+    color: var(--color-accent-text);
   }
 }
 

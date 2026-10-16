@@ -131,7 +131,7 @@ const emit = defineEmits<{
 
 <style>
 .menu-list-label {
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-bold);
   font-size: var(--font-size-lg);
   color: var(--color-grey-text);
   margin-block-start: 1.5rem;
@@ -151,7 +151,7 @@ const emit = defineEmits<{
 
     &:hover {
       text-decoration: underline;
-      color: var(--color-accent);
+      color: var(--color-accent-text);
 
       .iconify {
         color: var(--color-grey-text);
@@ -159,7 +159,6 @@ const emit = defineEmits<{
     }
 
     &.router-link-active {
-      color: var(--color-accent);
       text-decoration: underline;
 
       .iconify {

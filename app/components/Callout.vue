@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const {
   color = 'accent',
-  fontSize = 'xs',
+  fontSize = 'sm',
   iconSize = 'md',
   icon = undefined,
   content = undefined,
