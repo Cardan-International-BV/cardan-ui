@@ -13,8 +13,9 @@ useHead({ title: 'Colors' });
         <ColorSwatch color="accent-hover" />
         <ColorSwatch color="accent-bg" />
         <ColorSwatch color="accent-text" />
+        <ColorSwatch color="accent-text-hover" />
         <ColorSwatch color="accent-graphic" />
-        <ColorSwatch color="on-accent" />
+        <!-- <ColorSwatch color="on-accent" /> -->
       </div>
 
       <h2>Neutral</h2>

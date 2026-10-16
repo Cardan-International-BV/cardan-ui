@@ -7,7 +7,7 @@ useHead({ title: 'Changelog' });
     <h1>Changelog</h1>
     <p class="mbe-2">Release notes for new features and bug fixes.</p>
 
-    <ChangelogEntry v="2.1.0" date="2026-10-15">
+    <ChangelogEntry v="2.1.0" date="2026-10-16">
       <ul>
         <li>
           Cardan Auth UI: add the login, forgot password, reset password,
@@ -81,6 +81,31 @@ useHead({ title: 'Changelog' });
         <li>
           Make <code>solid</code> the default variant of Callout component and
           rename the <code>default</code> variant to <code>outline</code>
+        </li>
+        <li>
+          Add the <code>--color-accent-text-hover</code> design token for the
+          hover text of the <code>sidebar</code> Button variant
+        </li>
+        <li>
+          Remove the <code>--shadow-*</code> design tokens and the
+          <code>shadow</code> prop of Card component
+        </li>
+        <li>
+          The offset shadow of the <code>3d</code> Button variant is set in
+          Button and no longer uses <code>--shadow-offset</code>
+        </li>
+        <li>Use 14px text in Callout component by default</li>
+        <li>
+          Set <code>--line-height-heading</code> to 1.25 in the
+          <code>main.css</code> template
+        </li>
+        <li>
+          Show the current page in the <code>sidebar</code> Button variant with
+          the accent color and an underline, and give its icon the text color
+        </li>
+        <li>
+          Use bold group labels and the <code>--color-accent-text</code> hover
+          color in MenuList component
         </li>
       </ul>
     </ChangelogEntry>

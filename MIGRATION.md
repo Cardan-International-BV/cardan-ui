@@ -41,8 +41,6 @@ Components use these tokens without fallbacks. Add them to your project's `main.
   /* Buttons */
   --color-on-accent: var(--cardan-white);
   --color-accent-hover: color-mix(in srgb, var(--color-accent) 85%, black);
-  --shadow-offset: 4px 4px 0 0 var(--color-accent);
-  --shadow-offset-hover: 6px 6px 0 0 var(--color-accent);
 
   /* Backdrop behind Dialog and MobileMenu */
   --color-backdrop: rgb(20 20 19 / 60%);
@@ -77,10 +75,10 @@ cardan-lms-nuxt and CAT-nuxt already have all of these tokens. cardan-nuxt, tehv
 
 Some projects did not define every token the components use, also before this release. Copy these from the layer's [`app/assets/main.css`](app/assets/main.css) when you migrate:
 
-| Project       | Missing tokens                                                                    |
-| ------------- | --------------------------------------------------------------------------------- |
-| CAT-dashboard | `--line-height`, `--line-height-heading`                                          |
-| chart         | Nearly all color, font, radius, duration and shadow tokens: it defines 10 of them |
+| Project       | Missing tokens                                                            |
+| ------------- | ------------------------------------------------------------------------- |
+| CAT-dashboard | `--line-height`, `--line-height-heading`                                  |
+| chart         | Nearly all color, font, radius and duration tokens: it defines 10 of them |
 
 ## 4. Changes you will see despite the tokens
 
@@ -138,7 +136,7 @@ Remove any MFA composables or components your app still has from before the laye
 
 ## 7. Upgrading to 2.1
 
-2.1 changes the font size scale, renames Button's `black` variant to `3d`, adds a new, basic `black` variant, adds two options to Chip, removes its `capitalize` prop, and changes the default look of Callout.
+2.1 changes the font size scale, renames Button's `black` variant to `3d`, adds a new, basic `black` variant, adds two options to Chip, removes its `capitalize` prop, and changes the default look of Callout. It also adds a hover token for accent text, removes the shadow tokens and Card's `shadow` prop, and makes Callout text and heading line height a little larger.
 
 ### New font size scale
 
@@ -185,3 +183,38 @@ The new Chip options change nothing for projects that don't use them:
 
 - **`variant="solid"`**: a filled background in the `--color-<color>-text` color with `--color-white` text, at least 4.5:1 for every color. In dark mode this gives a light background with dark text.
 - **`textTransform`**: `uppercase`, `lowercase` or `capitalize`. `uppercase` also adds `letter-spacing: 0.025em` to keep the label legible. `capitalize` capitalizes only the first letter of the label, not every word like the CSS `text-transform` keyword. The new global `TextTransform` type can be used by other components too.
+
+### Add `--color-accent-text-hover`
+
+The sidebar Button uses `--color-accent-text-hover` as its hover text color. Components use it without a fallback, so add it to your `main.css`. In dark mode it is lighter than `--color-accent-text`, to stay above 4.5:1 on the dark surfaces. The Cardan template values are:
+
+```css
+:where(.light-mode) {
+  --color-accent-text-hover: var(--cardan-purple-hover);
+}
+
+:where(.dark-mode) {
+  --color-accent-text-hover: color-mix(
+    in srgb,
+    var(--cardan-purple-text-on-dark) 80%,
+    var(--cardan-dark-text)
+  );
+}
+```
+
+Add the `--cardan-purple-hover: #763597`, `--cardan-purple-text-on-dark: #b768de` and `--cardan-dark-text: #fafaf9` primitives if your project lacks them.
+
+`--color-accent-hover` stays the hover background of the primary and accent Buttons. Keep it: the text token is too light for white text in dark mode.
+
+### Shadows removed
+
+- **Shadow tokens**: no component uses `--shadow`, `--shadow-1`, `--shadow-2`, `--shadow-3`, `--shadow-color`, `--shadow-offset` or `--shadow-offset-hover` any more, and the template no longer has them. Delete them from your `main.css`, unless your own CSS uses them.
+- **Card's `shadow` prop is removed**: Cards have no shadow. Remove `shadow` from your Cards; to keep a shadow, add a `box-shadow` to the Card's class in your own CSS.
+- **`variant="3d"`** keeps its accent-colored offset shadow, set in Button itself. A project value for `--shadow-offset` or `--shadow-offset-hover` no longer changes it. To change the shadow, set `--button-shadow-offset` and `--button-shadow-offset-hover` on `.button-variant--3d`.
+
+### Other changes
+
+- **Callout text is 14px**: the default `font-size` is `sm` instead of `xs` (12px). Add `font-size="xs"` to keep the smaller text.
+- **`--line-height-heading`** is 1.25 instead of 1.15 in the template. Update it in your `main.css` to follow the template. Without the token, headings fall back to 1.25 as well.
+- **Sidebar Button**: the icon takes the text color, the hover color is `--color-accent-text-hover`, and the link to the current page is underlined in `--color-accent-text`.
+- **MenuList**: group labels are bold, the hover color is `--color-accent-text` instead of `--color-accent`, and the link to the current page is underlined in the text color instead of the accent color.

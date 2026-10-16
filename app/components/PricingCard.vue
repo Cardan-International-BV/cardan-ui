@@ -28,7 +28,6 @@ const emit = defineEmits<{
 
 <template>
   <Card
-    :shadow="false"
     border-radius="lg"
     :border-color="recommended ? 'transparent' : 'grey-bg'"
     :class="['pricing-card', recommended && 'pricing-card--recommended']"

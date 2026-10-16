@@ -7,7 +7,7 @@ const text = ref(
 );
 
 const chipSize = ref<ChipSize>('md');
-const chipFontSize = ref<FontSize>('xs');
+const chipFontSize = ref<FontSize>('sm');
 const chipIconSize = ref<FontSize>('sm');
 const chipColors: BaseColor[] = [
   'default',
