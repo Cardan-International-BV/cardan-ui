@@ -54,6 +54,12 @@ export default defineNuxtConfig({
     '/mfa-setup': { ssr: false },
   },
 
+  // Nuxt 4.6 fails the server build when it tries to inline the highlight.js
+  // theme that Markdown/highlight.ts imports with ?url for md-editor-v3
+  features: {
+    inlineStyles: false,
+  },
+
   css: ['~/assets/playground.css'],
 
   icon: {
