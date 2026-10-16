@@ -60,6 +60,17 @@ export default defineNuxtConfig({
     inlineStyles: false,
   },
 
+  // Netlify builds from the repository root, so it looks for the publish
+  // directory and the server function there, not in .playground
+  nitro: process.env.NETLIFY
+    ? {
+        output: {
+          dir: '../.netlify/functions-internal',
+          publicDir: '../dist',
+        },
+      }
+    : {},
+
   css: ['~/assets/playground.css'],
 
   icon: {
