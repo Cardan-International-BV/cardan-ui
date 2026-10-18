@@ -61,6 +61,7 @@ onMounted(() => {
 }
 
 .auth-page-content {
+  --color-ghost-hover-bg: var(--color-bg);
   display: grid;
   /* At least 18rem where it fits, the full width below that, at most 28rem */
   grid-template-columns: minmax(min(18rem, 100%), 28rem);

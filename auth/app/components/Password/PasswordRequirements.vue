@@ -37,7 +37,7 @@ const requirements = computed(() => [
             requirement.count !== undefined
               ? $t(
                   `password.requirements.${requirement.key}`,
-                  requirement.count
+                  requirement.count,
                 )
               : $t(`password.requirements.${requirement.key}`)
           }}

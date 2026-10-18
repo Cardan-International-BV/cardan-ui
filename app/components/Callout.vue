@@ -118,6 +118,7 @@ const computedIconLabel = computed(() => {
 
 /* Info callouts use the neutral surface */
 .callout-color--blue {
+  --color-ghost-hover-bg: var(--color-bg);
   color: var(--color-grey-text);
   background-color: var(--color-grey-bg);
 }
@@ -163,6 +164,7 @@ const computedIconLabel = computed(() => {
   }
 
   &.callout-color--blue {
+    --color-ghost-hover-bg: var(--color-grey-bg);
     border-color: var(--color-grey-light);
     color: var(--color-grey-text);
 

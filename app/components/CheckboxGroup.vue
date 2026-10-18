@@ -82,7 +82,7 @@ const {
   legend {
     font-weight: var(--font-weight-semibold);
     font-size: var(--font-size-md);
-    margin-block-end: 1rem;
+    margin-block-end: 0.5rem;
   }
 
   .checkbox-list {

@@ -420,7 +420,7 @@ const emit = defineEmits<{
   background-color: transparent;
 
   &:not(:disabled, .disabled):hover {
-    background-color: var(--color-grey-bg);
+    background-color: var(--color-ghost-hover-bg);
   }
 
   &.router-link-active {
@@ -517,7 +517,6 @@ const emit = defineEmits<{
   align-items: center;
   text-decoration: underline;
   text-underline-offset: 0.25em;
-  font-weight: unset;
   background-color: transparent;
   padding-inline: 0;
 

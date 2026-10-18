@@ -155,6 +155,7 @@
   --color-input-bg: var(--color-card-bg);
   --card-border-color: var(--cardan-dark-border);
   --popover-border-color: var(--cardan-dark-border);
+  --color-ghost-hover-bg: var(--color-grey-bg);
 
   .card {
     --color-input-bg: var(--color-bg);
@@ -241,7 +242,8 @@
   --color-dialog-bg: var(--color-card-bg);
   --color-input-bg: var(--color-card-bg);
   --card-border-color: var(--cardan-beige-mid);
-  --popover-border-color: transparent;
+  --popover-border-color: var(--cardan-beige-mid);
+  --color-ghost-hover-bg: var(--color-grey-bg);
 }
 
 :where(:root) {

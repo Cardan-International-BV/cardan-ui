@@ -35,6 +35,11 @@ useHead({ title: 'Changelog' });
           the font size scale and <code>--color-grey-light</code> directly
         </li>
         <li>
+          Add the <code>--color-ghost-hover-bg</code> token for the hover
+          background of the ghost Button; grey surfaces set it to
+          <code>--color-bg</code>, as the grey Callout does
+        </li>
+        <li>
           Fix: Input without <code>v-model</code> no longer loses its value when
           one of its props changes
         </li>
