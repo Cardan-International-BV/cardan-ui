@@ -420,7 +420,7 @@ const emit = defineEmits<{
   background-color: transparent;
 
   &:not(:disabled, .disabled):hover {
-    background-color: var(--color-grey-bg);
+    background-color: var(--color-ghost-hover-bg);
   }
 
   &.router-link-active {

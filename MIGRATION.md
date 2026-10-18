@@ -136,7 +136,7 @@ Remove any MFA composables or components your app still has from before the laye
 
 ## 7. Upgrading to 2.1
 
-2.1 changes the font size scale, renames Button's `black` variant to `3d`, adds a new, basic `black` variant, adds two options to Chip, removes its `capitalize` prop, and changes the default look of Callout. It also adds a hover token for accent text, removes the shadow tokens and Card's `shadow` prop, and makes Callout text and heading line height a little larger.
+2.1 changes the font size scale, renames Button's `black` variant to `3d`, adds a new, basic `black` variant, adds two options to Chip, removes its `capitalize` prop, and changes the default look of Callout. It also adds a hover token for accent text and one for the ghost Button, removes the shadow tokens and Card's `shadow` prop, and makes Callout text and heading line height a little larger.
 
 ### New font size scale
 
@@ -205,6 +205,22 @@ The sidebar Button uses `--color-accent-text-hover` as its hover text color. Com
 Add the `--cardan-purple-hover: #763597`, `--cardan-purple-text-on-dark: #b768de` and `--cardan-dark-text: #fafaf9` primitives if your project lacks them.
 
 `--color-accent-hover` stays the hover background of the primary and accent Buttons. Keep it: the text token is too light for white text in dark mode.
+
+### Add `--color-ghost-hover-bg`
+
+The ghost Button uses `--color-ghost-hover-bg` as its hover background. Components use it without a fallback, so add it to both `:where(.light-mode)` and `:where(.dark-mode)` in your `main.css`:
+
+```css
+--color-ghost-hover-bg: var(--color-grey-bg);
+```
+
+On a `--color-grey-bg` or `--color-grey-light` surface that hover is invisible or too faint, so such a surface sets the token to the page background. The grey (`blue`) Callout does this itself. Do the same on your own grey surfaces, such as a sidebar:
+
+```css
+.sidebar {
+  --color-ghost-hover-bg: var(--color-bg);
+}
+```
 
 ### Shadows removed
 
