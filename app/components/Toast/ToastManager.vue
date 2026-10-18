@@ -7,10 +7,10 @@ const { toasts, hideToast } = useToast();
     <div class="toast-manager" aria-live="polite">
       <TransitionGroup name="toast">
         <Toast
-          v-for="(toast, index) in toasts"
-          :key="'toast-' + index"
+          v-for="toast in toasts"
+          :key="toast.id"
           v-bind="toast"
-          @hide="hideToast"
+          @hide="hideToast(toast.id)"
         />
       </TransitionGroup>
     </div>

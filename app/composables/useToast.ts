@@ -1,11 +1,13 @@
 export function useToast() {
-  const toasts = useState<Toast[]>('toasts', () => []);
+  const toasts = useState<(Toast & { id: string })[]>('toasts', () => []);
 
   function createToast(toast: Toast) {
-    toasts.value.push(toast);
+    const id = toast.id ?? crypto.randomUUID();
+    toasts.value.push({ ...toast, id });
+    return id;
   }
 
-  function hideToast(id?: string) {
+  function hideToast(id: string) {
     toasts.value = toasts.value.filter((toast) => toast.id !== id);
   }
 
