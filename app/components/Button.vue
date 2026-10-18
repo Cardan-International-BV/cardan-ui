@@ -517,7 +517,6 @@ const emit = defineEmits<{
   align-items: center;
   text-decoration: underline;
   text-underline-offset: 0.25em;
-  font-weight: unset;
   background-color: transparent;
   padding-inline: 0;
 

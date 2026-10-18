@@ -97,7 +97,7 @@ const {
 
 .radios-wrapper {
   legend {
-    margin-block-end: 1rem;
+    margin-block-end: 0.5rem;
   }
 
   legend {
