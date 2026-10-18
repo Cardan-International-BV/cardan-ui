@@ -7,8 +7,9 @@ export function useToast() {
     return id;
   }
 
-  function hideToast(id: string) {
-    toasts.value = toasts.value.filter((toast) => toast.id !== id);
+  /** Hides the toast with this id, or all toasts without one. */
+  function hideToast(id?: string) {
+    toasts.value = id ? toasts.value.filter((toast) => toast.id !== id) : [];
   }
 
   return { toasts, createToast, hideToast };

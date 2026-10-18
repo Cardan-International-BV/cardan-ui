@@ -15,11 +15,13 @@ const passwordConfirmation = ref('');
 const loading = ref(false);
 const error = ref<AuthErrorData | null>(null);
 const requirementsId = useId();
+/** The "saved" toast, hidden again on the next submit */
+let savedToastId: string | undefined;
 
 async function updatePassword() {
   error.value = null;
   loading.value = true;
-  hideToast();
+  if (savedToastId) hideToast(savedToastId);
 
   try {
     await client('/api/v1/profile/password', {
@@ -35,7 +37,7 @@ async function updatePassword() {
     password.value = '';
     passwordConfirmation.value = '';
 
-    createToast({ label: t('password.saved'), color: 'green' });
+    savedToastId = createToast({ label: t('password.saved'), color: 'green' });
   } catch (e) {
     error.value = extractAuthError(e);
   } finally {
