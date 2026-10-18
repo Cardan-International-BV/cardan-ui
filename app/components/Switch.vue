@@ -69,9 +69,9 @@ const computedAriaDescribedby = computed(() =>
 <style>
 .switch-button-wrapper {
   .instruction {
-    /* margin-block-end: 0; */
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-xs);
     color: var(--color-grey-text);
+    margin-block-end: 0;
   }
 }
 
