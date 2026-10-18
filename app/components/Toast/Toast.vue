@@ -207,7 +207,7 @@ const emit = defineEmits<{
   background-color: transparent;
 }
 
-/* Transitions: slide and fade */
+/* Transitions: slide and fade; a leaving toast collapses */
 .toast-move {
   transition: all var(--duration-md) var(--cubic-bezier);
 }
@@ -259,6 +259,10 @@ const emit = defineEmits<{
   to {
     opacity: 0;
     transform: translateY(100%);
+    block-size: 0;
+    padding-block: 0;
+    margin-block-end: 0;
+    border-block-width: 0;
   }
 }
 
@@ -266,6 +270,10 @@ const emit = defineEmits<{
   to {
     opacity: 0;
     transform: translateX(100%);
+    block-size: 0;
+    padding-block: 0;
+    margin-block-end: 0;
+    border-block-width: 0;
   }
 }
 </style>

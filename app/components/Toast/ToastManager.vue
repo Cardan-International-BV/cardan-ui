@@ -1,11 +1,21 @@
 <script setup lang="ts">
 const { toasts, hideToast } = useToast();
+
+/**
+ * A leaving toast collapses so the others slide into its place. Its height is
+ * fixed first, because a height of `auto` cannot be animated.
+ */
+function lockHeight(element: Element) {
+  if (element instanceof HTMLElement) {
+    element.style.blockSize = `${element.offsetHeight}px`;
+  }
+}
 </script>
 
 <template>
   <Teleport to="body">
     <div class="toast-manager" aria-live="polite">
-      <TransitionGroup name="toast">
+      <TransitionGroup name="toast" @before-leave="lockHeight">
         <Toast
           v-for="toast in toasts"
           :key="toast.id"
