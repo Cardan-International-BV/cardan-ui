@@ -23,7 +23,92 @@ const {
   denyButtonLabel?: string;
 }>();
 
-const { cookiesDialogRef, acceptCookies, denyCookies } = useCookiesDialog();
+const {
+  cookieConsent,
+  consentCookie,
+  cookiesDialogRef,
+  acceptCookies,
+  denyCookies,
+} = useCookiesDialog();
+
+const consentTrigger = useScriptTriggerConsent();
+
+const gtm = useScriptGoogleTagManager({
+  id: useRuntimeConfig().public.gtmId as string,
+
+  onBeforeGtmStart: (gtag) => {
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      functionality_storage: 'denied',
+      personalization_storage: 'denied',
+    });
+  },
+
+  scriptOptions: {
+    trigger: consentTrigger,
+  },
+});
+
+// GTM only reads gtag commands from an Arguments object, not from an array
+function gtag(
+  ..._args: [
+    command: 'consent',
+    type: 'default' | 'update',
+    params: Record<string, 'granted' | 'denied'>,
+  ]
+) {
+  // eslint-disable-next-line prefer-rest-params
+  gtm.proxy.dataLayer.push(arguments as unknown as unknown[]);
+}
+
+function updateConsent(value: 'granted' | 'denied') {
+  gtag('consent', 'update', {
+    ad_user_data: value,
+    ad_personalization: value,
+    ad_storage: value,
+    analytics_storage: value,
+    functionality_storage: value,
+    personalization_storage: value,
+  });
+}
+
+// A choice is either everything accepted or everything but necessary denied
+function isChoice(consent: typeof cookieConsent.value | null) {
+  return (
+    consent?.necessary === true &&
+    typeof consent.analytics === 'boolean' &&
+    consent.analytics === consent.marketing
+  );
+}
+
+watch(
+  cookieConsent,
+  (consent) => {
+    if (!isChoice(consent)) return;
+
+    if (consent.analytics) {
+      updateConsent('granted');
+      consentTrigger.accept();
+    } else {
+      updateConsent('denied');
+      gtm.remove();
+    }
+  },
+  { deep: true },
+);
+
+onMounted(() => {
+  if (consentCookie.value) {
+    cookieConsent.value = { ...consentCookie.value };
+  }
+
+  if (!isChoice(cookieConsent.value)) {
+    cookiesDialogRef.value?.openDialog();
+  }
+});
 </script>
 
 <template>

@@ -233,4 +233,5 @@ On a `--color-grey-bg` or `--color-grey-light` surface that hover is invisible o
 - **Callout text is 14px**: the default `font-size` is `sm` instead of `xs` (12px). Add `font-size="xs"` to keep the smaller text.
 - **`--line-height-heading`** is 1.25 instead of 1.15 in the template. Update it in your `main.css` to follow the template. Without the token, headings fall back to 1.25 as well.
 - **Sidebar Button**: the icon takes the text color, the hover color is `--color-accent-text-hover`, and the link to the current page is underlined in `--color-accent-text`.
+- **`useCookiesDialog`** only holds the consent state and the `acceptCookies` and `denyCookies` actions. `CookiesDialog` now loads GTM and applies the saved choice, so a page sends one consent update however many components call the composable (before, each call sent its own). Render `<CookiesDialog />` once in your layout; without it, GTM no longer loads.
 - **MenuList**: group labels are bold, the hover color is `--color-accent-text` instead of `--color-accent`, and the link to the current page is underlined in the text color instead of the accent color.
