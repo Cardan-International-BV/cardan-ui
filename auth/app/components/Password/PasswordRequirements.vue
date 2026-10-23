@@ -81,6 +81,13 @@ const requirements = computed<Requirement[]>(() => [
 </template>
 
 <style>
+/* The new password field with its requirements below it, as one row of the
+   form: the form's row gap stays between the fields, not inside this pair. */
+.password-new-field {
+  display: grid;
+  gap: 0.5rem;
+}
+
 .password-requirements {
   @container (min-width: 280px) {
     background-color: var(--color-bg);

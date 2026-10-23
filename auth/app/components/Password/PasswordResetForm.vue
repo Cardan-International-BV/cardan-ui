@@ -94,23 +94,26 @@ async function resetPassword() {
       required
     />
 
-    <Input
-      v-model="password"
-      :label="$t('password.new')"
-      name="password"
-      :type="showPassword ? 'text' : 'password'"
-      autocomplete="new-password"
-      size="lg"
-      :minlength="minLength"
-      :maxlength="maxLength"
-      :error-message="
-        password ? $t('password.requirements.length', minLength) : undefined
-      "
-      :aria-describedby="requirementsId"
-      required
-    />
+    <!-- One form row: the requirements belong to the field above them -->
+    <div class="password-new-field">
+      <Input
+        v-model="password"
+        :label="$t('password.new')"
+        name="password"
+        :type="showPassword ? 'text' : 'password'"
+        autocomplete="new-password"
+        size="lg"
+        :minlength="minLength"
+        :maxlength="maxLength"
+        :error-message="
+          password ? $t('password.requirements.length', minLength) : undefined
+        "
+        :aria-describedby="requirementsId"
+        required
+      />
 
-    <PasswordRequirements :id="requirementsId" :password="password" />
+      <PasswordRequirements :id="requirementsId" :password="password" />
+    </div>
 
     <div class="password-input-wrapper">
       <Input
