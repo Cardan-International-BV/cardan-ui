@@ -8,7 +8,7 @@
  */
 const {
   showPasswordToggle = true,
-  divider = true,
+  divider = false,
   remember = false,
   errorPosition = 'above-submit',
   size = 'lg',

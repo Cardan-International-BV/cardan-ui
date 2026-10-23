@@ -136,12 +136,10 @@ const { userEmail } = useUserProfileDetails();
 
 #### Making it look like your app
 
-Everything variable is a small prop. The Cardan Academy form has no reveal button, no rule, the error below the button, and holds the spinner through the page transition:
+Everything variable is a small prop. The Cardan Academy form remembers the session, shows the error below the button, and holds the spinner through the page transition:
 
 ```vue
 <LoginForm
-  :show-password-toggle="false"
-  :divider="false"
   remember
   error-position="below-submit"
   :loading-delay="lgTransition"
@@ -155,7 +153,7 @@ The buttons of every form and dialog in this layer have the Cardan look: `black`
 | Prop                 | Default                        |                                                                       |
 | -------------------- | ------------------------------ | --------------------------------------------------------------------- |
 | `showPasswordToggle` | `true`                         | Reveal-password button beside the password field                      |
-| `divider`            | `true`                         | Rule between the fields and the submit button                         |
+| `divider`            | `false`                        | Rule between the fields and the submit button                         |
 | `remember`           | `false`                        | Send `remember: true` with the credentials                            |
 | `errorPosition`      | `'above-submit'`               | Or `'below-submit'`                                                   |
 | `size`               | `'lg'`                         | Input size                                                            |
