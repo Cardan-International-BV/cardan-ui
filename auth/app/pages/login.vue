@@ -22,8 +22,6 @@ const { remindMfaSetup } = useMfaSetupReminder();
   >
     <LoginForm
       v-model:email="email"
-      :show-password-toggle="false"
-      :divider="false"
       remember
       error-position="below-submit"
       :loading-delay="lgTransition"

@@ -75,7 +75,6 @@ const {
 .radio-wrapper {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
   transition-property: opacity;
   transition-duration: var(--duration-sm);
 

@@ -12,7 +12,7 @@ const {
   color?: 'accent' | 'blue' | 'green' | 'red' | 'orange';
   fontSize?: FontSize;
   iconSize?: FontSize;
-  icon?: string;
+  icon?: string | false;
   content?: string;
   ariaLabel?: string;
   radius?: BorderRadius;
@@ -26,7 +26,7 @@ const computedStyle = computed(() => ({
 }));
 
 const computedIcon = computed(() => {
-  if (icon) return icon;
+  if (icon !== undefined) return icon;
 
   if (color === 'blue') return 'material-symbols:info-outline-rounded';
   if (color === 'green') return 'material-symbols:check-circle-outline-rounded';
@@ -57,7 +57,7 @@ const computedIconLabel = computed(() => {
     :style="computedStyle"
   >
     <div class="callout-content">
-      <Icon v-if="computedIcon" :name="computedIcon" />
+      <Icon v-if="computedIcon" :name="computedIcon" class="callout-icon" />
       <strong v-if="computedIconLabel" class="visuallyhidden">
         {{ computedIconLabel }}
       </strong>
@@ -85,7 +85,7 @@ const computedIconLabel = computed(() => {
     align-items: center;
     gap: 0.75em;
 
-    .iconify {
+    .callout-icon {
       flex-shrink: 0;
       font-size: var(--icon-size);
     }
@@ -131,7 +131,7 @@ const computedIconLabel = computed(() => {
     border-color: var(--color-accent-bg);
     color: var(--color-accent-text);
 
-    .iconify {
+    .callout-icon {
       color: var(--color-accent-graphic);
     }
   }
@@ -140,7 +140,7 @@ const computedIconLabel = computed(() => {
     border-color: var(--color-red-bg);
     color: var(--color-red-text);
 
-    .iconify {
+    .callout-icon {
       color: var(--color-red-graphic);
     }
   }
@@ -149,7 +149,7 @@ const computedIconLabel = computed(() => {
     border-color: var(--color-orange-bg);
     color: var(--color-orange-text);
 
-    .iconify {
+    .callout-icon {
       color: var(--color-orange-graphic);
     }
   }
@@ -158,7 +158,7 @@ const computedIconLabel = computed(() => {
     border-color: var(--color-green-bg);
     color: var(--color-green-text);
 
-    .iconify {
+    .callout-icon {
       color: var(--color-green-graphic);
     }
   }
@@ -168,7 +168,7 @@ const computedIconLabel = computed(() => {
     border-color: var(--color-grey-light);
     color: var(--color-grey-text);
 
-    .iconify {
+    .callout-icon {
       color: var(--color-grey-text);
     }
   }

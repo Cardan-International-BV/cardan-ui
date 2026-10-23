@@ -1,4 +1,4 @@
-import { defaultIcons } from './utils/defaultIcons';
+import { defaultIcons } from './utils/defaultIcons.ts';
 
 export default defineNuxtConfig({
   // Cardan UI and the Cardan Auth UI layer, which is demoed on the Auth UI pages

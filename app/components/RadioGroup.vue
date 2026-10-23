@@ -119,7 +119,6 @@ const {
     &.inline {
       display: flex;
       flex-wrap: wrap;
-      row-gap: 0.5rem;
       column-gap: 1rem;
     }
   }
