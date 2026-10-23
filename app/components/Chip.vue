@@ -45,6 +45,7 @@ const formattedLabel = computed(() =>
     ]"
     :style="computedStyle"
   >
+    <slot name="inline-start" />
     <Icon v-if="icon" :name="icon" />
 
     <span v-if="label !== undefined" class="chip-text">{{
@@ -52,6 +53,8 @@ const formattedLabel = computed(() =>
     }}</span>
 
     <slot mdc-unwrap="p" />
+
+    <slot name="inline-end" />
   </span>
 </template>
 
@@ -124,7 +127,7 @@ const formattedLabel = computed(() =>
 /* Flat Chip */
 .chip-variant--flat {
   color: var(--color-text);
-  background-color: var(--color-grey-light);
+  background-color: var(--color-grey-bg);
 }
 
 .chip-variant--flat.chip-color--accent {
@@ -175,7 +178,7 @@ const formattedLabel = computed(() =>
 /* Soft Chip */
 .chip-variant--soft {
   color: var(--color-text);
-  border-color: var(--color-grey-light);
+  border-color: var(--color-grey-bg);
   background-color: var(--color-white);
 }
 
@@ -239,7 +242,7 @@ const formattedLabel = computed(() =>
 
 .chip-variant--outline.chip-color--grey {
   color: var(--color-grey-text);
-  border-color: var(--color-grey-light);
+  border-color: var(--color-grey-bg);
 }
 
 .chip-variant--outline.chip-color--red {
