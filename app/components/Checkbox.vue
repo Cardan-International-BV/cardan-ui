@@ -73,7 +73,6 @@ const {
 .checkbox-wrapper {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
   transition-property: opacity;
   transition-duration: var(--duration-sm);
 
@@ -100,13 +99,33 @@ const {
       width: 100%;
       height: 100%;
       border: 1px solid var(--color-grey-text);
-
       border-radius: inherit;
       background-color: var(--color-card-bg);
     }
 
-    &:checked::before {
-      border-color: var(--color-accent);
+    &:checked {
+      &::before {
+        border-color: var(--color-accent-graphic);
+      }
+
+      + label {
+        color: var(--color-accent-text);
+        font-weight: var(--font-weight-semibold);
+      }
+
+      &::after {
+        content: '';
+        display: inline-block;
+        width: 1rem;
+        height: 1rem;
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        background-color: var(--color-accent);
+        mask-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.8568 7.39978L20.5033 7.7533L9.90371 18.3539L9.55019 18.7074L3.14297 12.3002L5.2748 10.1683L9.54922 14.4427L18.3715 5.62146L18.725 5.26794L20.8568 7.39978Z" fill="red" stroke="red"/></svg>');
+        mask-size: contain;
+        mask-repeat: no-repeat;
+      }
     }
 
     &:focus-visible {
@@ -115,20 +134,6 @@ const {
       &::before {
         border-color: var(--focus-color);
       }
-    }
-
-    &:checked::after {
-      content: '';
-      display: inline-block;
-      width: 1rem;
-      height: 1rem;
-      position: absolute;
-      inset: 0;
-      margin: auto;
-      background-color: var(--color-accent);
-      mask-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.8568 7.39978L20.5033 7.7533L9.90371 18.3539L9.55019 18.7074L3.14297 12.3002L5.2748 10.1683L9.54922 14.4427L18.3715 5.62146L18.725 5.26794L20.8568 7.39978Z" fill="red" stroke="red"/></svg>');
-      mask-size: contain;
-      mask-repeat: no-repeat;
     }
   }
 }
