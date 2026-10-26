@@ -4,6 +4,7 @@ const {
   minHeight = 0,
   arrow = true,
   icon = 'material-symbols:chevron-right-rounded',
+  iconPos = 'end',
   ariaLabel = undefined,
   tabindex = undefined,
   open = undefined,
@@ -11,6 +12,7 @@ const {
   minHeight?: number;
   id?: string;
   icon?: string;
+  iconPos?: 'start' | 'end';
   ariaLabel?: string;
   tabindex?: string;
   arrow?: boolean;
@@ -67,14 +69,24 @@ defineExpose({ toggleAccordion });
       :aria-label="ariaLabel"
       :tabindex="tabindex"
       type="button"
-      class="accordion-trigger"
+      :class="['accordion-trigger', `accordion-icon-position--${iconPos}`]"
       @click.stop="toggleAccordion"
     >
-      <Icon v-if="arrow" :name="icon" class="accordion-arrow" />
+      <Icon
+        v-if="arrow && iconPos === 'start'"
+        :name="icon"
+        class="accordion-arrow"
+      />
 
       <slot v-if="$slots.trigger" name="trigger" mdc-unwrap="p" />
 
       <span v-else class="visuallyhidden">{{ $t('general.expand') }}</span>
+
+      <Icon
+        v-if="arrow && iconPos === 'end'"
+        :name="icon"
+        class="accordion-arrow"
+      />
     </button>
 
     <slot />
@@ -135,8 +147,6 @@ defineExpose({ toggleAccordion });
   transition-duration: var(--duration-sm);
 
   &:hover {
-    /* color: var(--color-accent-graphic); */
-
     .accordion-arrow {
       color: var(--color-accent-graphic);
     }
@@ -148,10 +158,17 @@ defineExpose({ toggleAccordion });
   }
 
   .accordion-arrow {
-    margin-inline-end: 0.25em;
     transition:
       rotate var(--duration-md),
       color var(--duration-sm);
   }
+}
+
+.accordion-icon-position--start .accordion-arrow {
+  margin-inline-end: 0.25em;
+}
+
+.accordion-icon-position--end .accordion-arrow {
+  margin-inline-start: 0.25em;
 }
 </style>
