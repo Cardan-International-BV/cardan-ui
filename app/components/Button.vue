@@ -304,11 +304,11 @@ const emit = defineEmits<{
 }
 
 .button-variant--primary {
-  color: var(--color-on-accent);
-  background-color: var(--color-accent);
+  color: var(--color-white);
+  background-color: var(--color-accent-text);
 
   &:not(:disabled, .disabled):hover {
-    background-color: var(--color-accent-hover);
+    background-color: var(--color-accent-text-hover);
   }
 }
 
@@ -390,8 +390,8 @@ const emit = defineEmits<{
 .button-variant--cta {
   --radius: var(--radius-xl);
   --focus-color: var(--color-accent-text);
-  color: var(--color-on-accent);
-  background-color: var(--color-accent);
+  color: var(--color-white);
+  background-color: var(--color-accent-text);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
 
@@ -401,7 +401,7 @@ const emit = defineEmits<{
   }
 
   &:not(:disabled, .disabled):hover {
-    background-color: var(--color-accent-hover);
+    background-color: var(--color-accent-text-hover);
   }
 }
 

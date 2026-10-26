@@ -119,11 +119,11 @@ const emit = defineEmits<{
     &:checked {
       + label {
         color: var(--color-white);
-        border-color: var(--color-accent);
-        background-color: var(--color-accent);
+        border-color: var(--color-accent-graphic);
+        background-color: var(--color-accent-text);
 
         .iconify {
-          color: var(--color-accent);
+          color: var(--color-accent-graphic);
         }
       }
     }

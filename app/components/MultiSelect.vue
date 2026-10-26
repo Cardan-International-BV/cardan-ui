@@ -310,10 +310,10 @@ function preventEscape(event: KeyboardEvent) {
   --ms-group-label-color-pointed: var(--color-text);
   --ms-group-label-bg-disabled: var(--color-grey-bg);
   --ms-group-label-color-disabled: var(--color-grey-graphic);
-  --ms-group-label-bg-selected: var(--color-accent);
-  --ms-group-label-color-selected: var(--color-on-accent);
-  --ms-group-label-bg-selected-pointed: var(--color-accent);
-  --ms-group-label-color-selected-pointed: var(--color-on-accent);
+  --ms-group-label-bg-selected: var(--color-accent-text);
+  --ms-group-label-color-selected: var(--color-white);
+  --ms-group-label-bg-selected-pointed: var(--color-accent-text);
+  --ms-group-label-color-selected-pointed: var(--color-white);
   /* --ms-group-label-bg-selected-disabled: #75cfb1; */
   /* --ms-group-label-color-selected-disabled: #d1fae5; */
 
