@@ -317,7 +317,7 @@ const emit = defineEmits<{
   background-color: var(--color-red-bg);
 
   &:not(:disabled, .disabled):hover {
-    background-color: color-mix(in srgb, var(--color-red) 20%, white);
+    border-color: var(--color-red-graphic);
   }
 }
 
