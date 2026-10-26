@@ -7,3 +7,9 @@ import { VueAxePopup } from 'vue-axe';
     <VueAxePopup />
   </ClientOnly>
 </template>
+
+<style>
+.va-popup-btn {
+  box-shadow: var(--shadow-1) !important;
+}
+</style>

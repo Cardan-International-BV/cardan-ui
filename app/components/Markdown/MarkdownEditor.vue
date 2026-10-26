@@ -265,7 +265,7 @@ const emit = defineEmits<{
 }
 
 .md-editor-content {
-  min-height: 10rem;
+  min-height: 9rem;
 }
 
 .show-invalid .markdown-editor:has(:invalid) {
