@@ -139,7 +139,8 @@ const emit = defineEmits<{
           <MenuList
             v-if="list?.length"
             :list="list"
-            button-size="md"
+            button-size="lg"
+            font-size="md"
             icon-size="lg"
             :aria-labelledby="'popover-label-' + id"
             @click="handleMenuClick($event)"
