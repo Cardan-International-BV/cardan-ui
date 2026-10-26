@@ -37,13 +37,13 @@ const computedStyle = computed(() => ({
 .avatar-wrapper {
   width: var(--avatar-size);
   height: var(--avatar-size);
-  font-size: var(--avatar-font-size, var(--font-size-sm));
+  font-size: var(--avatar-font-size, var(--font-size-md));
   border: 1px solid var(--avatar-border-color, transparent);
   border-radius: var(--radius-full);
   overflow: clip;
   display: grid;
   place-items: center;
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-bold);
   background-color: var(--color-grey-light);
   color: var(--color-grey-text);
   flex-shrink: 0;

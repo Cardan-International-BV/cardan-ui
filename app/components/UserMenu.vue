@@ -132,14 +132,14 @@ defineExpose({
   }
 
   .user-name {
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-md);
     font-weight: var(--font-weight-semibold);
     line-height: var(--line-height-heading);
   }
 
   .user-email {
     color: var(--color-grey-text);
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-sm);
   }
 
   .theme-select-wrapper {
