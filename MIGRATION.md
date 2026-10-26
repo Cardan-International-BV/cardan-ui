@@ -26,7 +26,7 @@ It only downloads fonts that your CSS uses. A project that keeps `system-ui` (or
 
 ## 3. Add the new design tokens
 
-Components use these tokens without fallbacks. Add them to your project's `main.css`. The values are the ones from the Cardan template in [`app/assets/main.css`](app/assets/main.css), so buttons, tracks and the backdrop take on the Cardan look. Only `--color-accent-hover` follows your own accent: it darkens `--color-accent`. The `--cardan-*` primitives they use are included; skip the ones your project already has:
+Components use these tokens without fallbacks. Add them to your project's `main.css`. The values are the ones from the Cardan template in [`app/assets/main.css`](app/assets/main.css), so buttons, tracks and the backdrop take on the Cardan look. The `--cardan-*` primitives they use are included; skip the ones your project already has:
 
 ```css
 :where(:root) {
@@ -37,10 +37,6 @@ Components use these tokens without fallbacks. Add them to your project's `main.
   --cardan-dark-block: #1e1e1f;
 
   --font-weight-semibold: 600;
-
-  /* Buttons */
-  --color-on-accent: var(--cardan-white);
-  --color-accent-hover: color-mix(in srgb, var(--color-accent) 85%, black);
 
   /* Backdrop behind Dialog and MobileMenu */
   --color-backdrop: rgb(20 20 19 / 60%);
@@ -86,7 +82,7 @@ These changes are not driven by tokens, so they apply to every project:
 
 - **Sizes**: md Button, Input, Select, MultiSelect and DatePicker are 40px high (was 36px), lg is 44px (was 40px).
 - **Placeholders** in Input, Select and Textarea use `--color-grey-text` instead of `--color-grey-graphic`, for 4.5:1 contrast.
-- **MultiSelect**: the highlighted (hovered or keyboard) option uses the accent color with `--color-on-accent` text; a highlighted selected option is green. Tags use `--color-accent-text`.
+- **MultiSelect**: the highlighted (hovered or keyboard) option uses `--color-accent-bg` with `--color-accent-text` text; selected options are green, and red while highlighted, since selecting them again removes them. Tags use `--color-accent-text`.
 - **Progress and range tracks** are one neutral color (`--color-track`) instead of a tint per color, and their fills use the `-graphic` colors.
 - **Colored Select** arrows use the `-text` color instead of the `-graphic` color.
 - **Motion**: Toast slides and fades instead of bouncing; Accordion, ProgressMeter and ProgressCircle animate with `--duration-md` and `--cubic-bezier`; Tabs now animate their color change (a typo disabled this).
@@ -238,7 +234,7 @@ On a `--color-grey-bg` or `--color-grey-light` surface that hover is invisible o
 
 ## 8. Upgrading to 2.2
 
-2.2 makes the endpoints and the password policy of Cardan Auth UI configurable, gives every password field a reveal button, lets the reset page ask for the email address when the reset link has none, and sets the product name of `CardanLogo` in Hanken Grotesk whatever font the project uses.
+2.2 makes the endpoints and the password policy of Cardan Auth UI configurable, gives every password field a reveal button, lets the reset page ask for the email address when the reset link has none, and sets the product name of `CardanLogo` in Hanken Grotesk whatever font the project uses. It also moves the components from `--color-accent` to `--color-accent-text` and `--color-accent-graphic`, removes `--color-on-accent`, puts the Accordion icon at the end, and makes Popover and Search md by default.
 
 ### Cardan Auth UI settings
 
@@ -270,3 +266,36 @@ With `serverChecks: false` the forms list only the length rule. The Configuratio
 ### CardanLogo
 
 The product name in a lockup such as `<CardanLogo product="auditor" />` is set in Hanken Grotesk, as brand artwork, instead of the project's `--font-family`. `@nuxt/fonts`, registered by the layer, serves the font from the project itself; a project on another font downloads one weight of it for the logo, since no other text uses it.
+
+### Accent tokens
+
+Components no longer use `--color-accent`, `--color-accent-hover` or `--color-on-accent`:
+
+- **Filled surfaces**: the primary and CTA Button, the primary Popover trigger, the checked LanguageSelect option, the selected DatePicker date and the selected MultiSelect group label are `--color-accent-text` with `--color-white` text, and the Buttons hover to `--color-accent-text-hover`. In dark mode this gives a light fill with dark text, as the solid Chip has: dark text on the dark-mode `--color-accent` stays below 4.5:1.
+- **Borders, focus lines and indicators** use `--color-accent-graphic`: Input, Select, Textarea, Checkbox, Radio, Switch, Tabs, FileInput, ThemeSelect, Toast, the Markdown components and the offset shadow of the `3d` Button. Accent text uses `--color-accent-text`.
+
+Delete `--color-on-accent` from your `main.css`. Where your own CSS uses it, use `--color-white` and fill the surface with `--color-accent-text` instead of `--color-accent`, so the pair keeps 4.5:1 in dark mode. Keep `--color-accent` and `--color-accent-hover` only if your own CSS uses them.
+
+To recolor the components inside an element, setting `--color-accent` no longer works. Set the tokens they read:
+
+```css
+.green-form {
+  --color-accent-text: var(--color-green-text);
+  --color-accent-graphic: var(--color-green-graphic);
+  --color-accent-bg: var(--color-green-bg);
+}
+```
+
+The checked Switch sets `--color-accent-graphic` to green itself; override `--color-accent-graphic` on `.switch-button` to give it another color, as CAT-nuxt's `FindingForm` does.
+
+### Component changes
+
+- **Accordion and AccordionDetails** show their icon at the end. Add `icon-pos="start"` to keep it before the trigger text, and remove CSS that moved it to the end, such as `flex-direction: row-reverse` on `.accordion-trigger`: it now moves the icon back to the start.
+- **AccordionDetails** shows the same chevron as Accordion instead of the native disclosure triangle, and has `icon` and `arrow` props. If your trigger has its own icon, add `:arrow="false"`.
+- **Popover** is md by default instead of sm. Its md trigger is 40px (was 36px) and lg is 44px (was 40px), like Button, its menu uses md buttons, and its content has no maximum width unless you set `max-width` (was 400px). Add `size="sm"` to keep a compact trigger, for example in table rows, and check Popovers next to a Search or Button of the same size.
+- **Search** is md by default instead of lg. Add `size="lg"` to keep the larger field.
+- **Dialog**'s close button is md instead of sm.
+- **Button**: the `danger` variant shows a red border on hover instead of a lighter background, and the new `outline-red` variant is a transparent button with red text and border.
+- **MultiSelect** borders use `--color-grey-graphic` for 3:1 contrast, also while open, and a highlighted selected option is red instead of green, since selecting it removes it.
+- **Chip**: the flat grey Chip has a `--color-bg` background instead of `--color-grey-bg`.
+- **Text sizes**: Avatar initials are md and bold, the UserMenu name is md and the email sm, and Switch labels are sm.
