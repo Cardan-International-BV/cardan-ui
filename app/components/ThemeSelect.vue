@@ -141,7 +141,7 @@ const colorMode = useColorMode();
     &:checked {
       + label {
         color: var(--color-accent-text);
-        border-color: var(--color-accent);
+        border-color: var(--color-accent-graphic);
         background-color: var(--color-accent-bg);
       }
     }

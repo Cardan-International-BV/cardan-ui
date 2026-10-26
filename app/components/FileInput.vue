@@ -338,8 +338,8 @@ function removeFile() {
 
   &.dragover {
     background-color: var(--color-accent-bg);
-    border-color: var(--color-accent);
-    color: var(--color-accent);
+    border-color: var(--color-accent-graphic);
+    color: var(--color-accent-text);
   }
 }
 

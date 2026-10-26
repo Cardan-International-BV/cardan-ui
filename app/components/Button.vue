@@ -345,8 +345,8 @@ const emit = defineEmits<{
 
 .button-variant--3d {
   --radius: var(--radius-xl);
-  --button-shadow-offset: 4px 4px 0 0 var(--color-accent);
-  --button-shadow-offset-hover: 6px 6px 0 0 var(--color-accent);
+  --button-shadow-offset: 4px 4px 0 0 var(--color-accent-graphic);
+  --button-shadow-offset-hover: 6px 6px 0 0 var(--color-accent-graphic);
 
   color: var(--color-white);
   background-color: var(--color-text);

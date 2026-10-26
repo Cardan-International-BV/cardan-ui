@@ -155,7 +155,7 @@ useHead({ title: 'Changelog' });
       margin-block-end: 0.125rem;
 
       &::marker {
-        color: var(--color-accent);
+        color: var(--color-accent-graphic);
       }
     }
 

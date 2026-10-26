@@ -132,10 +132,10 @@ const preview = computed(() => md.render(content));
     }
 
     &:hover {
-      color: var(--color-accent);
+      color: var(--color-accent-text);
 
       &::after {
-        background-color: var(--color-accent);
+        background-color: var(--color-accent-graphic);
       }
     }
   }

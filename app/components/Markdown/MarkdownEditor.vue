@@ -206,7 +206,7 @@ const emit = defineEmits<{
 
   a {
     --md-theme-link-color: var(--color-text);
-    --md-theme-link-hover-color: var(--color-accent);
+    --md-theme-link-hover-color: var(--color-accent-text);
     text-decoration: underline;
     transition-duration: var(--duration-sm);
   }
@@ -233,7 +233,7 @@ const emit = defineEmits<{
   blockquote {
     --md-theme-quote-color: var(--color-text);
     --md-theme-quote-bg-color: var(--color-accent-bg);
-    --md-theme-quote-border: 5px solid var(--color-accent);
+    --md-theme-quote-border: 5px solid var(--color-accent-graphic);
   }
 }
 

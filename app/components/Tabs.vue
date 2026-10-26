@@ -263,8 +263,8 @@ defineExpose({
 
 .tabs-color--accent {
   .tablist .tab[aria-selected='true'] {
-    color: var(--color-accent);
-    border-color: var(--color-accent);
+    color: var(--color-accent-text);
+    border-color: var(--color-accent-graphic);
   }
 }
 

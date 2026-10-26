@@ -106,7 +106,7 @@ const {
     }
 
     &:checked::before {
-      border-color: var(--color-accent);
+      border-color: var(--color-accent-graphic);
     }
 
     &:focus-visible {
@@ -131,7 +131,7 @@ const {
     }
 
     &:checked::after {
-      box-shadow: inset 0 0 0 8px var(--color-accent);
+      box-shadow: inset 0 0 0 8px var(--color-accent-graphic);
     }
   }
 }

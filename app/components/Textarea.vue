@@ -248,7 +248,7 @@ const emit = defineEmits<{
     resize: none;
 
     &:focus {
-      border-block-end-color: var(--color-accent);
+      border-block-end-color: var(--color-accent-graphic);
       outline-color: transparent;
     }
   }
@@ -274,8 +274,8 @@ const emit = defineEmits<{
 
     &:focus {
       outline-color: transparent;
-      border-color: var(--color-accent);
-      box-shadow: 0 1.5px 0 0 var(--color-accent);
+      border-color: var(--color-accent-graphic);
+      box-shadow: 0 1.5px 0 0 var(--color-accent-graphic);
     }
   }
 }

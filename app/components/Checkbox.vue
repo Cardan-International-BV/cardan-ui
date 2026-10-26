@@ -121,7 +121,7 @@ const {
         position: absolute;
         inset: 0;
         margin: auto;
-        background-color: var(--color-accent);
+        background-color: var(--color-accent-graphic);
         mask-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.8568 7.39978L20.5033 7.7533L9.90371 18.3539L9.55019 18.7074L3.14297 12.3002L5.2748 10.1683L9.54922 14.4427L18.3715 5.62146L18.725 5.26794L20.8568 7.39978Z" fill="red" stroke="red"/></svg>');
         mask-size: contain;
         mask-repeat: no-repeat;
@@ -161,7 +161,7 @@ const {
     }
 
     &:checked::before {
-      box-shadow: 1.5px 1.5px 0 0 var(--color-accent);
+      box-shadow: 1.5px 1.5px 0 0 var(--color-accent-graphic);
     }
 
     &:checked::after {
