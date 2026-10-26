@@ -9,10 +9,10 @@ const {
   icon = 'material-symbols:more-horiz',
   iconPos = 'start',
   buttonVariant = 'outline',
-  size = 'sm',
+  size = 'md',
   placement = 'bottom',
   span = undefined,
-  maxWidth = 400,
+  maxWidth = undefined,
   ariaDescribedby = undefined,
   id = useId(),
 } = defineProps<{
@@ -139,8 +139,7 @@ const emit = defineEmits<{
           <MenuList
             v-if="list?.length"
             :list="list"
-            button-size="lg"
-            font-size="sm"
+            button-size="md"
             icon-size="lg"
             :aria-labelledby="'popover-label-' + id"
             @click="handleMenuClick($event)"
@@ -243,7 +242,7 @@ const emit = defineEmits<{
       }
 
       hr {
-        margin-block-start: 0.25rem;
+        margin-block: 0.5rem;
       }
     }
   }
@@ -438,9 +437,9 @@ const emit = defineEmits<{
 }
 
 .popover-trigger-size--md {
-  height: 2.25rem;
-  min-width: 2.25rem;
-  font-size: var(--font-size, var(--font-size-xs));
+  height: 2.5rem;
+  min-width: 2.5rem;
+  font-size: var(--font-size, var(--font-size-sm));
   padding-inline: 0.5rem;
 
   .popover-label {
@@ -453,8 +452,8 @@ const emit = defineEmits<{
 }
 
 .popover-trigger-size--lg {
-  height: 2.5rem;
-  min-width: 2.5rem;
+  height: 2.75rem;
+  min-width: 2.75rem;
   font-size: var(--font-size, var(--font-size-sm));
   padding-inline: 0.5rem;
 

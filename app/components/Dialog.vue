@@ -130,7 +130,7 @@ defineExpose({
             :variant="closeButtonVariant"
             :radius="closeButtonRadius"
             :icon-size="closeButtonIconSize"
-            size="sm"
+            size="md"
             :label="$t('general.close')"
             hide-label
             class="close-button"
