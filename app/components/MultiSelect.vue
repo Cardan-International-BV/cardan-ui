@@ -260,9 +260,9 @@ function preventEscape(event: KeyboardEvent) {
   }
 
   --ms-bg-disabled: var(--color-white);
-  --ms-border-color: var(--color-grey-light);
+  --ms-border-color: var(--color-grey-graphic);
   --ms-border-width: 1px;
-  --ms-border-color-active: var(--color-grey-light);
+  --ms-border-color-active: var(--color-grey-graphic);
   /* --ms-border-width-active: 1px; */
   --ms-radius: var(--radius-md);
   --ms-py: 0.35em;
@@ -297,7 +297,7 @@ function preventEscape(event: KeyboardEvent) {
   /* --ms-tag-remove-mx: 0.125rem; */
 
   --ms-dropdown-bg: var(--color-card-bg);
-  --ms-dropdown-border-color: var(--color-grey-light);
+  --ms-dropdown-border-color: var(--color-grey-graphic);
   --ms-dropdown-border-width: 1px;
   --ms-dropdown-radius: var(--radius-md);
 
@@ -326,8 +326,8 @@ function preventEscape(event: KeyboardEvent) {
   --ms-option-color-selected: var(--color-green-text);
   --ms-option-bg-disabled: var(--color-grey-bg);
   --ms-option-color-disabled: var(--color-grey-graphic);
-  --ms-option-bg-selected-pointed: var(--color-green);
-  --ms-option-color-selected-pointed: var(--color-white);
+  --ms-option-bg-selected-pointed: var(--color-red-bg);
+  --ms-option-color-selected-pointed: var(--color-red-text);
   --ms-option-bg-selected-disabled: var(--color-grey-bg);
   --ms-option-color-selected-disabled: var(--color-grey-graphic);
   /* --ms-option-py: 0.5rem; */
