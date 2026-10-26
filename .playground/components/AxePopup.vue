@@ -10,6 +10,6 @@ import { VueAxePopup } from 'vue-axe';
 
 <style>
 .va-popup-btn {
-  box-shadow: var(--shadow-1) !important;
+  box-shadow: none !important;
 }
 </style>
