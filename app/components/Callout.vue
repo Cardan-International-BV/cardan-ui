@@ -20,8 +20,8 @@ const {
 }>();
 
 const computedStyle = computed(() => ({
-  '--font-size': `var(--font-size-${fontSize})`,
-  '--icon-size': `var(--font-size-${iconSize})`,
+  '--callout-font-size': `var(--font-size-${fontSize})`,
+  '--callout-icon-size': `var(--font-size-${iconSize})`,
   '--callout-radius': radius && `var(--radius-${radius})`,
 }));
 
@@ -78,7 +78,7 @@ const computedIconLabel = computed(() => {
   padding-block: 0.5rem;
   border: 1px solid transparent;
   border-radius: var(--callout-radius, var(--radius-md));
-  font-size: var(--font-size);
+  font-size: var(--callout-font-size);
 
   .callout-content {
     display: flex;
@@ -87,7 +87,7 @@ const computedIconLabel = computed(() => {
 
     .callout-icon {
       flex-shrink: 0;
-      font-size: var(--icon-size);
+      font-size: var(--callout-icon-size);
     }
   }
 

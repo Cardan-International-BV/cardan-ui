@@ -52,7 +52,7 @@ const {
     justify-content: space-between;
 
     .button {
-      --font-size: var(--font-size-sm);
+      --button-font-size: var(--font-size-sm);
       .button-text {
         padding-block: 0.25rem;
       }

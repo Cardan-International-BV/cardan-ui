@@ -9,7 +9,7 @@ const {
   placeholder = undefined,
   autocomplete = undefined,
   list = undefined,
-  size = 'lg',
+  size = 'md',
 } = defineProps<{
   label?: string;
   placeholder?: string;

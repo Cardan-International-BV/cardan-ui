@@ -31,7 +31,7 @@ watch(
       </div>
     </div>
 
-    <NuxtLoadingIndicator color="var(--color-accent)" />
+    <NuxtLoadingIndicator color="var(--color-accent-graphic)" />
   </header>
 </template>
 
@@ -70,7 +70,7 @@ watch(
       font-weight: var(--font-weight-medium);
 
       &.router-link-active {
-        color: var(--color-accent);
+        color: var(--color-accent-text);
         text-decoration: none;
       }
     }

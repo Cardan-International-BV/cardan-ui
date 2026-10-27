@@ -60,7 +60,6 @@
     var(--cardan-dark-text)
   );
   --color-accent-graphic: var(--cardan-purple-text-on-dark);
-  --color-on-accent: var(--cardan-white);
 
   --color-secondary: var(--cardan-dark-block);
   --color-secondary-hover: var(--cardan-body-grey);
@@ -171,7 +170,6 @@
   --color-accent-text: var(--cardan-purple);
   --color-accent-text-hover: var(--cardan-purple-hover);
   --color-accent-graphic: var(--cardan-purple);
-  --color-on-accent: var(--cardan-white);
 
   --color-secondary: var(--cardan-beige-sand);
   --color-secondary-hover: color-mix(
@@ -328,7 +326,7 @@
 
 :where(html) {
   color-scheme: var(--color-scheme, dark light);
-  accent-color: var(--color-accent, inherit);
+  accent-color: var(--color-accent-graphic);
   scrollbar-gutter: stable;
   -webkit-text-size-adjust: none;
   -moz-text-size-adjust: none;

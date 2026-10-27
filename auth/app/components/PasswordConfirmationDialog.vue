@@ -141,7 +141,7 @@ function handleClose() {
     margin-block-start: 1.5rem;
 
     .button {
-      --font-size: var(--font-size-sm);
+      --button-font-size: var(--font-size-sm);
     }
   }
 }

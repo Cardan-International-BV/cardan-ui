@@ -137,7 +137,7 @@ const formattedLabel = computed(() =>
 
 .chip-variant--flat.chip-color--grey {
   color: var(--color-grey-text);
-  background-color: var(--color-grey-bg);
+  background-color: var(--color-bg);
 }
 
 .chip-variant--flat.chip-color--red {

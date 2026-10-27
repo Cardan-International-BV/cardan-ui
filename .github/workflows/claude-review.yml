@@ -2,8 +2,10 @@ name: Claude PR Review
 
 # Runs a Claude Code review on every PR when it's opened or marked ready
 # for review — deliberately NOT on every push, to keep API costs at one
-# review per PR. For a re-review after pushing fixes, re-run the job from
-# the Actions tab (or close/reopen the PR).
+# review per PR. For a re-review after pushing fixes, convert the PR to a
+# draft and mark it ready again: `gh pr ready <number> --undo` and then
+# `gh pr ready <number>`. Re-running an earlier run checks out the commit
+# it first ran on, and closing and reopening the PR does not trigger it.
 #
 # Authenticates with a Claude Pro/Max subscription via an OAuth token
 # (no Anthropic Console account, no separate API billing). Generate the

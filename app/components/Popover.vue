@@ -9,15 +9,15 @@ const {
   icon = 'material-symbols:more-horiz',
   iconPos = 'start',
   buttonVariant = 'outline',
-  size = 'sm',
+  size = 'md',
   placement = 'bottom',
   span = undefined,
-  maxWidth = 400,
+  maxWidth = undefined,
   ariaDescribedby = undefined,
   id = useId(),
 } = defineProps<{
-  fontSize?: string;
-  iconSize?: string;
+  fontSize?: FontSize;
+  iconSize?: FontSize;
   borderRadius?: string;
   label?: string;
   hideLabel?: boolean;
@@ -37,8 +37,8 @@ const {
 }>();
 
 const computedStyle = computed(() => ({
-  '--font-size': `var(--font-size-${fontSize})`,
-  '--icon-size': `var(--font-size-${iconSize})`,
+  '--popover-font-size': fontSize && `var(--font-size-${fontSize})`,
+  '--popover-icon-size': iconSize && `var(--font-size-${iconSize})`,
   '--radius': `var(--radius-${borderRadius})`,
 }));
 
@@ -169,7 +169,7 @@ const emit = defineEmits<{
   border-radius: var(--radius);
   transition-property: color, background-color, opacity;
   transition-duration: var(--duration-sm);
-  font-size: var(--font-size);
+  font-size: var(--popover-font-size);
   outline: 2px solid transparent;
   outline-offset: 2px;
 
@@ -243,7 +243,7 @@ const emit = defineEmits<{
       }
 
       hr {
-        margin-block-start: 0.25rem;
+        margin-block: 0.5rem;
       }
     }
   }
@@ -340,12 +340,12 @@ const emit = defineEmits<{
 
 .popover-trigger-variant--primary {
   color: var(--color-white);
-  background-color: var(--color-accent);
+  background-color: var(--color-accent-text);
 
   &:not(:disabled):hover {
     background-color: color-mix(
       in srgb,
-      var(--color-accent) 85%,
+      var(--color-accent-text) 85%,
       var(--color-black)
     );
   }
@@ -369,11 +369,7 @@ const emit = defineEmits<{
   background-color: transparent;
 
   &:not(:disabled):hover {
-    background-color: color-mix(
-      in srgb,
-      var(--color-grey-bg) 95%,
-      var(--color-black)
-    );
+    background-color: var(--color-ghost-hover-bg);
   }
 }
 
@@ -382,7 +378,7 @@ const emit = defineEmits<{
   position: relative;
   height: 1.25rem;
   min-width: 1.25rem;
-  font-size: var(--font-size, var(--font-size-xs));
+  font-size: var(--popover-font-size, var(--font-size-xs));
   padding-inline: 0.125rem;
 
   /* Enlarge the click target to at least 24×24px (WCAG 2.5.8) */
@@ -402,7 +398,7 @@ const emit = defineEmits<{
   }
 
   .iconify {
-    font-size: var(--icon-size, var(--font-size-sm));
+    font-size: var(--popover-icon-size, var(--font-size-sm));
   }
 }
 
@@ -410,7 +406,7 @@ const emit = defineEmits<{
   --radius: var(--radius-sm) !important;
   height: 1.5rem;
   min-width: 1.5rem;
-  font-size: var(--font-size, var(--font-size-xs));
+  font-size: var(--popover-font-size, var(--font-size-sm));
   padding-inline: 0.25rem;
 
   .popover-label {
@@ -418,14 +414,14 @@ const emit = defineEmits<{
   }
 
   .iconify {
-    font-size: var(--icon-size, var(--font-size-md));
+    font-size: var(--popover-icon-size, var(--font-size-md));
   }
 }
 
 .popover-trigger-size--sm {
   height: 2rem;
   min-width: 2rem;
-  font-size: var(--font-size, var(--font-size-xs));
+  font-size: var(--popover-font-size, var(--font-size-sm));
   padding-inline: 0.35rem;
 
   .popover-label {
@@ -433,14 +429,14 @@ const emit = defineEmits<{
   }
 
   .iconify {
-    font-size: var(--icon-size, var(--font-size-md));
+    font-size: var(--popover-icon-size, var(--font-size-md));
   }
 }
 
 .popover-trigger-size--md {
-  height: 2.25rem;
-  min-width: 2.25rem;
-  font-size: var(--font-size, var(--font-size-xs));
+  height: 2.5rem;
+  min-width: 2.5rem;
+  font-size: var(--popover-font-size, var(--font-size-md));
   padding-inline: 0.5rem;
 
   .popover-label {
@@ -448,14 +444,14 @@ const emit = defineEmits<{
   }
 
   .iconify {
-    font-size: var(--icon-size, var(--font-size-md));
+    font-size: var(--popover-icon-size, var(--font-size-lg));
   }
 }
 
 .popover-trigger-size--lg {
-  height: 2.5rem;
-  min-width: 2.5rem;
-  font-size: var(--font-size, var(--font-size-sm));
+  height: 2.75rem;
+  min-width: 2.75rem;
+  font-size: var(--popover-font-size, var(--font-size-lg));
   padding-inline: 0.5rem;
 
   .popover-label {
@@ -463,14 +459,14 @@ const emit = defineEmits<{
   }
 
   .iconify {
-    font-size: var(--icon-size, var(--font-size-lg));
+    font-size: var(--popover-icon-size, var(--font-size-lg));
   }
 }
 
 .popover-trigger-size--xl {
   height: 3rem;
   min-width: 3rem;
-  font-size: var(--font-size, var(--font-size-md));
+  font-size: var(--popover-font-size, var(--font-size-xl));
   padding-inline: 0.75rem;
 
   .popover-label {
@@ -478,7 +474,7 @@ const emit = defineEmits<{
   }
 
   .iconify {
-    font-size: var(--icon-size, var(--font-size-xl));
+    font-size: var(--popover-icon-size, var(--font-size-xl));
   }
 }
 </style>

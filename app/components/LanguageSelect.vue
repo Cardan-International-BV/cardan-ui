@@ -71,7 +71,6 @@ const emit = defineEmits<{
   legend {
     width: 100%;
     font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-regular);
     color: var(--color-grey-text);
     margin-block-end: 0.5rem;
   }
@@ -118,12 +117,12 @@ const emit = defineEmits<{
 
     &:checked {
       + label {
-        color: var(--color-white);
-        border-color: var(--color-accent);
-        background-color: var(--color-accent);
+        color: var(--color-accent-text);
+        border-color: var(--color-accent-graphic);
+        background-color: var(--color-accent-bg);
 
         .iconify {
-          color: var(--color-accent);
+          color: var(--color-accent-graphic);
         }
       }
     }

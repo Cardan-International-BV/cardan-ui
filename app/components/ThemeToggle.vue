@@ -11,7 +11,7 @@ defineProps<{ fontSize?: FontSize }>();
       type="button"
       class="theme-toggle-button"
       :aria-pressed="colorMode.value === 'dark'"
-      :style="[fontSize && `--font-size: var(--font-size-${fontSize})`]"
+      :style="[fontSize && `--theme-toggle-font-size: var(--font-size-${fontSize})`]"
       @click.stop="
         colorMode.preference = colorMode.value == 'light' ? 'dark' : 'light'
       "
@@ -45,7 +45,7 @@ defineProps<{ fontSize?: FontSize }>();
 
   .iconify {
     color: var(--color-shape);
-    font-size: var(--font-size, var(--font-size-md));
+    font-size: var(--theme-toggle-font-size, var(--font-size-md));
   }
 
   &:hover {

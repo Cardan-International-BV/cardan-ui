@@ -92,7 +92,6 @@ const colorMode = useColorMode();
   legend {
     width: 100%;
     font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-regular);
     color: var(--color-grey-text);
     margin-block-end: 0.5rem;
   }
@@ -141,7 +140,7 @@ const colorMode = useColorMode();
     &:checked {
       + label {
         color: var(--color-accent-text);
-        border-color: var(--color-accent);
+        border-color: var(--color-accent-graphic);
         background-color: var(--color-accent-bg);
       }
     }

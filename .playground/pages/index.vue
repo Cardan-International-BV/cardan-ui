@@ -6,6 +6,6 @@ useHead({ title: 'Getting Started' });
 
 <template>
   <div class="demo-page getting-started-page">
-    <MarkdownPreview :content="readme" font-size="md" />
+    <MarkdownPreview :content="readme" font-size="lg" />
   </div>
 </template>

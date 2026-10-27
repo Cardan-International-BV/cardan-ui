@@ -74,7 +74,7 @@ const groupedKey = computed(
   }
 
   .copy-button {
-    --font-size: var(--font-size-sm);
+    --button-font-size: var(--font-size-sm);
   }
 
   .mfa-setup-key-description {

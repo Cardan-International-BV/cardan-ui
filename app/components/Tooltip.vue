@@ -14,8 +14,8 @@ const {
   id = useId(),
 } = defineProps<{
   label?: string;
-  fontSize?: string;
-  iconSize?: string;
+  fontSize?: FontSize;
+  iconSize?: FontSize;
   iconColor?: string;
   placement?: 'bottom' | 'top' | 'left' | 'right';
   span?: 'bottom' | 'top' | 'left' | 'right';
@@ -28,8 +28,8 @@ const {
 }>();
 
 const computedStyle = computed(() => ({
-  '--font-size': fontSize && `var(--font-size-${fontSize})`,
-  '--icon-size': iconSize && `var(--font-size-${iconSize})`,
+  '--tooltip-font-size': fontSize && `var(--font-size-${fontSize})`,
+  '--tooltip-icon-size': iconSize && `var(--font-size-${iconSize})`,
   '--icon-color': iconColor && `var(--color-${iconColor})`,
 }));
 
@@ -237,7 +237,7 @@ function onTriggerBlur() {
   background: transparent;
   padding: 0;
   color: inherit;
-  font-size: var(--font-size, inherit);
+  font-size: var(--tooltip-font-size, inherit);
   transition: color var(--duration-sm);
 
   &::after {
@@ -265,7 +265,7 @@ function onTriggerBlur() {
   .iconify {
     flex-shrink: 0;
     color: var(--icon-color, var(--color-grey-text));
-    font-size: var(--icon-size, inherit);
+    font-size: var(--tooltip-icon-size, inherit);
     transition: color var(--duration-sm);
   }
 
