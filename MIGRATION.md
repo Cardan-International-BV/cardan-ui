@@ -302,3 +302,8 @@ The checked Switch sets `--color-accent-graphic` to green itself; override `--co
 - **Chip**: the flat grey Chip has a `--color-bg` background instead of `--color-grey-bg`.
 - **Font and icon size variables** are named after their component instead of the shared `--font-size` and `--icon-size`, which leaked into nested components: a Button inside a Callout took the Callout's icon size. Where your CSS sets them, rename them after the component they target, for example `.dialog-buttons .button { --button-font-size: var(--font-size-sm); }`. The variables are `--button-*`, `--callout-*`, `--popover-*`, `--tabs-*` and `--tooltip-*` (font and icon size), and `--progress-circle-font-size`, `--progress-meter-font-size`, `--theme-switch-font-size`, `--theme-toggle-font-size` and `--markdown-preview-font-size`. Prefer the `font-size` and `icon-size` props where you render the component yourself.
 - **Text sizes**: Avatar initials are md and semibold, the UserMenu name is md and the email sm, and Switch labels are sm.
+
+### 2.2.1
+
+- **Popover** trigger text is one step smaller and matches the Button of the same size: md is `sm` (14px, was 16px), lg is `md` (16px, was 18px) and xl is `lg` (18px, was 24px). Set `--popover-font-size` or the `font-size` prop to keep the larger text.
+- **`--color-accent-hover`** is no longer in the template `main.css`: no component reads it since 2.2. Delete it from your `main.css` unless your own CSS uses it.
