@@ -4,11 +4,13 @@ const {
   arrow = true,
   icon = 'material-symbols:chevron-right-rounded',
   iconPos = 'end',
+  iconSize = undefined,
 } = defineProps<{
   open?: boolean;
   name?: string;
   icon?: string;
   iconPos?: 'start' | 'end';
+  iconSize?: FontSize;
   arrow?: boolean;
 }>();
 </script>
@@ -17,6 +19,9 @@ const {
   <details :open="open" class="details-wrapper" :name="name">
     <summary
       :class="['details-summary', `details-icon-position--${iconPos}`]"
+      :style="{
+        '--details-icon-size': iconSize && `var(--font-size-${iconSize})`,
+      }"
     >
       <Icon
         v-if="arrow && iconPos === 'start'"
@@ -74,7 +79,8 @@ const {
   }
 
   .details-arrow {
-    vertical-align: middle;
+    font-size: var(--details-icon-size, inherit);
+    margin-block-end: -0.2em;
     transition:
       rotate var(--duration-md),
       color var(--duration-sm);

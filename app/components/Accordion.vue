@@ -5,6 +5,7 @@ const {
   arrow = true,
   icon = 'material-symbols:chevron-right-rounded',
   iconPos = 'end',
+  iconSize = undefined,
   ariaLabel = undefined,
   tabindex = undefined,
   open = undefined,
@@ -13,6 +14,7 @@ const {
   id?: string;
   icon?: string;
   iconPos?: 'start' | 'end';
+  iconSize?: FontSize;
   ariaLabel?: string;
   tabindex?: string;
   arrow?: boolean;
@@ -70,6 +72,9 @@ defineExpose({ toggleAccordion });
       :tabindex="tabindex"
       type="button"
       :class="['accordion-trigger', `accordion-icon-position--${iconPos}`]"
+      :style="{
+        '--accordion-icon-size': iconSize && `var(--font-size-${iconSize})`,
+      }"
       @click.stop="toggleAccordion"
     >
       <Icon
@@ -87,9 +92,9 @@ defineExpose({ toggleAccordion });
         :name="icon"
         class="accordion-arrow"
       />
-    </button>
 
-    <slot />
+      <slot />
+    </button>
 
     <section
       :id="`accordion-panel-${id}`"
@@ -158,6 +163,7 @@ defineExpose({ toggleAccordion });
   }
 
   .accordion-arrow {
+    font-size: var(--accordion-icon-size, inherit);
     transition:
       rotate var(--duration-md),
       color var(--duration-sm);
@@ -165,10 +171,10 @@ defineExpose({ toggleAccordion });
 }
 
 .accordion-icon-position--start .accordion-arrow {
-  margin-inline-end: 0.25em;
+  margin-inline-end: 0.125em;
 }
 
 .accordion-icon-position--end .accordion-arrow {
-  margin-inline-start: 0.25em;
+  margin-inline-start: 0.125em;
 }
 </style>

@@ -118,6 +118,18 @@ const isAccordionOpen = ref(false);
             </p>
           </template>
         </Accordion>
+
+        <Accordion icon-size="xl">
+          <template #trigger>Accordion with a larger icon</template>
+
+          <template #content>
+            <p>
+              Set <code>icon-size</code> to one of the font sizes to change the
+              size of the icon. By default the icon follows the font size of
+              the trigger.
+            </p>
+          </template>
+        </Accordion>
       </Card>
 
       <Card>
