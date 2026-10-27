@@ -6,10 +6,18 @@ const hideLabel = ref(true);
 const showPercentage = ref(false);
 const progress = ref(50);
 const max = ref(100);
+const fontSize = ref<FontSize>('sm');
 
 const roleOptions = [
   { value: 'meter', label: 'meter' },
   { value: 'progressbar', label: 'progressbar' },
+];
+
+const fontSizeOptions: { value: FontSize; label: string }[] = [
+  { value: 'lg', label: 'lg' },
+  { value: 'md', label: 'md' },
+  { value: 'sm', label: 'sm' },
+  { value: 'xs', label: 'xs' },
 ];
 </script>
 
@@ -67,6 +75,11 @@ const roleOptions = [
                 />
                 <Input v-model.number="progress" type="number" label="value" />
                 <Input v-model.number="max" type="number" label="max" />
+                <Select
+                  v-model="fontSize"
+                  label="fontSize"
+                  :options="fontSizeOptions"
+                />
 
                 <Switch v-model="hideLabel" label="hideLabel" />
                 <Switch v-model="showPercentage" label="showPercentage" />
@@ -76,6 +89,7 @@ const roleOptions = [
                     :value="${progress}"
                     :max="${max}"
                     :role="${role}"
+                    font-size="${fontSize}"
                     :hide-label="${hideLabel}"
                     :show-percentage="${showPercentage}"
                   />`}}</code
@@ -102,6 +116,7 @@ const roleOptions = [
             :value="progress"
             :max="max"
             :role="role"
+            :font-size="fontSize"
             size="lg"
           />
           <ProgressMeter
@@ -111,6 +126,7 @@ const roleOptions = [
             :value="progress"
             :max="max"
             :role="role"
+            :font-size="fontSize"
             size="md"
           />
           <ProgressMeter
@@ -120,6 +136,7 @@ const roleOptions = [
             :value="progress"
             :max="max"
             :role="role"
+            :font-size="fontSize"
             size="sm"
           />
         </div>

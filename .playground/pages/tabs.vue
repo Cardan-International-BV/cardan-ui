@@ -2,16 +2,48 @@
 useHead({ title: 'Tabs pattern' });
 
 const tabs = [
-  { value: 'a', label: 'Accessibility requirements' },
-  { value: 'b', label: 'Overflowing content' },
+  {
+    value: 'a',
+    label: 'Accessibility requirements',
+    icon: 'material-symbols:accessibility-new-rounded',
+  },
+  {
+    value: 'b',
+    label: 'Overflowing content',
+    icon: 'material-symbols:format-text-overflow-rounded',
+  },
 ];
 
 const activeTab = ref('a');
 
 const tabsFontSize = ref<TabsSize>('sm');
+const tabsIconSize = ref<FontSize>('md');
 const tabsVariant = ref<TabsVariant>('default');
 
 const tabsFontSizes: { value: TabsSize; label: string }[] = [
+  {
+    value: 'md',
+    label: 'md',
+  },
+  {
+    value: 'sm',
+    label: 'sm',
+  },
+  {
+    value: 'xs',
+    label: 'xs',
+  },
+];
+
+const tabsIconSizes: { value: FontSize; label: string }[] = [
+  {
+    value: 'xl',
+    label: 'xl',
+  },
+  {
+    value: 'lg',
+    label: 'lg',
+  },
   {
     value: 'md',
     label: 'md',
@@ -54,14 +86,23 @@ const tabsVariants: { value: TabsVariant; label: string }[] = [
               label="fontSize"
             />
             <Select
+              v-model="tabsIconSize"
+              :options="tabsIconSizes"
+              size="sm"
+              label="iconSize"
+            />
+            <Select
               v-model="tabsVariant"
               :options="tabsVariants"
               size="sm"
               label="variant"
             />
             <code
-              >{{`<Tabs font-size="${tabsFontSize}" variant="${tabsVariant}" />`
-              }}</code
+              >{{`<Tabs
+                font-size="${tabsFontSize}"
+                icon-size="${tabsIconSize}"
+                variant="${tabsVariant}"
+              />`}}</code
             >
           </div>
         </div>
@@ -92,6 +133,7 @@ const tabsVariants: { value: TabsVariant; label: string }[] = [
       <Tabs
         v-model="activeTab"
         :font-size="tabsFontSize"
+        :icon-size="tabsIconSize"
         :variant="tabsVariant"
         :tabs="tabs"
         tab-list-label="Demo tabs"
