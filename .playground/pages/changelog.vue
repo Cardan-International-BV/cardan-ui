@@ -46,11 +46,17 @@ useHead({ title: 'Changelog' });
           Tooltip no longer takes over their sizes
         </li>
         <li>
-          Fill the primary and CTA Button, the primary Popover trigger, the
-          checked LanguageSelect option and the selected DatePicker date and
-          MultiSelect group label with <code>--color-accent-text</code> and
-          <code>--color-white</code> text; the primary and CTA Button hover to
+          Fill the primary and CTA Button, the primary Popover trigger and the
+          selected DatePicker date and MultiSelect group label with
+          <code>--color-accent-text</code> and <code>--color-white</code> text;
+          the primary and CTA Button hover to
           <code>--color-accent-text-hover</code>
+        </li>
+        <li>
+          Show the checked LanguageSelect option with a
+          <code>--color-accent-bg</code> background,
+          <code>--color-accent-text</code> text and a
+          <code>--color-accent-graphic</code> border
         </li>
         <li>
           Remove the <code>--color-on-accent</code> design token, use
@@ -68,8 +74,14 @@ useHead({ title: 'Changelog' });
         </li>
         <li>
           Make Popover component <code>md</code> by default, with 40px
-          <code>md</code> and 44px <code>lg</code> triggers like Button, md menu
-          buttons and no default maximum width
+          <code>md</code> and 44px <code>lg</code> triggers like Button and no
+          default maximum width; the ghost trigger hovers to
+          <code>--color-ghost-hover-bg</code> like the ghost Button
+        </li>
+        <li>
+          Make MenuList buttons <code>md</code> by default instead of
+          <code>lg</code>, and give popovers in an inline MenuList square top
+          corners
         </li>
         <li>
           Make Search component <code>md</code> by default and the Dialog close
@@ -82,8 +94,8 @@ useHead({ title: 'Changelog' });
           and a highlighted selected option is red
         </li>
         <li>
-          Use larger text in Avatar and UserMenu components and 14px labels in
-          Switch component
+          Use larger text in Avatar and UserMenu components, semibold Avatar
+          initials and 14px labels in Switch component
         </li>
         <li>
           Use <code>--color-bg</code> as background of the flat grey Chip

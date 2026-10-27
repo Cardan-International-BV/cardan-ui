@@ -271,7 +271,8 @@ The product name in a lockup such as `<CardanLogo product="auditor" />` is set i
 
 Components no longer use `--color-accent`, `--color-accent-hover` or `--color-on-accent`:
 
-- **Filled surfaces**: the primary and CTA Button, the primary Popover trigger, the checked LanguageSelect option, the selected DatePicker date and the selected MultiSelect group label are `--color-accent-text` with `--color-white` text, and the Buttons hover to `--color-accent-text-hover`. In dark mode this gives a light fill with dark text, as the solid Chip has: dark text on the dark-mode `--color-accent` stays below 4.5:1.
+- **Filled surfaces**: the primary and CTA Button, the primary Popover trigger, the selected DatePicker date and the selected MultiSelect group label are `--color-accent-text` with `--color-white` text, and the Buttons hover to `--color-accent-text-hover`. In dark mode this gives a light fill with dark text, as the solid Chip has: dark text on the dark-mode `--color-accent` stays below 4.5:1.
+- **Tinted surfaces**: the checked LanguageSelect option is `--color-accent-bg` with `--color-accent-text` text and a `--color-accent-graphic` border.
 - **Borders, focus lines and indicators** use `--color-accent-graphic`: Input, Select, Textarea, Checkbox, Radio, Switch, Tabs, FileInput, ThemeSelect, Toast, the Markdown components and the offset shadow of the `3d` Button. Accent text uses `--color-accent-text`.
 
 Delete `--color-on-accent` from your `main.css`. Where your own CSS uses it, use `--color-white` and fill the surface with `--color-accent-text` instead of `--color-accent`, so the pair keeps 4.5:1 in dark mode. Keep `--color-accent` and `--color-accent-hover` only if your own CSS uses them.
@@ -292,11 +293,12 @@ The checked Switch sets `--color-accent-graphic` to green itself; override `--co
 
 - **Accordion and AccordionDetails** show their icon at the end. Add `icon-pos="start"` to keep it before the trigger text, and remove CSS that moved it to the end, such as `flex-direction: row-reverse` on `.accordion-trigger`: it now moves the icon back to the start.
 - **AccordionDetails** shows the same chevron as Accordion instead of the native disclosure triangle, and has `icon` and `arrow` props. If your trigger has its own icon, add `:arrow="false"`.
-- **Popover** is md by default instead of sm. Its md trigger is 40px (was 36px) and lg is 44px (was 40px), like Button, its menu uses md buttons, and its content has no maximum width unless you set `max-width` (was 400px). Add `size="sm"` to keep a compact trigger, for example in table rows, and check Popovers next to a Search or Button of the same size.
+- **Popover** is md by default instead of sm. Its md trigger is 40px (was 36px) and lg is 44px (was 40px), like Button, its content has no maximum width unless you set `max-width` (was 400px), and the ghost trigger hovers to `--color-ghost-hover-bg`, like the ghost Button. Add `size="sm"` to keep a compact trigger, for example in table rows, and check Popovers next to a Search or Button of the same size.
 - **Search** is md by default instead of lg. Add `size="lg"` to keep the larger field.
 - **Dialog**'s close button is md instead of sm.
+- **MenuList** buttons are md by default instead of lg. Add `button-size="lg"` to keep the larger buttons; the menu of a Popover keeps lg buttons. Popovers in an inline MenuList have square top corners.
 - **Button**: the `danger` variant shows a red border on hover instead of a lighter background, and the new `outline-red` variant is a transparent button with red text and border.
 - **MultiSelect** borders use `--color-grey-graphic` for 3:1 contrast, also while open, and a highlighted selected option is red instead of green, since selecting it removes it.
 - **Chip**: the flat grey Chip has a `--color-bg` background instead of `--color-grey-bg`.
 - **Font and icon size variables** are named after their component instead of the shared `--font-size` and `--icon-size`, which leaked into nested components: a Button inside a Callout took the Callout's icon size. Where your CSS sets them, rename them after the component they target, for example `.dialog-buttons .button { --button-font-size: var(--font-size-sm); }`. The variables are `--button-*`, `--callout-*`, `--popover-*`, `--tabs-*` and `--tooltip-*` (font and icon size), and `--progress-circle-font-size`, `--progress-meter-font-size`, `--theme-switch-font-size`, `--theme-toggle-font-size` and `--markdown-preview-font-size`. Prefer the `font-size` and `icon-size` props where you render the component yourself.
-- **Text sizes**: Avatar initials are md and bold, the UserMenu name is md and the email sm, and Switch labels are sm.
+- **Text sizes**: Avatar initials are md and semibold, the UserMenu name is md and the email sm, and Switch labels are sm.
