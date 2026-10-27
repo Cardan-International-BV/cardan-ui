@@ -326,7 +326,7 @@
 
 :where(html) {
   color-scheme: var(--color-scheme, dark light);
-  accent-color: var(--color-accent, inherit);
+  accent-color: var(--color-accent-graphic);
   scrollbar-gutter: stable;
   -webkit-text-size-adjust: none;
   -moz-text-size-adjust: none;
