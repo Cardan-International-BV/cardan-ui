@@ -7,6 +7,21 @@ useHead({ title: 'Changelog' });
     <h1>Changelog</h1>
     <p class="mbe-2">Release notes for new features and bug fixes.</p>
 
+    <ChangelogEntry v="2.2.1" date="2026-10-27">
+      <ul>
+        <li>
+          Make the Popover trigger text one step smaller, like the Button of
+          the same size: <code>sm</code> for <code>md</code>,
+          <code>md</code> for <code>lg</code> and <code>lg</code> for
+          <code>xl</code>
+        </li>
+        <li>
+          Remove the <code>--color-accent-hover</code> design token from the
+          template <code>main.css</code>; no component uses it since 2.2
+        </li>
+      </ul>
+    </ChangelogEntry>
+
     <ChangelogEntry v="2.2.0" date="2026-10-26">
       <ul>
         <li>
