@@ -436,7 +436,7 @@ const emit = defineEmits<{
 .popover-trigger-size--md {
   height: 2.5rem;
   min-width: 2.5rem;
-  font-size: var(--popover-font-size, var(--font-size-md));
+  font-size: var(--popover-font-size, var(--font-size-sm));
   padding-inline: 0.5rem;
 
   .popover-label {
@@ -451,7 +451,7 @@ const emit = defineEmits<{
 .popover-trigger-size--lg {
   height: 2.75rem;
   min-width: 2.75rem;
-  font-size: var(--popover-font-size, var(--font-size-lg));
+  font-size: var(--popover-font-size, var(--font-size-md));
   padding-inline: 0.5rem;
 
   .popover-label {
@@ -466,7 +466,7 @@ const emit = defineEmits<{
 .popover-trigger-size--xl {
   height: 3rem;
   min-width: 3rem;
-  font-size: var(--popover-font-size, var(--font-size-xl));
+  font-size: var(--popover-font-size, var(--font-size-lg));
   padding-inline: 0.75rem;
 
   .popover-label {
