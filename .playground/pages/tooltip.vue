@@ -54,8 +54,8 @@ const popoverActions = [
 
     <p class="fs-md">
       A Tooltip is a popup that displays information related to an element when
-      the element receives keyboard focus or the mouse hovers over it. Cardan
-      UI uses
+      the element receives keyboard focus or the mouse hovers over it. Cardan UI
+      uses
       <Button
         to="https://inclusive-components.design/tooltips-toggletips"
         label="Toggletips with live regions"
@@ -197,7 +197,6 @@ const popoverActions = [
             hide-label
             placement="bottom"
             span="right"
-            size="lg"
             button-variant="secondary"
             :max-width="480"
             :list="popoverActions"
@@ -211,9 +210,9 @@ const popoverActions = [
 
           <Popover
             label="Popover label"
+            icon="material-symbols:keyboard-double-arrow-down-rounded"
             placement="top"
             span="right"
-            size="lg"
             button-variant="secondary"
             :hide-label="false"
           >

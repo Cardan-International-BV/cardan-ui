@@ -117,9 +117,9 @@ const emit = defineEmits<{
 
     &:checked {
       + label {
-        color: var(--color-white);
+        color: var(--color-accent-text);
         border-color: var(--color-accent-graphic);
-        background-color: var(--color-accent-text);
+        background-color: var(--color-accent-bg);
 
         .iconify {
           color: var(--color-accent-graphic);

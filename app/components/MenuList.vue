@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const {
   buttonVariant = 'menu',
-  buttonSize = 'lg',
+  buttonSize = 'md',
   hTag = 'h2',
   id = useId(),
   label = undefined,
@@ -200,6 +200,10 @@ const emit = defineEmits<{
 
   > .menu-list-item {
     display: inline-block;
+  }
+  .popover-content-wrapper {
+    border-start-end-radius: 0;
+    border-start-start-radius: 0;
   }
 }
 
