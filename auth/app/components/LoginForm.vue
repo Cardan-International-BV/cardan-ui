@@ -198,7 +198,7 @@ defineExpose({ submitting, error });
 
   .button {
     &[type='submit'] {
-      --font-size: var(--font-size-md);
+      --button-font-size: var(--font-size-md);
       margin-block-start: 0.25rem;
       flex-basis: 100%;
     }

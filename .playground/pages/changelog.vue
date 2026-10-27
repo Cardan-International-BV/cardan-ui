@@ -35,6 +35,17 @@ useHead({ title: 'Changelog' });
           <code>icon</code> and <code>arrow</code> props
         </li>
         <li>
+          Feature: add <code>iconSize</code> prop to Accordion and
+          AccordionDetails components
+        </li>
+        <li>
+          Give each component its own font and icon size variables, such as
+          <code>--button-font-size</code> and <code>--button-icon-size</code>,
+          instead of the shared <code>--font-size</code> and
+          <code>--icon-size</code>, so a Button inside a Callout, Tabs or
+          Tooltip no longer takes over their sizes
+        </li>
+        <li>
           Fill the primary and CTA Button, the primary Popover trigger, the
           checked LanguageSelect option and the selected DatePicker date and
           MultiSelect group label with <code>--color-accent-text</code> and

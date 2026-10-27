@@ -78,7 +78,10 @@ defineExpose({
       `tabs-color--${color}`,
       `tabs-size--${size}`,
     ]"
-    :style="`--font-size: var(--font-size-${fontSize}); --icon-size: var(--font-size-${iconSize})`"
+    :style="{
+      '--tabs-font-size': `var(--font-size-${fontSize})`,
+      '--tabs-icon-size': iconSize && `var(--font-size-${iconSize})`,
+    }"
   >
     <div class="tablist" role="tablist" :aria-label="ariaLabel" v-bind="$attrs">
       <template v-for="tab in tabs" :key="'tab-' + tab.value">
@@ -149,7 +152,7 @@ defineExpose({
 }
 
 .tablist {
-  font-size: var(--font-size, var(--font-size-sm));
+  font-size: var(--tabs-font-size, var(--font-size-sm));
   flex-wrap: wrap;
   align-items: center;
 
@@ -179,7 +182,7 @@ defineExpose({
 
     .iconify {
       color: var(--color-grey-text);
-      font-size: var(--icon-size, larger);
+      font-size: var(--tabs-icon-size, larger);
       margin-inline-end: 0.125rem;
     }
 

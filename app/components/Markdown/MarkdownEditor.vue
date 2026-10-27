@@ -168,7 +168,7 @@ const emit = defineEmits<{
 }
 
 .md-editor-preview {
-  font-size: var(--font-size) !important;
+  font-size: inherit !important;
   word-break: break-word !important;
 
   p {

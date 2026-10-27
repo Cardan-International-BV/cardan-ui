@@ -21,7 +21,7 @@ const {
 }>();
 
 const computedStyle = computed(() => ({
-  '--font-size': fontSize && `var(--font-size-${fontSize})`,
+  '--markdown-preview-font-size': fontSize && `var(--font-size-${fontSize})`,
   '--line-clamp': ellipsisLines && ellipsisLines,
 }));
 
@@ -81,7 +81,7 @@ const preview = computed(() => md.render(content));
     hyphens: none;
   }
 
-  font-size: var(--font-size, inherit);
+  font-size: var(--markdown-preview-font-size, inherit);
 
   code {
     font-size: smaller;

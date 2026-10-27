@@ -13,7 +13,7 @@ const {
 
 const computedStyle = computed(() => ({
   '--avatar-size': `${size || '2.5rem'}`,
-  '--avatar-font-size': `var(--font-size-${fontSize})`,
+  '--avatar-font-size': fontSize && `var(--font-size-${fontSize})`,
 }));
 </script>
 
@@ -43,7 +43,7 @@ const computedStyle = computed(() => ({
   overflow: clip;
   display: grid;
   place-items: center;
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-semibold);
   background-color: var(--color-grey-light);
   color: var(--color-grey-text);
   flex-shrink: 0;
