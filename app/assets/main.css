@@ -47,7 +47,6 @@
   --color-scheme: dark;
 
   --color-accent: var(--cardan-purple-on-dark);
-  --color-accent-hover: var(--cardan-purple);
   --color-accent-bg: color-mix(
     in srgb,
     var(--cardan-purple-on-dark) 15%,
@@ -165,7 +164,6 @@
   --color-scheme: light;
 
   --color-accent: var(--cardan-purple);
-  --color-accent-hover: var(--cardan-purple-hover);
   --color-accent-bg: var(--cardan-purple-light);
   --color-accent-text: var(--cardan-purple);
   --color-accent-text-hover: var(--cardan-purple-hover);
