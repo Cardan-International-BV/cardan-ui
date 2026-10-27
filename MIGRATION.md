@@ -16,7 +16,7 @@ defineNuxtConfig({
 
 ## 2. Install `@nuxt/fonts`
 
-The layer now registers `@nuxt/fonts`. Projects that do not have it yet (CAT-nuxt, CAT-dashboard, chart) need to install it:
+The layer now registers `@nuxt/fonts`. Projects that do not have it yet (cardan-auditor-nuxt, CAT-dashboard, chart) need to install it:
 
 ```bash
 pnpm add -D @nuxt/fonts
@@ -65,7 +65,7 @@ Components use these tokens without fallbacks. Add them to your project's `main.
 }
 ```
 
-cardan-lms-nuxt and CAT-nuxt already have all of these tokens. cardan-nuxt, tehv-nuxt, CAT-dashboard and chart need all of them.
+cardan-lms-nuxt and cardan-auditor-nuxt already have all of these tokens. cardan-nuxt, tehv-nuxt, CAT-dashboard and chart need all of them.
 
 ### Tokens that were already missing before 2.0
 
@@ -88,7 +88,7 @@ These changes are not driven by tokens, so they apply to every project:
 - **Motion**: Toast slides and fades instead of bouncing; Accordion, ProgressMeter and ProgressCircle animate with `--duration-md` and `--cubic-bezier`; Tabs now animate their color change (a typo disabled this).
 - **Disabled link buttons** get `role="link"` and `aria-disabled="true"`.
 - **Inputs, Select, Textarea and DatePicker** use `--font-family-input` and fall back to `system-ui` when it is not set, as before.
-- **Class names**: style `.cardan-multiselect`, `.cardan-datepicker(-container)` and `.cardan-markdown-preview`; the `krafters-*` classes are no longer rendered. CAT-nuxt (`FindingForm`, `CrawlerTestDialog`, `ActivityMapper`, `ProjectDetails`) and cardan-lms-nuxt (`main.css`) use them.
+- **Class names**: style `.cardan-multiselect`, `.cardan-datepicker(-container)` and `.cardan-markdown-preview`; the `krafters-*` classes are no longer rendered. cardan-auditor-nuxt (`FindingForm`, `CrawlerTestDialog`, `ActivityMapper`, `ProjectDetails`) and cardan-lms-nuxt (`main.css`) use them.
 - **MarkdownEditor** no longer loads anything from unpkg or cdnjs: highlight.js and its code theme are bundled, and prettier and ECharts are disabled (neither was in the toolbar). You can remove the unpkg and cdnjs exceptions for md-editor-v3 from your Content Security Policy.
 - **`useCookiesDialog`** stores the consent cookie with Nuxt's `useCookie` instead of `js-cookie`. Existing consent cookies stay valid. Projects can remove `js-cookie` unless their own code imports it: cardan-nuxt's `CookiesDialog.vue` does, so keep it there or switch that component to `useCookie` too.
 - **DatePicker**'s visible label is now linked to its input. Before, the input had no id, so the label pointed to nothing.
@@ -128,7 +128,7 @@ defineNuxtConfig({
 
 The layer styles with the Cardan UI tokens only, so it needs no tokens of its own.
 
-Remove any MFA composables or components your app still has from before the layer, such as CAT-nuxt's own `useMfa`. An app composable with the same name replaces the layer's auto-import, and the layer keeps its MFA state under the same `useState` keys (`mfaStep`, `qrCode`, `recoveryCodes`, `mfaError`, …), so the two would break each other.
+Remove any MFA composables or components your app still has from before the layer, such as cardan-auditor-nuxt's own `useMfa`. An app composable with the same name replaces the layer's auto-import, and the layer keeps its MFA state under the same `useState` keys (`mfaStep`, `qrCode`, `recoveryCodes`, `mfaError`, …), so the two would break each other.
 
 ## 7. Upgrading to 2.1
 
@@ -173,7 +173,7 @@ Cardan UI's own components moved from the 11px `xxs` to `xs`, so their small tex
 - **`variant="3d"`** is the old `black` look of Button: a rounded black button with an accent-colored offset shadow. Replace `variant="black"` with `variant="3d"` where you want to keep that look.
 - **`variant="black"`** is now a plain button with light text on the text color and the default radius, as cardan-lms-nuxt's former `BaseButton` had.
 - **Callout is `solid` by default**: a tinted surface with the `--color-<color>-text` text. The old default look is now `variant="outline"`, and `variant="default"` no longer exists. To keep the white surface with a tinted border, add `variant="outline"` to your callouts, and replace `variant="default"` with `variant="outline"`. Callouts with `variant="solid"` can drop the prop.
-- **Chip's `capitalize` prop is removed**: use `text-transform="capitalize"` instead, which also capitalizes only the first letter of the label. CAT-nuxt's `FindingChips.vue` uses `capitalize` on a criterion number, where it has no visible effect: remove it there.
+- **Chip's `capitalize` prop is removed**: use `text-transform="capitalize"` instead, which also capitalizes only the first letter of the label. cardan-auditor-nuxt's `FindingChips.vue` uses `capitalize` on a criterion number, where it has no visible effect: remove it there.
 
 The new Chip options change nothing for projects that don't use them:
 
@@ -287,7 +287,7 @@ To recolor the components inside an element, setting `--color-accent` no longer 
 }
 ```
 
-The checked Switch sets `--color-accent-graphic` to green itself; override `--color-accent-graphic` on `.switch-button` to give it another color, as CAT-nuxt's `FindingForm` does.
+The checked Switch sets `--color-accent-graphic` to green itself; override `--color-accent-graphic` on `.switch-button` to give it another color, as cardan-auditor-nuxt's `FindingForm` does.
 
 ### Component changes
 

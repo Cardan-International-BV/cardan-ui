@@ -1,7 +1,7 @@
 # Review instructions
 
 This is cardan-ui, the accessible Vue component library of Cardan, shipped as
-a Nuxt layer. CAT-nuxt (Cardan Auditor), cardan-lms-nuxt (Cardan Academy),
+a Nuxt layer. cardan-auditor-nuxt (Cardan Auditor), cardan-lms-nuxt (Cardan Academy),
 cardan-nuxt (the website) and other projects extend it, so a change here
 reaches all of them at once. Cardan is an accessibility-first company: an
 accessibility regression in this library is a production bug in every
