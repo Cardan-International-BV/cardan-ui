@@ -60,7 +60,7 @@ Base frontend guidelines (architecture, CSS design system, WCAG 2.2 requirements
 
 ### Utility Components
 
-- **CardanLogo**: Cardan logo in full, symbol and tile forms, with color variants and sub-brand lockups (e.g. `product="academy"`)
+- **CardanLogo**: Cardan logo in full, symbol and tile forms, with color variants and sub-brand lockups (e.g. `product="academy"`); the product name is always set in Hanken Grotesk
 - **FocusLoop**: Keyboard navigation management to trap focus inside a container
 - **LanguageSelect**: Language switcher to switch between English and Dutch
 - **ThemeSelect**: Theme selection
@@ -73,10 +73,10 @@ Base frontend guidelines (architecture, CSS design system, WCAG 2.2 requirements
 The [auth/](auth/) directory is a separate, opt-in Nuxt layer (`@cardan/auth-ui`) with the sign-in and MFA forms for Nuxt SPAs backed by Laravel Fortify. Projects extend it next to Cardan UI, as a peer: `github:cardan-a11y/cardan-ui/auth`. It is not part of the base layer because it adds pages and needs `nuxt-auth-sanctum`, which most projects do not use. Its documentation is in [auth/README.md](auth/README.md).
 
 - **Pages**: `/login`, `/forgot-password`, `/reset-password`, `/two-factor-authentication` and `/mfa-setup`, in the `AuthPage` frame (the Cardan Academy design, which Cardan Auditor adopts too). An app overrides a page by creating one at the same path
-- **Components**: `AuthPage`, `LoginForm`, `AuthError`, the password forms (`PasswordForgotForm`, `PasswordResetForm`, `PasswordUpdateForm`, `PasswordRequirements`), `MfaSettings`, `LogoutDialog`, `PasswordConfirmationDialog` and the MFA flow (`MfaChallenge`, `MfaSetup`, `MfaDialog`, `MfaQr`, `MfaCode`, recovery codes, …)
-- **Composables**: `useAuth`, `useMfa`, `useMfaDialog`, `usePasswordConfirmation`, `useMfaSetupReminder`, `usePasswordPolicy`, `useLoginEmail`, `useLogoutDialog` (wrapping `nuxt-auth-sanctum`), plus the `mfa-setup` middleware and the 403 plugin behind the setup reminder
-- Copy lives in the layer's `auth`, `mfa` and `password` messages; apps override keys. Buttons use the `black` (main actions) and `ghost` (secondary) variants; there is no app config and there are no button slots
-- The password endpoints are the Cardan Academy API's `/api/v1` paths, hardened against telling known from unknown addresses; other Cardan APIs follow them (see the Backend section of auth/README.md). `extractAuthError()` reads both Laravel's error shape and the JSON:API envelope
+- **Components**: `AuthPage`, `LoginForm`, `AuthError`, the password forms (`PasswordForgotForm`, `PasswordResetForm`, `PasswordUpdateForm`, `PasswordRequirements`, `PasswordReveal`), `MfaSettings`, `LogoutDialog`, `PasswordConfirmationDialog` and the MFA flow (`MfaChallenge`, `MfaSetup`, `MfaDialog`, `MfaQr`, `MfaCode`, recovery codes, …)
+- **Composables**: `useAuth`, `useMfa`, `useMfaDialog`, `usePasswordConfirmation`, `useMfaSetupReminder`, `usePasswordPolicy`, `useLoginEmail`, `useLogoutDialog`, `useCardanAuthConfig` (wrapping `nuxt-auth-sanctum` and the app config), plus the `mfa-setup` middleware and the 403 plugin behind the setup reminder
+- Copy lives in the layer's `auth`, `mfa` and `password` messages; apps override keys. Buttons use the `black` (main actions) and `ghost` (secondary) variants; there are no button slots
+- The endpoints and the password policy are settings under `cardanAuth` in the app config, with the Cardan Academy API's paths as defaults (`auth/app/app.config.ts`, read through `useCardanAuthConfig()`); an app whose API still serves Fortify's own password routes overrides them in its `app.config.ts` (see the Backend and Configuration sections of auth/README.md). `extractAuthError()` reads both Laravel's error shape and the JSON:API envelope
 - The layer uses the Cardan UI components and tokens only, with no tokens of its own
 - The demo is the Auth UI section of the playground (`/auth`), backed by mock Fortify endpoints in `.playground/server/routes`; its pages render client-side only, like the SPAs that use the layer
 
@@ -111,6 +111,7 @@ function handleClick() {
 All global CSS variables for color, spacing, typography, etc. are declared in [main.css](app/assets/main.css). The layer does not load this file: it is the Cardan template that each consuming project copies into its own `main.css` (a stylesheet shipped by the layer would add a render-blocking request). The playground imports it from [playground.css](.playground/assets/playground.css).
 
 - The `--cardan-*` primitives hold the brand palette; components never use them, only the semantic `--color-*` tokens do.
+- Custom properties that a component sets for itself, such as from a `fontSize` or `iconSize` prop, are prefixed with the component name (`--button-icon-size`, not `--icon-size`), so they don't leak into nested components.
 - Components use tokens without fallbacks: `var(--token)`, not `var(--token, var(--other))`. When a component needs a new token, add it to `main.css` and to the token list in [MIGRATION.md](MIGRATION.md), with a value that keeps the current look of existing projects.
 - Every text and graphic token pair must meet WCAG 2.2 AA contrast (4.5:1 for text, 3:1 for graphics) in light and dark mode. Never fix a contrast failure by inventing a new color; use a brand token.
 - Text and icons on tinted (`-bg`) surfaces use the matching `--color-*-text` token; every `-text` token must reach 4.5:1 on its `-bg` surface.

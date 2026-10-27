@@ -154,7 +154,7 @@ async function toggleUseRecoveryCode() {
   }
 
   button[type='submit'] {
-    --font-size: var(--font-size-md);
+    --button-font-size: var(--font-size-md);
     margin-inline: auto;
   }
 

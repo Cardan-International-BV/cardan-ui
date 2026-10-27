@@ -71,7 +71,7 @@ const { recoveryCodes } = useMfa();
   }
 
   .copy-button {
-    --font-size: var(--font-size-sm);
+    --button-font-size: var(--font-size-sm);
     margin-block-start: 1rem;
   }
 

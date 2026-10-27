@@ -169,7 +169,7 @@ h3 {
       color: var(--color-text);
 
       &:hover {
-        color: var(--color-accent);
+        color: var(--color-accent-text);
       }
     }
   }
@@ -179,7 +179,7 @@ h3 {
       margin-block-end: 0.125rem;
 
       &::marker {
-        color: var(--color-accent);
+        color: var(--color-accent-graphic);
       }
     }
   }
@@ -193,7 +193,7 @@ h3 {
 
     a {
       &:hover {
-        color: var(--color-accent);
+        color: var(--color-accent-text);
       }
     }
   }

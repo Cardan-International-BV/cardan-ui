@@ -43,8 +43,8 @@ const {
 
 const computedStyle = computed(() => ({
   '--radius': radius && `var(--radius-${radius})`,
-  '--font-size': fontSize && `var(--font-size-${fontSize})`,
-  '--icon-size': iconSize && `var(--font-size-${iconSize})`,
+  '--button-font-size': fontSize && `var(--font-size-${fontSize})`,
+  '--button-icon-size': iconSize && `var(--font-size-${iconSize})`,
 }));
 
 const showExternalIcon = computed(() => {
@@ -166,7 +166,7 @@ const emit = defineEmits<{
   justify-content: center;
   gap: 0.25em;
   font-weight: var(--font-weight-medium);
-  font-size: var(--font-size, var(--font-size-sm));
+  font-size: var(--button-font-size, var(--font-size-sm));
   border: 1px solid transparent;
   transition-property: color, border-color, background-color, opacity;
   transition-duration: var(--duration-sm);
@@ -187,7 +187,7 @@ const emit = defineEmits<{
   }
 
   .iconify {
-    font-size: var(--icon-size, larger);
+    font-size: var(--button-icon-size, larger);
     flex-shrink: 0;
     transition-duration: var(--duration-xs);
   }
@@ -202,17 +202,17 @@ const emit = defineEmits<{
 }
 
 .button-size--xs {
-  font-size: var(--font-size, var(--font-size-xs));
+  font-size: var(--button-font-size, var(--font-size-xs));
   min-height: 1.5rem;
   padding-inline: 0.5rem;
 
   .iconify {
-    font-size: var(--font-size, var(--font-size-sm));
+    font-size: var(--button-font-size, var(--font-size-sm));
   }
 }
 
 .button-size--xxs {
-  font-size: var(--font-size, var(--font-size-xs));
+  font-size: var(--button-font-size, var(--font-size-xs));
   min-height: 1.25rem;
   padding-inline: 0.25rem;
 
@@ -229,12 +229,12 @@ const emit = defineEmits<{
   }
 
   .iconify {
-    font-size: var(--icon-size, larger);
+    font-size: var(--button-icon-size, larger);
   }
 }
 
 .button-size--sm {
-  font-size: var(--font-size, var(--font-size-sm));
+  font-size: var(--button-font-size, var(--font-size-sm));
   min-height: 2rem;
   padding-inline: 0.65rem;
 
@@ -243,12 +243,12 @@ const emit = defineEmits<{
   }
 
   .iconify {
-    font-size: var(--icon-size, larger);
+    font-size: var(--button-icon-size, larger);
   }
 }
 
 .button-size--md {
-  font-size: var(--font-size, var(--font-size-sm));
+  font-size: var(--button-font-size, var(--font-size-sm));
   min-height: 2.5rem;
   padding-inline: 0.75rem;
 
@@ -257,12 +257,12 @@ const emit = defineEmits<{
   }
 
   .iconify {
-    font-size: var(--icon-size, larger);
+    font-size: var(--button-icon-size, larger);
   }
 }
 
 .button-size--lg {
-  font-size: var(--font-size, var(--font-size-md));
+  font-size: var(--button-font-size, var(--font-size-md));
   min-height: 2.75rem;
   padding-inline: 1rem;
 
@@ -271,12 +271,12 @@ const emit = defineEmits<{
   }
 
   .iconify {
-    font-size: var(--icon-size, larger);
+    font-size: var(--button-icon-size, larger);
   }
 }
 
 .button-size--xl {
-  font-size: var(--font-size, var(--font-size-lg));
+  font-size: var(--button-font-size, var(--font-size-lg));
   min-height: 3rem;
   padding-inline: 1.25rem;
 
@@ -285,12 +285,12 @@ const emit = defineEmits<{
   }
 
   .iconify {
-    font-size: var(--icon-size, larger);
+    font-size: var(--button-icon-size, larger);
   }
 }
 
 .button-size--xxl {
-  font-size: var(--font-size, var(--font-size-md));
+  font-size: var(--button-font-size, var(--font-size-md));
   min-height: 3.5rem;
   padding-inline: 1.5rem;
 
@@ -299,16 +299,16 @@ const emit = defineEmits<{
   }
 
   .iconify {
-    font-size: var(--icon-size, larger);
+    font-size: var(--button-icon-size, larger);
   }
 }
 
 .button-variant--primary {
-  color: var(--color-on-accent);
-  background-color: var(--color-accent);
+  color: var(--color-white);
+  background-color: var(--color-accent-text);
 
   &:not(:disabled, .disabled):hover {
-    background-color: var(--color-accent-hover);
+    background-color: var(--color-accent-text-hover);
   }
 }
 
@@ -317,8 +317,7 @@ const emit = defineEmits<{
   background-color: var(--color-red-bg);
 
   &:not(:disabled, .disabled):hover {
-    color: var(--color-white);
-    background-color: var(--color-red-text);
+    border-color: var(--color-red-graphic);
   }
 }
 
@@ -345,9 +344,8 @@ const emit = defineEmits<{
 }
 
 .button-variant--3d {
-  --radius: var(--radius-xl);
-  --button-shadow-offset: 4px 4px 0 0 var(--color-accent);
-  --button-shadow-offset-hover: 6px 6px 0 0 var(--color-accent);
+  --button-shadow-offset: 4px 4px 0 0 var(--color-accent-graphic);
+  --button-shadow-offset-hover: 6px 6px 0 0 var(--color-accent-graphic);
 
   color: var(--color-white);
   background-color: var(--color-text);
@@ -391,8 +389,8 @@ const emit = defineEmits<{
 .button-variant--cta {
   --radius: var(--radius-xl);
   --focus-color: var(--color-accent-text);
-  color: var(--color-on-accent);
-  background-color: var(--color-accent);
+  color: var(--color-white);
+  background-color: var(--color-accent-text);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
 
@@ -402,7 +400,7 @@ const emit = defineEmits<{
   }
 
   &:not(:disabled, .disabled):hover {
-    background-color: var(--color-accent-hover);
+    background-color: var(--color-accent-text-hover);
   }
 }
 
@@ -499,10 +497,15 @@ const emit = defineEmits<{
   &:not(:disabled, .disabled):hover {
     background-color: var(--color-green-bg);
   }
+}
 
-  &.router-link-active {
-    text-decoration: underline;
-    color: var(--color-accent-text);
+.button-variant--outline-red {
+  color: var(--color-red-text);
+  background-color: transparent;
+  border-color: var(--color-red-graphic);
+
+  &:not(:disabled, .disabled):hover {
+    background-color: var(--color-red-bg);
   }
 }
 
@@ -511,7 +514,7 @@ const emit = defineEmits<{
   overflow-wrap: anywhere;
   min-height: 0;
   height: auto;
-  font-size: var(--font-size, inherit);
+  font-size: var(--button-font-size, inherit);
   display: inline-flex;
   justify-content: start;
   align-items: center;
@@ -524,10 +527,10 @@ const emit = defineEmits<{
     display: inline;
 
     .iconify {
-      font-size: var(--icon-size, inherit);
+      font-size: var(--button-icon-size, inherit);
       width: 1em;
       height: 1em;
-      vertical-align: middle;
+      margin-bottom: -0.125em;
       margin-inline-start: 0.25em;
     }
   }
@@ -559,7 +562,7 @@ const emit = defineEmits<{
   }
 
   .iconify {
-    font-size: var(--icon-size, inherit);
+    font-size: var(--button-icon-size, inherit);
     color: var(--color-grey-graphic);
   }
 

@@ -168,7 +168,7 @@ const emit = defineEmits<{
 }
 
 .md-editor-preview {
-  font-size: var(--font-size) !important;
+  font-size: inherit !important;
   word-break: break-word !important;
 
   p {
@@ -206,7 +206,7 @@ const emit = defineEmits<{
 
   a {
     --md-theme-link-color: var(--color-text);
-    --md-theme-link-hover-color: var(--color-accent);
+    --md-theme-link-hover-color: var(--color-accent-text);
     text-decoration: underline;
     transition-duration: var(--duration-sm);
   }
@@ -233,7 +233,7 @@ const emit = defineEmits<{
   blockquote {
     --md-theme-quote-color: var(--color-text);
     --md-theme-quote-bg-color: var(--color-accent-bg);
-    --md-theme-quote-border: 5px solid var(--color-accent);
+    --md-theme-quote-border: 5px solid var(--color-accent-graphic);
   }
 }
 
@@ -265,7 +265,7 @@ const emit = defineEmits<{
 }
 
 .md-editor-content {
-  min-height: 10rem;
+  min-height: 9rem;
 }
 
 .show-invalid .markdown-editor:has(:invalid) {

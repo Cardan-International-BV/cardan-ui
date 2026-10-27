@@ -21,7 +21,7 @@ const {
 }>();
 
 const computedStyle = computed(() => ({
-  '--font-size': `var(--font-size-${fontSize})`,
+  '--progress-circle-font-size': `var(--font-size-${fontSize})`,
   '--progress-circle-value': value,
   '--progress-circle-max': max,
 }));
@@ -74,7 +74,7 @@ const percentage = computed(() => ((value / max) * 100)?.toFixed());
   position: relative;
   width: var(--size);
   height: var(--size);
-  font-size: var(--font-size);
+  font-size: var(--progress-circle-font-size);
   font-weight: var(--font-weight-semibold);
   display: grid;
   place-content: center;

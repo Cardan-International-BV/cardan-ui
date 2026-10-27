@@ -64,8 +64,12 @@ const isAccordionOpen = ref(false);
           </template>
         </AccordionDetails>
 
-        <AccordionDetails :open="isAccordionDetailsOpen" name="demo-panels">
-          <template #trigger>Accordion with HTML</template>
+        <AccordionDetails
+          :open="isAccordionDetailsOpen"
+          name="demo-panels"
+          icon-pos="start"
+        >
+          <template #trigger>Accordion with HTML and the icon at the start</template>
           <template #content>
             <p>
               An accordion is a vertically stacked set of interactive headings
@@ -79,7 +83,7 @@ const isAccordionOpen = ref(false);
           </template>
         </AccordionDetails>
 
-        <p class="c-grey-text">Give multiple components the same <code>name</code> attribute to only open one at a time.</p>
+        <p class="c-grey-text">Give multiple components the same <code>name</code> attribute to only open one at a time. Set <code>icon-pos="start"</code> to show the icon before the trigger text.</p>
       </Card>
 
       <Card>
@@ -100,6 +104,29 @@ const isAccordionOpen = ref(false);
               sections of content. Accordions are commonly used to reduce the
               need to scroll when presenting multiple sections of content on a
               single page.
+            </p>
+          </template>
+        </Accordion>
+
+        <Accordion icon-pos="start">
+          <template #trigger>Accordion with the icon at the start</template>
+
+          <template #content>
+            <p>
+              Set <code>icon-pos="start"</code> to show the icon before the
+              trigger text. The default is <code>end</code>.
+            </p>
+          </template>
+        </Accordion>
+
+        <Accordion icon-size="xl">
+          <template #trigger>Accordion with a larger icon</template>
+
+          <template #content>
+            <p>
+              Set <code>icon-size</code> to one of the font sizes to change the
+              size of the icon. By default the icon follows the font size of
+              the trigger.
             </p>
           </template>
         </Accordion>

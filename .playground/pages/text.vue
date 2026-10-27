@@ -499,39 +499,31 @@ function makeToast() {
         </div>
       </Card>
 
-      <DevOnly>
-        <Card>
-          <div class="section-topbar">
-            <h2>Toast</h2>
+      <Card>
+        <div class="section-topbar">
+          <h2>Toast</h2>
 
-            <Button
-              icon="material-symbols:add-circle-rounded"
-              variant="outline"
-              label="Add Toast"
-              @click="makeToast"
-            />
-          </div>
+          <Button
+            icon="material-symbols:add-circle-rounded"
+            variant="outline"
+            label="Add Toast"
+            @click="makeToast"
+          />
+        </div>
 
-          <Toast
-            label="Success message in a toast notification"
-            color="green"
-          />
-          <Toast label="Error message in a toast notification" color="red" />
-          <Toast
-            label="Warning message in a toast notification"
-            color="orange"
-          />
-          <Toast
-            label="Information message in a toast notification"
-            color="blue"
-          />
-          <Toast
-            label="Brand message in a toast notification"
-            color="accent"
-            icon="material-symbols:lightbulb-outline-rounded"
-          />
-        </Card>
-      </DevOnly>
+        <Toast label="Success message in a toast notification" color="green" />
+        <Toast label="Error message in a toast notification" color="red" />
+        <Toast label="Warning message in a toast notification" color="orange" />
+        <Toast
+          label="Information message in a toast notification"
+          color="blue"
+        />
+        <Toast
+          label="Brand message in a toast notification"
+          color="accent"
+          icon="material-symbols:lightbulb-outline-rounded"
+        />
+      </Card>
     </div>
 
     <Card>

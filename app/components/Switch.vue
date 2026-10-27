@@ -97,14 +97,14 @@ const computedAriaDescribedby = computed(() =>
     outline-color var(--duration-sm);
 
   &[aria-checked='true'] {
-    --color-accent: var(--color-green-graphic);
+    --color-accent-graphic: var(--color-green-graphic);
 
     .switch-thumb {
       transform: translateX(14px);
     }
 
     .switch {
-      background-color: var(--color-accent);
+      background-color: var(--color-accent-graphic);
     }
   }
 
@@ -130,7 +130,7 @@ const computedAriaDescribedby = computed(() =>
   }
 
   .switch-label {
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
     transition-property: color, font-weight;
     transition-duration: var(--duration-sm);

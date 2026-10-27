@@ -34,6 +34,7 @@ const {
 
 const formId = useId();
 const password = ref('');
+const showPassword = ref(false);
 const passwordInputRef = useTemplateRef<InputComponent>('passwordInput');
 
 async function handleSubmit() {
@@ -42,6 +43,7 @@ async function handleSubmit() {
 
 function handleClose() {
   password.value = '';
+  showPassword.value = false;
   cancelPasswordConfirmation();
 }
 </script>
@@ -80,16 +82,20 @@ function handleClose() {
         hidden
       />
 
-      <Input
-        ref="passwordInput"
-        v-model="password"
-        required
-        autofocus
-        type="password"
-        name="password"
-        autocomplete="current-password"
-        :label="$t('password.heading')"
-      />
+      <div class="password-input-wrapper">
+        <Input
+          ref="passwordInput"
+          v-model="password"
+          required
+          autofocus
+          :type="showPassword ? 'text' : 'password'"
+          name="password"
+          autocomplete="current-password"
+          :label="$t('password.heading')"
+        />
+
+        <PasswordReveal v-model="showPassword" size="md" />
+      </div>
 
       <AuthError :data="passwordConfirmationError" />
     </Form>
@@ -135,7 +141,7 @@ function handleClose() {
     margin-block-start: 1.5rem;
 
     .button {
-      --font-size: var(--font-size-sm);
+      --button-font-size: var(--font-size-sm);
     }
   }
 }

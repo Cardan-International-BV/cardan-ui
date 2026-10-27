@@ -199,7 +199,7 @@ const emit = defineEmits<{
     color: var(--color-accent-graphic);
   }
   .toast__timer {
-    background-color: var(--color-accent);
+    background-color: var(--color-accent-graphic);
   }
 }
 

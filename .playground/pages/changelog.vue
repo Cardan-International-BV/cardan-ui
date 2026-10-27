@@ -7,6 +7,103 @@ useHead({ title: 'Changelog' });
     <h1>Changelog</h1>
     <p class="mbe-2">Release notes for new features and bug fixes.</p>
 
+    <ChangelogEntry v="2.2.0" date="2026-10-26">
+      <ul>
+        <li>
+          Cardan Auth UI: the endpoints and the password policy are settings
+          under <code>cardanAuth</code> in the app config, with the Cardan API's
+          paths as defaults
+        </li>
+        <li>
+          Cardan Auth UI: every password form has a reveal button (the new
+          PasswordReveal component), the password requirements stay next to
+          their field, and the reset page asks for the email address when the
+          reset link has none
+        </li>
+        <li>
+          Set the product name of CardanLogo in Hanken Grotesk, whatever font
+          the project uses
+        </li>
+        <li>
+          Feature: add <code>iconPos</code> prop to Accordion and
+          AccordionDetails components, with the icon at the
+          <code>end</code> by default
+        </li>
+        <li>
+          AccordionDetails component shows the same chevron as Accordion
+          instead of the native disclosure triangle, with
+          <code>icon</code> and <code>arrow</code> props
+        </li>
+        <li>
+          Feature: add <code>iconSize</code> prop to Accordion and
+          AccordionDetails components
+        </li>
+        <li>
+          Give each component its own font and icon size variables, such as
+          <code>--button-font-size</code> and <code>--button-icon-size</code>,
+          instead of the shared <code>--font-size</code> and
+          <code>--icon-size</code>, so a Button inside a Callout, Tabs or
+          Tooltip no longer takes over their sizes
+        </li>
+        <li>
+          Fill the primary and CTA Button, the primary Popover trigger and the
+          selected DatePicker date and MultiSelect group label with
+          <code>--color-accent-text</code> and <code>--color-white</code> text;
+          the primary and CTA Button hover to
+          <code>--color-accent-text-hover</code>
+        </li>
+        <li>
+          Show the checked LanguageSelect option with a
+          <code>--color-accent-bg</code> background,
+          <code>--color-accent-text</code> text and a
+          <code>--color-accent-graphic</code> border
+        </li>
+        <li>
+          Remove the <code>--color-on-accent</code> design token, use
+          <code>--color-white</code> instead
+        </li>
+        <li>
+          Use <code>--color-accent-graphic</code> for borders, focus lines and
+          indicators and <code>--color-accent-text</code> for accent text:
+          components no longer use <code>--color-accent</code> or
+          <code>--color-accent-hover</code>
+        </li>
+        <li>
+          Feature: add <code>outline-red</code> variant to Button component; the
+          <code>danger</code> variant shows a red border on hover
+        </li>
+        <li>
+          Make Popover component <code>md</code> by default, with 40px
+          <code>md</code> and 44px <code>lg</code> triggers like Button and no
+          default maximum width; the ghost trigger hovers to
+          <code>--color-ghost-hover-bg</code> like the ghost Button
+        </li>
+        <li>
+          Make MenuList buttons <code>md</code> by default instead of
+          <code>lg</code>, and give popovers in an inline MenuList square top
+          corners
+        </li>
+        <li>
+          Make Search component <code>md</code> by default and the Dialog close
+          button <code>md</code>
+        </li>
+        <li>
+          MultiSelect component: borders use
+          <code>--color-grey-graphic</code>, the highlighted option uses
+          <code>--color-accent-bg</code> with <code>--color-accent-text</code>,
+          and a highlighted selected option is red
+        </li>
+        <li>
+          Use larger text in Avatar and UserMenu components, semibold Avatar
+          initials and 14px labels in Switch component
+        </li>
+        <li>
+          Use <code>--color-bg</code> as background of the flat grey Chip
+        </li>
+        <li>Fix: align the items of an inline MenuList vertically</li>
+      </ul>
+    </ChangelogEntry>
+
     <ChangelogEntry v="2.1.0" date="2026-10-16">
       <ul>
         <li>
@@ -155,7 +252,7 @@ useHead({ title: 'Changelog' });
       margin-block-end: 0.125rem;
 
       &::marker {
-        color: var(--color-accent);
+        color: var(--color-accent-graphic);
       }
     }
 

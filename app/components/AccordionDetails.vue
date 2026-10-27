@@ -1,14 +1,41 @@
 <script setup lang="ts">
-defineProps<{
+const {
+  name = undefined,
+  arrow = true,
+  icon = 'material-symbols:chevron-right-rounded',
+  iconPos = 'end',
+  iconSize = undefined,
+} = defineProps<{
   open?: boolean;
   name?: string;
+  icon?: string;
+  iconPos?: 'start' | 'end';
+  iconSize?: FontSize;
+  arrow?: boolean;
 }>();
 </script>
 
 <template>
   <details :open="open" class="details-wrapper" :name="name">
-    <summary class="details-summary">
+    <summary
+      :class="['details-summary', `details-icon-position--${iconPos}`]"
+      :style="{
+        '--details-icon-size': iconSize && `var(--font-size-${iconSize})`,
+      }"
+    >
+      <Icon
+        v-if="arrow && iconPos === 'start'"
+        :name="icon"
+        class="details-arrow"
+      />
+
       <slot name="trigger" mdc-unwrap="p" />
+
+      <Icon
+        v-if="arrow && iconPos === 'end'"
+        :name="icon"
+        class="details-arrow"
+      />
     </summary>
 
     <div class="details-panel">
@@ -21,6 +48,11 @@ defineProps<{
 .details-summary {
   cursor: default;
   position: relative;
+  list-style: none;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
 
   h1,
   h2,
@@ -41,9 +73,29 @@ defineProps<{
   &:hover {
     color: var(--color-accent-graphic);
 
-    &::marker {
+    .details-arrow {
       color: var(--color-accent-graphic);
     }
   }
+
+  .details-arrow {
+    font-size: var(--details-icon-size, inherit);
+    margin-block-end: -0.2em;
+    transition:
+      rotate var(--duration-md),
+      color var(--duration-sm);
+  }
+}
+
+.details-wrapper[open] > .details-summary > .details-arrow {
+  rotate: 0.25turn;
+}
+
+.details-icon-position--start .details-arrow {
+  margin-inline-end: 0.25em;
+}
+
+.details-icon-position--end .details-arrow {
+  margin-inline-start: 0.25em;
 }
 </style>

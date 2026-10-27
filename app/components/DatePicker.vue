@@ -226,9 +226,9 @@ const computedAriaLabels = computed(() => {
   --dp-hover-color: var(--color-grey-bg);
   --dp-hover-text-color: var(--color-text);
   --dp-hover-icon-color: var(--dp-icon-color);
-  --dp-primary-color: var(--color-accent);
+  --dp-primary-color: var(--color-accent-text);
   --dp-primary-disabled-color: var(--color-accent-bg);
-  --dp-primary-text-color: var(--color-on-accent);
+  --dp-primary-text-color: var(--color-white);
   --dp-secondary-color: var(--color-grey-bg);
   --dp-border-color: var(--color-grey-graphic);
   --dp-menu-border-color: var(--color-grey-light);

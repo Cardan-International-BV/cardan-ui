@@ -271,7 +271,7 @@ onMounted(() => {
     }
 
     .button {
-      --font-size: var(--font-size-sm);
+      --button-font-size: var(--font-size-sm);
     }
   }
 }

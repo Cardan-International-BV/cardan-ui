@@ -68,12 +68,10 @@ function closeDialog() {
   // `finished` settles on finish *and* on cancel, resolves immediately
   // when animations run with 0s durations (prefers-reduced-motion), and
   // the closure keeps working if the component is torn down mid-close.
-  Promise.allSettled(dialog.getAnimations().map((a) => a.finished)).then(
-    () => {
-      dialog.removeAttribute('closing');
-      dialog.close();
-    },
-  );
+  Promise.allSettled(dialog.getAnimations().map((a) => a.finished)).then(() => {
+    dialog.removeAttribute('closing');
+    dialog.close();
+  });
 }
 
 function handleClose() {
@@ -130,7 +128,7 @@ defineExpose({
             :variant="closeButtonVariant"
             :radius="closeButtonRadius"
             :icon-size="closeButtonIconSize"
-            size="sm"
+            size="md"
             :label="$t('general.close')"
             hide-label
             class="close-button"

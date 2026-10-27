@@ -24,7 +24,7 @@ const emit = defineEmits<{
       type="button"
       class="theme-switch-button"
       :aria-pressed="colorMode.value === 'dark'"
-      :style="[fontSize && `--font-size: var(--font-size-${fontSize})`]"
+      :style="[fontSize && `--theme-switch-font-size: var(--font-size-${fontSize})`]"
       :disabled="disabled"
       @click.stop="handleClick"
     >
@@ -72,7 +72,7 @@ const emit = defineEmits<{
   .iconify {
     z-index: 1;
     color: var(--color-shape);
-    font-size: var(--font-size, var(--font-size-lg));
+    font-size: var(--theme-switch-font-size, var(--font-size-lg));
 
     &[class*='material-symbols:light-mode-outline-rounded'] {
       color: var(--color-white);

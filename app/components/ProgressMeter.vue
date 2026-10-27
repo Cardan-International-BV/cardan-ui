@@ -35,7 +35,7 @@ const percentage = computed(() => ((value / (max - min)) * 100)?.toFixed(0));
     :aria-labelledby="id"
     :aria-busy="role === 'progressbar' && value < max"
     :class="['progress-meter-wrapper', `progress-meter-color--${color}`]"
-    :style="`--font-size: var(--font-size-${fontSize})`"
+    :style="`--progress-meter-font-size: var(--font-size-${fontSize})`"
   >
     <div :id="id" :class="['meter-label', hideLabel && 'visuallyhidden']">
       {{ label }}
@@ -60,7 +60,7 @@ const percentage = computed(() => ((value / (max - min)) * 100)?.toFixed(0));
   display: grid;
   grid-template-columns: 1fr auto;
   justify-items: space-between;
-  font-size: var(--font-size);
+  font-size: var(--progress-meter-font-size);
 
   .meter-label {
     font-weight: var(--font-weight-medium);

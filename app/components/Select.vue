@@ -311,7 +311,7 @@ const computedAriaDescribedby = computed(() =>
     border-block-end-color: var(--color-grey-graphic);
 
     &:focus {
-      border-block-end-color: var(--color-accent);
+      border-block-end-color: var(--color-accent-graphic);
       outline-color: transparent;
     }
   }
@@ -336,8 +336,8 @@ const computedAriaDescribedby = computed(() =>
 
     &:focus {
       outline-color: transparent;
-      border-color: var(--color-accent);
-      box-shadow: 0 1.5px 0 0 var(--color-accent);
+      border-color: var(--color-accent-graphic);
+      box-shadow: 0 1.5px 0 0 var(--color-accent-graphic);
     }
   }
 }
