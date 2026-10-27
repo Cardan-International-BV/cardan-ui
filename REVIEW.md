@@ -1,11 +1,11 @@
 # Review instructions
 
 This is cardan-ui, the accessible Vue component library of Cardan, shipped as
-a Nuxt layer. CAT-nuxt (Cardan Auditor), cardan-lms-nuxt (Cardan Academy),
-cardan-nuxt (the website) and other projects extend it, so a change here
-reaches all of them at once. Cardan is an accessibility-first company: an
-accessibility regression in this library is a production bug in every
-project, not polish. CLAUDE.md (and the parent guidelines it refers to) holds
+a Nuxt layer. cardan-auditor-nuxt (Cardan Auditor), cardan-lms-nuxt
+(Cardan Academy), cardan-nuxt (the website) and other projects extend it,
+so a change here reaches all of them at once. Cardan is an
+accessibility-first company: an accessibility regression in this library is
+a production bug in every project, not polish. CLAUDE.md (and the parent guidelines it refers to) holds
 the conventions; MIGRATION.md tells projects how to upgrade.
 
 ## What Important means here
