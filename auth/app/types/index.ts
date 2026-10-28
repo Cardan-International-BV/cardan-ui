@@ -76,15 +76,6 @@ declare global {
     };
     /** `PATCH` on the Cardan APIs, `PUT` on Fortify's own route. */
     updatePasswordMethod: UpdatePasswordMethod;
-    /**
-     * Whether the API shows recovery codes only when they are created, as the
-     * Cardan Academy API does: once at setup and once right after
-     * regenerating them, an empty list after that. The setup then says the
-     * codes are shown this once, and "Show recovery codes" becomes "Regenerate recovery codes",
-     * whose dialog asks to replace them and shows the new ones once. Off by
-     * default: Fortify serves them on request, after a password confirmation.
-     */
-    recoveryCodesOnlyAtSetup: boolean;
     passwordPolicy: {
       /** Shown until the policy endpoint answers, or as the policy without one. */
       minLength: number;

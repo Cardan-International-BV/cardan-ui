@@ -1,13 +1,12 @@
 <script setup lang="ts">
 /**
- * Turns MFA on or off and shows the recovery codes, through the layer's two
- * dialogs, for an account settings page. Whether MFA is on comes from the user
- * payload's `mfa_enabled`.
+ * Turns MFA on or off and regenerates the recovery codes, through the layer's
+ * two dialogs, for an account settings page. Whether MFA is on comes from the
+ * user payload's `mfa_enabled`.
  *
- * With `recoveryCodesOnlyAtSetup` the API never shows the codes again after
- * they are created, so the button regenerates them instead of showing them:
- * after the password, its dialog asks to replace them and shows the new ones
- * once.
+ * The codes are shown only when they are created, so the button regenerates
+ * them instead of showing them: after the password, its dialog asks to replace
+ * them and shows the new ones once.
  *
  * A user who is required to have MFA switches apps the Fortify way: switch it
  * off (after confirming the password) and set it up again straight away on the
@@ -15,7 +14,6 @@
  */
 const route = useRoute();
 const { refreshIdentity } = useAuth();
-const { recoveryCodesOnlyAtSetup } = useCardanAuthConfig();
 
 const { mfaEnabled, mfaRequired, isMfaSetupRequired } = useMfaSetupReminder();
 const {
@@ -58,10 +56,7 @@ const emit = defineEmits<{
       {{ mfaEnabled ? $t('mfa.status-on') : $t('mfa.status-off') }}
     </p>
 
-    <p
-      v-if="mfaEnabled && recoveryCodesOnlyAtSetup"
-      class="mfa-settings-description"
-    >
+    <p v-if="mfaEnabled" class="mfa-settings-description">
       {{ $t('mfa.recovery-codes-lost') }}
     </p>
 
@@ -73,16 +68,8 @@ const emit = defineEmits<{
       <template v-if="mfaEnabled">
         <Button
           variant="secondary"
-          :icon="
-            recoveryCodesOnlyAtSetup
-              ? 'material-symbols:refresh-rounded'
-              : 'material-symbols:key-outline'
-          "
-          :label="
-            recoveryCodesOnlyAtSetup
-              ? $t('mfa.recovery-codes-regenerate')
-              : $t('mfa.recovery-codes-show')
-          "
+          icon="material-symbols:refresh-rounded"
+          :label="$t('mfa.recovery-codes-regenerate')"
           :loading="loadingMfaRecoveryCodesDialog"
           @click="openMfaRecoveryCodesDialog"
         />

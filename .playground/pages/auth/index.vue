@@ -1,14 +1,5 @@
 <script setup lang="ts">
 useHead({ title: 'Auth UI' });
-
-// The layer reads its config when a component is set up, so the demo is
-// mounted again (by key) when the switch changes it.
-const cardanAuth = useCardanAuthConfig();
-const onlyAtSetup = ref(cardanAuth.recoveryCodesOnlyAtSetup);
-
-watch(onlyAtSetup, (value) => {
-  cardanAuth.recoveryCodesOnlyAtSetup = value;
-});
 </script>
 
 <template>
@@ -24,22 +15,7 @@ watch(onlyAtSetup, (value) => {
 
     <Card>
       <h2>MFA dialogs</h2>
-
-      <p>
-        With <code>recoveryCodesOnlyAtSetup</code> on, as on the Cardan Academy
-        API, the recovery codes are shown only when they are created: the setup
-        says so, and the recovery codes dialog asks to replace them and shows
-        the new set once. Off, it shows the current codes, as Fortify does. The
-        switch also applies to the MFA setup page below.
-      </p>
-
-      <Switch
-        v-model="onlyAtSetup"
-        label="recoveryCodesOnlyAtSetup"
-        variant="outline"
-      />
-
-      <MfaDemo :key="String(onlyAtSetup)" />
+      <MfaDemo />
     </Card>
 
     <Card>

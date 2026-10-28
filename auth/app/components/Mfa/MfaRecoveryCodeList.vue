@@ -8,7 +8,6 @@ const { headingLevel = undefined } = defineProps<{
 }>();
 
 const { recoveryCodes } = useMfa();
-const { recoveryCodesOnlyAtSetup } = useCardanAuthConfig();
 
 const headingRef = useTemplateRef<HTMLElement>('heading');
 
@@ -43,11 +42,7 @@ defineExpose({
     </Card>
 
     <p class="mfa-recovery-codes-description">
-      {{
-        recoveryCodesOnlyAtSetup
-          ? $t('mfa.recovery-code-description-once')
-          : $t('mfa.recovery-code-description')
-      }}
+      {{ $t('mfa.recovery-code-description') }}
     </p>
   </div>
 </template>
