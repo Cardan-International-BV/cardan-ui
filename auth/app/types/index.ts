@@ -76,6 +76,14 @@ declare global {
     };
     /** `PATCH` on the Cardan APIs, `PUT` on Fortify's own route. */
     updatePasswordMethod: UpdatePasswordMethod;
+    /**
+     * Whether the API serves the recovery codes only while MFA is being set
+     * up, as the Cardan Academy API does. The setup then says the codes are
+     * shown this once, and `MfaSettings` drops "Show recovery codes" and
+     * explains how to get new ones instead. Off by default: Fortify serves
+     * them on request, after a password confirmation.
+     */
+    recoveryCodesOnlyAtSetup: boolean;
     passwordPolicy: {
       /** Shown until the policy endpoint answers, or as the policy without one. */
       minLength: number;

@@ -4,12 +4,17 @@
  * dialogs, for an account settings page. Whether MFA is on comes from the user
  * payload's `mfa_enabled`.
  *
+ * With `recoveryCodesOnlyAtSetup` the API shows the codes at setup only, so
+ * there is nothing to show here: the page says how to get new ones instead,
+ * which is setting MFA up again.
+ *
  * A user who is required to have MFA switches apps the Fortify way: switch it
  * off (after confirming the password) and set it up again straight away on the
  * setup page, where the API holds them until the new app is confirmed.
  */
 const route = useRoute();
 const { refreshIdentity } = useAuth();
+const { recoveryCodesOnlyAtSetup } = useCardanAuthConfig();
 
 const { mfaEnabled, mfaRequired, isMfaSetupRequired } = useMfaSetupReminder();
 const {
@@ -52,13 +57,21 @@ const emit = defineEmits<{
       {{ mfaEnabled ? $t('mfa.status-on') : $t('mfa.status-off') }}
     </p>
 
-    <p v-if="mfaEnabled && mfaRequired" class="mfa-settings-required">
+    <p
+      v-if="mfaEnabled && recoveryCodesOnlyAtSetup"
+      class="mfa-settings-description"
+    >
+      {{ $t('mfa.recovery-codes-lost') }}
+    </p>
+
+    <p v-if="mfaEnabled && mfaRequired" class="mfa-settings-description">
       {{ $t('mfa.change-app-description') }}
     </p>
 
     <div class="button-group">
       <template v-if="mfaEnabled">
         <Button
+          v-if="!recoveryCodesOnlyAtSetup"
           variant="secondary"
           icon="material-symbols:key-outline"
           :label="$t('mfa.recovery-codes-show')"
@@ -91,7 +104,7 @@ const emit = defineEmits<{
          "MFA is off" step would only flash by. -->
     <MfaDialog :show-disable-result="!mfaRequired" @refresh="handleRefresh" />
 
-    <MfaRecoveryCodesDialog />
+    <MfaRecoveryCodesDialog v-if="!recoveryCodesOnlyAtSetup" />
   </div>
 </template>
 
@@ -117,7 +130,7 @@ const emit = defineEmits<{
     }
   }
 
-  .mfa-settings-required {
+  .mfa-settings-description {
     max-width: 60ch;
     color: var(--color-grey-text);
   }

@@ -8,6 +8,7 @@ const { headingLevel = undefined } = defineProps<{
 }>();
 
 const { recoveryCodes } = useMfa();
+const { recoveryCodesOnlyAtSetup } = useCardanAuthConfig();
 </script>
 
 <template>
@@ -33,7 +34,11 @@ const { recoveryCodes } = useMfa();
     </Card>
 
     <p class="mfa-recovery-codes-description">
-      {{ $t('mfa.recovery-code-description') }}
+      {{
+        recoveryCodesOnlyAtSetup
+          ? $t('mfa.recovery-code-description-once')
+          : $t('mfa.recovery-code-description')
+      }}
     </p>
   </div>
 </template>

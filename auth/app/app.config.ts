@@ -37,6 +37,7 @@ const cardanAuth: CardanAuthConfig = {
     confirmedPasswordStatus: '/api/user/confirmed-password-status',
   },
   updatePasswordMethod: 'PATCH',
+  recoveryCodesOnlyAtSetup: false,
   passwordPolicy: {
     minLength: 14,
     maxLength: 128,

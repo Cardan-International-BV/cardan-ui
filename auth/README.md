@@ -76,20 +76,20 @@ export default defineNuxtConfig({
 
 The layer calls these endpoints, relative to your configured `sanctum.baseUrl`: Fortify's own for sign-in and MFA, and the Cardan API's `/api/v1` paths for passwords. These are the defaults, the Cardan Academy API's; [Configuration](#configuration) shows how an app points them elsewhere.
 
-| Endpoint                                        | Method                           | Config key                | Used for                                                       |
-| ----------------------------------------------- | -------------------------------- | ------------------------- | -------------------------------------------------------------- |
-| `/api/user/two-factor-authentication`           | `POST` / `DELETE`                | `twoFactorAuthentication` | Enable / disable MFA                                           |
-| `/api/user/two-factor-qr-code`                  | `GET`                            | `twoFactorQrCode`         | The setup QR code (inline SVG) and its `otpauth://` link       |
-| `/api/user/confirmed-two-factor-authentication` | `POST`                           | `twoFactorConfirmation`   | Confirm the first code                                         |
-| `/api/user/two-factor-recovery-codes`           | `GET` / `POST`                   | `twoFactorRecoveryCodes`  | Read / regenerate recovery codes                               |
-| `/api/two-factor-challenge`                     | `POST`                           | `twoFactorChallenge`      | Second factor at sign-in                                       |
-| `/api/user/confirmed-password-status`           | `GET`                            | `confirmedPasswordStatus` | Whether the password was confirmed recently                    |
-| `/api/user/confirm-password`                    | `POST`                           | `confirmPassword`         | Confirm the password                                           |
-| your `sanctum.endpoints.login`                  | `POST`                           |                           | Sign in (path taken from your Sanctum config)                  |
-| `/api/v1/auth/forgot-password`                  | `POST`                           | `forgotPassword`          | Request a reset link (`email`)                                 |
-| `/api/v1/auth/reset-password`                   | `POST`                           | `resetPassword`           | Set a new password from the reset link                         |
-| `/api/v1/profile/password`                      | `PATCH` (`updatePasswordMethod`) | `updatePassword`          | Change the password while signed in                            |
-| `/api/v1/password-policy`                       | `GET`                            | `passwordPolicy`          | `{ data: { min_length, max_length } }`, or `false` without one |
+| Endpoint                                        | Method                           | Config key                | Used for                                                          |
+| ----------------------------------------------- | -------------------------------- | ------------------------- | ----------------------------------------------------------------- |
+| `/api/user/two-factor-authentication`           | `POST` / `DELETE`                | `twoFactorAuthentication` | Enable / disable MFA                                              |
+| `/api/user/two-factor-qr-code`                  | `GET`                            | `twoFactorQrCode`         | The setup QR code (inline SVG) and its `otpauth://` link          |
+| `/api/user/confirmed-two-factor-authentication` | `POST`                           | `twoFactorConfirmation`   | Confirm the first code                                            |
+| `/api/user/two-factor-recovery-codes`           | `GET` / `POST`                   | `twoFactorRecoveryCodes`  | Read / regenerate recovery codes (see `recoveryCodesOnlyAtSetup`) |
+| `/api/two-factor-challenge`                     | `POST`                           | `twoFactorChallenge`      | Second factor at sign-in                                          |
+| `/api/user/confirmed-password-status`           | `GET`                            | `confirmedPasswordStatus` | Whether the password was confirmed recently                       |
+| `/api/user/confirm-password`                    | `POST`                           | `confirmPassword`         | Confirm the password                                              |
+| your `sanctum.endpoints.login`                  | `POST`                           |                           | Sign in (path taken from your Sanctum config)                     |
+| `/api/v1/auth/forgot-password`                  | `POST`                           | `forgotPassword`          | Request a reset link (`email`)                                    |
+| `/api/v1/auth/reset-password`                   | `POST`                           | `resetPassword`           | Set a new password from the reset link                            |
+| `/api/v1/profile/password`                      | `PATCH` (`updatePasswordMethod`) | `updatePassword`          | Change the password while signed in                               |
+| `/api/v1/password-policy`                       | `GET`                            | `passwordPolicy`          | `{ data: { min_length, max_length } }`, or `false` without one    |
 
 Enable Fortify's `two-factor-authentication` feature with `confirm: true`. Leave Fortify's `resetPasswords` feature off: its routes tell a known address from an unknown one. The password endpoints take Fortify's fields (`token`, `email`, `password`, `password_confirmation`, `current_password`) and answer a known and an unknown address identically. Errors may come in Laravel's shape (`{ message, errors: { field: [...] } }`) or as a JSON:API envelope (`{ errors: [{ detail, source: { parameter } }] }`); `extractAuthError()` reads both. Point the reset email at your app's `/reset-password` page with `?token=…&email=…`; a mail without the `email`, such as Fortify's own, gets a visible email field on that page.
 
@@ -115,12 +115,13 @@ export default defineAppConfig({
 });
 ```
 
-| Key                                     | Default         |                                                                                                                                                 |
-| --------------------------------------- | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `endpoints.*`                           | the paths above | Relative to `sanctum.baseUrl`. Sign-in, sign-out, the identity and the CSRF cookie stay in the `sanctum` config                                 |
-| `updatePasswordMethod`                  | `'PATCH'`       | `'PUT'` for Fortify's own `/user/password` route                                                                                                |
-| `passwordPolicy.minLength`, `maxLength` | `14`, `128`     | Shown until the policy endpoint answers, or as the policy when `endpoints.passwordPolicy` is `false`. `maxLength: null` sets no maximum         |
-| `passwordPolicy.serverChecks`           | `true`          | Whether the API also refuses breached and common passwords and ones with personal information on save; the forms list those checks when it does |
+| Key                                     | Default         |                                                                                                                                                                                                                    |
+| --------------------------------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `endpoints.*`                           | the paths above | Relative to `sanctum.baseUrl`. Sign-in, sign-out, the identity and the CSRF cookie stay in the `sanctum` config                                                                                                    |
+| `updatePasswordMethod`                  | `'PATCH'`       | `'PUT'` for Fortify's own `/user/password` route                                                                                                                                                                   |
+| `passwordPolicy.minLength`, `maxLength` | `14`, `128`     | Shown until the policy endpoint answers, or as the policy when `endpoints.passwordPolicy` is `false`. `maxLength: null` sets no maximum                                                                            |
+| `passwordPolicy.serverChecks`           | `true`          | Whether the API also refuses breached and common passwords and ones with personal information on save; the forms list those checks when it does                                                                    |
+| `recoveryCodesOnlyAtSetup`              | `false`         | `true` for an API that serves the recovery codes only during setup, like the Cardan Academy API. Off by default, because Fortify serves them on request. See [Account settings for MFA](#account-settings-for-mfa) |
 
 ## Usage
 
@@ -253,6 +254,8 @@ const {
 </template>
 ```
 
+Leave out the recovery codes button and `MfaRecoveryCodesDialog` when your API serves the codes only at setup, and set `recoveryCodesOnlyAtSetup` (see [Configuration](#configuration)).
+
 `MfaDialog` emits **`refresh`** once MFA has actually been turned on or off. The layer already refreshes the Sanctum identity itself; handle `refresh` to re-sync any copy of the user your app keeps of its own, so an "MFA enabled" badge updates immediately.
 
 If that handler takes the user elsewhere after MFA is turned off (say, back to a setup page because MFA is required), pass `:show-disable-result="false"`. The dialog then skips its "MFA is off" step and keeps the disable button loading until your handler closes it with `closeMfaDialog()`.
@@ -297,7 +300,7 @@ The buttons follow the [button variants](#button-variants) of your app config.
 
 ### Account settings for MFA
 
-`<MfaSettings />` shows whether MFA is on and offers to enable it, show the recovery codes, or disable it, with the two dialogs mounted for you. For an account that requires MFA, disabling becomes "set up MFA again": the dialog skips its "MFA is off" step and sends the user to `/mfa-setup`.
+`<MfaSettings />` shows whether MFA is on and offers to enable it, show the recovery codes, or disable it, with the two dialogs mounted for you. With `recoveryCodesOnlyAtSetup` it leaves out the recovery codes and their dialog, and says instead that someone who lost them sets MFA up again; the recovery codes step of the setup then says the codes are shown only this once. For an account that requires MFA, disabling becomes "set up MFA again": the dialog skips its "MFA is off" step and sends the user to `/mfa-setup`.
 
 ### Setup reminder
 

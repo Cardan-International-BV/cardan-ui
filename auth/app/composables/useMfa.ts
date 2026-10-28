@@ -170,7 +170,8 @@ export function useMfa() {
       // MFA is enabled and confirming keeps them. A backend may end a
       // confirmation that only covered setting MFA up (one that came from
       // signing in) once it is confirmed, and the codes still belong to this
-      // enrolment.
+      // enrolment. With `recoveryCodesOnlyAtSetup` the API refuses them after
+      // confirming, so this is the only time they can be read.
       await getRecoveryCodes();
 
       await settingsRequest(endpoints.twoFactorConfirmation, {
