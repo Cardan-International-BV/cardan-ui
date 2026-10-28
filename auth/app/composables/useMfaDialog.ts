@@ -3,7 +3,7 @@
  * consumers never have to know about the dialog's internal step numbers.
  */
 export function useMfaDialog() {
-  const { mfaStep, resetMfa, getRecoveryCodes } = useMfa();
+  const { mfaStep, mfaError, recoveryCodes, resetMfa } = useMfa();
   const {
     ensurePasswordConfirmed,
     isPasswordConfirmed,
@@ -11,9 +11,8 @@ export function useMfaDialog() {
   } = usePasswordConfirmation();
 
   /**
-   * Loading state for whatever opens the recovery codes, only while the codes
-   * load without a password confirmation: when one is needed, its dialog's
-   * Confirm button carries the loading state instead.
+   * Loading state for whatever opens the recovery codes dialog, while it checks
+   * whether the password was confirmed recently.
    */
   const loadingMfaRecoveryCodesDialog = useState(
     'loadingMfaRecoveryCodesDialog',
@@ -53,19 +52,20 @@ export function useMfaDialog() {
   }
 
   /**
-   * Fetches the current recovery codes, then shows them. Asks for the password
-   * first, like the other flows: a confirmation the user cancels opens nothing.
-   * When it asks, the codes load under the password dialog's Confirm button.
+   * Opens the dialog on replacing the recovery codes, after the password: the
+   * codes are shown only when they are created, so there are none to fetch.
+   * A confirmation the user cancels opens nothing.
    */
   async function openMfaRecoveryCodesDialog() {
-    if (await isPasswordConfirmed()) {
-      loadingMfaRecoveryCodesDialog.value = true;
-      await getRecoveryCodes();
-      loadingMfaRecoveryCodesDialog.value = false;
-    } else if (!(await requestPasswordConfirmation(getRecoveryCodes))) {
-      return;
-    }
+    loadingMfaRecoveryCodesDialog.value = true;
+    const confirmed = await isPasswordConfirmed();
+    loadingMfaRecoveryCodesDialog.value = false;
 
+    if (!confirmed && !(await requestPasswordConfirmation())) return;
+
+    // Codes still in memory from setting MFA up are not shown again.
+    recoveryCodes.value = [];
+    mfaError.value = null;
     mfaRecoveryCodesDialogRef.value?.openDialog();
   }
 

@@ -1,8 +1,12 @@
 <script setup lang="ts">
 /**
- * Turns MFA on or off and shows the recovery codes, through the layer's two
- * dialogs, for an account settings page. Whether MFA is on comes from the user
- * payload's `mfa_enabled`.
+ * Turns MFA on or off and regenerates the recovery codes, through the layer's
+ * two dialogs, for an account settings page. Whether MFA is on comes from the
+ * user payload's `mfa_enabled`.
+ *
+ * The codes are shown only when they are created, so the button regenerates
+ * them instead of showing them: after the password, its dialog asks to replace
+ * them and shows the new ones once.
  *
  * A user who is required to have MFA switches apps the Fortify way: switch it
  * off (after confirming the password) and set it up again straight away on the
@@ -52,7 +56,11 @@ const emit = defineEmits<{
       {{ mfaEnabled ? $t('mfa.status-on') : $t('mfa.status-off') }}
     </p>
 
-    <p v-if="mfaEnabled && mfaRequired" class="mfa-settings-required">
+    <p v-if="mfaEnabled" class="mfa-settings-description">
+      {{ $t('mfa.recovery-codes-lost') }}
+    </p>
+
+    <p v-if="mfaEnabled && mfaRequired" class="mfa-settings-description">
       {{ $t('mfa.change-app-description') }}
     </p>
 
@@ -60,14 +68,14 @@ const emit = defineEmits<{
       <template v-if="mfaEnabled">
         <Button
           variant="secondary"
-          icon="material-symbols:key-outline"
-          :label="$t('mfa.recovery-codes-show')"
+          icon="material-symbols:refresh-rounded"
+          :label="$t('mfa.recovery-codes-regenerate')"
           :loading="loadingMfaRecoveryCodesDialog"
           @click="openMfaRecoveryCodesDialog"
         />
 
         <Button
-          variant="ghost"
+          variant="danger"
           :icon="
             mfaRequired
               ? 'material-symbols:lock-reset'
@@ -117,7 +125,7 @@ const emit = defineEmits<{
     }
   }
 
-  .mfa-settings-required {
+  .mfa-settings-description {
     max-width: 60ch;
     color: var(--color-grey-text);
   }

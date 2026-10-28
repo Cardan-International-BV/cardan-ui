@@ -101,6 +101,8 @@ export function useMfa() {
       await settingsRequest(endpoints.twoFactorRecoveryCodes, {
         method: 'POST',
       });
+      // Read once, right away: the API serves the new codes this one time and
+      // an empty list after that.
       await getRecoveryCodes();
     } catch (error) {
       setMfaError(error);
@@ -170,7 +172,7 @@ export function useMfa() {
       // MFA is enabled and confirming keeps them. A backend may end a
       // confirmation that only covered setting MFA up (one that came from
       // signing in) once it is confirmed, and the codes still belong to this
-      // enrolment.
+      // enrolment. This is the one read of the codes that the setup gets.
       await getRecoveryCodes();
 
       await settingsRequest(endpoints.twoFactorConfirmation, {

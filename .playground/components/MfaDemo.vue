@@ -37,8 +37,8 @@ const {
       <Button
         variant="outline"
         size="lg"
-        icon="material-symbols:password-rounded"
-        label="Recovery codes"
+        icon="material-symbols:refresh-rounded"
+        label="Regenerate recovery codes"
         @click="openMfaRecoveryCodesDialog()"
       />
     </div>

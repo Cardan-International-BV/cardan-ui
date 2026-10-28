@@ -1,36 +1,83 @@
 <script setup lang="ts">
-const { mfaRecoveryCodesDialogRef } = useMfaDialog();
+/**
+ * Replaces the recovery codes. The API never shows the current codes, so the
+ * dialog opens on the question whether to replace them, and shows the new ones
+ * this once. Closing it forgets them.
+ */
+const { mfaRecoveryCodesDialogRef, closeMfaRecoveryCodesDialog } =
+  useMfaDialog();
 const {
   mfaError,
   recoveryCodes,
   generateRecoveryCodes,
   loadingGenerateRecoveryCodes,
 } = useMfa();
+
+const codeListRef = useTemplateRef<{ focusHeading: () => void }>('codeList');
+
+/** Asking to replace the codes, before the new ones are there. */
+const isConfirming = computed(() => !recoveryCodes.value.length);
+
+/**
+ * The generate button gives way to the new codes, so focus moves to their
+ * heading rather than being lost with the button.
+ */
+async function handleGenerate() {
+  await generateRecoveryCodes();
+
+  if (recoveryCodes.value.length) {
+    await nextTick();
+    codeListRef.value?.focusHeading();
+  }
+}
+
+function handleClose() {
+  mfaError.value = null;
+  recoveryCodes.value = [];
+}
 </script>
 
 <template>
   <Dialog
     ref="mfaRecoveryCodesDialogRef"
-    :label="$t('mfa.recovery-code', 2)"
+    :label="$t('mfa.recovery-codes-regenerate')"
     class="mfa-recovery-codes-dialog"
     position="center"
     :click-outside="false"
-    @close="mfaError = null"
+    @close="handleClose()"
   >
+    <p v-if="isConfirming" class="mfa-recovery-codes-regenerate-description">
+      {{ $t('mfa.recovery-codes-regenerate-description') }}
+    </p>
+
     <AuthError v-if="mfaError" :data="mfaError" />
 
-    <MfaRecoveryCodeList v-else-if="recoveryCodes.length" />
+    <MfaRecoveryCodeList
+      v-else-if="recoveryCodes.length"
+      ref="codeList"
+      :heading-level="2"
+    />
 
     <hr class="mfa-recovery-codes-divider" />
 
     <template #buttons>
       <Button
+        v-if="isConfirming"
         variant="black"
         size="lg"
         :label="$t('mfa.recovery-codes-generate')"
         icon="material-symbols:refresh-rounded"
         :loading="loadingGenerateRecoveryCodes"
-        @click="generateRecoveryCodes()"
+        @click="handleGenerate()"
+      />
+
+      <Button
+        v-else
+        variant="black"
+        size="lg"
+        icon="material-symbols:check"
+        :label="$t('mfa.setup-finish')"
+        @click="closeMfaRecoveryCodesDialog()"
       />
     </template>
   </Dialog>

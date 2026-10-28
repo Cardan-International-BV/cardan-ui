@@ -8,6 +8,13 @@ const { headingLevel = undefined } = defineProps<{
 }>();
 
 const { recoveryCodes } = useMfa();
+
+const headingRef = useTemplateRef<HTMLElement>('heading');
+
+defineExpose({
+  /** Moves focus to the heading, for a caller that just replaced the content focus was in. */
+  focusHeading: () => headingRef.value?.focus(),
+});
 </script>
 
 <template>
@@ -16,6 +23,8 @@ const { recoveryCodes } = useMfa();
       <component
         :is="`h${headingLevel}`"
         v-if="headingLevel"
+        ref="heading"
+        tabindex="-1"
         class="mfa-recovery-codes-heading"
       >
         {{ $t('mfa.recovery-code', 2) }}
