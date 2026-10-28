@@ -88,7 +88,7 @@ const emit = defineEmits<{
         />
 
         <Button
-          variant="ghost"
+          variant="danger"
           :icon="
             mfaRequired
               ? 'material-symbols:lock-reset'
