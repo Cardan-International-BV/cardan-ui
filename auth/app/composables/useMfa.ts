@@ -98,15 +98,12 @@ export function useMfa() {
     loadingGenerateRecoveryCodes.value = true;
 
     try {
-      // Fortify answers with an empty body and the codes are read next; an
-      // API that shows them only once, like the Cardan Academy API, answers
-      // with the new codes instead, as reading them back is refused.
-      const codes = await settingsRequest<string[] | ''>(
-        endpoints.twoFactorRecoveryCodes,
-        { method: 'POST' },
-      );
-      if (Array.isArray(codes) && codes.length) recoveryCodes.value = codes;
-      else await getRecoveryCodes();
+      await settingsRequest(endpoints.twoFactorRecoveryCodes, {
+        method: 'POST',
+      });
+      // Read once, right away: with `recoveryCodesOnlyAtSetup` the API serves
+      // the new codes this one time and an empty list after that.
+      await getRecoveryCodes();
     } catch (error) {
       setMfaError(error);
     } finally {
@@ -175,8 +172,8 @@ export function useMfa() {
       // MFA is enabled and confirming keeps them. A backend may end a
       // confirmation that only covered setting MFA up (one that came from
       // signing in) once it is confirmed, and the codes still belong to this
-      // enrolment. With `recoveryCodesOnlyAtSetup` the API refuses them after
-      // confirming, so this is the only time they can be read.
+      // enrolment. With `recoveryCodesOnlyAtSetup` this is the one read of the
+      // codes that the setup gets.
       await getRecoveryCodes();
 
       await settingsRequest(endpoints.twoFactorConfirmation, {

@@ -78,9 +78,9 @@ declare global {
     updatePasswordMethod: UpdatePasswordMethod;
     /**
      * Whether the API shows recovery codes only when they are created, as the
-     * Cardan Academy API does: at setup, and in its answer to regenerating
-     * them, never read back. The setup then says the codes are shown this
-     * once, and "Show recovery codes" becomes "Regenerate recovery codes",
+     * Cardan Academy API does: once at setup and once right after
+     * regenerating them, an empty list after that. The setup then says the
+     * codes are shown this once, and "Show recovery codes" becomes "Regenerate recovery codes",
      * whose dialog asks to replace them and shows the new ones once. Off by
      * default: Fortify serves them on request, after a password confirmation.
      */
