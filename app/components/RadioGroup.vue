@@ -78,7 +78,7 @@ const {
 <style>
 :where(legend) {
   padding: 0;
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-semibold);
   -webkit-user-select: none;
   user-select: none;
   transition-property: opacity;
