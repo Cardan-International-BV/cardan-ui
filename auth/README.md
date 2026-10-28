@@ -115,13 +115,13 @@ export default defineAppConfig({
 });
 ```
 
-| Key                                     | Default         |                                                                                                                                                                                                                    |
-| --------------------------------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `endpoints.*`                           | the paths above | Relative to `sanctum.baseUrl`. Sign-in, sign-out, the identity and the CSRF cookie stay in the `sanctum` config                                                                                                    |
-| `updatePasswordMethod`                  | `'PATCH'`       | `'PUT'` for Fortify's own `/user/password` route                                                                                                                                                                   |
-| `passwordPolicy.minLength`, `maxLength` | `14`, `128`     | Shown until the policy endpoint answers, or as the policy when `endpoints.passwordPolicy` is `false`. `maxLength: null` sets no maximum                                                                            |
-| `passwordPolicy.serverChecks`           | `true`          | Whether the API also refuses breached and common passwords and ones with personal information on save; the forms list those checks when it does                                                                    |
-| `recoveryCodesOnlyAtSetup`              | `false`         | `true` for an API that serves the recovery codes only during setup, like the Cardan Academy API. Off by default, because Fortify serves them on request. See [Account settings for MFA](#account-settings-for-mfa) |
+| Key                                     | Default         |                                                                                                                                                                                                                                                                             |
+| --------------------------------------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `endpoints.*`                           | the paths above | Relative to `sanctum.baseUrl`. Sign-in, sign-out, the identity and the CSRF cookie stay in the `sanctum` config                                                                                                                                                             |
+| `updatePasswordMethod`                  | `'PATCH'`       | `'PUT'` for Fortify's own `/user/password` route                                                                                                                                                                                                                            |
+| `passwordPolicy.minLength`, `maxLength` | `14`, `128`     | Shown until the policy endpoint answers, or as the policy when `endpoints.passwordPolicy` is `false`. `maxLength: null` sets no maximum                                                                                                                                     |
+| `passwordPolicy.serverChecks`           | `true`          | Whether the API also refuses breached and common passwords and ones with personal information on save; the forms list those checks when it does                                                                                                                             |
+| `recoveryCodesOnlyAtSetup`              | `false`         | `true` for an API that shows the recovery codes only when they are created, at setup and in the answer to regenerating them, like the Cardan Academy API. Off by default, because Fortify serves them on request. See [Account settings for MFA](#account-settings-for-mfa) |
 
 ## Usage
 
@@ -254,7 +254,7 @@ const {
 </template>
 ```
 
-Leave out the recovery codes button and `MfaRecoveryCodesDialog` when your API serves the codes only at setup, and set `recoveryCodesOnlyAtSetup` (see [Configuration](#configuration)).
+When your API shows the codes only when they are created, set `recoveryCodesOnlyAtSetup` (see [Configuration](#configuration)) and label the button `mfa.recovery-codes-regenerate`: `openMfaRecoveryCodesDialog()` then asks for the password and opens the dialog on replacing the codes, which shows the new ones once and forgets them when it closes. `generateRecoveryCodes()` takes the new codes from the regenerate answer when the API returns them there, and reads them back otherwise.
 
 `MfaDialog` emits **`refresh`** once MFA has actually been turned on or off. The layer already refreshes the Sanctum identity itself; handle `refresh` to re-sync any copy of the user your app keeps of its own, so an "MFA enabled" badge updates immediately.
 
@@ -300,7 +300,7 @@ The buttons follow the [button variants](#button-variants) of your app config.
 
 ### Account settings for MFA
 
-`<MfaSettings />` shows whether MFA is on and offers to enable it, show the recovery codes, or disable it, with the two dialogs mounted for you. With `recoveryCodesOnlyAtSetup` it leaves out the recovery codes and their dialog, and says instead that someone who lost them sets MFA up again; the recovery codes step of the setup then says the codes are shown only this once. For an account that requires MFA, disabling becomes "set up MFA again": the dialog skips its "MFA is off" step and sends the user to `/mfa-setup`.
+`<MfaSettings />` shows whether MFA is on and offers to enable it, show the recovery codes, or disable it, with the two dialogs mounted for you. With `recoveryCodesOnlyAtSetup` it offers to regenerate the recovery codes instead of showing them, and says that lost codes are replaced that way; the recovery codes step of the setup then says the codes are shown only this once. For an account that requires MFA, disabling becomes "set up MFA again": the dialog skips its "MFA is off" step and sends the user to `/mfa-setup`.
 
 ### Setup reminder
 
@@ -378,7 +378,7 @@ Every `useAuth().user` in your app is then typed against your own payload, with 
 | `openMfaEnableDialog()`                     | Opens `MfaDialog` on the enable flow: intro → QR code → confirm code → recovery codes                                                                                    |
 | `openMfaDisableDialog()`                    | Opens `MfaDialog` on the disable confirmation                                                                                                                            |
 | `closeMfaDialog()`                          |                                                                                                                                                                          |
-| `openMfaRecoveryCodesDialog()`              | Fetches the current recovery codes, then shows them                                                                                                                      |
+| `openMfaRecoveryCodesDialog()`              | Fetches the current recovery codes, then shows them; with `recoveryCodesOnlyAtSetup`, opens on regenerating them                                                         |
 | `closeMfaRecoveryCodesDialog()`             |                                                                                                                                                                          |
 | `mfaDialogRef`, `mfaRecoveryCodesDialogRef` | The underlying `Dialog` refs, if you need them                                                                                                                           |
 | `loadingMfaRecoveryCodesDialog`             | Loading state for the button that opens the recovery codes. Only set while the codes load without a password prompt; with one, the prompt's Confirm button loads instead |

@@ -4,9 +4,10 @@
  * dialogs, for an account settings page. Whether MFA is on comes from the user
  * payload's `mfa_enabled`.
  *
- * With `recoveryCodesOnlyAtSetup` the API shows the codes at setup only, so
- * there is nothing to show here: the page says how to get new ones instead,
- * which is setting MFA up again.
+ * With `recoveryCodesOnlyAtSetup` the API never shows the codes again after
+ * they are created, so the button regenerates them instead of showing them:
+ * after the password, its dialog asks to replace them and shows the new ones
+ * once.
  *
  * A user who is required to have MFA switches apps the Fortify way: switch it
  * off (after confirming the password) and set it up again straight away on the
@@ -71,10 +72,17 @@ const emit = defineEmits<{
     <div class="button-group">
       <template v-if="mfaEnabled">
         <Button
-          v-if="!recoveryCodesOnlyAtSetup"
           variant="secondary"
-          icon="material-symbols:key-outline"
-          :label="$t('mfa.recovery-codes-show')"
+          :icon="
+            recoveryCodesOnlyAtSetup
+              ? 'material-symbols:refresh-rounded'
+              : 'material-symbols:key-outline'
+          "
+          :label="
+            recoveryCodesOnlyAtSetup
+              ? $t('mfa.recovery-codes-regenerate')
+              : $t('mfa.recovery-codes-show')
+          "
           :loading="loadingMfaRecoveryCodesDialog"
           @click="openMfaRecoveryCodesDialog"
         />
@@ -104,7 +112,7 @@ const emit = defineEmits<{
          "MFA is off" step would only flash by. -->
     <MfaDialog :show-disable-result="!mfaRequired" @refresh="handleRefresh" />
 
-    <MfaRecoveryCodesDialog v-if="!recoveryCodesOnlyAtSetup" />
+    <MfaRecoveryCodesDialog />
   </div>
 </template>
 

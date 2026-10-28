@@ -3,7 +3,9 @@
  * consumers never have to know about the dialog's internal step numbers.
  */
 export function useMfaDialog() {
-  const { mfaStep, resetMfa, getRecoveryCodes } = useMfa();
+  const { mfaStep, mfaError, recoveryCodes, resetMfa, getRecoveryCodes } =
+    useMfa();
+  const { recoveryCodesOnlyAtSetup } = useCardanAuthConfig();
   const {
     ensurePasswordConfirmed,
     isPasswordConfirmed,
@@ -56,9 +58,17 @@ export function useMfaDialog() {
    * Fetches the current recovery codes, then shows them. Asks for the password
    * first, like the other flows: a confirmation the user cancels opens nothing.
    * When it asks, the codes load under the password dialog's Confirm button.
+   *
+   * With `recoveryCodesOnlyAtSetup` there are no codes to fetch: after the
+   * password, the dialog asks to replace them and shows the new ones once.
    */
   async function openMfaRecoveryCodesDialog() {
-    if (await isPasswordConfirmed()) {
+    if (recoveryCodesOnlyAtSetup) {
+      if (!(await ensurePasswordConfirmed())) return;
+      // Codes still in memory from setting MFA up are not shown again.
+      recoveryCodes.value = [];
+      mfaError.value = null;
+    } else if (await isPasswordConfirmed()) {
       loadingMfaRecoveryCodesDialog.value = true;
       await getRecoveryCodes();
       loadingMfaRecoveryCodesDialog.value = false;

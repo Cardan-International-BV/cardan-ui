@@ -98,10 +98,15 @@ export function useMfa() {
     loadingGenerateRecoveryCodes.value = true;
 
     try {
-      await settingsRequest(endpoints.twoFactorRecoveryCodes, {
-        method: 'POST',
-      });
-      await getRecoveryCodes();
+      // Fortify answers with an empty body and the codes are read next; an
+      // API that shows them only once, like the Cardan Academy API, answers
+      // with the new codes instead, as reading them back is refused.
+      const codes = await settingsRequest<string[] | ''>(
+        endpoints.twoFactorRecoveryCodes,
+        { method: 'POST' },
+      );
+      if (Array.isArray(codes) && codes.length) recoveryCodes.value = codes;
+      else await getRecoveryCodes();
     } catch (error) {
       setMfaError(error);
     } finally {

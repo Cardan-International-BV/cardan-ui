@@ -1,36 +1,92 @@
 <script setup lang="ts">
-const { mfaRecoveryCodesDialogRef } = useMfaDialog();
+/**
+ * Shows the recovery codes and replaces them.
+ *
+ * With `recoveryCodesOnlyAtSetup` the API never shows the current codes, so
+ * the dialog opens on the question whether to replace them, and shows the new
+ * ones this once. Closing it forgets them.
+ */
+const { mfaRecoveryCodesDialogRef, closeMfaRecoveryCodesDialog } =
+  useMfaDialog();
 const {
   mfaError,
   recoveryCodes,
   generateRecoveryCodes,
   loadingGenerateRecoveryCodes,
 } = useMfa();
+const { recoveryCodesOnlyAtSetup } = useCardanAuthConfig();
+
+const codeListRef = useTemplateRef<{ focusHeading: () => void }>('codeList');
+
+/** Asking to replace the codes, before the new ones are there. */
+const isConfirming = computed(
+  () => recoveryCodesOnlyAtSetup && !recoveryCodes.value.length,
+);
+
+/**
+ * The generate button gives way to the new codes, so focus moves to their
+ * heading rather than being lost with the button.
+ */
+async function handleGenerate() {
+  await generateRecoveryCodes();
+
+  if (recoveryCodesOnlyAtSetup && recoveryCodes.value.length) {
+    await nextTick();
+    codeListRef.value?.focusHeading();
+  }
+}
+
+function handleClose() {
+  mfaError.value = null;
+  if (recoveryCodesOnlyAtSetup) recoveryCodes.value = [];
+}
 </script>
 
 <template>
   <Dialog
     ref="mfaRecoveryCodesDialogRef"
-    :label="$t('mfa.recovery-code', 2)"
+    :label="
+      recoveryCodesOnlyAtSetup
+        ? $t('mfa.recovery-codes-regenerate')
+        : $t('mfa.recovery-code', 2)
+    "
     class="mfa-recovery-codes-dialog"
     position="center"
     :click-outside="false"
-    @close="mfaError = null"
+    @close="handleClose()"
   >
+    <p v-if="isConfirming" class="mfa-recovery-codes-regenerate-description">
+      {{ $t('mfa.recovery-codes-regenerate-description') }}
+    </p>
+
     <AuthError v-if="mfaError" :data="mfaError" />
 
-    <MfaRecoveryCodeList v-else-if="recoveryCodes.length" />
+    <MfaRecoveryCodeList
+      v-else-if="recoveryCodes.length"
+      ref="codeList"
+      :heading-level="recoveryCodesOnlyAtSetup ? 2 : undefined"
+    />
 
     <hr class="mfa-recovery-codes-divider" />
 
     <template #buttons>
       <Button
+        v-if="!recoveryCodesOnlyAtSetup || isConfirming"
         variant="black"
         size="lg"
         :label="$t('mfa.recovery-codes-generate')"
         icon="material-symbols:refresh-rounded"
         :loading="loadingGenerateRecoveryCodes"
-        @click="generateRecoveryCodes()"
+        @click="handleGenerate()"
+      />
+
+      <Button
+        v-else
+        variant="black"
+        size="lg"
+        icon="material-symbols:check"
+        :label="$t('mfa.setup-finish')"
+        @click="closeMfaRecoveryCodesDialog()"
       />
     </template>
   </Dialog>
