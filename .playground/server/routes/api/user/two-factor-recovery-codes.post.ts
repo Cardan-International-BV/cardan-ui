@@ -1,1 +1,4 @@
-export default defineEventHandler(() => ({}));
+export default defineEventHandler(() => {
+  regenerateDemoRecoveryCodes();
+  return {};
+});

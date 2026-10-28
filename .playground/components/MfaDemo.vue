@@ -7,6 +7,7 @@ const {
   openMfaDisableDialog,
   openMfaRecoveryCodesDialog,
 } = useMfaDialog();
+const { recoveryCodesOnlyAtSetup } = useCardanAuthConfig();
 </script>
 
 <template>
@@ -37,8 +38,16 @@ const {
       <Button
         variant="outline"
         size="lg"
-        icon="material-symbols:password-rounded"
-        label="Recovery codes"
+        :icon="
+          recoveryCodesOnlyAtSetup
+            ? 'material-symbols:refresh-rounded'
+            : 'material-symbols:password-rounded'
+        "
+        :label="
+          recoveryCodesOnlyAtSetup
+            ? 'Regenerate recovery codes'
+            : 'Recovery codes'
+        "
         @click="openMfaRecoveryCodesDialog()"
       />
     </div>
