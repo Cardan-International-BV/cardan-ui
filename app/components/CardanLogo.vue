@@ -21,7 +21,7 @@ const {
   narrowWidth?: string;
   /** Accessible name, defaults to "Cardan" plus the product */
   label?: string;
-  /** Round tile, for avatars */
+  /** Round tile, for avatars and favicons */
   round?: boolean;
   /** Hide the logo from assistive technology, e.g. next to a visible name */
   decorative?: boolean;

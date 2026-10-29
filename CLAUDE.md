@@ -60,7 +60,7 @@ Base frontend guidelines (architecture, CSS design system, WCAG 2.2 requirements
 
 ### Utility Components
 
-- **CardanLogo**: Cardan logo in full, symbol and tile forms, with color variants and sub-brand lockups (e.g. `product="academy"`, shown as "| Academy"); the product name is always set in Hanken Grotesk, in Body or white, never purple. 20px high by default; below 375px a lockup is 144px wide (`narrow-width` prop), so it fits in a 320px app header. The favicon is the light tile with the symbol at 72%
+- **CardanLogo**: Cardan logo in full, symbol and tile forms, with color variants and sub-brand lockups (e.g. `product="academy"`, shown as "| Academy"); the product name is always set in Hanken Grotesk, in Body or white, never purple. 20px high by default; below 375px a lockup is 144px wide (`narrow-width` prop), so it fits in a 320px app header. The favicon is the light round tile with the symbol at 72%
 - **FocusLoop**: Keyboard navigation management to trap focus inside a container
 - **LanguageSelect**: Language switcher to switch between English and Dutch
 - **ThemeSelect**: Theme selection

@@ -50,8 +50,8 @@ useHead({ title: 'Changelog' });
           (<code>variant="white"</code> for the purple tile)
         </li>
         <li>
-          The favicon in <code>.playground/public</code> is the light tile with
-          the symbol at 72%
+          The favicon in <code>.playground/public</code> is the light round
+          tile with the symbol at 72%
         </li>
         <li>
           The primary Button is white text on purple in dark mode too, with the
