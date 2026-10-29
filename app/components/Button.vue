@@ -164,7 +164,7 @@ const emit = defineEmits<{
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.25em;
+  gap: 0.5em;
   font-weight: var(--font-weight-medium);
   font-size: var(--button-font-size, var(--font-size-sm));
   border: 1px solid transparent;
@@ -300,11 +300,13 @@ const emit = defineEmits<{
 }
 
 .button-variant--primary {
-  color: var(--color-white);
-  background-color: var(--color-accent-text);
+  --focus-color: var(--color-accent-text);
+  /* Always white on purple, also in dark mode */
+  color: var(--color-on-accent);
+  background-color: var(--color-accent);
 
   &:not(:disabled, .disabled):hover {
-    background-color: var(--color-accent-text-hover);
+    background-color: var(--color-accent-hover);
   }
 }
 
@@ -379,25 +381,6 @@ const emit = defineEmits<{
   &:not(:disabled, .disabled):hover {
     color: var(--color-white);
     background-color: var(--color-text);
-  }
-}
-
-.button-variant--cta {
-  --radius: var(--radius-xl);
-  --focus-color: var(--color-accent-text);
-  /* Always white on purple, also in dark mode */
-  color: var(--color-on-accent);
-  background-color: var(--color-accent);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-
-  .icon svg {
-    width: 1.25em;
-    height: 1.25em;
-  }
-
-  &:not(:disabled, .disabled):hover {
-    background-color: var(--color-accent-hover);
   }
 }
 

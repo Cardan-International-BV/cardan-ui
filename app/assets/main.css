@@ -58,7 +58,7 @@
     var(--cardan-dark-text)
   );
   --color-accent-graphic: var(--cardan-purple-text-on-dark);
-  /* Purple fill with white text in both modes, for the CTA Button: 5.1:1 */
+  /* Purple fill with white text in both modes, for the primary Button: 5.1:1 */
   --color-accent-hover: color-mix(
     in srgb,
     var(--cardan-purple-on-dark) 85%,

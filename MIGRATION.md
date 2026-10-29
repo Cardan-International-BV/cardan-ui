@@ -310,7 +310,7 @@ The checked Switch sets `--color-accent-graphic` to green itself; override `--co
 
 ## 9. Upgrading to 2.3
 
-2.3 makes **MarkdownPreview** safe by default. Markdown in our apps often comes from someone other than the reader (an import, a colleague, an AI assistant), so the component no longer lets that text add markup or scripts. It also follows the second round of the Cardan brand book: the new product lockup of **CardanLogo**, a light favicon tile, the brand size of the md **Button**, and a `cta` Button that is white on purple in both modes.
+2.3 makes **MarkdownPreview** safe by default. Markdown in our apps often comes from someone other than the reader (an import, a colleague, an AI assistant), so the component no longer lets that text add markup or scripts. It also follows the second round of the Cardan brand book: the new product lockup of **CardanLogo**, a light favicon tile, the brand size of the md **Button**, and a primary Button that is white on purple in both modes, which replaces the `cta` Button.
 
 ### MarkdownPreview
 
@@ -345,7 +345,7 @@ Add `trusted` where a field turns out to need it, or clean up the text.
 
 ### Button and Popover
 
-- **The `cta` Button** is white text on purple in both modes again (5.1:1 in dark mode), with the brand hover. Add the two tokens it uses to your `main.css`; 2.2 removed `--color-on-accent`, and 2.2.1 `--color-accent-hover`, from the template:
+- **The primary Button** is white text on purple in both modes again (5.1:1 in dark mode), with the brand hover and a purple focus outline. It takes over the colours of the `cta` Button, and **the `cta` variant is removed**: replace `variant="cta"` with `variant="primary"`, and add `font-size="sm"` where you want to keep its 14px text. Add the two tokens the primary Button uses to your `main.css`; 2.2 removed `--color-on-accent`, and 2.2.1 `--color-accent-hover`, from the template:
 
   ```css
   :where(.dark-mode) {

@@ -113,7 +113,6 @@ declare global {
     | 'outline-green'
     | 'outline-red'
     | 'tab'
-    | 'cta'
     | 'black'
     | '3d'
     | 'white'
