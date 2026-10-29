@@ -163,6 +163,7 @@ defineExpose({ submitting, error });
       icon="material-symbols:arrow-right-alt"
       :loading="submitting"
       variant="black"
+      size="lg"
       :label="$t('general.sign-in')"
     />
 

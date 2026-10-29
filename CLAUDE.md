@@ -56,11 +56,11 @@ Base frontend guidelines (architecture, CSS design system, WCAG 2.2 requirements
 - **Callout**: Highlighted information box (`solid` (default) and `outline` variants)
 - **Markdown**: Markdown rendering and editing
   - MarkdownEditor: Rich text editor (uses [md-editor-v3](https://imzbf.github.io/md-editor-v3/))
-  - MarkdownPreview: Markdown display (uses [markdown-it](https://markdown-it.github.io/) and [highlight.js](https://highlightjs.org/))
+  - MarkdownPreview: Markdown display (uses [markdown-it](https://markdown-it.github.io/) and [highlight.js](https://highlightjs.org/)). Safe by default: no raw HTML, and `{…}` sets only `lang`, `dir` and `class`; `trusted` allows both, for text the team wrote. `inline` renders a title or label in a `<span>`, `heading-offset` moves headings down
 
 ### Utility Components
 
-- **CardanLogo**: Cardan logo in full, symbol and tile forms, with color variants and sub-brand lockups (e.g. `product="academy"`); the product name is always set in Hanken Grotesk
+- **CardanLogo**: Cardan logo in full, symbol and tile forms, with color variants and sub-brand lockups (e.g. `product="academy"`, shown as "| Academy"); the product name is always set in Hanken Grotesk, in Body or white, never purple. 20px high by default; below 320px a lockup is 144px wide (`narrow-width` prop), and from 320px it takes the room it gets in a flex row, from that width up to its height, so it fits in a 320px app header. The favicon is the light round tile with the symbol at 72%
 - **FocusLoop**: Keyboard navigation management to trap focus inside a container
 - **LanguageSelect**: Language switcher to switch between English and Dutch
 - **ThemeSelect**: Theme selection

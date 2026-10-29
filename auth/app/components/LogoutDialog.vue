@@ -19,12 +19,14 @@ const { logoutDialogRef, handleLogout } = useLogoutDialog();
     <div class="button-group">
       <Button
         variant="outline"
+        size="lg"
         :label="$t('general.cancel')"
         @click="logoutDialogRef?.closeDialog"
       />
 
       <Button
         variant="black"
+        size="lg"
         icon="material-symbols:logout"
         :label="$t('general.sign-out')"
         @click="handleLogout"

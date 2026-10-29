@@ -1,65 +1,68 @@
 <script setup lang="ts">
-import markdownit from 'markdown-it';
-import { attrs } from '@mdit/plugin-attrs';
-import { mark } from '@mdit/plugin-mark';
-import {
-  swatchExtension,
-  italicExtension,
-  targetBlankExtension,
-} from './extensions';
-
-import { hljs } from './highlight';
+/**
+ * Markdown as HTML. Safe by default: the text may come from anyone (an import,
+ * a colleague, an AI), so raw HTML is shown as text and `{…}` sets only
+ * `lang`, `dir` and `class`. `trusted` allows both, for text the team wrote.
+ *
+ * `inline` is for a title or label: inline markup only, in a `<span>`, so it
+ * fits inside a button, link or label and adds no block margins.
+ */
+import { computed } from 'vue';
+import { renderMarkdown } from './renderer';
 
 const {
-  content,
-  fontSize = 'md',
+  content = '',
+  fontSize = undefined,
   ellipsisLines = undefined,
+  inline = false,
+  trusted = false,
+  headingOffset = 0,
 } = defineProps<{
-  content: string;
+  content?: string;
+  /** `md` by default; an inline text takes the size around it. */
   fontSize?: FontSize;
   ellipsisLines?: number;
+  /** Inline markup only (emphasis, code, links), in a `<span>`. */
+  inline?: boolean;
+  /** Allow raw HTML and every `{…}` attribute: only for text the team wrote. */
+  trusted?: boolean;
+  /** Levels to move the text's own headings down: 1 turns `##` into `<h3>`. */
+  headingOffset?: number;
 }>();
 
+const size = computed(() => fontSize ?? (inline ? undefined : 'md'));
+
 const computedStyle = computed(() => ({
-  '--markdown-preview-font-size': fontSize && `var(--font-size-${fontSize})`,
+  '--markdown-preview-font-size':
+    size.value && `var(--font-size-${size.value})`,
   '--line-clamp': ellipsisLines && ellipsisLines,
 }));
 
-const md = markdownit({
-  html: true,
-  linkify: true,
-  highlight: (str: string, lang: string) => {
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return (
-          '<pre><code class="hljs">' +
-          hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +
-          '</code></pre>'
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    }
+const { t } = useI18n();
 
-    return '<pre><code class="hljs">' + escapeHTML(str) + '</code></pre>';
-  },
-});
+const preview = computed(() =>
+  renderMarkdown(content, {
+    inline,
+    trusted,
+    headingOffset,
+    tableLabel: t('aria.table'),
+  }),
+);
 
-md.use(swatchExtension);
-md.use(targetBlankExtension);
-md.use(italicExtension);
-md.use(attrs);
-md.use(mark);
-
-const preview = computed(() => md.render(content));
+const classes = computed(() => [
+  'cardan-markdown-preview',
+  ellipsisLines && 'ellipsis',
+]);
 </script>
 
 <template>
-  <div
-    :class="['cardan-markdown-preview', ellipsisLines && 'ellipsis']"
+  <span
+    v-if="inline"
+    :class="classes"
     :style="computedStyle"
     v-html="preview"
   />
+  <div v-else :class="classes" :style="computedStyle" v-html="preview" />
 </template>
 
 <style>
@@ -113,6 +116,38 @@ const preview = computed(() => md.render(content));
   }
   > * + :is(h1, h2, h3, h4, h5, h6) {
     margin-block-start: 1.5em;
+  }
+
+  /* The element around the text sets the space outside it. */
+  > :first-child {
+    margin-block-start: 0;
+  }
+
+  > :last-child {
+    margin-block-end: 0;
+  }
+
+  /* A wide table scrolls in its own region instead of the page (reflow at
+     320px). The region takes focus, so the keyboard can scroll it. */
+  .markdown-table {
+    max-width: 100%;
+    overflow-x: auto;
+
+    &:focus-visible {
+      outline: 2px solid var(--focus-color);
+      outline-offset: 2px;
+    }
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: 0.5rem;
+    border: 1px solid var(--color-grey-light);
+    text-align: start;
   }
 
   a {

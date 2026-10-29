@@ -45,6 +45,7 @@ async function requestResetLink() {
 
     <Button
       variant="black"
+      size="lg"
       type="submit"
       :label="$t('password.request-reset')"
       icon="material-symbols:arrow-right-alt"

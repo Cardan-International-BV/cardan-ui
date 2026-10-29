@@ -164,7 +164,7 @@ const emit = defineEmits<{
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.25em;
+  gap: 0.5em;
   font-weight: var(--font-weight-medium);
   font-size: var(--button-font-size, var(--font-size-sm));
   border: 1px solid transparent;
@@ -248,13 +248,9 @@ const emit = defineEmits<{
 }
 
 .button-size--md {
-  font-size: var(--button-font-size, var(--font-size-sm));
+  font-size: var(--button-font-size, var(--font-size-md));
   min-height: 2.5rem;
-  padding-inline: 0.75rem;
-
-  .button-text {
-    padding-inline: 0.2rem;
-  }
+  padding-inline: 1rem;
 
   .iconify {
     font-size: var(--button-icon-size, larger);
@@ -304,11 +300,13 @@ const emit = defineEmits<{
 }
 
 .button-variant--primary {
-  color: var(--color-white);
-  background-color: var(--color-accent-text);
+  --focus-color: var(--color-accent-text);
+  /* Always white on purple, also in dark mode */
+  color: var(--color-on-accent);
+  background-color: var(--color-accent);
 
   &:not(:disabled, .disabled):hover {
-    background-color: var(--color-accent-text-hover);
+    background-color: var(--color-accent-hover);
   }
 }
 
@@ -386,30 +384,16 @@ const emit = defineEmits<{
   }
 }
 
-.button-variant--cta {
-  --radius: var(--radius-xl);
-  --focus-color: var(--color-accent-text);
-  color: var(--color-white);
-  background-color: var(--color-accent-text);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-
-  .icon svg {
-    width: 1.25em;
-    height: 1.25em;
-  }
-
-  &:not(:disabled, .disabled):hover {
-    background-color: var(--color-accent-text-hover);
-  }
-}
-
 .button-variant--secondary {
   color: var(--color-text);
-  background-color: var(--color-grey-bg);
+  background-color: var(--color-grey-light);
 
   &:not(:disabled, .disabled):hover {
-    background-color: var(--color-grey-light);
+    background-color: color-mix(
+      in srgb,
+      var(--color-grey-light) 95%,
+      var(--color-black)
+    );
   }
 }
 
@@ -418,7 +402,7 @@ const emit = defineEmits<{
   background-color: transparent;
 
   &:not(:disabled, .disabled):hover {
-    background-color: var(--color-ghost-hover-bg);
+    background-color: var(--color-ghost-hover-bg, var(--color-grey-bg));
   }
 
   &.router-link-active {

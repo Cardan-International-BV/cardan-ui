@@ -38,12 +38,18 @@ const darkVariants: CardanLogoVariant[] = ['negative', 'white'];
           <CardanLogo form="tile" round height="3rem" />
           <figcaption><code>form="tile" round</code></figcaption>
         </figure>
+        <figure>
+          <CardanLogo form="tile" variant="white" height="3rem" />
+          <figcaption><code>form="tile" variant="white"</code></figcaption>
+        </figure>
       </div>
 
       <p>
         Use the full logo everywhere the library shows a brand logo: headers,
-        app shells and footers. The tile is only for favicons, app icons and
-        profile images, never in a website header.
+        app shells and footers. The tile, the color symbol on a light tile, is
+        for favicons, app icons and profile images, never in a website header.
+        The white symbol on a purple tile is only a dividing element in social
+        media posts.
       </p>
     </Card>
 
@@ -78,8 +84,10 @@ const darkVariants: CardanLogoVariant[] = ['negative', 'white'];
       <h2>Lockups</h2>
 
       <p>
-        Sub-brands are lockups, not new logos: the product name follows the logo
-        in lowercase, in purple.
+        Sub-brands are lockups, not new logos: after the logo comes an upright
+        divider and the product name with a capital, in Hanken Grotesk Regular
+        at 0.8 times the logo height. Both are Body on light and white on dark,
+        never purple or green.
       </p>
 
       <div class="logo-demo-row">
@@ -93,11 +101,15 @@ const darkVariants: CardanLogoVariant[] = ['negative', 'white'];
 
       <ul>
         <li>
-          Keep clear space around the logo of at least the width of one link.
+          Keep clear space around the logo of at least its height, and twice
+          its height to the edge of a photo, post or slide.
         </li>
         <li>
-          The logo is 16px high by default, which fits a header on a 320px
-          screen; set the <code>height</code> prop for a larger logo.
+          The logo is 20px high by default, the brand size for websites. It is
+          never smaller than 18px, and never smaller than 20px with a product
+          name. In a flex row, such as an app header, a lockup takes the room
+          it gets, from 144px (the <code>narrow-width</code> prop) up to its
+          height, so it fits in an app header on a 320px screen.
         </li>
         <li>
           Never stretch, recolor or rotate the logo, never put the color logo on
