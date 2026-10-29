@@ -106,7 +106,7 @@ h3 {
   @media (min-width: 1024px) {
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: 2rem;
+    gap: 4rem;
   }
 }
 

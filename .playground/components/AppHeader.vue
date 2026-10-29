@@ -20,7 +20,7 @@ watch(
       </MobileMenu>
 
       <NuxtLink to="/" class="home-link">
-        <CardanLogo product="ui" label="Cardan UI" />
+        <CardanLogo product="UI" />
       </NuxtLink>
 
       <div class="flex-wrapper" style="max-width: max-content">

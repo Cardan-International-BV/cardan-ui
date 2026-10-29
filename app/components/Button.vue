@@ -248,13 +248,9 @@ const emit = defineEmits<{
 }
 
 .button-size--md {
-  font-size: var(--button-font-size, var(--font-size-sm));
+  font-size: var(--button-font-size, var(--font-size-md));
   min-height: 2.5rem;
-  padding-inline: 0.75rem;
-
-  .button-text {
-    padding-inline: 0.2rem;
-  }
+  padding-inline: 1rem;
 
   .iconify {
     font-size: var(--button-icon-size, larger);
@@ -389,8 +385,9 @@ const emit = defineEmits<{
 .button-variant--cta {
   --radius: var(--radius-xl);
   --focus-color: var(--color-accent-text);
-  color: var(--color-white);
-  background-color: var(--color-accent-text);
+  /* Always white on purple, also in dark mode */
+  color: var(--color-on-accent);
+  background-color: var(--color-accent);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
 
@@ -400,7 +397,7 @@ const emit = defineEmits<{
   }
 
   &:not(:disabled, .disabled):hover {
-    background-color: var(--color-accent-text-hover);
+    background-color: var(--color-accent-hover);
   }
 }
 

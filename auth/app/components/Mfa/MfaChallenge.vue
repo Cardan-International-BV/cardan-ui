@@ -94,6 +94,7 @@ async function toggleUseRecoveryCode() {
           type="submit"
           :label="$t('general.sign-in')"
           variant="black"
+          size="lg"
           icon-pos="end"
           icon="material-symbols:arrow-right-alt"
           :loading="loadingSolveMfaChallenge"

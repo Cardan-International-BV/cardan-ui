@@ -310,7 +310,7 @@ The checked Switch sets `--color-accent-graphic` to green itself; override `--co
 
 ## 9. Upgrading to 2.3
 
-2.3 makes **MarkdownPreview** safe by default. Markdown in our apps often comes from someone other than the reader (an import, a colleague, an AI assistant), so the component no longer lets that text add markup or scripts.
+2.3 makes **MarkdownPreview** safe by default. Markdown in our apps often comes from someone other than the reader (an import, a colleague, an AI assistant), so the component no longer lets that text add markup or scripts. It also follows the second round of the Cardan brand book: the new product lockup of **CardanLogo**, a light favicon tile, the brand size of the md **Button**, and a `cta` Button that is white on purple in both modes.
 
 ### MarkdownPreview
 
@@ -334,3 +334,39 @@ WHERE content ~ '<[a-zA-Z/!]'
 ```
 
 Add `trusted` where a field turns out to need it, or clean up the text.
+
+### CardanLogo
+
+- **Product lockups** have an upright divider between the logo and the product name, and the name starts with a capital (`product="academy"` shows Academy). The name is Body on light and white on dark, no longer purple, and 0.8 times the logo height. The lockup is wider than before: Academy at 20px is about 213px (was 159px at 16px).
+- **The default height is 20px** (was 16px), the brand size for websites. The brand minimum is 18px, and 20px with a product name.
+- **Below 375px a lockup is 144px wide** (the new `narrow-width` prop, default `9rem`), so it fits next to a menu button and two header buttons at 320px, as in Cardan Auditor and Cardan Academy; Academy is then 13.5px high. From 375px it has its height, 20px by default, and it never shrinks to its container: check that the 20px lockup fits where your app shows it, also next to a sidebar toggle. Remove a `height` prop that only kept the logo at 16px.
+- **`form="tile"`** is the color symbol on a white tile, for favicons, app icons and profile images; it stays light in dark mode. Add `variant="white"` for the white symbol on a purple tile, which the brand book keeps for dividing elements in social media posts. Replace your `favicon.svg` with the one in `.playground/public`: the light tile with the symbol at 72% (the `tile` form keeps the brand's 56%), so it is not too small in a browser tab.
+
+### Button and Popover
+
+- **The `cta` Button** is white text on purple in both modes again (5.1:1 in dark mode), with the brand hover. Add the two tokens it uses to your `main.css`; 2.2 removed `--color-on-accent`, and 2.2.1 `--color-accent-hover`, from the template:
+
+  ```css
+  :where(.dark-mode) {
+    --color-accent-hover: color-mix(
+      in srgb,
+      var(--cardan-purple-on-dark) 85%,
+      var(--cardan-dark-bg)
+    );
+    --color-on-accent: var(--cardan-white);
+  }
+
+  :where(.light-mode) {
+    --color-accent-hover: var(--cardan-purple-hover);
+    --color-on-accent: var(--cardan-white);
+  }
+  ```
+
+
+- **The md Button** (the default size) has 16px text (was 14px) and 16px padding (was 12px plus 3px around the text), as the brand book's button. It is wider, so check rows of buttons and MenuLists, which use md buttons, at 320px. Set `font-size="sm"` (or `--button-font-size`) to keep the smaller text.
+- **The md Popover** trigger has 16px text (was 14px), like the md Button.
+- **Cardan Auth UI**: the buttons of `LoginForm`, `PasswordForgotForm`, `PasswordResetForm`, `MfaChallenge`, `MfaSetup` and `LogoutDialog` are lg (44px), like the other Auth UI dialogs. Check a page that overrides one of these forms.
+
+### Grey graphics
+
+`--color-grey-graphic` in light mode is Body 60% (`--cardan-body-60`, `#7e7c81`) instead of Always grey (`#7e7e77`), as in dark mode: the brand book replaces Always grey with Body 60%. Change it in your `main.css`, and delete `--cardan-always-grey` unless your own CSS uses it.

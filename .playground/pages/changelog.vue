@@ -28,6 +28,32 @@ useHead({ title: 'Changelog' });
           Accordion has <code>aria-expanded="false"</code> from the start;
           legends of CheckboxGroup and RadioGroup are semibold
         </li>
+        <li>
+          CardanLogo follows the second round of the brand book: product
+          lockups have a divider and the product name with a capital, in Body
+          or white at 0.8 times the logo height, the logo is 20px high by
+          default (was 16px), a lockup is 144px wide below 375px (new <code>narrow-width</code> prop)
+          so it fits in a 320px app header, and the
+          tile is the color symbol on a white tile
+          (<code>variant="white"</code> for the purple tile)
+        </li>
+        <li>
+          The <code>cta</code> Button is white text on purple in dark mode too,
+          with the new <code>--color-on-accent</code> and
+          <code>--color-accent-hover</code> tokens
+        </li>
+        <li>
+          Cardan Auth UI: the buttons of the sign-in, password and MFA pages and
+          of the logout dialog are lg, like the other Auth UI dialogs
+        </li>
+        <li>
+          The md Button and the md Popover trigger have 16px text, and the md
+          Button has 16px padding, as the brand book's button
+        </li>
+        <li>
+          <code>--color-grey-graphic</code> is Body 60% in light mode too,
+          instead of Always grey
+        </li>
       </ul>
     </ChangelogEntry>
 

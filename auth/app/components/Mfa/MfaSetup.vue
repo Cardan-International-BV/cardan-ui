@@ -158,6 +158,7 @@ onMounted(() => {
       <Button
         v-if="skippable && (mfaStep === 1 || mfaStep === 2)"
         variant="ghost"
+        size="lg"
         :label="$t('mfa.skip')"
         @click="skip"
       />
@@ -165,6 +166,7 @@ onMounted(() => {
       <Button
         v-if="mfaStep === 3"
         variant="ghost"
+        size="lg"
         icon="material-symbols:arrow-left-alt"
         :label="$t('general.back')"
         @click="back"
@@ -173,6 +175,7 @@ onMounted(() => {
       <Button
         v-if="mfaStep === 1"
         variant="black"
+        size="lg"
         icon="material-symbols:lock-outline"
         :label="$t('mfa.enable')"
         :loading="loadingEnable"
@@ -182,6 +185,7 @@ onMounted(() => {
       <Button
         v-else-if="mfaStep === 2"
         variant="black"
+        size="lg"
         icon="material-symbols:arrow-right-alt"
         icon-pos="end"
         :label="$t('general.continue')"
@@ -193,6 +197,7 @@ onMounted(() => {
         type="submit"
         :form="formId"
         variant="black"
+        size="lg"
         icon="material-symbols:check"
         :label="$t('general.confirm')"
         :disabled="!canConfirm"
@@ -202,6 +207,7 @@ onMounted(() => {
       <Button
         v-else-if="mfaStep === 4"
         variant="black"
+        size="lg"
         icon="material-symbols:arrow-right-alt"
         icon-pos="end"
         :label="$t('mfa.setup-finish')"

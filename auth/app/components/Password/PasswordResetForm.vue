@@ -132,6 +132,7 @@ async function resetPassword() {
 
     <Button
       variant="black"
+      size="lg"
       type="submit"
       :label="$t('password.save')"
       icon="material-symbols:arrow-right-alt"

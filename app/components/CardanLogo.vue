@@ -3,19 +3,22 @@ const {
   form = 'full',
   variant = 'auto',
   product = undefined,
-  height = '1rem',
+  height = '1.25rem',
+  narrowWidth = '9rem',
   label = undefined,
   round = false,
   decorative = false,
 } = defineProps<{
-  /** full: symbol and wordmark (default). symbol: symbol only. tile: white symbol on a purple tile, only for favicons, app icons and profile images */
+  /** full: symbol and wordmark (default). symbol: symbol only. tile: color symbol on a white tile, for favicons, app icons and profile images; with variant 'white', a white symbol on a purple tile */
   form?: CardanLogoForm;
   /** auto: color logo in light mode, color-negative logo in dark mode */
   variant?: CardanLogoVariant;
-  /** Sub-brand lockup after the full logo, e.g. 'academy' or 'auditor' */
+  /** Sub-brand lockup after the full logo, e.g. 'academy' or 'auditor', shown with a capital */
   product?: string;
-  /** Height of the logo (default 16px) */
+  /** Height of the logo (default 20px). The brand minimum is 18px, and 20px with a product */
   height?: string;
+  /** Width of a lockup with a product name on screens narrower than 375px (default 144px), where an app header has no room for its height next to the header buttons. From 375px the lockup has its height */
+  narrowWidth?: string;
   /** Accessible name, defaults to "Cardan" plus the product */
   label?: string;
   /** Round tile, for avatars */
@@ -26,22 +29,28 @@ const {
 
 const computedLabel = computed(() => {
   if (label) return label;
-  if (showProduct.value) {
-    return `Logo Cardan ${product!.charAt(0).toUpperCase()}${product!.slice(1)}`;
-  }
+  if (showProduct.value) return `Logo Cardan ${productText.value}`;
   return 'Logo Cardan';
 });
 
-// SVG user units: the logo is 40 units high and 241.6 units wide
+// SVG user units: the logo is 40 units high (x) and 241.6 units wide
 const LOGO_HEIGHT = 40.001;
 const LOGO_WIDTH = 241.602;
-const PRODUCT_GAP = 10;
-const PRODUCT_FONT_SIZE = 36;
-// Baseline of the wordmark, so the product name lines up with it
-const PRODUCT_BASELINE = 35.814;
+// Brand lockup: a divider 1x high and 1.5px thick at a 20px logo, 0.6x space on either side
+const DIVIDER_WIDTH = 3;
+const PRODUCT_GAP = 24;
+const DIVIDER_X = LOGO_WIDTH + PRODUCT_GAP;
+const PRODUCT_X = DIVIDER_X + DIVIDER_WIDTH + PRODUCT_GAP;
+// The product name is 0.8x, on the middle line of the logo. Its baseline is where a
+// line box of 1x puts it in Hanken Grotesk (ascent 1, descent 0.3), as in the brand book
+const PRODUCT_FONT_SIZE = 32;
+const PRODUCT_BASELINE = 31.2;
 
 const showProduct = computed(() => !!product && form === 'full');
-const productText = computed(() => product?.toLowerCase() ?? '');
+// Always with a capital: 'academy' is shown as Academy
+const productText = computed(() =>
+  product ? `${product.charAt(0).toUpperCase()}${product.slice(1)}` : ''
+);
 
 // The product name is part of the SVG so the whole lockup scales as one image.
 // Its width is estimated for server rendering and measured once fonts load.
@@ -68,13 +77,14 @@ watch(productText, () => nextTick(measureProduct));
 
 const viewBoxWidth = computed(() => {
   if (form !== 'full') return LOGO_HEIGHT;
-  if (showProduct.value) return LOGO_WIDTH + PRODUCT_GAP + productWidth.value;
+  if (showProduct.value) return PRODUCT_X + productWidth.value;
   return LOGO_WIDTH;
 });
 
 const computedStyle = computed(() => ({
   '--logo-height': height,
   '--logo-ratio': viewBoxWidth.value / LOGO_HEIGHT,
+  '--logo-narrow-width': showProduct.value ? narrowWidth : undefined,
 }));
 </script>
 
@@ -87,6 +97,7 @@ const computedStyle = computed(() => ({
       'cardan-logo',
       `cardan-logo-form--${form}`,
       `cardan-logo-variant--${variant}`,
+      showProduct && 'cardan-logo--product',
     ]"
     :style="computedStyle"
   >
@@ -104,13 +115,14 @@ const computedStyle = computed(() => ({
         :transform="
           round ? 'translate(8 8) scale(0.6)' : 'translate(8.8 8.8) scale(0.56)'
         "
-        class="logo-tile-symbol"
       >
         <path
+          class="logo-link-green"
           transform="translate(15.195 0)"
           d="M 12.402 0 C 19.252 0 24.806 5.553 24.806 12.403 C 24.806 19.253 19.252 24.807 12.402 24.807 C 10.028 24.807 7.81 24.137 5.924 22.979 L 12.342 14.729 L 17.405 14.729 C 18.69 14.729 19.731 13.688 19.731 12.403 C 19.731 11.119 18.69 10.078 17.405 10.078 L 11.204 10.078 C 10.487 10.078 9.809 10.409 9.368 10.976 L 2.475 19.838 C 0.921 17.766 0 15.192 0 12.403 C 0 5.553 5.552 0 12.402 0 Z"
         />
         <path
+          class="logo-link-purple"
           transform="translate(0 15.194)"
           d="M 12.403 0 C 15.061 0 17.522 0.839 19.541 2.263 L 13.465 10.077 L 8.4 10.077 C 7.116 10.077 6.075 11.119 6.075 12.403 C 6.075 13.688 7.116 14.729 8.4 14.729 L 14.602 14.729 C 15.319 14.728 15.997 14.397 16.438 13.831 L 22.802 5.646 C 24.068 7.591 24.807 9.91 24.807 12.403 C 24.807 19.253 19.253 24.807 12.403 24.807 C 5.553 24.807 0 19.253 0 12.403 C 0 5.553 5.553 0 12.403 0 Z"
         />
@@ -158,16 +170,23 @@ const computedStyle = computed(() => ({
           d="M 184.502 33.188 L 169.986 10.888 L 169.986 33.188 L 163.778 33.188 L 163.778 0.478 L 170.081 0.478 L 184.598 22.778 L 184.598 0.478 L 190.806 0.478 L 190.806 33.188 L 184.502 33.188 Z"
         />
       </g>
-      <text
-        v-if="showProduct"
-        ref="productTextRef"
-        class="logo-product"
-        :x="LOGO_WIDTH + PRODUCT_GAP"
-        :y="PRODUCT_BASELINE"
-        :font-size="PRODUCT_FONT_SIZE"
-      >
-        {{ productText }}
-      </text>
+      <template v-if="showProduct">
+        <rect
+          class="logo-product"
+          :x="DIVIDER_X"
+          :width="DIVIDER_WIDTH"
+          :height="LOGO_HEIGHT"
+        />
+        <text
+          ref="productTextRef"
+          class="logo-product"
+          :x="PRODUCT_X"
+          :y="PRODUCT_BASELINE"
+          :font-size="PRODUCT_FONT_SIZE"
+        >
+          {{ productText }}
+        </text>
+      </template>
     </svg>
   </span>
 </template>
@@ -181,8 +200,8 @@ const computedStyle = computed(() => ({
   --logo-green: #008743;
   --logo-purple: #8e40b5;
   --logo-wordmark: #28242d;
-  --logo-product: #8e40b5;
-  --logo-tile: #8e40b5;
+  --logo-product: #28242d;
+  --logo-tile: #fff;
 
   display: inline-block;
   vertical-align: middle;
@@ -196,6 +215,19 @@ const computedStyle = computed(() => ({
     height: auto;
     /* Descenders in the product name (g, j, p, q, y) hang below the logo, like text */
     overflow: visible;
+  }
+
+  /* Below 375px an app header has no room for the lockup at its height next
+     to its buttons: it is the narrow width there, or its own width when smaller */
+  &.cardan-logo--product svg {
+    width: min(
+      var(--logo-narrow-width),
+      calc(var(--logo-height) * var(--logo-ratio))
+    );
+
+    @media (min-width: 375px) {
+      width: calc(var(--logo-height) * var(--logo-ratio));
+    }
   }
 
   /* The product name is brand artwork like the colors: always Hanken Grotesk,
@@ -222,27 +254,24 @@ const computedStyle = computed(() => ({
   .logo-tile {
     fill: var(--logo-tile);
   }
-
-  .logo-tile-symbol {
-    fill: #fff;
-  }
 }
 
-/* Color-negative logo for dark backgrounds */
+/* Color-negative logo for dark backgrounds. The tile stays light: it is a favicon or app icon */
 .cardan-logo-variant--negative,
-.dark-mode .cardan-logo-variant--auto {
+.dark-mode .cardan-logo-variant--auto:not(.cardan-logo-form--tile) {
   --logo-green: #00a351;
   --logo-purple: #984abf;
   --logo-wordmark: #fff;
-  --logo-product: #b768de;
+  --logo-product: #fff;
 }
 
-/* One-color logos, e.g. on photos */
+/* One-color logos, e.g. on photos. As a tile: white symbol on purple */
 .cardan-logo-variant--white {
   --logo-green: #fff;
   --logo-purple: #fff;
   --logo-wordmark: #fff;
   --logo-product: #fff;
+  --logo-tile: #8e40b5;
 }
 
 .cardan-logo-variant--black {

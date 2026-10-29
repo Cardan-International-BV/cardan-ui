@@ -436,7 +436,7 @@ const emit = defineEmits<{
 .popover-trigger-size--md {
   height: 2.5rem;
   min-width: 2.5rem;
-  font-size: var(--popover-font-size, var(--font-size-sm));
+  font-size: var(--popover-font-size, var(--font-size-md));
   padding-inline: 0.5rem;
 
   .popover-label {
