@@ -107,9 +107,9 @@ const darkVariants: CardanLogoVariant[] = ['negative', 'white'];
         <li>
           The logo is 20px high by default, the brand size for websites. It is
           never smaller than 18px, and never smaller than 20px with a product
-          name. On screens narrower than 375px a lockup is 144px wide (the
-          <code>narrow-width</code> prop), which fits in an app header on a
-          320px screen.
+          name. In a flex row, such as an app header, a lockup takes the room
+          it gets, from 144px (the <code>narrow-width</code> prop) up to its
+          height, so it fits in an app header on a 320px screen.
         </li>
         <li>
           Never stretch, recolor or rotate the logo, never put the color logo on

@@ -44,8 +44,9 @@ useHead({ title: 'Changelog' });
           CardanLogo follows the second round of the brand book: product lockups
           have a divider and the product name with a capital, in Body or white
           at 0.8 times the logo height, the logo is 20px high by default (was
-          16px), a lockup is 144px wide below 375px (new
-          <code>narrow-width</code> prop) so it fits in a 320px app header, and
+          16px), a lockup takes the room it gets in a flex row, from 144px (new
+          <code>narrow-width</code> prop) up to its height, so it fits in a
+          320px app header, and
           the tile is the color symbol on a white tile
           (<code>variant="white"</code> for the purple tile)
         </li>

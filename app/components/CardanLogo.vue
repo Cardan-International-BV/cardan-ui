@@ -17,7 +17,7 @@ const {
   product?: string;
   /** Height of the logo (default 20px). The brand minimum is 18px, and 20px with a product */
   height?: string;
-  /** Width of a lockup with a product name on screens narrower than 375px (default 144px), where an app header has no room for its height next to the header buttons. From 375px the lockup has its height */
+  /** Width of a lockup with a product name on screens narrower than 320px (default 144px), where an app header has no room for its height next to the header buttons. From 320px the lockup grows with the room it gets in a flex row, from this width up to its height */
   narrowWidth?: string;
   /** Accessible name, defaults to "Cardan" plus the product */
   label?: string;
@@ -217,16 +217,30 @@ const computedStyle = computed(() => ({
     overflow: visible;
   }
 
-  /* Below 375px an app header has no room for the lockup at its height next
+  /* Below 320px an app header has no room for the lockup at its height next
      to its buttons: it is the narrow width there, or its own width when smaller */
   &.cardan-logo--product svg {
     width: min(
       var(--logo-narrow-width),
       calc(var(--logo-height) * var(--logo-ratio))
     );
+  }
 
-    @media (min-width: 375px) {
-      width: calc(var(--logo-height) * var(--logo-ratio));
+  /* From 320px the lockup takes the room it gets, from the narrow width up to
+     its height, instead of growing in one step that pushes the header buttons
+     out. Like an image with max-width: 100%, it shrinks in a flex row while
+     its preferred size stays its full width. */
+  @media (min-width: 320px) {
+    &.cardan-logo--product {
+      min-inline-size: min(
+        var(--logo-narrow-width),
+        calc(var(--logo-height) * var(--logo-ratio))
+      );
+
+      svg {
+        width: calc(var(--logo-height) * var(--logo-ratio));
+        max-width: 100%;
+      }
     }
   }
 
