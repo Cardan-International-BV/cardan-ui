@@ -21,21 +21,37 @@ useHead({ title: 'Changelog' });
           <code>heading-offset</code> prop moves the text's headings down
         </li>
         <li>
-          MarkdownPreview has no margin outside the text, wide tables scroll on
-          their own, and a colour swatch only takes a plain colour value
+          MarkdownPreview has no margin outside the text, and a colour swatch
+          only takes a plain colour value
+        </li>
+        <li>
+          MarkdownPreview: a wide table scrolls on its own in a region named
+          "Table" (new <code>aria.table</code> string) that takes keyboard
+          focus, and keeps its table semantics
+        </li>
+        <li>
+          MultiSelect opens its dropdown upwards when the list doesn't fit below
+          the field and there is more room above, and caps its height to the
+          room on that side, so it stays reachable inside a popover; an
+          <code>open-direction</code> passed by the parent still wins
         </li>
         <li>
           Accordion has <code>aria-expanded="false"</code> from the start;
-          legends of CheckboxGroup and RadioGroup are semibold
+          legends of CheckboxGroup and RadioGroup are semibold, with a little
+          more room below them in CheckboxGroup
         </li>
         <li>
-          CardanLogo follows the second round of the brand book: product
-          lockups have a divider and the product name with a capital, in Body
-          or white at 0.8 times the logo height, the logo is 20px high by
-          default (was 16px), a lockup is 144px wide below 375px (new <code>narrow-width</code> prop)
-          so it fits in a 320px app header, and the
-          tile is the color symbol on a white tile
+          CardanLogo follows the second round of the brand book: product lockups
+          have a divider and the product name with a capital, in Body or white
+          at 0.8 times the logo height, the logo is 20px high by default (was
+          16px), a lockup is 144px wide below 375px (new
+          <code>narrow-width</code> prop) so it fits in a 320px app header, and
+          the tile is the color symbol on a white tile
           (<code>variant="white"</code> for the purple tile)
+        </li>
+        <li>
+          The favicon in <code>.playground/public</code> is the light tile with
+          the symbol at 72%
         </li>
         <li>
           The <code>cta</code> Button is white text on purple in dark mode too,
@@ -47,12 +63,24 @@ useHead({ title: 'Changelog' });
           of the logout dialog are lg, like the other Auth UI dialogs
         </li>
         <li>
+          Cardan Auth UI: recovery codes are shown only when they are created,
+          once in the setup and once after regenerating them; MfaSettings offers
+          "Regenerate recovery codes" behind the password confirmation instead
+          of showing the current codes, and the setup says the codes are shown
+          this once
+        </li>
+        <li>
+          Cardan Auth UI: "Disable MFA" in MfaSettings is a danger Button, and
+          its description is at most 67ch wide (was 60ch)
+        </li>
+        <li>
           The md Button and the md Popover trigger have 16px text, and the md
           Button has 16px padding, as the brand book's button
         </li>
         <li>
           <code>--color-grey-graphic</code> is Body 60% in light mode too,
-          instead of Always grey
+          instead of Always grey, and the template <code>main.css</code> no
+          longer has <code>--cardan-always-grey</code>
         </li>
       </ul>
     </ChangelogEntry>
