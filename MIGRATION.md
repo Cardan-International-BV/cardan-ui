@@ -317,9 +317,10 @@ The checked Switch sets `--color-accent-graphic` to green itself; override `--co
 - **Raw HTML shows as text** unless you add `trusted`. `<kbd>`, `<details>` or any other HTML in the text no longer renders as an element.
 - **`{…}` sets only `lang`, `dir` and `class`** unless you add `trusted`. Event handlers (`{onclick=…}`), `style`, `id` and links are ignored. Until now every attribute was allowed.
 - **A colour swatch** (`` `#ff0000` ``, `` `rgb(…)` ``, `` `hsl(…)` ``) only gets its colour for a plain colour value; anything after it no longer reaches the `style` attribute.
+- **A class in `{…}` is still allowed**, so a text can apply any class of your page, for example one that hides it visually. It runs no script. Where that matters, search the stored text for `{.`.
 - **Add `trusted` only for text your team wrote** and that needs HTML or other attributes. Never for text from users, imports or an AI.
 - **No margin outside the text**: the first child has no top margin and the last no bottom margin. Remove your own resets, such as a `.markdown--no-margin` class or `:first-child { margin-block-start: 0 }` on `.cardan-markdown-preview`.
-- **Wide tables** scroll on their own instead of the page (reflow at 320px).
+- **Wide tables** scroll on their own instead of the page (reflow at 320px): each table is in a scroll region (`.markdown-table`, named "Table") that takes keyboard focus, and the table keeps its table semantics. CSS that set `display: block` or `overflow` on `.cardan-markdown-preview table` can go.
 - **New `inline` prop** for a title or label: inline markup only (emphasis, code, links), in a `<span>` that is valid inside a button, link, label or heading, in the size around it. Use it instead of a `<div>` in those places, and instead of rendering inline markdown with `v-html` yourself.
 - **New `heading-offset` prop** moves the text's own headings down, so its `##` fits under the heading of the section that shows it: `:heading-offset="1"` turns `##` into `<h3>`.
 

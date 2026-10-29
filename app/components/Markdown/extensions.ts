@@ -5,8 +5,11 @@ import type { MarkdownIt } from 'markdown-it';
  * numbers inside. Anything more never reaches the `style` attribute, so a
  * text cannot add its own CSS (such as a background image that loads a URL).
  */
-const COLOR_VALUE =
-  /^(#[0-9a-f]{3}|#[0-9a-f]{6}|(rgb|hsl)a?\([\d\s.,%/+-]+(deg)?[\d\s.,%/+-]*\))$/i;
+const COLOR_COMPONENT = String.raw`[\d.+-]+(%|deg|turn|rad|grad)?`;
+const COLOR_VALUE = new RegExp(
+  String.raw`^(#[0-9a-f]{3}|#[0-9a-f]{6}|(rgb|hsl)a?\(\s*${COLOR_COMPONENT}(\s*[\s,/]\s*${COLOR_COMPONENT})*\s*\))$`,
+  'i',
+);
 
 export function swatchExtension(md: MarkdownIt) {
   const defaultRender =
@@ -86,5 +89,26 @@ export function italicExtension(md: MarkdownIt) {
       tokens[idx].tag = 'i';
     }
     return self.renderToken(tokens, idx, options);
+  };
+}
+
+/**
+ * A table in a region that scrolls on its own, so a wide table does not
+ * widen the page (reflow at 320px). The region is focusable, so the keyboard
+ * can scroll it too, and named by `env.tableLabel`. The table itself keeps
+ * its display, and with it its table semantics.
+ */
+export function tableScrollExtension(md: MarkdownIt) {
+  md.renderer.rules.table_open = function (tokens, idx, options, env, self) {
+    const label = md.utils.escapeHtml(String(env?.tableLabel ?? 'Table'));
+
+    return (
+      `<div class="markdown-table" role="region" tabindex="0" aria-label="${label}">` +
+      self.renderToken(tokens, idx, options)
+    );
+  };
+
+  md.renderer.rules.table_close = function (tokens, idx, options, env, self) {
+    return self.renderToken(tokens, idx, options) + '</div>';
   };
 }

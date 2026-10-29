@@ -5,6 +5,7 @@ import {
   headingOffsetExtension,
   swatchExtension,
   italicExtension,
+  tableScrollExtension,
   targetBlankExtension,
 } from './extensions';
 
@@ -15,6 +16,8 @@ import { escapeHTML } from '../../utils/markdown';
  * The attributes a text may set with `{…}` when it is not trusted: a language
  * for a phrase (`{lang=en}`), its direction and a class. Never an event
  * handler, a style, a link or an id, which could clash with the page's own.
+ * A class runs no script, but it can apply any class of the page, such as one
+ * that hides text visually.
  */
 const SAFE_ATTRIBUTES = ['lang', 'dir', 'class'];
 
@@ -41,6 +44,7 @@ function createRenderer(trusted: boolean) {
   md.use(targetBlankExtension);
   md.use(italicExtension);
   md.use(headingOffsetExtension);
+  md.use(tableScrollExtension);
   md.use(attrs, trusted ? {} : { allowed: SAFE_ATTRIBUTES });
   md.use(mark);
 
@@ -60,6 +64,8 @@ export type MarkdownRenderOptions = {
   inline?: boolean;
   /** Levels to move the text's own headings down: 1 turns `##` into `<h3>`. */
   headingOffset?: number;
+  /** Accessible name of the scroll region around a table. */
+  tableLabel?: string;
 };
 
 export function renderMarkdown(
@@ -68,10 +74,11 @@ export function renderMarkdown(
     trusted = false,
     inline = false,
     headingOffset = 0,
+    tableLabel = 'Table',
   }: MarkdownRenderOptions = {},
 ) {
   const md = trusted ? renderers.trusted : renderers.safe;
-  const env = { headingOffset };
+  const env = { headingOffset, tableLabel };
 
   return inline ? md.renderInline(content, env) : md.render(content, env);
 }

@@ -38,8 +38,15 @@ const computedStyle = computed(() => ({
   '--line-clamp': ellipsisLines && ellipsisLines,
 }));
 
+const { t } = useI18n();
+
 const preview = computed(() =>
-  renderMarkdown(content, { inline, trusted, headingOffset }),
+  renderMarkdown(content, {
+    inline,
+    trusted,
+    headingOffset,
+    tableLabel: t('aria.table'),
+  }),
 );
 
 const classes = computed(() => [
@@ -120,11 +127,19 @@ const classes = computed(() => [
     margin-block-end: 0;
   }
 
-  /* A wide table scrolls on its own instead of the page (reflow at 320px). */
-  table {
-    display: block;
+  /* A wide table scrolls in its own region instead of the page (reflow at
+     320px). The region takes focus, so the keyboard can scroll it. */
+  .markdown-table {
     max-width: 100%;
     overflow-x: auto;
+
+    &:focus-visible {
+      outline: 2px solid var(--focus-color);
+      outline-offset: 2px;
+    }
+  }
+
+  table {
     border-collapse: collapse;
   }
 

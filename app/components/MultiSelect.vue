@@ -74,6 +74,48 @@ defineExpose({
 
 const isExpanded = ref(false);
 
+const attrs = useAttrs();
+
+// An open-direction passed by the parent wins over the automatic placement
+const fixedOpenDirection = computed(
+  () => (attrs.openDirection ?? attrs['open-direction']) as string | undefined,
+);
+
+const openDirection = ref<'top' | 'bottom'>('bottom');
+const availableHeight = ref<number>();
+
+// Opens the dropdown upwards when it doesn't fit below the field but there is
+// more room above, and caps its height to the room on that side. Inside a
+// popover the page can't scroll, so a dropdown past the viewport is unreachable.
+async function placeDropdown() {
+  if (fixedOpenDirection.value) return;
+
+  const container = multiSelectRef.value?.$el as HTMLElement | undefined;
+  const dropdown = container?.querySelector<HTMLElement>(
+    '.multiselect-dropdown',
+  );
+  if (!container || !dropdown) return;
+
+  availableHeight.value = undefined;
+  await nextTick();
+
+  const margin = 8;
+  const { top, bottom } = container.getBoundingClientRect();
+  const spaceAbove = top - margin;
+  const spaceBelow = window.innerHeight - bottom - margin;
+  const neededHeight = Math.min(
+    dropdown.scrollHeight || Infinity,
+    parseFloat(getComputedStyle(dropdown).maxHeight),
+  );
+
+  openDirection.value =
+    spaceBelow < neededHeight && spaceAbove > spaceBelow ? 'top' : 'bottom';
+  availableHeight.value = Math.max(
+    0,
+    openDirection.value === 'top' ? spaceAbove : spaceBelow,
+  );
+}
+
 onMounted(() => {
   if (autofocus) setTimeout(() => focusElement(), 200);
 
@@ -100,6 +142,11 @@ function preventEscape(event: KeyboardEvent) {
       showInvalid && 'show-invalid',
       showOptionIcons && 'show-option-icons',
     ]"
+    :style="
+      availableHeight === undefined
+        ? undefined
+        : { '--ms-available-height': `${availableHeight}px` }
+    "
   >
     <label
       :for="id"
@@ -132,7 +179,11 @@ function preventEscape(event: KeyboardEvent) {
         'aria-multiselectable': null,
       }"
       :multiple-label="formatMultipleLabels"
-      @open="isExpanded = true"
+      :open-direction="fixedOpenDirection ?? openDirection"
+      @open="
+        isExpanded = true;
+        placeDropdown();
+      "
       @close="isExpanded = false"
     >
       <!-- https://github.com/vueform/multiselect#slots -->
@@ -427,8 +478,16 @@ function preventEscape(event: KeyboardEvent) {
   }
 }
 
-.multiselect.is-active.is-open {
+.multiselect.is-active.is-open,
+.multiselect.is-active.is-open-top {
   box-shadow: none;
+}
+
+.cardan-multiselect .multiselect-dropdown {
+  max-height: min(
+    var(--ms-max-height, 10rem),
+    var(--ms-available-height, 100dvh)
+  );
 }
 
 .multiselect-option {
