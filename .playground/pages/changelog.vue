@@ -56,9 +56,10 @@ useHead({ title: 'Changelog' });
         </li>
         <li>
           The primary Button is white text on purple in dark mode too, with the
-          new <code>--color-on-accent</code> and
-          <code>--color-accent-hover</code> tokens; it replaces the
-          <code>cta</code> Button, which is removed
+          <code>--color-accent</code>, <code>--color-on-accent</code> and
+          <code>--color-accent-hover</code> tokens, which every project needs
+          in its <code>main.css</code>; it replaces the <code>cta</code>
+          Button, which is removed
         </li>
         <li>
           Cardan Auth UI: the buttons of the sign-in, password and MFA pages and

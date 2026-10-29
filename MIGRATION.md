@@ -345,10 +345,12 @@ Add `trusted` where a field turns out to need it, or clean up the text.
 
 ### Button and Popover
 
-- **The primary Button** is white text on purple in both modes again (5.1:1 in dark mode), with the brand hover and a purple focus outline. It takes over the colours of the `cta` Button, and **the `cta` variant is removed**: replace `variant="cta"` with `variant="primary"`, and add `font-size="sm"` where you want to keep its 14px text. Add the two tokens the primary Button uses to your `main.css`; 2.2 removed `--color-on-accent`, and 2.2.1 `--color-accent-hover`, from the template:
+- **The primary Button** is white text on purple in both modes again (5.1:1 in dark mode), with the brand hover and a purple focus outline. It takes over the colours of the `cta` Button, and **the `cta` variant is removed**: replace `variant="cta"` with `variant="primary"`, and add `font-size="sm"` where you want to keep its 14px text. Add the three tokens the primary Button uses to your `main.css`. They have no fallback, so without them the primary Button has no fill and body-coloured text. 2.2 removed `--color-on-accent` and kept `--color-accent` only for a project's own CSS, and 2.2.1 removed `--color-accent-hover` from the template, so cardan-auditor-nuxt, cardan-lms-nuxt and cardan-support had none of them:
 
   ```css
   :where(.dark-mode) {
+    --color-accent: var(--cardan-purple-on-dark);
+    /* Purple fill with white text in both modes, for the primary Button: 5.1:1 */
     --color-accent-hover: color-mix(
       in srgb,
       var(--cardan-purple-on-dark) 85%,
@@ -358,11 +360,19 @@ Add `trusted` where a field turns out to need it, or clean up the text.
   }
 
   :where(.light-mode) {
+    --color-accent: var(--cardan-purple);
     --color-accent-hover: var(--cardan-purple-hover);
     --color-on-accent: var(--cardan-white);
   }
   ```
 
+  A project with its own palette (cardan-cms-nuxt, cardan-shop-nuxt) can keep the 2.2 primary Button, filled with the accent text colour, by pointing the tokens at the ones 2.2 used, in both modes:
+
+  ```css
+  --color-accent: var(--color-accent-text);
+  --color-accent-hover: var(--color-accent-text-hover);
+  --color-on-accent: var(--color-white);
+  ```
 
 - **The md Button** (the default size) has 16px text (was 14px) and 16px padding (was 12px plus 3px around the text), as the brand book's button. It is wider, so check rows of buttons and MenuLists, which use md buttons, at 320px. Set `font-size="sm"` (or `--button-font-size`) to keep the smaller text.
 - **The md Popover** trigger has 16px text (was 14px), like the md Button.
