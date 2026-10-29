@@ -339,15 +339,13 @@ const emit = defineEmits<{
 }
 
 .popover-trigger-variant--primary {
-  color: var(--color-white);
-  background-color: var(--color-accent-text);
+  --focus-color: var(--color-accent-text);
+  /* Always white on purple, also in dark mode */
+  color: var(--color-on-accent);
+  background-color: var(--color-accent);
 
-  &:not(:disabled):hover {
-    background-color: color-mix(
-      in srgb,
-      var(--color-accent-text) 85%,
-      var(--color-black)
-    );
+  &:not(:disabled, .disabled):hover {
+    background-color: var(--color-accent-hover);
   }
 }
 

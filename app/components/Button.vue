@@ -386,10 +386,14 @@ const emit = defineEmits<{
 
 .button-variant--secondary {
   color: var(--color-text);
-  background-color: var(--color-grey-bg);
+  background-color: var(--color-grey-light);
 
   &:not(:disabled, .disabled):hover {
-    background-color: var(--color-grey-light);
+    background-color: color-mix(
+      in srgb,
+      var(--color-grey-light) 95%,
+      var(--color-black)
+    );
   }
 }
 
