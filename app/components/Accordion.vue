@@ -21,13 +21,13 @@ const {
   open?: boolean;
 }>();
 
-const isExpanded = ref(open);
+const isExpanded = ref(open ?? false);
 const panelRef = useTemplateRef<HTMLElement>('accordionPanel');
 
 watch(
   () => open,
   (newVal) => {
-    isExpanded.value = newVal;
+    isExpanded.value = newVal ?? false;
   },
 );
 

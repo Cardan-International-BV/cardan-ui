@@ -61,7 +61,7 @@ const {
 <style>
 :where(legend) {
   padding: 0;
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-semibold);
   -webkit-user-select: none;
   user-select: none;
   transition-property: opacity;
@@ -82,7 +82,7 @@ const {
   legend {
     font-weight: var(--font-weight-semibold);
     font-size: var(--font-size-md);
-    margin-block-end: 0.5rem;
+    margin-block-end: 0.75rem;
   }
 
   .checkbox-list {

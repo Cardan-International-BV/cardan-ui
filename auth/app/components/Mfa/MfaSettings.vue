@@ -126,7 +126,7 @@ const emit = defineEmits<{
   }
 
   .mfa-settings-description {
-    max-width: 60ch;
+    max-width: 67ch;
     color: var(--color-grey-text);
   }
 
