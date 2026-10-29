@@ -7,6 +7,30 @@ useHead({ title: 'Changelog' });
     <h1>Changelog</h1>
     <p class="mbe-2">Release notes for new features and bug fixes.</p>
 
+    <ChangelogEntry v="2.3.0" date="2026-10-29">
+      <ul>
+        <li>
+          MarkdownPreview is safe by default: raw HTML shows as text and
+          <code>{…}</code> sets only <code>lang</code>, <code>dir</code> and
+          <code>class</code>; the new <code>trusted</code> prop allows both, for
+          text the team wrote
+        </li>
+        <li>
+          MarkdownPreview: the new <code>inline</code> prop renders a title or
+          label in a <code>&lt;span&gt;</code>, and the new
+          <code>heading-offset</code> prop moves the text's headings down
+        </li>
+        <li>
+          MarkdownPreview has no margin outside the text, wide tables scroll on
+          their own, and a colour swatch only takes a plain colour value
+        </li>
+        <li>
+          Accordion has <code>aria-expanded="false"</code> from the start;
+          legends of CheckboxGroup and RadioGroup are semibold
+        </li>
+      </ul>
+    </ChangelogEntry>
+
     <ChangelogEntry v="2.2.1" date="2026-10-27">
       <ul>
         <li>

@@ -56,7 +56,7 @@ Base frontend guidelines (architecture, CSS design system, WCAG 2.2 requirements
 - **Callout**: Highlighted information box (`solid` (default) and `outline` variants)
 - **Markdown**: Markdown rendering and editing
   - MarkdownEditor: Rich text editor (uses [md-editor-v3](https://imzbf.github.io/md-editor-v3/))
-  - MarkdownPreview: Markdown display (uses [markdown-it](https://markdown-it.github.io/) and [highlight.js](https://highlightjs.org/))
+  - MarkdownPreview: Markdown display (uses [markdown-it](https://markdown-it.github.io/) and [highlight.js](https://highlightjs.org/)). Safe by default: no raw HTML, and `{…}` sets only `lang`, `dir` and `class`; `trusted` allows both, for text the team wrote. `inline` renders a title or label in a `<span>`, `heading-offset` moves headings down
 
 ### Utility Components
 

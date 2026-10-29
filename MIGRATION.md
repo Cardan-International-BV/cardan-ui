@@ -307,3 +307,30 @@ The checked Switch sets `--color-accent-graphic` to green itself; override `--co
 
 - **Popover** trigger text is one step smaller and matches the Button of the same size: md is `sm` (14px, was 16px), lg is `md` (16px, was 18px) and xl is `lg` (18px, was 24px). Set `--popover-font-size` or the `font-size` prop to keep the larger text.
 - **`--color-accent-hover`** is no longer in the template `main.css`: no component reads it since 2.2. Delete it from your `main.css` unless your own CSS uses it.
+
+## 9. Upgrading to 2.3
+
+2.3 makes **MarkdownPreview** safe by default. Markdown in our apps often comes from someone other than the reader (an import, a colleague, an AI assistant), so the component no longer lets that text add markup or scripts.
+
+### MarkdownPreview
+
+- **Raw HTML shows as text** unless you add `trusted`. `<kbd>`, `<details>` or any other HTML in the text no longer renders as an element.
+- **`{…}` sets only `lang`, `dir` and `class`** unless you add `trusted`. Event handlers (`{onclick=…}`), `style`, `id` and links are ignored. Until now every attribute was allowed.
+- **A colour swatch** (`` `#ff0000` ``, `` `rgb(…)` ``, `` `hsl(…)` ``) only gets its colour for a plain colour value; anything after it no longer reaches the `style` attribute.
+- **Add `trusted` only for text your team wrote** and that needs HTML or other attributes. Never for text from users, imports or an AI.
+- **No margin outside the text**: the first child has no top margin and the last no bottom margin. Remove your own resets, such as a `.markdown--no-margin` class or `:first-child { margin-block-start: 0 }` on `.cardan-markdown-preview`.
+- **Wide tables** scroll on their own instead of the page (reflow at 320px).
+- **New `inline` prop** for a title or label: inline markup only (emphasis, code, links), in a `<span>` that is valid inside a button, link, label or heading, in the size around it. Use it instead of a `<div>` in those places, and instead of rendering inline markdown with `v-html` yourself.
+- **New `heading-offset` prop** moves the text's own headings down, so its `##` fits under the heading of the section that shows it: `:heading-offset="1"` turns `##` into `<h3>`.
+
+Before you upgrade, check your stored markdown for HTML and attributes, for example in SQL:
+
+```sql
+-- HTML tags, and attribute blocks with something other than lang, dir or class
+SELECT id FROM chapters
+WHERE content ~ '<[a-zA-Z/!]'
+   OR content ~ '\{[^}]*\b(on[a-z]+|style|id|href|src)\s*='
+   OR content ~ '\{[^}]*#[a-zA-Z]';
+```
+
+Add `trusted` where a field turns out to need it, or clean up the text.
