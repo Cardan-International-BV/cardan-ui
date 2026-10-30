@@ -2,11 +2,15 @@
 
 This is cardan-ui, the accessible Vue component library of Cardan, shipped as
 a Nuxt layer. cardan-auditor-nuxt (Cardan Auditor), cardan-lms-nuxt
-(Cardan Academy), cardan-nuxt (the website) and other projects extend it,
-so a change here reaches all of them at once. Cardan is an
-accessibility-first company: an accessibility regression in this library is
-a production bug in every project, not polish. CLAUDE.md (and the parent guidelines it refers to) holds
-the conventions; MIGRATION.md tells projects how to upgrade.
+(Cardan Academy), cardan-cms-nuxt (cardan.com) and cardan-support-nuxt
+(support.cardan.com) extend it, so a change here reaches all of them at once.
+cardan-shop-nuxt extends it too, but is being phased out soon: leave it out
+of the review. Cardan is an accessibility-first company: an accessibility
+regression in this library is a production bug in every project, not polish.
+CLAUDE.md and `.claude/rules/cardan-guidelines.md` hold the conventions;
+MIGRATION.md tells projects how to upgrade. The `auth/` directory is a
+separate layer, Cardan Auth UI, used by cardan-lms-nuxt and
+cardan-auditor-nuxt; its documentation is `auth/README.md`.
 
 ## What Important means here
 
@@ -17,24 +21,75 @@ in the projects that extend the layer:
   missing accessible names, broken keyboard or focus behavior, lost
   label/error associations, color-only meaning, status changes that are no
   longer announced, targets smaller than 24×24px, or motion that ignores
-  `prefers-reduced-motion`.
+  `prefers-reduced-motion` (use the `--duration-*` tokens, which collapse to
+  `0s`).
 - Contrast: text below 4.5:1 or graphics and UI boundaries below 3:1, in
   light **or** dark mode. Check both: the tokens in `app/assets/main.css`
   have separate values under `.light-mode` and `.dark-mode`, and some are
   `color-mix()` values that need to be worked out.
 - Reflow: a component that scrolls horizontally or loses content at 320px
   wide.
-- A component that starts using a design token that is not defined in
-  `app/assets/main.css`, or that is not listed in MIGRATION.md with a value
-  that keeps the current look of existing projects. Projects own their copy
-  of `main.css`, so an undefined token silently breaks their styling.
+- A component that starts to depend on something in `app/assets/main.css`
+  (a design token, a reset or another global rule) that is not defined
+  there, or not listed in MIGRATION.md with a value that keeps the current
+  look of existing projects. The layer does not load `main.css`: it is a
+  template that each project copies into its own `main.css`, because a
+  stylesheet shipped by the layer would be one more render-blocking request
+  (PageSpeed). Anything a project's copy lacks silently breaks its styling.
 - Breaking changes for projects without a note in MIGRATION.md: a renamed or
-  removed prop, variant, slot, emit, class name or exported type, or a
-  changed default value.
+  removed prop, variant, slot, emit, class name, exported type, composable,
+  page or translation key, or a changed default value.
+- i18n: a user-facing string that does not go through `$t()`, or a key that
+  is not in **both** `nl.json` and `en.json` (`i18n/locales/` for the
+  components, `auth/i18n/locales/` for the auth layer). Projects then show
+  the raw key.
+- Unsafe HTML: a new `v-html` on text that MarkdownPreview did not render.
 - Incorrect logic or state: a `useState` key that collides, reactive state
   that goes stale, listeners or observers that are not cleaned up.
+- A broken step in one of the auth flows below.
 
 Style, naming and refactoring suggestions are 🟡 Nit at most.
+
+## Auth layer flows
+
+A change in `auth/` must keep every step of these flows working, for a
+mouse, keyboard and screen reader user. Walk each flow the diff touches,
+following `auth/README.md` (Usage and Accessibility):
+
+- **Sign in**: `/login` posts the credentials, refreshes the identity and
+  continues to `?redirect=`. A redirect to another site must fall back to
+  `redirect.onLogin` (`useAuth()`). When Fortify answers `two_factor: true`,
+  it goes to `/two-factor-authentication` with the `?redirect=` carried
+  along.
+- **Sign-in challenge**: an app code or a recovery code; the page keeps
+  `sanctum: { guestOnly: true }`, since the user is not signed in until the
+  code is accepted.
+- **Setup reminder**: with `mfa_enabled: false` a sign-in detours past
+  `/mfa-setup` once; with `mfa_required` there is no skip and the
+  `mfa-setup` middleware returns there on every navigation; a `403` with
+  `mfa_setup_required` or `backoffice_mfa_required` mid-session goes there
+  too.
+- **Enable MFA** (`MfaDialog`, `MfaSetup`): intro → QR code → confirm code →
+  recovery codes. The recovery codes are read only right after they are
+  created and forgotten when the step or dialog closes: never kept in
+  `useState`, storage, the URL or logs.
+- **Disable MFA, regenerate recovery codes**: behind the password
+  confirmation; an account that requires MFA is sent to `/mfa-setup`
+  instead. Changing the authenticator app is disable and set up again,
+  never Fortify's `force` re-enable.
+- **Password confirmation**: a `423` opens `PasswordConfirmationDialog`,
+  then the call is retried once; cancelling leaves the user where they
+  were.
+- **Forgot and reset password**: the reset signs the user in, through the
+  challenge when MFA is on; the requirements come from the policy endpoint
+  or the `passwordPolicy` setting.
+- **Sign out**: `LogoutDialog` asks before signing out.
+
+Also 🔴 Important in `auth/`: a password, code or token that ends up in a
+URL, storage, a log or an error message; a changed endpoint default or
+`cardanAuth` setting without a note in `auth/README.md`; a focus move or
+`role="alert"` error region from the Accessibility section that no longer
+happens.
 
 ## Always check
 
@@ -45,12 +100,22 @@ Style, naming and refactoring suggestions are 🟡 Nit at most.
   `var(--token, var(--other))`.
 - Components never use the `--cardan-*` primitives; only the semantic
   `--color-*` tokens in `main.css` do.
-- Text and icons on tinted (`-bg`) surfaces use the `--color-*-on-bg`
-  tokens.
-- Custom CSS only: no Tailwind classes, logical properties
+- Text and icons on tinted (`-bg`) surfaces use the matching
+  `--color-*-text` token.
+- Custom CSS only: no Tailwind classes; nested classes, logical properties
   (`margin-inline`, `padding-block`, …), mobile-first.
-- User-facing strings go through `$t()` and the key exists in **both**
-  `i18n/locales/nl.json` and `i18n/locales/en.json`.
+- After a change to one of the shared Claude files (`.claude/rules/cardan-guidelines.md`,
+  `.claude/agents/cardan-reviewer.md`, `.claude/hooks/cardan-review.mjs`,
+  `.claude/settings.json`), the copies in the other projects are updated
+  with `scripts/sync-claude-guidelines.sh` (`--check` lists the ones that
+  differ).
+- Common translations belong here: a string that several projects need
+  (buttons like Close, Save or Cancel, generic labels and errors) goes into
+  the layer's locale files, as the auth strings did, so projects don't each
+  keep a copy.
+- MarkdownPreview stays safe by default: raw HTML is shown as text and
+  `{…}` sets only `lang`, `dir` and `class`. `trusted` is for text the team
+  wrote.
 - Props are typed; shared types live in `app/types/index.ts` as
   `declare global`.
 - No new external dependencies unless clearly necessary, and nothing loaded
@@ -66,7 +131,7 @@ Style, naming and refactoring suggestions are 🟡 Nit at most.
 - Type errors that pre-exist on the base branch. There is a known baseline
   (`app/components/Markdown/extensions.ts`,
   `app/composables/useCookiesDialog.ts`, `app/utils/sort.ts` and others);
-  only report type issues the PR introduces.
+  only report type issues the change introduces.
 - Anything `pnpm run lint` (ESLint) already enforces, or formatting.
 - `pnpm-lock.yaml`, `.playground/public/**`, and generated or vendored code.
 - Code style in the playground pages under `.playground/`; they are
@@ -89,11 +154,11 @@ repository.
 
 ## Re-review convergence
 
-After the first review round on a PR, post Important findings only;
-suppress new nits unless the pushed changes introduced them.
+After the first review round, report Important findings only; suppress new
+nits unless the changes since then introduced them.
 
 ## Summary shape
 
-Open the review body with a one-line tally, e.g. `1 important, 3 nits`,
-followed by one sentence on whether the PR is safe to merge for the projects
+Open the review with a one-line tally, e.g. `1 important, 3 nits`, followed
+by one sentence on whether the change is safe to merge for the projects
 that extend the layer, and whether MIGRATION.md covers what they need to do.
