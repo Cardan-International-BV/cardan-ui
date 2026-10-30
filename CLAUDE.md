@@ -2,7 +2,7 @@
 
 Accessible Vue 3 component library for Nuxt 4 in TypeScript, distributed as a [Nuxt Layer](https://nuxt.com/docs/getting-started/layers).
 
-Base frontend guidelines (architecture, CSS design system, WCAG 2.2 requirements) live in the parent `../CLAUDE.md` and apply here too.
+The shared Cardan guidelines (architecture, CSS design system, WCAG 2.2 requirements, the review before every commit) live in [.claude/rules/cardan-guidelines.md](.claude/rules/cardan-guidelines.md) and apply here too. This repository holds the originals of the shared Claude files: that file, the `cardan-reviewer` agent (`.claude/agents/`), the review hook (`.claude/hooks/cardan-review.mjs`) and `.claude/settings.json`. cardan-lms-nuxt, cardan-auditor-nuxt, cardan-cms-nuxt and cardan-support-nuxt hold exact copies. After changing one, run `scripts/sync-claude-guidelines.sh` to update the copies in the checkouts next to this one, and commit them there (`--check` only reports differences). The hook blocks commits here while a copy differs.
 
 ## Component Categories
 
