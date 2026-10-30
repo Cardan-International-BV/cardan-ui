@@ -86,6 +86,7 @@ The shared Claude files (this file, the `cardan-reviewer` agent, the hook and `.
 
 ### Dependencies
 - **Preference**: Avoid adding new external dependencies unless absolutely necessary
+- **Reuse**: A dependency that Cardan UI already lists is not a new dependency. Reusing it in a project is fine, especially a Nuxt module: prefer it over writing your own version
 - **Version Control**: Keep dependencies up to date and secure
 
 ### Project Planning
